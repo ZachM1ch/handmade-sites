@@ -6,5 +6,5 @@ Two website projects made from college classes. They are as follows:
 - An online storefront meant to sell flooring and flooring supplies
 
 <ins>CoolerBirds.com</ins>
-- Fall 2022
+- Fall 2023
 - A repository of images and information about birds
