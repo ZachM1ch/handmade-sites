@@ -1,0 +1,68 @@
+<html>
+<head>
+ <title>Heigh's Flooring and Tile House Repository</title>
+</head>
+<body>
+ <h1>Heigh's Flooring and Tile House Repository - Employee Dashboard</h1>
+
+ <!-- interface for searching inventory -->
+ <h2>Search Inventory</h2>
+ <form action="emp_results.php" method="post">
+ Choose Search Type:<br />
+ <select name="searchtype">
+ <option value="name">Name
+ <option value="category">Category
+ <option value="sku">SKU
+ <option value="color">Color
+ </select>
+ <br />
+ Enter Search Term:<br />
+ <input name="searchterm" type="text" size="40">
+ <br />
+ <input type="submit" name="submit" value="Search">
+ </form>
+ <!-- button for adding product -->
+ <h2>Insert New Product</h2>
+ <form action="new_product.php" method="post">
+ <table border="0">
+ <tr>
+ <td>SKU</td>
+<td><input type="text" name="sku" maxlength="12" size="12"></td>
+ </tr>
+ <tr>
+ <td>Price $</td>
+<td><input type="text" name="price" maxlength="8" size="8"></td>
+ </tr>
+ <tr>
+ <td>Name</td>
+<td> <input type="text" name="name" maxlength="100" size="100"></td>
+ </tr>
+ <tr>
+ <td>Color</td>
+<td> <input type="text" name="color" maxlength="50" size="50"></td>
+ </tr>
+ <tr>
+ <td>Category</td>
+<td><input type="text" name="category" maxlength="30" size="30"></td>
+ </tr>
+ <tr>
+ <td>Quantity</td>
+<td><input type="text" name="quantity_available" maxlength="4" size="4"></td>
+ </tr>
+ <tr>
+ <td>Image Name</td>
+ <td><input type="text" name="image" maxlength="16" size="16"></td>
+ </tr>
+ <tr>
+ <td colspan="2"><input type="submit" value="Register"></td>
+ </tr>
+ </table>
+ </form>
+ <!-- button for logoutt -->
+ <h2>Return to Login</h2>
+ <form action="logout.php" method="post">
+ <input type="submit" name="submit" value="Log Out">
+ </form>
+
+</body>
+</html>

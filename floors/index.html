@@ -1,0 +1,55 @@
+<html>
+<head>
+ <title>Heigh's Flooring and Tile House Repository</title>
+</head>
+<body>
+ <h1>Heigh's Flooring and Tile House Repository - Login</h1>
+ <h3>Customer Login</h3>
+ <!-- fill out customer info -->
+ <form action="authenticate_customer.php" method="post">
+ <table border="0">
+ <tr>
+ <td>Username:</td>
+ <td><input type="text" name="userid" maxlength="30" size="50"></td> 
+ <p>Example Username: ApplinKing<p>
+ </tr>
+ <tr>
+ <td>Password:</td>
+ <td> <input type="password" name="password" maxlength="50" size="50"></td>
+ <p>Example Password: bestDragonType08<p>
+ </tr>
+ <tr>
+ <td colspan="2"><input type="submit" value="Login"></td>
+ </tr>
+ </table>
+ </form>
+
+ <!-- button to create account -->
+ <!-- Lost create_account.php somehow -->
+ <!--
+ <form action="create_account.php" method="post">
+ <input type="submit" name="create" value="Create Account">
+ </form>
+ -->
+
+ <h3>Employee Login</h3>
+ <!-- fill out employee info -->
+ <form action="authenticate_employee.php" method="post">
+ <table border="0">
+ <tr>
+ <td>Employee ID:</td>
+ <td><input type="text" name="employeeid" maxlength="9" size="9"></td>
+ <p>Example Employee ID: 111223333<p>
+ </tr>
+ <tr>
+ <td>Password:</td>
+ <td><input type="password" name="password" maxlength="50" size="50"></td>
+ <p>Example Password: kenFromMillwork22<p>
+ </tr>
+ <tr>
+ <td colspan="2"><input type="submit" value="Login"></td>
+ </tr>
+ </table>
+ </form>
+</body>
+</html>

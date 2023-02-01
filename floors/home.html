@@ -1,0 +1,43 @@
+<html>
+<head>
+ <title>Heigh's Flooring and Tile House Repository</title>
+</head>
+<body>
+ <h1>Heigh's Flooring and Tile House Repository
+- Home</h1>
+ <!-- interface to search inventory -->
+ <h2>Search Inventory</h2>
+ <form action="results.php" method="post">
+ Choose Search Type:<br />
+ <select name="searchtype">
+ <option value="name">Name
+ <option value="category">Category
+ <option value="sku">SKU
+ <option value="color">Color
+ </select>
+ <br />
+ Enter Search Term:<br />
+ <input name="searchterm" type="text" size="40">
+ <br />
+ <input type="submit" name="submit" value="Search">
+ </form>
+
+ <!-- button to cart -->
+ <h2>View Cart</h2>
+ <form action="cart.php" method="post">
+ <input type="submit" name="submit" value="Your Cart">
+ </form>
+
+ <!-- button to orders -->
+ <h2>View Orders</h2>
+ <form action="orders.php" method="post">
+ <input type="submit" name="submit" value="Your Orders">
+ </form>
+
+ <!-- button to logout -->
+ <h2>Return to Login</h2>
+ <form action="logout.php" method="post">
+ <input type="submit" name="submit" value="Log Out">
+ </form>
+</body>
+</html>
