@@ -41,7 +41,7 @@ $defaultPdf = "sample.pdf";
   </div>
 
   <!-- pdf.js (self-hosted) -->
-  <script src="libs/pdfjs/pdf.mjs"></script>
+  <script src="libs/pdfjs/pdf.js"></script>
   <script>
     if (window.pdfjsLib) {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'libs/pdfjs/pdf.worker.js';
