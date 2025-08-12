@@ -1,59 +1,77 @@
-<?php
-// index.php — Self-hosted PDF flipbook
-// Optional: set a default PDF file to load (in same directory)
-$defaultPdf = "sample.pdf";
-?>
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>My PDF Flipbook</title>
+    <meta charset="UTF-8">
+    <title>PDF Flipbook</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin: 0; padding: 0; }
+        #pdf-container { display: flex; flex-direction: column; align-items: center; }
+        canvas { border: 1px solid #ccc; margin: 10px 0; }
+        button { padding: 8px 12px; margin: 5px; }
+    </style>
 </head>
 <body>
-  <div id="flipbook-root" class="flipbook-root">
-    <header class="flipbook-header">
-      <input id="pdf-file" type="file" accept="application/pdf" />
-      <input id="pdf-url" type="text" placeholder="Or enter a PDF URL and press Load" />
-      <button id="load-url">Load</button>
-      <div class="controls">
-        <button id="prev">◀ Prev</button>
-        <span id="page-indicator">— / —</span>
-        <button id="next">Next ▶</button>
-      </div>
-    </header>
 
-    <main class="flipbook-stage" id="stage" tabindex="0">
-      <div class="page left" id="page-left">
-        <canvas id="canvas-left"></canvas>
-      </div>
-      <div class="page right" id="page-right">
-        <canvas id="canvas-right"></canvas>
-      </div>
-      <div id="flipper" class="flipper" aria-hidden="true">
-        <canvas id="canvas-flip"></canvas>
-      </div>
-    </main>
+<h1>PDF Flipbook</h1>
+<input type="file" id="file-input" accept="application/pdf">
+<div id="pdf-container">
+    <canvas id="pdf-canvas"></canvas>
+    <div>
+        <button id="prev">Previous</button>
+        <span id="page-num">1</span> / <span id="page-count">0</span>
+        <button id="next">Next</button>
+    </div>
+</div>
 
-    <footer class="flipbook-footer">
-      Tip: Click the right/left edges, use arrow keys, or swipe on mobile.
-    </footer>
-  </div>
+<script type="module">
+    import * as pdfjsLib from './libs/pdfjs/pdf.mjs';
 
-  <!-- pdf.js (self-hosted) -->
-  <script src="libs/pdfjs/pdf.mjs" type="module"></script>
-  <script>
-    if (window.pdfjsLib) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc = 'libs/pdfjs/pdf.worker.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = './libs/pdfjs/pdf.worker.mjs';
+
+    const fileInput = document.getElementById('file-input');
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let pdfDoc = null;
+    let pageNum = 1;
+
+    async function renderPage(num) {
+        const page = await pdfDoc.getPage(num);
+        const viewport = page.getViewport({ scale: 1.5 });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        await page.render({
+            canvasContext: ctx,
+            viewport: viewport
+        }).promise;
+
+        document.getElementById('page-num').textContent = num;
+        document.getElementById('page-count').textContent = pdfDoc.numPages;
     }
-  </script>
 
-  <script src="libs/pdfjs/app.mjs" type="module"></script>
-  <script>
-    // Auto-load the default PDF if set
-    <?php if ($defaultPdf): ?>
-    loadPdfFromUrl("<?php echo $defaultPdf; ?>");
-    <?php endif; ?>
-  </script>
+    document.getElementById('prev').addEventListener('click', () => {
+        if (pageNum <= 1) return;
+        pageNum--;
+        renderPage(pageNum);
+    });
+
+    document.getElementById('next').addEventListener('click', () => {
+        if (pageNum >= pdfDoc.numPages) return;
+        pageNum++;
+        renderPage(pageNum);
+    });
+
+    fileInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const arrayBuffer = await file.arrayBuffer();
+        pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+        pageNum = 1;
+        renderPage(pageNum);
+    });
+</script>
+
 </body>
 </html>
