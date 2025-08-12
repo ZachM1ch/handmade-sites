@@ -41,14 +41,14 @@ $defaultPdf = "sample.pdf";
   </div>
 
   <!-- pdf.js (self-hosted) -->
-  <script src="libs/pdfjs/pdf.js"></script>
+  <script src="libs/pdfjs/pdf.mjs" type="module"></script>
   <script>
     if (window.pdfjsLib) {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'libs/pdfjs/pdf.worker.js';
     }
   </script>
 
-  <script src="libs/pdfjs/app.js"></script>
+  <script src="libs/pdfjs/app.mjs" type="module"></script>
   <script>
     // Auto-load the default PDF if set
     <?php if ($defaultPdf): ?>
