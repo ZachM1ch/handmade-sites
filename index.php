@@ -1,19 +1,17 @@
-<?php $pageTitle = "Home"; include($_SERVER['DOCUMENT_ROOT']."/includes/header.php"); ?>
-
-<section>
-    <h1>Welcome to My Website</h1>
-    <p>This is my central hub for my portfolio, art galleries, and stories.</p>
-    <ul>
-        <li><a href="/portfolio/">View my coding projects</a></li>
-        <li><a href="/gallery/">Browse my art</a></li>
-        <li><a href="/stories/">Read my stories</a></li>
-    </ul>
-</section>
-
-<section>
 <?php
-$defaultPdf = "deck.pdf";
+// index.php — Self-hosted PDF flipbook
+// Optional: set a default PDF file to load (in same directory)
+$defaultPdf = "sample.pdf";
 ?>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My PDF Flipbook</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
   <div id="flipbook-root" class="flipbook-root">
     <header class="flipbook-header">
       <input id="pdf-file" type="file" accept="application/pdf" />
@@ -58,7 +56,5 @@ $defaultPdf = "deck.pdf";
     loadPdfFromUrl("<?php echo $defaultPdf; ?>");
     <?php endif; ?>
   </script>
-
-</section>
-
-<?php include($_SERVER['DOCUMENT_ROOT']."/includes/footer.php"); ?>
+</body>
+</html>
