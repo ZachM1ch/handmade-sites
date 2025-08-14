@@ -7,7 +7,7 @@ little information about each, however, the code behind it was anything but simp
 projects I’ve worked on and truly expanded my skillset compared to that used for the creation of HFTHR.<br>
 <br>Languages and Tools Used: Hostinger, HTML, CSS, PHP, SQL</p>
 
-<a href="../birds/birdDashboard.php">
+<a href="../birds/birdLanding.php">
 	<button id="getItBtn" class="btn">Look at Birds</button>
 </a>
 
