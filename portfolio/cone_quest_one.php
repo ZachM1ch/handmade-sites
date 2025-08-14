@@ -14,7 +14,6 @@ Cone Quest to bring it closer to our original vision.<br>
 <a href="https://team-cone-quest.itch.io/the-cone-quest">
 	<button id="getItBtn" class="btn">Get It Here Now!</button>
 </a>
-
 <a href="https://app2.thexplace.ai/events/01H0G0PM35GY5MM37HFF2KVPPC/games/01H2KF6N0DQ574JNT85APWB6KE">
 	<button id="githubBtn" class="btn">View on TheXPlace</button>
 </a>
