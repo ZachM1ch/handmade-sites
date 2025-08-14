@@ -2,21 +2,23 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background: #f5f5f5;
+    background: #ECC8AF; /* Light peach */
+    color: #2F3942;      /* Dark blue-gray (generated) */
 }
 
 /* === Header & Navigation === */
 header {
-    background: #333;
+    background: #495867; /* Deep slate blue */
     padding: 10px;
 }
 .navbar a {
-    color: white;
+    color: #FAF6F3;      /* Off-white (generated) */
     margin: 0 10px;
     text-decoration: none;
+    font-weight: bold;
 }
 .navbar a:hover {
-    text-decoration: underline;
+    color: #E7AD99;      /* Soft coral */
 }
 
 /* === Main Content === */
@@ -26,13 +28,13 @@ main {
 
 /* === Footer === */
 footer {
-    background: #333;
-    color: white;
+    background: #495867; /* Deep slate blue */
+    color: #FAF6F3;      /* Off-white */
     text-align: center;
     padding: 10px;
 }
 
-/* === Centered Text === */
+/* === Centered Text Utility === */
 .center-text {
     text-align: center;
     display: flex;
@@ -41,12 +43,12 @@ footer {
     flex-direction: column;
 }
 
-/* === Background Image === */
+/* === Background Image Utility === */
 .bg-image {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color: white;
+    color: #FAF6F3;      /* Off-white for contrast */
     padding: 20px;
 }
 
@@ -63,36 +65,37 @@ footer {
     width: 100%;
     max-width: 250px;
     border-radius: 5px;
+    border: 4px solid #C18C5D; /* Bronze border */
 }
 
 /* === Buttons === */
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background: #444;
-    color: white;
+    background: #C18C5D; /* Bronze */
+    color: #FAF6F3;      /* Off-white */
     text-decoration: none;
     border-radius: 5px;
     font-weight: bold;
     transition: background 0.3s, transform 0.1s;
 }
 .btn:hover {
-    background: #666;
+    background: #B36A50; /* Darker rose (generated) */
     transform: translateY(-2px);
 }
 .btn:active {
     transform: translateY(0);
 }
 
-/* === Card Style === */
+/* === Card Style (for portfolio/story blocks) === */
 .card {
-    background: #C9B79C; /* Warm beige */
-    border: 1px solid #71816D; /* Sage green border */
+    background: #FAF6F3; /* Off-white */
+    border: 1px solid #E7AD99; /* Soft coral border */
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 20px;
 }
 .card h2 {
     margin-top: 0;
-    color: #342A21; /* Espresso brown */
+    color: #495867; /* Slate blue */
 }

@@ -14,5 +14,10 @@
         <a href="/gallery/">Gallery</a>
         <a href="/stories/">Stories</a>
     </nav>
+	<!-- Theme toggle button -->
+	<button id="themeToggleBtn" class="btn">Switch Theme</button>
+
+	<!-- Load script -->
+	<script src="/assets/js/theme-toggle.js"></script>
 </header>
 <main>
