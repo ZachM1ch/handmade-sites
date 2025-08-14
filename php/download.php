@@ -1,6 +1,6 @@
 <?php
 $file = basename($_GET['file']);
-$path = $_SERVER['DOCUMENT_ROOT'] . "/assets/downloads/" . $file;
+$path = $_SERVER['DOCUMENT_ROOT'] . "/assets/downloadable/" . $file;
 
 if (file_exists($path)) {
     header('Content-Type: application/octet-stream');

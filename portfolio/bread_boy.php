@@ -14,6 +14,4 @@ small community that has played it, thus creating the current iteration of it th
 	<button id="githubBtn" class="btn">View on GitHub</button>
 </a>
 
-<!--<a href="/php/download.php?file=project1.zip">Download Project</a>-->
-
 <?php include($_SERVER['DOCUMENT_ROOT']."/includes/footer.php"); ?>
