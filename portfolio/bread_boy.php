@@ -5,6 +5,15 @@
 on the popular independent game development platform, itch.io, it has been updated and tweaked following the feedback of the <br>
 small community that has played it, thus creating the current iteration of it that can be seen today.<br>
 <br>Languages and Tools Used: Unity and C#</p>
+
+<a href="https://liminal-bridges.itch.io/bread-boy">
+	<button id="getItBtn" class="btn">Get It Here Now!</button>
+</a>
+
+<a href="https://github.com/ZachM1ch/bread-boy">
+	<button id="githubBtn" class="btn">View on GitHub</button>
+</a>
+
 <!--<a href="/php/download.php?file=project1.zip">Download Project</a>-->
 
 <?php include($_SERVER['DOCUMENT_ROOT']."/includes/footer.php"); ?>
