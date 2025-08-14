@@ -2,8 +2,7 @@
 
 <h1>Stories</h1>
 <ul>
-	<p>Coming Soon!</p>
-    <!--<li><a href="story1/">Story One</a></li>-->
+    <li><a href="Suncrest-County/">Suncrest County Chronicles</a></li>
 </ul>
 
 <?php include($_SERVER['DOCUMENT_ROOT']."/includes/footer.php"); ?>
