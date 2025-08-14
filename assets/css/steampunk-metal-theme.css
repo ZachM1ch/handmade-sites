@@ -100,8 +100,7 @@ footer {
     color: #5E503F; /* Aged espresso brown */
 }
 
-pre {
+.card pre {
   white-space: pre-wrap; /* Preserves whitespace and enables wrapping */
   word-wrap: break-word; /* Ensures long words break to the next line */
-  overflow-x: auto; /* Adds a horizontal scrollbar if needed, e.g., for very long lines or code */
 }
