@@ -98,7 +98,7 @@ footer {
     color: #342A21; /* Espresso brown */
 }
 
-.card pre {
+pre {
   white-space: pre-wrap; /* Preserves whitespace and enables wrapping */
   word-wrap: break-word; /* Ensures long words break to the next line */
 }
