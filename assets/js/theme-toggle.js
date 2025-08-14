@@ -2,7 +2,8 @@
 const themes = [
     'coastal-dawn-theme.css',
     'autumn-harbor-theme.css',
-    'rosewood-vintage-theme.css'
+    'rosewood-vintage-theme.css',
+	'steampunk-metal-theme.css'
 ];
 
 // Default theme index (0 = coastal dawn)
