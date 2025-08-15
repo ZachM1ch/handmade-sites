@@ -113,5 +113,5 @@ pre {
   white-space: pre-wrap; /* Preserves whitespace and enables wrapping */
   word-wrap: break-word; /* Ensures long words break to the next line */
   font-family: calibri;
-  font-size: 20px;
+  font-size: 16px;
 }
