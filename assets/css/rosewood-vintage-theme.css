@@ -99,6 +99,15 @@ footer {
     margin-top: 0;
     color: #342A21; /* Espresso brown */
 }
+.card figure img {
+	justify-content: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.card figure figcaption {
+	text-align: center;
+}
 
 pre {
   white-space: pre-wrap; /* Preserves whitespace and enables wrapping */
