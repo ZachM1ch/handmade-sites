@@ -4,8 +4,8 @@
 <h2>This Story Has Been Lost To Time.</h2>
 
 <nav>
-    <a href="02.php">← Previous Story</a>
-	<a href="04.php">Next Story →</a>
+    <a href="03.php">← Previous Story</a>
+	<a href="05.php">Next Story →</a>
 </nav>
 
 <?php include($_SERVER['DOCUMENT_ROOT']."/includes/footer.php"); ?>
