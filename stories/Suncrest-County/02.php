@@ -3,7 +3,7 @@
 <h3>Suncrest County Chronicles #2</h3>
 <h1>A Written Account on the Events of 12/21 as Witnessed by the Sole Survivor Clara Bishop</h1>
 <div class=card>
-<figure style="justify-content: center;">
+<figure>
   <img src="../../assets/images/scc02.jpg" alt="SCC-02" style="width:100%">
   <figcaption>SCPD Witness Report Form - Bishop.C - 12/21</figcaption>
 </figure>
