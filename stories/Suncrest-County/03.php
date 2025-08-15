@@ -95,5 +95,13 @@
 	After a short while of letting Stephen calm down, the two sat at their fire pit with blankets wrapped around each of them.  Andrzej had started making them some breakfast and tea with a gentle, but concerned smile.  Stephen leaned back on the log he was seated atop and let out a deep exhale.  He stated that perhaps mushrooms weren’t for him.  After a pause, he suggested that they go for a swim in the river after breakfast.  Andrzej nodded his head and agreed, just wanting to do whatever Stephen wanted to do so he could make sure he was happy.  Andrzej didn’t like seeing Stephen distressed like that.  And truthfully, he never really enjoyed fishing all that much either.
 
 </pre>
+</div>
+
+<nav>
+    <a href="02.php">← Previous Chapter</a>
+</nav>
+<nav>
+    <a href="04.php">Next Chapter →</a>
+</nav>
 
 <?php include($_SERVER['DOCUMENT_ROOT']."/includes/footer.php"); ?>

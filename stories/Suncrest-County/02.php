@@ -30,5 +30,13 @@
 
 	And that’s when you guys showed up.  I know you’ll say that the fire wasn’t any special color.  It’s because you weren’t connected to them.  You couldn’t physically see what I could.  I know that this ritual has been carried out hundreds of times without fail.  And I know that I should fear for my life for being the first to disrupt it.  Part of me wants to go back and see what remains of the property.  But I already know that nothing remains.  If it weren’t for the witnesses, it would be as if it never happened.  As is the nature of their god.  I truly don’t want to believe that it exists, but I know better than that.  But you’ll just have to take my word for it.
 </pre>
+</div>
+
+<nav>
+    <a href="01.php">← Previous Chapter</a>
+</nav>
+<nav>
+    <a href="03.php">Next Chapter →</a>
+</nav>
 
 <?php include($_SERVER['DOCUMENT_ROOT']."/includes/footer.php"); ?>
