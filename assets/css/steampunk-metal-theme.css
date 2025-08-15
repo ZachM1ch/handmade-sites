@@ -91,7 +91,7 @@ footer {
 .card {
     background: #D4B483; /* Weathered parchment */
     border: 1px solid #8B6B4E; /* Aged bronze border */
-    padding: 15px;
+    padding: 30px;
     border-radius: 8px;
     margin-bottom: 20px;
 }

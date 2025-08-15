@@ -1,6 +1,6 @@
 <?php $pageTitle = "SCC-03"; include($_SERVER['DOCUMENT_ROOT']."/includes/header.php"); ?>
 
-<h3>Suncrest County Chronicles #3</h3>
+<h3>Suncrest County Chronicles #6</h3>
 <h1>Pablo's Picnic</h1>
 <div class=card>
 <pre><i style="font-family: Courier New;">The Sun is not closer.  There, now I’ve said it.</i>
