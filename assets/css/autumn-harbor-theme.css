@@ -99,12 +99,6 @@ footer {
     margin-top: 0;
     color: #495867; /* Slate blue */
 }
-.card figure {
-	justify-content: center;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
 .card figure img{
 	justify-content: center;
 	display: block;
@@ -112,7 +106,7 @@ footer {
 	margin-right: auto;
 }
 .card figure figcaption{
-	justify-content: center;
+	text-align: center;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
