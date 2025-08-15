@@ -105,6 +105,18 @@ footer {
 	margin-left: auto;
 	margin-right: auto;
 }
+.card figure img{
+	justify-content: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.card figure figcaption{
+	justify-content: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
 
 pre {
   white-space: pre-wrap; /* Preserves whitespace and enables wrapping */

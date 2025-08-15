@@ -4,7 +4,7 @@
 <h1>A Written Account on the Events of 12/21 as Witnessed by the Sole Survivor Clara Bishop</h1>
 <div class=card>
 <figure>
-  <img src="../../assets/images/scc02.png" alt="SCC-02" style="width:100%">
+  <img src="../../assets/images/scc02.png" alt="SCC-02">
   <figcaption>SCPD Witness Report Form - Bishop.C - 12/21</figcaption>
 </figure>
 
