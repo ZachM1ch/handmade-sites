@@ -99,17 +99,14 @@ footer {
     margin-top: 0;
     color: #495867; /* Slate blue */
 }
-.card figure img{
+.card img{
 	justify-content: center;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 }
-.card figure figcaption{
+.card figcaption{
 	text-align: center;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 pre {
