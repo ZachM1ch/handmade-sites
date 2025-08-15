@@ -98,10 +98,8 @@
 </div>
 
 <nav>
-    <a href="02.php">← Previous Chapter</a>
-</nav>
-<nav>
-    <a href="04.php">Next Chapter →</a>
+    <a href="02.php">← Previous Story</a>
+	<a href="04.php">Next Story →</a>
 </nav>
 
 <?php include($_SERVER['DOCUMENT_ROOT']."/includes/footer.php"); ?>

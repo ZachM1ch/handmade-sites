@@ -79,7 +79,7 @@
 </div>
 
 <nav>
-    <a href="02.php">Next Chapter →</a>
+    <a href="02.php">Next Story →</a>
 </nav>
 
 <?php include($_SERVER['DOCUMENT_ROOT']."/includes/footer.php"); ?>
