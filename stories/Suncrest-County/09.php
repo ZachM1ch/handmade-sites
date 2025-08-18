@@ -10,7 +10,7 @@
 </pre>
 
 <figure>
-  <img src="../../assets/images/scc09/page-2.jpg" alt="SCC-09-02">
+  <img src="../../assets/images/scc09/page-2.jpg" alt="SCC-09-02" width="50%">
 </figure>
 <figure>
   <img src="../../assets/images/scc09/page-3.jpg" alt="SCC-09-03">
