@@ -1,4 +1,4 @@
-<?php $pageTitle = "SCC-03"; include($_SERVER['DOCUMENT_ROOT']."/includes/header.php"); ?>
+<?php $pageTitle = "SCC-06"; include($_SERVER['DOCUMENT_ROOT']."/includes/header.php"); ?>
 
 <h3>Suncrest County Chronicles #6</h3>
 <h1>Pablo's Picnic</h1>
