@@ -10,19 +10,19 @@
 </pre>
 
 <figure>
-  <img src="../../assets/images/scc09/page-2.png" alt="SCC-09-02">
+  <img src="../../assets/images/scc09/page-2.jpg" alt="SCC-09-02">
 </figure>
 <figure>
-  <img src="../../assets/images/scc09/page-3.png" alt="SCC-09-03">
+  <img src="../../assets/images/scc09/page-3.jpg" alt="SCC-09-03">
 </figure>
 <figure>
-  <img src="../../assets/images/scc09/page-4.png" alt="SCC-09-04">
+  <img src="../../assets/images/scc09/page-4.jpg" alt="SCC-09-04">
 </figure>
 <figure>
-  <img src="../../assets/images/scc09/page-5.png" alt="SCC-09-05">
+  <img src="../../assets/images/scc09/page-5.jpg" alt="SCC-09-05">
 </figure>
 <figure>
-  <img src="../../assets/images/scc09/page-6.png" alt="SCC-09-06">
+  <img src="../../assets/images/scc09/page-6.jpg" alt="SCC-09-06">
 </figure>
 
 </div>
