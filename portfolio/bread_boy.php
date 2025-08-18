@@ -6,11 +6,11 @@ on the popular independent game development platform, itch.io, it has been updat
 small community that has played it, thus creating the current iteration of it that can be seen today.<br>
 <br>Languages and Tools Used: Unity and C#</p>
 
-<a href="https://liminal-bridges.itch.io/bread-boy">
+<a href="https://liminal-bridges.itch.io/bread-boy" target="_blank">
 	<button id="getItBtn" class="btn">Get It Here Now!</button>
 </a>
 
-<a href="https://github.com/ZachM1ch/bread-boy">
+<a href="https://github.com/ZachM1ch/bread-boy" target="_blank">
 	<button id="githubBtn" class="btn">View on GitHub</button>
 </a>
 

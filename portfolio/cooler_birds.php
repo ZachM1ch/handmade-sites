@@ -7,14 +7,8 @@ little information about each, however, the code behind it was anything but simp
 projects I’ve worked on and truly expanded my skillset compared to that used for the creation of HFTHR.<br>
 <br>Languages and Tools Used: Hostinger, HTML, CSS, PHP, SQL</p>
 
-<a href="../birds/birdLanding.php">
+<a href="../birds/birdLanding.php" target="_blank">
 	<button id="getItBtn" class="btn">Look at Birds</button>
 </a>
-
-<!--
-<a href="https://github.com/ZachM1ch/MTG-DeckTool">
-	<button id="githubBtn" class="btn">View on GitHub</button>
-</a>
--->
 
 <?php include($_SERVER['DOCUMENT_ROOT']."/includes/footer.php"); ?>

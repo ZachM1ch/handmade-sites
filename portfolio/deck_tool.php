@@ -9,11 +9,11 @@ format of the storefront TCGPlayer.com.  Over time I hope to make DeckTool somet
 and purchase new decks to play this game that I love.<br>
 <br>Languages and Tools Used: Python, Tkinter, Scryfall REST API</p>
 
-<a href="/php/download.php?file=MTG-DeckTool-main.zip">
+<a href="/php/download.php?file=MTG-DeckTool-main.zip" target="_blank">
 	<button id="getItBtn" class="btn">Download the Project!</button>
 </a>
 
-<a href="https://github.com/ZachM1ch/MTG-DeckTool">
+<a href="https://github.com/ZachM1ch/MTG-DeckTool" target="_blank">
 	<button id="githubBtn" class="btn">View on GitHub</button>
 </a>
 
