@@ -9,6 +9,8 @@
 	This document was recovered from the Obston Creek Library flooding caused by Hurricane Floyd.  Minor water damage toward the bottom of the pages.  All text is still legible.  At least two pages at the end appear to have been torn out given the paper chunks in the back of the staple, but it is likely this occurred prior to the flooding due to a lack of smeared ink on the back of the current final page (6).
 	
 	The document is presented By Eileen Ramsay in its original form starting on page 2.
+	
+	
 </pre>
 
 <figure>
