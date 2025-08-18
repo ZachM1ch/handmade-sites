@@ -30,7 +30,7 @@
 
 
 
-	<b style="font-family: Courier New; font-size: 20px;">Do not go outside today.
+	<b style="font-family: Courier New; font-size: 20px; text-align: center;">Do not go outside today.
 	Thank you.</b>
 
 
