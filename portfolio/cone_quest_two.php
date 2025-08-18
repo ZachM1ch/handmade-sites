@@ -11,13 +11,13 @@ three programmers as well as the level designer team lead.  Not all planned asse
 narrow time limit, but we have released a small updated version after the jam to bring it closer to our original vision.<br>
 <br>Languages and Tools Used: Unity, GitHub Desktop, C#</p>
 
-<a href="https://team-cone-quest.itch.io/the-cone-quest-2">
+<a href="https://team-cone-quest.itch.io/the-cone-quest-2" target="_blank">
 	<button id="getItBtn" class="btn">Get It Here Now!</button>
 </a>
-<a href="https://app2.thexplace.ai/events/01HTNG5SD5V0EJBQC6Y4Z7AMKH/games/01HVMRFQJYPNTH68T8HK2YHN41?vipcode=Q_SGJ24">
+<a href="https://app2.thexplace.ai/events/01HTNG5SD5V0EJBQC6Y4Z7AMKH/games/01HVMRFQJYPNTH68T8HK2YHN41?vipcode=Q_SGJ24" target="_blank">
 	<button id="githubBtn" class="btn">View on TheXPlace</button>
 </a>
-<a href="https://www.youtube.com/watch?v=Q8T78LFXfNY&t=1s">
+<a href="https://www.youtube.com/watch?v=Q8T78LFXfNY&t=1s" target="_blank">
 	<button id="trailerBtn" class="btn">Watch the Trailer!</button>
 </a>
 

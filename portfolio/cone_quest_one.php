@@ -11,13 +11,13 @@ the level designer and partial team lead.  Not all planned features were able to
 small adjustments were made after the jam ended to bring the game closer to our initial goal.<br>
 <br>Languages and Tools Used: Unity, GitHub Desktop, C#</p>
 
-<a href="https://team-cone-quest.itch.io/the-cone-quest">
+<a href="https://team-cone-quest.itch.io/the-cone-quest" target="_blank">
 	<button id="getItBtn" class="btn">Get It Here Now!</button>
 </a>
-<a href="https://app2.thexplace.ai/events/01H0G0PM35GY5MM37HFF2KVPPC/games/01H2KF6N0DQ574JNT85APWB6KE">
+<a href="https://app2.thexplace.ai/events/01H0G0PM35GY5MM37HFF2KVPPC/games/01H2KF6N0DQ574JNT85APWB6KE" target="_blank">
 	<button id="githubBtn" class="btn">View on TheXPlace</button>
 </a>
-<a href="https://www.youtube.com/watch?t=6s&v=V9tqx8L1td4">
+<a href="https://www.youtube.com/watch?t=6s&v=V9tqx8L1td4" target="_blank">
 	<button id="trailerBtn" class="btn">Watch the Trailer!</button>
 </a>
 
