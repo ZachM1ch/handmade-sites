@@ -10,10 +10,10 @@ const themes = [
 let currentThemeIndex = 0;
 
 // Load saved theme from localStorage if it exists
-const savedTheme = localStorage.getItem('siteTheme');
-if (savedTheme && themes.includes(savedTheme)) {
-    currentThemeIndex = themes.indexOf(savedTheme);
-}
+//const savedTheme = localStorage.getItem('siteTheme');
+//if (savedTheme && themes.includes(savedTheme)) {
+//    currentThemeIndex = themes.indexOf(savedTheme);
+//}
 
 // Create <link> for theme if it doesn't exist
 let themeLink = document.getElementById('themeStylesheet');
