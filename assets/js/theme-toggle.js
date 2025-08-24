@@ -1,19 +1,20 @@
 // List of available themes
 const themes = [
-    //'coastal-dawn-theme.css',
-    //'autumn-harbor-theme.css',
-    //'rosewood-vintage-theme.css',
-	//'steampunk-metal-theme.css'
+    'coastal-dawn-theme.css',
+	'coastal-dawn-theme-new.css',
+    'autumn-harbor-theme.css',
+    'rosewood-vintage-theme.css',
+	'steampunk-metal-theme.css'
 ];
 
 // Default theme index (0 = coastal dawn)
 let currentThemeIndex = 0;
 
 // Load saved theme from localStorage if it exists
-//const savedTheme = localStorage.getItem('siteTheme');
-//if (savedTheme && themes.includes(savedTheme)) {
-//    currentThemeIndex = themes.indexOf(savedTheme);
-//}
+const savedTheme = localStorage.getItem('siteTheme');
+if (savedTheme && themes.includes(savedTheme)) {
+    currentThemeIndex = themes.indexOf(savedTheme);
+}
 
 // Create <link> for theme if it doesn't exist
 let themeLink = document.getElementById('themeStylesheet');
