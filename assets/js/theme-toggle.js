@@ -1,7 +1,6 @@
 // List of available themes
 const themes = [
     'coastal-dawn-theme.css',
-	'coastal-dawn-theme-new.css',
     'autumn-harbor-theme.css',
     'rosewood-vintage-theme.css',
 	'steampunk-metal-theme.css'
