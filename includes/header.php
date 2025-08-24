@@ -15,10 +15,10 @@
         <a href="/stories/">Stories</a>
 		
 		<!-- Theme toggle button -->
-		<button id="themeToggleBtn" class="btn">Switch Theme</button>
+		<!--<button id="themeToggleBtn" class="btn">Switch Theme</button>-->
 
 		<!-- Load script -->
-		<script src="/assets/js/theme-toggle.js"></script>
+		<!--<script src="/assets/js/theme-toggle.js"></script>-->
     </nav>
 </header>
 <main>
