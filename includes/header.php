@@ -13,6 +13,12 @@
         <a href="/portfolio/">Portfolio</a>
         <a href="/gallery/">Gallery</a>
         <a href="/stories/">Stories</a>
+		
+		<!-- Theme toggle button -->
+		<button id="themeToggleBtn" class="btn">Switch Theme</button>
+
+		<!-- Load script -->
+		<script src="/assets/js/theme-toggle.js"></script>
     </nav>
 </header>
 <main>
