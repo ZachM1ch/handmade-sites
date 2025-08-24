@@ -88,8 +88,8 @@ footer {
 
 /* === Card Style === */
 .card {
-    background: #C9B79C; /* Warm beige */
-    border: 1px solid #71816D; /* Sage green border */
+    background: #809abc; /* Washed denim */
+    border: 1px solid #0b1523; /* Corbeau border */
     padding: 30px;
     border-radius: 8px;
 	margin-left: 50px;
@@ -98,7 +98,7 @@ footer {
 }
 .card h2 {
     margin-top: 0;
-    color: #809abc; /* Washed denim */
+    color: #333; /* Carbon */
 }
 .card figure img {
 	justify-content: center;
