@@ -86,11 +86,7 @@
 
     <!-- Map placeholder -->
     <div class="map-placeholder">
-        <span class="map-icon">🗺️</span>
-        <p class="lang-en active" style="margin:0; font-size:0.9rem; color:var(--text-mid);">
-            Embed your Google Maps iframe here.<br>
-            Replace this block with: <code style="font-size:0.8rem;">&lt;iframe src="YOUR_EMBED_URL" ...&gt;&lt;/iframe&gt;</code>
-        </p>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.5791615033115!2d-74.99781090185219!3d40.82538106627873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c478ee21f20227%3A0xb533b20d4d2a1275!2sJack&#39;s%20Barn!5e1!3m2!1sen!2sus!4v1773701075222!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <p class="lang-es" style="margin:0; font-size:0.9rem; color:var(--text-mid);">
             Inserta aquí tu mapa de Google Maps.<br>
             Reemplaza este bloque con: <code style="font-size:0.8rem;">&lt;iframe src="TU_URL_DE_INCRUSTACIÓN" ...&gt;&lt;/iframe&gt;</code>
