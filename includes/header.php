@@ -13,6 +13,7 @@
         <a href="/portfolio/">Portfolio</a>
         <a href="/gallery/">Gallery</a>
         <a href="/stories/">Stories</a>
+		<a href="/wedding/">Wedding</a>
 		
 		<!-- Theme toggle button -->
 		<button id="themeToggleBtn" class="btn">Switch Theme</button>
