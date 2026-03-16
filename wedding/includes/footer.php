@@ -11,6 +11,6 @@
     </p>
 </footer>
 
-<script src="/wedding/assets/js/wedding-lang.js"></script>
+<script src="/assets/js/wedding-lang.js"></script>
 </body>
 </html>

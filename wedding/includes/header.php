@@ -6,7 +6,7 @@
     <title><?php echo htmlspecialchars($pageTitle ?? "Our Wedding"); ?> | Alex &amp; Jordan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="/wedding/assets/css/wedding-theme.css">
+    <link rel="stylesheet" href="/assets/css/wedding-theme.css">
 </head>
 <body>
 
