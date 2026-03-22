@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TACTICAL OPS</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap');
+
+:root {
+–bg: #0a0c0f;
+–panel: #0f1318;
+–border: #1e2a38;
+–accent: #00e5ff;
+–accent2: #ff3d3d;
+–accent3: #39ff14;
+–warn: #ffaa00;
+–text: #c8d8e8;
+–text-dim: #5a7080;
+–grid-line: #1a2535;
+–tile-empty: #0d1520;
+–tile-hover: #162030;
+–tile-selected: #0a2540;
+–tile-move: #0a1f10;
+–tile-attack: #200a0a;
+–unit-player: #00e5ff;
+–unit-enemy: #ff3d3d;
+–cover-color: #2a3a2a;
+–hp-high: #39ff14;
+–hp-mid: #ffaa00;
+–hp-low: #ff3d3d;
+}
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘Exo 2’, sans-serif;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+overflow: hidden;
+}
+
+/* HEADER */
+#header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 8px 16px;
+background: var(–panel);
+border-bottom: 1px solid var(–border);
+flex-shrink: 0;
+}
+#header h1 {
+font-family: ‘Orbitron’, monospace;
+font-size: 18px;
+font-weight: 900;
+color: var(–accent);
+letter-spacing: 4px;
+text-shadow: 0 0 20px var(–accent);
+}
+#turn-display {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 13px;
+color: var(–text-dim);
+}
+#turn-display span {
+color: var(–accent);
+font-weight: bold;
+}
+#end-turn-btn {
+font-family: ‘Orbitron’, monospace;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 2px;
+padding: 6px 16px;
+background: transparent;
+border: 1px solid var(–accent);
+color: var(–accent);
+cursor: pointer;
+transition: all 0.2s;
+text-transform: uppercase;
+}
+#end-turn-btn:hover { background: var(–accent); color: var(–bg); box-shadow: 0 0 20px var(–accent); }
+#end-turn-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+/* MAIN LAYOUT */
+#main {
+display: flex;
+flex: 1;
+overflow: hidden;
+}
+
+/* LEFT PANEL */
+#left-panel {
+width: 200px;
+min-width: 200px;
+background: var(–panel);
+border-right: 1px solid var(–border);
+display: flex;
+flex-direction: column;
+overflow-y: auto;
+flex-shrink: 0;
+}
+
+.panel-header {
+font-family: ‘Orbitron’, monospace;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 3px;
+color: var(–text-dim);
+padding: 8px 12px 6px;
+border-bottom: 1px solid var(–border);
+text-transform: uppercase;
+}
+
+.unit-card {
+padding: 10px 12px;
+border-bottom: 1px solid var(–border);
+cursor: pointer;
+transition: background 0.15s;
+position: relative;
+}
+.unit-card:hover { background: #111820; }
+.unit-card.selected { background: #0a1f35; border-left: 2px solid var(–accent); }
+.unit-card.dead { opacity: 0.35; cursor: default; }
+.unit-card.enemy { border-left: 2px solid transparent; }
+.unit-card.enemy.selected { border-left: 2px solid var(–accent2); background: #1f0a0a; }
+
+.unit-name {
+font-family: ‘Orbitron’, monospace;
+font-size: 10px;
+font-weight: 700;
+color: var(–unit-player);
+margin-bottom: 4px;
+display: flex;
+align-items: center;
+gap: 6px;
+}
+.unit-card.enemy .unit-name { color: var(–unit-enemy); }
+.unit-card.dead .unit-name { color: var(–text-dim); }
+
+.ap-dots {
+display: flex;
+gap: 2px;
+margin-left: auto;
+}
+.ap-dot {
+width: 6px; height: 6px;
+border-radius: 50%;
+background: var(–accent);
+box-shadow: 0 0 4px var(–accent);
+}
+.ap-dot.used { background: var(–border); box-shadow: none; }
+
+.unit-class {
+font-size: 10px;
+color: var(–text-dim);
+margin-bottom: 6px;
+font-family: ‘Share Tech Mono’, monospace;
+}
+
+.hp-bar-wrap {
+display: flex;
+align-items: center;
+gap: 6px;
+}
+.hp-bar {
+flex: 1;
+height: 4px;
+background: var(–border);
+border-radius: 2px;
+overflow: hidden;
+}
+.hp-fill {
+height: 100%;
+border-radius: 2px;
+transition: width 0.3s;
+}
+.hp-text {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+color: var(–text-dim);
+min-width: 32px;
+text-align: right;
+}
+
+.unit-stats-mini {
+display: flex;
+gap: 8px;
+margin-top: 5px;
+}
+.stat-mini {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 9px;
+color: var(–text-dim);
+}
+.stat-mini span { color: var(–text); }
+
+/* CENTER - GAME BOARD */
+#board-wrap {
+flex: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+background: var(–bg);
+position: relative;
+}
+
+#board-container {
+position: relative;
+}
+
+#grid-canvas {
+display: block;
+cursor: default;
+}
+
+/* RIGHT PANEL */
+#right-panel {
+width: 220px;
+min-width: 220px;
+background: var(–panel);
+border-left: 1px solid var(–border);
+display: flex;
+flex-direction: column;
+overflow-y: auto;
+flex-shrink: 0;
+}
+
+#selected-info {
+padding: 12px;
+border-bottom: 1px solid var(–border);
+}
+
+#sel-name {
+font-family: ‘Orbitron’, monospace;
+font-size: 13px;
+font-weight: 700;
+color: var(–accent);
+margin-bottom: 2px;
+}
+#sel-class {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 11px;
+color: var(–text-dim);
+margin-bottom: 10px;
+}
+
+.stat-row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 3px 0;
+border-bottom: 1px solid #111820;
+}
+.stat-label {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+color: var(–text-dim);
+letter-spacing: 1px;
+}
+.stat-value {
+font-family: ‘Orbitron’, monospace;
+font-size: 11px;
+font-weight: 700;
+color: var(–text);
+}
+.stat-value.accent { color: var(–accent); }
+.stat-value.warn { color: var(–warn); }
+
+/* ACTION BUTTONS */
+#actions {
+padding: 10px;
+border-bottom: 1px solid var(–border);
+}
+.action-btn {
+width: 100%;
+margin-bottom: 6px;
+padding: 7px 10px;
+font-family: ‘Orbitron’, monospace;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 2px;
+border: 1px solid var(–border);
+background: transparent;
+color: var(–text-dim);
+cursor: pointer;
+text-align: left;
+transition: all 0.15s;
+text-transform: uppercase;
+}
+.action-btn:hover:not(:disabled) {
+border-color: var(–accent);
+color: var(–accent);
+background: #0a1f35;
+}
+.action-btn.active {
+border-color: var(–accent);
+color: var(–accent);
+background: #0a1f35;
+box-shadow: inset 0 0 10px rgba(0,229,255,0.1);
+}
+.action-btn.danger { border-color: var(–accent2); color: var(–accent2); }
+.action-btn.danger:hover:not(:disabled) { background: #1f0a0a; box-shadow: inset 0 0 10px rgba(255,61,61,0.1); }
+.action-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+.ap-cost {
+float: right;
+font-size: 8px;
+opacity: 0.7;
+}
+
+/* LOG */
+#log {
+flex: 1;
+overflow-y: auto;
+padding: 8px;
+}
+#log-entries {
+display: flex;
+flex-direction: column;
+gap: 3px;
+}
+.log-entry {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+color: var(–text-dim);
+line-height: 1.4;
+padding: 2px 4px;
+border-left: 2px solid transparent;
+}
+.log-entry.hit { color: var(–accent3); border-left-color: var(–accent3); }
+.log-entry.miss { color: var(–text-dim); }
+.log-entry.kill { color: var(–accent2); border-left-color: var(–accent2); font-weight: bold; }
+.log-entry.move { color: var(–accent); border-left-color: var(–accent); }
+.log-entry.system { color: var(–warn); border-left-color: var(–warn); }
+.log-entry.info { color: var(–text); }
+
+/* EDITOR MODAL */
+#editor-overlay {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.85);
+z-index: 100;
+align-items: center;
+justify-content: center;
+}
+#editor-overlay.open { display: flex; }
+
+#editor-modal {
+background: var(–panel);
+border: 1px solid var(–accent);
+width: 560px;
+max-height: 80vh;
+overflow-y: auto;
+box-shadow: 0 0 60px rgba(0,229,255,0.15);
+}
+
+#editor-modal h2 {
+font-family: ‘Orbitron’, monospace;
+font-size: 13px;
+font-weight: 900;
+color: var(–accent);
+padding: 14px 16px;
+border-bottom: 1px solid var(–border);
+letter-spacing: 3px;
+}
+
+.editor-body { padding: 16px; }
+
+.editor-unit-row {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px;
+border: 1px solid var(–border);
+margin-bottom: 10px;
+background: #0a0c0f;
+}
+.editor-unit-row.enemy-row { border-color: #2a1515; }
+
+.editor-unit-name {
+font-family: ‘Orbitron’, monospace;
+font-size: 10px;
+font-weight: 700;
+width: 90px;
+flex-shrink: 0;
+}
+.editor-unit-name input {
+width: 100%;
+background: transparent;
+border: none;
+border-bottom: 1px solid var(–border);
+color: var(–accent);
+font-family: ‘Orbitron’, monospace;
+font-size: 10px;
+outline: none;
+padding: 2px;
+}
+.editor-unit-row.enemy-row .editor-unit-name input { color: var(–accent2); }
+
+.stat-inputs {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+flex: 1;
+}
+
+.stat-input-group {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 2px;
+}
+.stat-input-group label {
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 8px;
+color: var(–text-dim);
+letter-spacing: 1px;
+}
+.stat-input-group input {
+width: 44px;
+background: #0d1520;
+border: 1px solid var(–border);
+color: var(–text);
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 11px;
+text-align: center;
+outline: none;
+padding: 3px;
+}
+.stat-input-group input:focus { border-color: var(–accent); }
+
+.class-select {
+background: #0d1520;
+border: 1px solid var(–border);
+color: var(–text);
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+padding: 3px 5px;
+outline: none;
+width: 80px;
+}
+.class-select:focus { border-color: var(–accent); }
+
+.editor-footer {
+display: flex;
+gap: 10px;
+padding: 14px 16px;
+border-top: 1px solid var(–border);
+}
+.editor-btn {
+flex: 1;
+padding: 8px;
+font-family: ‘Orbitron’, monospace;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 2px;
+border: 1px solid var(–border);
+background: transparent;
+color: var(–text-dim);
+cursor: pointer;
+text-transform: uppercase;
+transition: all 0.15s;
+}
+.editor-btn.primary { border-color: var(–accent); color: var(–accent); }
+.editor-btn.primary:hover { background: var(–accent); color: var(–bg); }
+.editor-btn:hover { border-color: var(–text-dim); color: var(–text); }
+
+.section-title {
+font-family: ‘Orbitron’, monospace;
+font-size: 9px;
+letter-spacing: 3px;
+color: var(–text-dim);
+margin-bottom: 8px;
+margin-top: 4px;
+text-transform: uppercase;
+}
+
+/* OVERLAY MSG */
+#overlay-msg {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.7);
+z-index: 200;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+}
+#overlay-msg.show { display: flex; }
+#overlay-msg h2 {
+font-family: ‘Orbitron’, monospace;
+font-size: 36px;
+font-weight: 900;
+letter-spacing: 8px;
+text-shadow: 0 0 40px currentColor;
+margin-bottom: 20px;
+}
+#overlay-msg.victory h2 { color: var(–accent3); }
+#overlay-msg.defeat h2 { color: var(–accent2); }
+#overlay-msg button {
+font-family: ‘Orbitron’, monospace;
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 3px;
+padding: 12px 32px;
+background: transparent;
+border: 1px solid currentColor;
+cursor: pointer;
+text-transform: uppercase;
+transition: all 0.2s;
+}
+#overlay-msg.victory button { color: var(–accent3); border-color: var(–accent3); }
+#overlay-msg.defeat button { color: var(–accent2); border-color: var(–accent2); }
+#overlay-msg button:hover { background: currentColor; color: var(–bg); }
+
+/* TOOLTIP */
+#tooltip {
+position: fixed;
+display: none;
+background: var(–panel);
+border: 1px solid var(–border);
+padding: 6px 10px;
+font-family: ‘Share Tech Mono’, monospace;
+font-size: 10px;
+color: var(–text);
+pointer-events: none;
+z-index: 50;
+max-width: 160px;
+line-height: 1.6;
+}
+
+#customize-btn {
+font-family: ‘Orbitron’, monospace;
+font-size: 9px;
+font-weight: 700;
+letter-spacing: 2px;
+padding: 5px 12px;
+background: transparent;
+border: 1px solid var(–warn);
+color: var(–warn);
+cursor: pointer;
+transition: all 0.2s;
+text-transform: uppercase;
+}
+#customize-btn:hover { background: var(–warn); color: var(–bg); }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(–bg); }
+::-webkit-scrollbar-thumb { background: var(–border); }
+::-webkit-scrollbar-thumb:hover { background: var(–text-dim); }
+
+.add-unit-btn {
+margin: 6px 10px;
+padding: 5px;
+font-family: ‘Orbitron’, monospace;
+font-size: 8px;
+font-weight: 700;
+letter-spacing: 2px;
+border: 1px dashed var(–border);
+background: transparent;
+color: var(–text-dim);
+cursor: pointer;
+text-transform: uppercase;
+width: calc(100% - 20px);
+transition: all 0.15s;
+}
+.add-unit-btn:hover { border-color: var(–text-dim); color: var(–text); }
+.remove-unit-btn {
+background: transparent;
+border: 1px solid var(–border);
+color: var(–accent2);
+cursor: pointer;
+font-size: 12px;
+width: 22px;
+height: 22px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+.remove-unit-btn:hover { background: #1f0a0a; }
+</style>
+
+</head>
+<body>
+
+<div id="header">
+  <h1>TACTICAL OPS</h1>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <button id="customize-btn" onclick="openEditor()">◈ UNIT EDITOR</button>
+    <div id="turn-display">TURN <span id="turn-num">1</span> — <span id="turn-side">PLAYER</span></div>
+    <button id="end-turn-btn" onclick="endTurn()">END TURN ▶</button>
+  </div>
+</div>
+
+<div id="main">
+  <!-- LEFT: Unit Roster -->
+  <div id="left-panel">
+    <div class="panel-header">◈ SQUAD</div>
+    <div id="player-units-list"></div>
+    <div class="panel-header" style="margin-top:8px;">◈ ENEMIES</div>
+    <div id="enemy-units-list"></div>
+  </div>
+
+  <!-- CENTER: Board -->
+
+  <div id="board-wrap">
+    <div id="board-container">
+      <canvas id="grid-canvas"></canvas>
+    </div>
+  </div>
+
+  <!-- RIGHT: Info + Actions -->
+
+  <div id="right-panel">
+    <div class="panel-header">◈ UNIT INFO</div>
+    <div id="selected-info">
+      <div id="sel-name" style="color:var(--text-dim);">NO UNIT SELECTED</div>
+      <div id="sel-class"></div>
+      <div id="sel-stats"></div>
+    </div>
+    <div class="panel-header">◈ ACTIONS</div>
+    <div id="actions">
+      <button class="action-btn" id="btn-move" onclick="activateMove()">⬡ MOVE <span class="ap-cost">1 AP</span></button>
+      <button class="action-btn danger" id="btn-shoot" onclick="activateShoot()">⊕ SHOOT <span class="ap-cost">1 AP</span></button>
+      <button class="action-btn" id="btn-overwatch" onclick="activateOverwatch()">◎ OVERWATCH <span class="ap-cost">1 AP</span></button>
+      <button class="action-btn" id="btn-hunker" onclick="activateHunker()">⬛ HUNKER DOWN <span class="ap-cost">1 AP</span></button>
+    </div>
+    <div class="panel-header">◈ COMBAT LOG</div>
+    <div id="log"><div id="log-entries"></div></div>
+  </div>
+</div>
+
+<!-- EDITOR MODAL -->
+
+<div id="editor-overlay">
+  <div id="editor-modal">
+    <h2>◈ UNIT EDITOR</h2>
+    <div class="editor-body">
+      <div class="section-title">Player Units</div>
+      <div id="editor-player-units"></div>
+      <button class="add-unit-btn" onclick="addEditorUnit('player')">+ ADD PLAYER UNIT</button>
+      <div class="section-title" style="margin-top:14px;">Enemy Units</div>
+      <div id="editor-enemy-units"></div>
+      <button class="add-unit-btn" onclick="addEditorUnit('enemy')">+ ADD ENEMY UNIT</button>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--text-dim);margin-top:12px;line-height:1.8;">
+        HP: Hit Points &nbsp;|&nbsp; MOV: Movement tiles &nbsp;|&nbsp; AIM: Hit chance base% &nbsp;|&nbsp; DEF: Dodge% bonus &nbsp;|&nbsp; DMG: Damage range (min-max) &nbsp;|&nbsp; AP: Actions per turn &nbsp;|&nbsp; RNG: Attack range (tiles)
+      </div>
+    </div>
+    <div class="editor-footer">
+      <button class="editor-btn" onclick="closeEditor()">CANCEL</button>
+      <button class="editor-btn primary" onclick="applyEditor()">◈ APPLY & RESTART</button>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAY MESSAGE -->
+
+<div id="overlay-msg">
+  <h2 id="overlay-title"></h2>
+  <button onclick="restartGame()">◈ PLAY AGAIN</button>
+</div>
+
+<!-- TOOLTIP -->
+
+<div id="tooltip"></div>
+
+<script>
+// ==================== CONSTANTS ====================
+const COLS = 14, ROWS = 10;
+let TILE = 52;
+const COVER_CHANCE = 35; // % damage reduction for cover
+
+// ==================== GAME STATE ====================
+let G = {}; // game state
+
+function defaultPlayerUnits() {
+  return [
+    { id:'p1', name:'VEGA',    side:'player', cls:'RANGER',  hp:14, maxHp:14, mov:5, aim:75, def:10, dmgMin:4, dmgMax:8,  ap:2, maxAp:2, rng:4,  x:1, y:2, alive:true, overwatch:false, hunkered:false, acted:false },
+    { id:'p2', name:'FROST',   side:'player', cls:'SNIPER',  hp:10, maxHp:10, mov:3, aim:85, def:5,  dmgMin:7, dmgMax:14, ap:2, maxAp:2, rng:9,  x:1, y:5, alive:true, overwatch:false, hunkered:false, acted:false },
+    { id:'p3', name:'ROOK',    side:'player', cls:'HEAVY',   hp:18, maxHp:18, mov:3, aim:60, def:15, dmgMin:5, dmgMax:10, ap:2, maxAp:2, rng:3,  x:1, y:8, alive:true, overwatch:false, hunkered:false, acted:false },
+  ];
+}
+
+function defaultEnemyUnits() {
+  return [
+    { id:'e1', name:'GRUNT-A', side:'enemy',  cls:'TROOPER', hp:10, maxHp:10, mov:3, aim:65, def:5,  dmgMin:3, dmgMax:7,  ap:2, maxAp:2, rng:4,  x:12,y:1, alive:true, overwatch:false, hunkered:false, acted:false },
+    { id:'e2', name:'GRUNT-B', side:'enemy',  cls:'TROOPER', hp:10, maxHp:10, mov:3, aim:65, def:5,  dmgMin:3, dmgMax:7,  ap:2, maxAp:2, rng:4,  x:12,y:4, alive:true, overwatch:false, hunkered:false, acted:false },
+    { id:'e3', name:'HOUND',   side:'enemy',  cls:'SCOUT',   hp:7,  maxHp:7,  mov:5, aim:55, def:20, dmgMin:2, dmgMax:5,  ap:2, maxAp:2, rng:2,  x:12,y:7, alive:true, overwatch:false, hunkered:false, acted:false },
+    { id:'e4', name:'COMMANDER',side:'enemy', cls:'ELITE',   hp:16, maxHp:16, mov:3, aim:70, def:10, dmgMin:5, dmgMax:11, ap:2, maxAp:2, rng:6,  x:11,y:9, alive:true, overwatch:false, hunkered:false, acted:false },
+  ];
+}
+
+// Cover objects: {x, y, type: 'half'|'full'}
+function generateCover() {
+  const covers = [];
+  const occupied = new Set();
+  const mark = (x,y) => occupied.add(`${x},${y}`);
+  const has = (x,y) => occupied.has(`${x},${y}`);
+
+  // Fixed cover clusters for good gameplay
+  const spots = [
+    {x:3,y:1,t:'full'},{x:3,y:2,t:'full'},
+    {x:3,y:6,t:'full'},{x:3,y:7,t:'full'},
+    {x:5,y:3,t:'half'},{x:5,y:4,t:'half'},{x:5,y:5,t:'half'},
+    {x:6,y:1,t:'full'},
+    {x:6,y:8,t:'full'},
+    {x:7,y:3,t:'half'},{x:7,y:6,t:'half'},
+    {x:8,y:4,t:'full'},{x:8,y:5,t:'full'},
+    {x:9,y:1,t:'half'},{x:9,y:2,t:'half'},
+    {x:9,y:7,t:'half'},{x:9,y:8,t:'half'},
+    {x:10,y:5,t:'full'},
+  ];
+  spots.forEach(s => { covers.push(s); mark(s.x, s.y); });
+  return covers;
+}
+
+function initGame(playerDefs, enemyDefs) {
+  G = {
+    turn: 1,
+    phase: 'player', // 'player' | 'enemy' | 'gameover'
+    units: [...playerDefs.map(u=>({...u})), ...enemyDefs.map(u=>({...u}))],
+    cover: generateCover(),
+    selected: null,
+    mode: null, // 'move' | 'shoot' | null
+    moveTiles: [],
+    attackTiles: [],
+    animating: false,
+  };
+  renderAll();
+  logEntry('Mission started. Move your units!', 'system');
+}
+
+function getUnit(id) { return G.units.find(u=>u.id===id); }
+function getUnitAt(x,y) { return G.units.find(u=>u.x===x && u.y===y && u.alive); }
+function getCover(x,y) { return G.cover.find(c=>c.x===x && c.y===y); }
+function playerUnits() { return G.units.filter(u=>u.side==='player'); }
+function enemyUnits() { return G.units.filter(u=>u.side==='enemy'); }
+function alivePlayer() { return playerUnits().filter(u=>u.alive); }
+function aliveEnemy() { return enemyUnits().filter(u=>u.alive); }
+
+// ==================== CANVAS DRAWING ====================
+const canvas = document.getElementById('grid-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  const wrap = document.getElementById('board-wrap');
+  const w = wrap.clientWidth - 20;
+  const h = wrap.clientHeight - 20;
+  TILE = Math.floor(Math.min(w / COLS, h / ROWS));
+  TILE = Math.max(36, Math.min(TILE, 64));
+  canvas.width = COLS * TILE;
+  canvas.height = ROWS * TILE;
+}
+
+function drawGrid() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  // Base tiles
+  for (let y=0; y<ROWS; y++) {
+    for (let x=0; x<COLS; x++) {
+      const px = x*TILE, py = y*TILE;
+      ctx.fillStyle = (x+y)%2===0 ? '#0d1520' : '#0b1218';
+      ctx.fillRect(px, py, TILE, TILE);
+    }
+  }
+
+  // Move tiles
+  G.moveTiles.forEach(({x,y}) => {
+    ctx.fillStyle = 'rgba(0,180,80,0.18)';
+    ctx.fillRect(x*TILE, y*TILE, TILE, TILE);
+    ctx.strokeStyle = 'rgba(0,255,100,0.4)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x*TILE+0.5, y*TILE+0.5, TILE-1, TILE-1);
+  });
+
+  // Attack tiles
+  G.attackTiles.forEach(({x,y}) => {
+    ctx.fillStyle = 'rgba(255,50,50,0.15)';
+    ctx.fillRect(x*TILE, y*TILE, TILE, TILE);
+    ctx.strokeStyle = 'rgba(255,80,80,0.5)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x*TILE+0.5, y*TILE+0.5, TILE-1, TILE-1);
+  });
+
+  // Grid lines
+  ctx.strokeStyle = '#1a2535';
+  ctx.lineWidth = 0.5;
+  for (let y=0; y<=ROWS; y++) {
+    ctx.beginPath(); ctx.moveTo(0, y*TILE); ctx.lineTo(COLS*TILE, y*TILE); ctx.stroke();
+  }
+  for (let x=0; x<=COLS; x++) {
+    ctx.beginPath(); ctx.moveTo(x*TILE, 0); ctx.lineTo(x*TILE, ROWS*TILE); ctx.stroke();
+  }
+
+  // Cover objects
+  G.cover.forEach(c => {
+    const px = c.x*TILE, py = c.y*TILE;
+    if (c.t === 'full') {
+      ctx.fillStyle = '#1e2e1e';
+      ctx.fillRect(px+2, py+2, TILE-4, TILE-4);
+      ctx.strokeStyle = '#2a4a2a';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(px+2.5, py+2.5, TILE-5, TILE-5);
+      // Full cover icon
+      ctx.fillStyle = '#3a6a3a';
+      ctx.fillRect(px+TILE/2-5, py+TILE/2-5, 10, 10);
+    } else {
+      ctx.fillStyle = '#1e2818';
+      ctx.fillRect(px+4, py+TILE/2, TILE-8, TILE/2-4);
+      ctx.strokeStyle = '#3a5020';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(px+4.5, py+TILE/2+0.5, TILE-9, TILE/2-5);
+    }
+  });
+
+  // Units
+  G.units.forEach(u => {
+    if (!u.alive) return;
+    const px = u.x*TILE + TILE/2, py = u.y*TILE + TILE/2;
+    const isSelected = G.selected === u.id;
+    const isPlayer = u.side === 'player';
+    const col = isPlayer ? '#00e5ff' : '#ff3d3d';
+    const colDim = isPlayer ? '#006070' : '#701010';
+
+    // Selection ring
+    if (isSelected) {
+      ctx.beginPath();
+      ctx.arc(px, py, TILE/2-2, 0, Math.PI*2);
+      ctx.strokeStyle = col;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      // Glow
+      ctx.shadowColor = col;
+      ctx.shadowBlur = 12;
+      ctx.beginPath();
+      ctx.arc(px, py, TILE/2-2, 0, Math.PI*2);
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+
+    // Unit body
+    ctx.beginPath();
+    ctx.arc(px, py, TILE/2-5, 0, Math.PI*2);
+    ctx.fillStyle = isPlayer ? '#0a1f35' : '#1f0a0a';
+    ctx.fill();
+    ctx.strokeStyle = col;
+    ctx.lineWidth = isSelected ? 2 : 1.5;
+    ctx.stroke();
+
+    // Overwatch indicator
+    if (u.overwatch) {
+      ctx.strokeStyle = '#ffaa00';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(px, py, TILE/2-2, 0, Math.PI*2);
+      ctx.stroke();
+    }
+
+    // Hunkered indicator
+    if (u.hunkered) {
+      ctx.fillStyle = 'rgba(255,170,0,0.2)';
+      ctx.beginPath();
+      ctx.arc(px, py, TILE/2-5, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    // Unit letter
+    ctx.fillStyle = col;
+    ctx.font = `bold ${TILE*0.28}px Orbitron, monospace`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(u.name[0], px, py);
+
+    // HP bar
+    const hpRatio = u.hp / u.maxHp;
+    const barW = TILE - 10;
+    const barY = u.y*TILE + TILE - 7;
+    ctx.fillStyle = '#0a0c0f';
+    ctx.fillRect(u.x*TILE+5, barY, barW, 3);
+    ctx.fillStyle = hpRatio > 0.6 ? '#39ff14' : hpRatio > 0.3 ? '#ffaa00' : '#ff3d3d';
+    ctx.fillRect(u.x*TILE+5, barY, barW * hpRatio, 3);
+
+    // AP dots
+    for (let i=0; i<u.maxAp; i++) {
+      ctx.beginPath();
+      ctx.arc(u.x*TILE + 8 + i*8, u.y*TILE + 7, 2.5, 0, Math.PI*2);
+      ctx.fillStyle = i < u.ap ? col : '#1a2535';
+      ctx.fill();
+    }
+  });
+}
+
+// ==================== INPUT ====================
+canvas.addEventListener('click', e => {
+  if (G.phase !== 'player' || G.animating) return;
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const tx = Math.floor(mx / TILE), ty = Math.floor(my / TILE);
+  if (tx < 0 || tx >= COLS || ty < 0 || ty >= ROWS) return;
+  handleClick(tx, ty);
+});
+
+canvas.addEventListener('mousemove', e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  const tx = Math.floor(mx / TILE), ty = Math.floor(my / TILE);
+  const tip = document.getElementById('tooltip');
+  const unit = getUnitAt(tx, ty);
+  if (unit) {
+    tip.style.display = 'block';
+    tip.style.left = (e.clientX + 12) + 'px';
+    tip.style.top = (e.clientY - 10) + 'px';
+    const cvr = getCover(tx, ty);
+    tip.innerHTML = `<b>${unit.name}</b> (${unit.cls})<br>HP: ${unit.hp}/${unit.maxHp}<br>AIM: ${unit.aim}% | DEF: ${unit.def}%<br>MOV: ${unit.mov} | RNG: ${unit.rng}<br>${cvr ? (cvr.t==='full'?'⬛ FULL COVER':'▪ HALF COVER') : ''}`;
+  } else {
+    tip.style.display = 'none';
+  }
+});
+
+canvas.addEventListener('mouseleave', () => {
+  document.getElementById('tooltip').style.display = 'none';
+});
+
+function handleClick(tx, ty) {
+  const clickedUnit = getUnitAt(tx, ty);
+
+  if (G.mode === 'move') {
+    const inMove = G.moveTiles.some(t=>t.x===tx&&t.y===ty);
+    if (inMove) {
+      moveUnit(G.selected, tx, ty);
+      return;
+    }
+  }
+
+  if (G.mode === 'shoot') {
+    const inAtk = G.attackTiles.some(t=>t.x===tx&&t.y===ty);
+    if (inAtk) {
+      const target = getUnitAt(tx, ty);
+      if (target) { shootUnit(G.selected, target.id); return; }
+    }
+  }
+
+  // Select a unit
+  if (clickedUnit) {
+    if (clickedUnit.side === 'player' && clickedUnit.alive) {
+      selectUnit(clickedUnit.id);
+    }
+  } else {
+    // Deselect
+    G.selected = null;
+    G.mode = null;
+    G.moveTiles = [];
+    G.attackTiles = [];
+    renderAll();
+  }
+}
+
+// ==================== SELECTION & MODES ====================
+function selectUnit(id) {
+  G.selected = id;
+  G.mode = null;
+  G.moveTiles = [];
+  G.attackTiles = [];
+  updateUI();
+  drawGrid();
+}
+
+function activateMove() {
+  if (!G.selected) return;
+  const u = getUnit(G.selected);
+  if (!u || u.side !== 'player' || u.ap < 1) return;
+  G.mode = G.mode === 'move' ? null : 'move';
+  G.attackTiles = [];
+  G.moveTiles = G.mode === 'move' ? calcMoveTiles(u) : [];
+  updateActionBtns();
+  drawGrid();
+}
+
+function activateShoot() {
+  if (!G.selected) return;
+  const u = getUnit(G.selected);
+  if (!u || u.side !== 'player' || u.ap < 1) return;
+  G.mode = G.mode === 'shoot' ? null : 'shoot';
+  G.moveTiles = [];
+  G.attackTiles = G.mode === 'shoot' ? calcAttackTiles(u) : [];
+  updateActionBtns();
+  drawGrid();
+}
+
+function activateOverwatch() {
+  if (!G.selected) return;
+  const u = getUnit(G.selected);
+  if (!u || u.side !== 'player' || u.ap < 1) return;
+  u.ap--;
+  u.overwatch = true;
+  u.acted = true;
+  G.mode = null; G.moveTiles = []; G.attackTiles = [];
+  logEntry(`${u.name} entered OVERWATCH`, 'info');
+  renderAll();
+}
+
+function activateHunker() {
+  if (!G.selected) return;
+  const u = getUnit(G.selected);
+  if (!u || u.side !== 'player' || u.ap < 1) return;
+  u.ap--;
+  u.hunkered = true;
+  u.acted = true;
+  G.mode = null; G.moveTiles = []; G.attackTiles = [];
+  logEntry(`${u.name} hunkered down (+${COVER_CHANCE}% defense)`, 'info');
+  renderAll();
+}
+
+function calcMoveTiles(u) {
+  const tiles = [];
+  const visited = new Set();
+  const queue = [{x:u.x, y:u.y, rem:u.mov}];
+  visited.add(`${u.x},${u.y}`);
+  while (queue.length) {
+    const {x,y,rem} = queue.shift();
+    if (rem <= 0) continue;
+    const dirs = [{dx:1,dy:0},{dx:-1,dy:0},{dx:0,dy:1},{dx:0,dy:-1}];
+    dirs.forEach(({dx,dy}) => {
+      const nx=x+dx, ny=y+dy;
+      const key = `${nx},${ny}`;
+      if (nx<0||nx>=COLS||ny<0||ny>=ROWS) return;
+      if (visited.has(key)) return;
+      if (getCover(nx,ny)) return; // cover blocks movement
+      if (getUnitAt(nx,ny)) return;
+      visited.add(key);
+      tiles.push({x:nx,y:ny});
+      queue.push({x:nx,y:ny,rem:rem-1});
+    });
+  }
+  return tiles;
+}
+
+function calcAttackTiles(u) {
+  const tiles = [];
+  aliveEnemy().forEach(e => {
+    const dist = Math.abs(e.x-u.x) + Math.abs(e.y-u.y);
+    if (dist <= u.rng) tiles.push({x:e.x,y:e.y});
+  });
+  return tiles;
+}
+
+// ==================== ACTIONS ====================
+function moveUnit(id, tx, ty) {
+  const u = getUnit(id);
+  if (!u || u.ap < 1) return;
+  u.x = tx; u.y = ty;
+  u.ap--;
+  u.acted = true;
+  u.overwatch = false;
+  G.mode = null; G.moveTiles = []; G.attackTiles = [];
+  logEntry(`${u.name} moved to [${tx},${ty}]`, 'move');
+  // Check overwatch triggers
+  triggerOverwatch(u);
+  renderAll();
+}
+
+function triggerOverwatch(movingUnit) {
+  if (movingUnit.side === 'player') return; // overwatch only for player units in this version
+  // Enemy moved — check if any player unit overwatching
+  alivePlayer().forEach(p => {
+    if (!p.overwatch) return;
+    const dist = Math.abs(movingUnit.x-p.x) + Math.abs(movingUnit.y-p.y);
+    if (dist <= p.rng) {
+      logEntry(`${p.name} OVERWATCH fires at ${movingUnit.name}!`, 'system');
+      resolveShot(p, movingUnit, true);
+      p.overwatch = false;
+    }
+  });
+}
+
+function shootUnit(attackerId, targetId) {
+  const attacker = getUnit(attackerId);
+  const target = getUnit(targetId);
+  if (!attacker || !target || attacker.ap < 1) return;
+  attacker.ap--;
+  attacker.acted = true;
+  attacker.overwatch = false;
+  G.mode = null; G.moveTiles = []; G.attackTiles = [];
+  resolveShot(attacker, target, false);
+  renderAll();
+}
+
+function resolveShot(attacker, target, isOverwatch) {
+  let hitChance = attacker.aim;
+  // Defense modifier
+  let defBonus = target.def;
+  if (target.hunkered) defBonus += COVER_CHANCE;
+  const cover = getCover(target.x, target.y);
+  if (cover) defBonus += cover.t === 'full' ? COVER_CHANCE : Math.floor(COVER_CHANCE/2);
+  // Range penalty
+  const dist = Math.abs(attacker.x-target.x) + Math.abs(attacker.y-target.y);
+  if (dist > attacker.rng - 1) hitChance -= (dist - (attacker.rng-1)) * 5;
+  hitChance = Math.max(5, Math.min(95, hitChance - defBonus));
+
+  const roll = Math.random() * 100;
+  if (roll <= hitChance) {
+    const dmg = attacker.dmgMin + Math.floor(Math.random() * (attacker.dmgMax - attacker.dmgMin + 1));
+    target.hp -= dmg;
+    if (target.hp <= 0) {
+      target.hp = 0;
+      target.alive = false;
+      logEntry(`${attacker.name} KILLED ${target.name}! [DMG: ${dmg}]`, 'kill');
+      if (target.id === G.selected) { G.selected = null; G.mode = null; }
+      checkWinCondition();
+    } else {
+      logEntry(`${attacker.name} HIT ${target.name} for ${dmg} dmg [${Math.round(roll)}/${Math.round(hitChance)}%]`, 'hit');
+    }
+  } else {
+    logEntry(`${attacker.name} MISSED ${target.name} [${Math.round(roll)}/${Math.round(hitChance)}%]`, 'miss');
+  }
+}
+
+function checkWinCondition() {
+  if (aliveEnemy().length === 0) {
+    G.phase = 'gameover';
+    setTimeout(() => showEndScreen('victory'), 800);
+  } else if (alivePlayer().length === 0) {
+    G.phase = 'gameover';
+    setTimeout(() => showEndScreen('defeat'), 800);
+  }
+}
+
+// ==================== TURN SYSTEM ====================
+function endTurn() {
+  if (G.phase !== 'player') return;
+  G.phase = 'enemy';
+  G.selected = null; G.mode = null; G.moveTiles = []; G.attackTiles = [];
+  logEntry('--- ENEMY TURN ---', 'system');
+  document.getElementById('end-turn-btn').disabled = true;
+  renderAll();
+  setTimeout(enemyTurn, 500);
+}
+
+function enemyTurn() {
+  if (G.phase === 'gameover') return;
+  const enemies = aliveEnemy();
+  let delay = 0;
+  enemies.forEach(e => {
+    e.ap = e.maxAp;
+    e.hunkered = false;
+    setTimeout(() => {
+      if (!e.alive) return;
+      doEnemyAction(e);
+      renderAll();
+    }, delay);
+    delay += 600;
+  });
+  setTimeout(() => {
+    if (G.phase === 'gameover') return;
+    beginPlayerTurn();
+  }, delay + 400);
+}
+
+function doEnemyAction(e) {
+  // Simple AI: if can attack, do so; otherwise move toward nearest player
+  while (e.ap > 0) {
+    const targets = alivePlayer().filter(p => {
+      const dist = Math.abs(p.x-e.x) + Math.abs(p.y-e.y);
+      return dist <= e.rng;
+    });
+    if (targets.length > 0) {
+      // Shoot closest
+      targets.sort((a,b) => (Math.abs(a.x-e.x)+Math.abs(a.y-e.y)) - (Math.abs(b.x-e.x)+Math.abs(b.y-e.y)));
+      resolveShot(e, targets[0], false);
+      e.ap--;
+    } else {
+      // Move toward nearest player
+      const alive = alivePlayer();
+      if (alive.length === 0) break;
+      alive.sort((a,b) => (Math.abs(a.x-e.x)+Math.abs(a.y-e.y)) - (Math.abs(b.x-e.x)+Math.abs(b.y-e.y)));
+      const target = alive[0];
+      const moveTiles = calcMoveTiles(e);
+      if (moveTiles.length === 0) { e.ap--; break; }
+      // Pick tile closest to target
+      moveTiles.sort((a,b) => {
+        const da = Math.abs(a.x-target.x)+Math.abs(a.y-target.y);
+        const db = Math.abs(b.x-target.x)+Math.abs(b.y-target.y);
+        return da - db;
+      });
+      const dest = moveTiles[0];
+      const prevX = e.x, prevY = e.y;
+      e.x = dest.x; e.y = dest.y;
+      e.ap--;
+      logEntry(`${e.name} moved to [${dest.x},${dest.y}]`, 'move');
+      // Check overwatch triggers after enemy move
+      alivePlayer().forEach(p => {
+        if (!p.overwatch || !p.alive) return;
+        const dist = Math.abs(e.x-p.x) + Math.abs(e.y-p.y);
+        if (dist <= p.rng) {
+          logEntry(`${p.name} OVERWATCH fires at ${e.name}!`, 'system');
+          resolveShot(p, e, true);
+          p.overwatch = false;
+        }
+      });
+    }
+    if (G.phase === 'gameover') break;
+  }
+}
+
+function beginPlayerTurn() {
+  G.phase = 'player';
+  G.turn++;
+  alivePlayer().forEach(u => {
+    u.ap = u.maxAp;
+    u.hunkered = false;
+    u.acted = false;
+  });
+  document.getElementById('end-turn-btn').disabled = false;
+  logEntry(`--- PLAYER TURN ${G.turn} ---`, 'system');
+  renderAll();
+}
+
+// ==================== UI ====================
+function renderAll() {
+  resizeCanvas();
+  drawGrid();
+  renderUnitLists();
+  updateUI();
+}
+
+function renderUnitLists() {
+  const pList = document.getElementById('player-units-list');
+  const eList = document.getElementById('enemy-units-list');
+  pList.innerHTML = '';
+  eList.innerHTML = '';
+
+  playerUnits().forEach(u => {
+    pList.appendChild(makeUnitCard(u));
+  });
+  enemyUnits().forEach(u => {
+    eList.appendChild(makeUnitCard(u));
+  });
+}
+
+function makeUnitCard(u) {
+  const div = document.createElement('div');
+  div.className = `unit-card ${u.side} ${!u.alive?'dead':''} ${G.selected===u.id?'selected':''}`;
+  if (u.alive && u.side === 'player') div.onclick = () => selectUnit(u.id);
+
+  const hpRatio = u.hp / u.maxHp;
+  const hpColor = hpRatio > 0.6 ? 'var(--hp-high)' : hpRatio > 0.3 ? 'var(--hp-mid)' : 'var(--hp-low)';
+
+  let apDots = '';
+  for (let i=0;i<u.maxAp;i++) {
+    apDots += `<div class="ap-dot ${i>=u.ap?'used':''}"></div>`;
+  }
+
+  div.innerHTML = `
+    <div class="unit-name">
+      ${u.alive ? '' : '✕ '}${u.name}
+      <div class="ap-dots">${apDots}</div>
+    </div>
+    <div class="unit-class">${u.cls}${u.overwatch?' · OW':u.hunkered?' · HNKR':''}</div>
+    <div class="hp-bar-wrap">
+      <div class="hp-bar"><div class="hp-fill" style="width:${hpRatio*100}%;background:${hpColor}"></div></div>
+      <div class="hp-text">${u.hp}/${u.maxHp}</div>
+    </div>
+    <div class="unit-stats-mini">
+      <div class="stat-mini">AIM <span>${u.aim}</span></div>
+      <div class="stat-mini">MOV <span>${u.mov}</span></div>
+      <div class="stat-mini">RNG <span>${u.rng}</span></div>
+    </div>
+  `;
+  return div;
+}
+
+function updateUI() {
+  const u = G.selected ? getUnit(G.selected) : null;
+  const selName = document.getElementById('sel-name');
+  const selClass = document.getElementById('sel-class');
+  const selStats = document.getElementById('sel-stats');
+
+  if (!u) {
+    selName.textContent = 'NO UNIT SELECTED';
+    selName.style.color = 'var(--text-dim)';
+    selClass.textContent = '';
+    selStats.innerHTML = '';
+    updateActionBtns(null);
+    return;
+  }
+
+  selName.textContent = u.name;
+  selName.style.color = u.side==='player' ? 'var(--accent)' : 'var(--accent2)';
+  selClass.textContent = `${u.cls} · ${u.side.toUpperCase()}`;
+
+  const hpRatio = u.hp / u.maxHp;
+  const hpColor = hpRatio > 0.6 ? 'var(--hp-high)' : hpRatio > 0.3 ? 'var(--hp-mid)' : 'var(--hp-low)';
+  selStats.innerHTML = `
+    <div class="stat-row"><div class="stat-label">HP</div><div class="stat-value" style="color:${hpColor}">${u.hp} / ${u.maxHp}</div></div>
+    <div class="stat-row"><div class="stat-label">ACTION PTS</div><div class="stat-value accent">${u.ap} / ${u.maxAp}</div></div>
+    <div class="stat-row"><div class="stat-label">AIM</div><div class="stat-value">${u.aim}%</div></div>
+    <div class="stat-row"><div class="stat-label">DEFENSE</div><div class="stat-value">${u.def}%</div></div>
+    <div class="stat-row"><div class="stat-label">DAMAGE</div><div class="stat-value">${u.dmgMin}–${u.dmgMax}</div></div>
+    <div class="stat-row"><div class="stat-label">MOVE</div><div class="stat-value">${u.mov} tiles</div></div>
+    <div class="stat-row"><div class="stat-label">RANGE</div><div class="stat-value">${u.rng} tiles</div></div>
+    <div class="stat-row"><div class="stat-label">POSITION</div><div class="stat-value">[${u.x}, ${u.y}]</div></div>
+    ${u.overwatch ? '<div class="stat-row"><div class="stat-label">STATUS</div><div class="stat-value warn">OVERWATCH</div></div>' : ''}
+    ${u.hunkered ? '<div class="stat-row"><div class="stat-label">STATUS</div><div class="stat-value warn">HUNKERED</div></div>' : ''}
+  `;
+
+  updateActionBtns(u);
+}
+
+function updateActionBtns(u) {
+  const isPlayer = u && u.side === 'player' && u.alive && G.phase === 'player';
+  const hasAP = isPlayer && u.ap > 0;
+  const btnMove = document.getElementById('btn-move');
+  const btnShoot = document.getElementById('btn-shoot');
+  const btnOW = document.getElementById('btn-overwatch');
+  const btnHnk = document.getElementById('btn-hunker');
+
+  btnMove.disabled = !hasAP;
+  btnShoot.disabled = !hasAP;
+  btnOW.disabled = !hasAP || (u && u.overwatch);
+  btnHnk.disabled = !hasAP || (u && u.hunkered);
+
+  btnMove.className = 'action-btn' + (G.mode==='move'?' active':'');
+  btnShoot.className = 'action-btn danger' + (G.mode==='shoot'?' active':'');
+}
+
+function logEntry(msg, type='info') {
+  const log = document.getElementById('log-entries');
+  const d = document.createElement('div');
+  d.className = `log-entry ${type}`;
+  d.textContent = `> ${msg}`;
+  log.appendChild(d);
+  log.parentElement.scrollTop = log.parentElement.scrollHeight;
+  // Keep max 60 entries
+  while (log.children.length > 60) log.removeChild(log.firstChild);
+}
+
+function showEndScreen(result) {
+  const overlay = document.getElementById('overlay-msg');
+  const title = document.getElementById('overlay-title');
+  overlay.className = result === 'victory' ? 'show victory' : 'show defeat';
+  title.textContent = result === 'victory' ? 'MISSION COMPLETE' : 'SQUAD WIPED';
+}
+
+// ==================== EDITOR ====================
+let editorData = { player: [], enemy: [] };
+
+function openEditor() {
+  editorData = {
+    player: alivePlayer().map(u=>({...u})).concat(playerUnits().filter(u=>!u.alive).map(u=>({...u}))),
+    enemy: aliveEnemy().map(u=>({...u})).concat(enemyUnits().filter(u=>!u.alive).map(u=>({...u}))),
+  };
+  // Use current full definitions
+  editorData.player = G._playerDefs ? G._playerDefs.map(u=>({...u})) : defaultPlayerUnits();
+  editorData.enemy = G._enemyDefs ? G._enemyDefs.map(u=>({...u})) : defaultEnemyUnits();
+  renderEditorUnits();
+  document.getElementById('editor-overlay').classList.add('open');
+}
+
+function closeEditor() {
+  document.getElementById('editor-overlay').classList.remove('open');
+}
+
+function renderEditorUnits() {
+  renderEditorList('player');
+  renderEditorList('enemy');
+}
+
+function renderEditorList(side) {
+  const container = document.getElementById(`editor-${side}-units`);
+  container.innerHTML = '';
+  editorData[side].forEach((u, i) => {
+    container.appendChild(makeEditorRow(u, side, i));
+  });
+}
+
+function makeEditorRow(u, side, idx) {
+  const div = document.createElement('div');
+  div.className = `editor-unit-row ${side==='enemy'?'enemy-row':''}`;
+
+  const classes = ['RANGER','SNIPER','HEAVY','SCOUT','MEDIC','ELITE','TROOPER','GRENADIER'];
+  const classOpts = classes.map(c=>`<option value="${c}" ${u.cls===c?'selected':''}>${c}</option>`).join('');
+
+  div.innerHTML = `
+    <div class="editor-unit-name"><input type="text" value="${u.name}" onchange="editorData['${side}'][${idx}].name=this.value"></div>
+    <select class="class-select" onchange="editorData['${side}'][${idx}].cls=this.value">${classOpts}</select>
+    <div class="stat-inputs">
+      <div class="stat-input-group"><label>HP</label><input type="number" min="1" max="50" value="${u.maxHp}" onchange="editorData['${side}'][${idx}].maxHp=+this.value;editorData['${side}'][${idx}].hp=+this.value"></div>
+      <div class="stat-input-group"><label>MOV</label><input type="number" min="1" max="10" value="${u.mov}" onchange="editorData['${side}'][${idx}].mov=+this.value"></div>
+      <div class="stat-input-group"><label>AIM</label><input type="number" min="5" max="99" value="${u.aim}" onchange="editorData['${side}'][${idx}].aim=+this.value"></div>
+      <div class="stat-input-group"><label>DEF</label><input type="number" min="0" max="80" value="${u.def}" onchange="editorData['${side}'][${idx}].def=+this.value"></div>
+      <div class="stat-input-group"><label>DMGmin</label><input type="number" min="1" max="30" value="${u.dmgMin}" onchange="editorData['${side}'][${idx}].dmgMin=+this.value"></div>
+      <div class="stat-input-group"><label>DMGmax</label><input type="number" min="1" max="50" value="${u.dmgMax}" onchange="editorData['${side}'][${idx}].dmgMax=+this.value"></div>
+      <div class="stat-input-group"><label>AP</label><input type="number" min="1" max="5" value="${u.maxAp}" onchange="editorData['${side}'][${idx}].maxAp=+this.value;editorData['${side}'][${idx}].ap=+this.value"></div>
+      <div class="stat-input-group"><label>RNG</label><input type="number" min="1" max="13" value="${u.rng}" onchange="editorData['${side}'][${idx}].rng=+this.value"></div>
+    </div>
+    <button class="remove-unit-btn" onclick="removeEditorUnit('${side}',${idx})">✕</button>
+  `;
+  return div;
+}
+
+let _uidCounter = 100;
+function addEditorUnit(side) {
+  _uidCounter++;
+  const defaults = side === 'player'
+    ? { id:`p${_uidCounter}`, name:'UNIT', side:'player', cls:'RANGER', hp:12, maxHp:12, mov:4, aim:70, def:10, dmgMin:4, dmgMax:8, ap:2, maxAp:2, rng:4, x:1, y:4, alive:true, overwatch:false, hunkered:false, acted:false }
+    : { id:`e${_uidCounter}`, name:'ENEMY', side:'enemy', cls:'TROOPER', hp:10, maxHp:10, mov:3, aim:60, def:5, dmgMin:3, dmgMax:7, ap:2, maxAp:2, rng:4, x:12, y:4, alive:true, overwatch:false, hunkered:false, acted:false };
+  editorData[side].push(defaults);
+  renderEditorUnits();
+}
+
+function removeEditorUnit(side, idx) {
+  if (editorData[side].length <= 1) return;
+  editorData[side].splice(idx, 1);
+  renderEditorUnits();
+}
+
+function applyEditor() {
+  // Assign spawn positions
+  const playerSpawns = [{x:1,y:0},{x:1,y:2},{x:1,y:4},{x:1,y:6},{x:1,y:8},{x:0,y:1},{x:0,y:3},{x:0,y:5}];
+  const enemySpawns = [{x:12,y:1},{x:12,y:3},{x:12,y:5},{x:12,y:7},{x:11,y:0},{x:11,y:2},{x:11,y:4},{x:11,y:6}];
+
+  const playerDefs = editorData.player.map((u,i) => ({
+    ...u, hp:u.maxHp, alive:true, ap:u.maxAp, overwatch:false, hunkered:false, acted:false,
+    x: playerSpawns[i%playerSpawns.length].x,
+    y: playerSpawns[i%playerSpawns.length].y,
+  }));
+  const enemyDefs = editorData.enemy.map((u,i) => ({
+    ...u, hp:u.maxHp, alive:true, ap:u.maxAp, overwatch:false, hunkered:false, acted:false,
+    x: enemySpawns[i%enemySpawns.length].x,
+    y: enemySpawns[i%enemySpawns.length].y,
+  }));
+
+  closeEditor();
+  document.getElementById('overlay-msg').className = '';
+  document.getElementById('turn-num').textContent = '1';
+  document.getElementById('end-turn-btn').disabled = false;
+  document.getElementById('log-entries').innerHTML = '';
+  initGame(playerDefs, enemyDefs);
+  G._playerDefs = playerDefs;
+  G._enemyDefs = enemyDefs;
+}
+
+function restartGame() {
+  document.getElementById('overlay-msg').className = '';
+  document.getElementById('turn-num').textContent = '1';
+  document.getElementById('end-turn-btn').disabled = false;
+  document.getElementById('log-entries').innerHTML = '';
+  const p = G._playerDefs || defaultPlayerUnits();
+  const e = G._enemyDefs || defaultEnemyUnits();
+  const playerDefs = p.map(u=>({...u, hp:u.maxHp, alive:true, ap:u.maxAp, overwatch:false, hunkered:false, acted:false}));
+  const enemyDefs = e.map(u=>({...u, hp:u.maxHp, alive:true, ap:u.maxAp, overwatch:false, hunkered:false, acted:false}));
+  initGame(playerDefs, enemyDefs);
+}
+
+// Update turn display
+const origRenderAll = renderAll;
+function renderAll() {
+  resizeCanvas();
+  drawGrid();
+  renderUnitLists();
+  updateUI();
+  document.getElementById('turn-num').textContent = G.turn || 1;
+  document.getElementById('turn-side').textContent = G.phase === 'player' ? 'PLAYER' : 'ENEMY';
+  document.getElementById('turn-side').style.color = G.phase === 'player' ? 'var(--accent)' : 'var(--accent2)';
+}
+
+window.addEventListener('resize', () => { resizeCanvas(); drawGrid(); });
+
+// ==================== START ====================
+const pDefs = defaultPlayerUnits();
+const eDefs = defaultEnemyUnits();
+G._playerDefs = pDefs;
+G._enemyDefs = eDefs;
+initGame(pDefs, eDefs);
+</script>
+
+</body>
+</html>
