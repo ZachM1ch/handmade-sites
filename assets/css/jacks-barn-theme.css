@@ -1,0 +1,129 @@
+/* === Jack's Barn Theme === */
+
+/* === Color Palette ===
+   Base:     #FAF7F2 (warm cream), #F0EAD6 (parchment beige)
+   Accents:  #5C2D82 (amethyst), #1B6B45 (emerald), #1A3A6B (sapphire)
+             #9B1D2A (ruby), #B8860B (dark gold)
+   Text:     #2A2118 (deep espresso brown)
+   Light:    #FAF7F2 (cream, for reversed text)
+=== */
+
+/* === Global Body Styles === */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #F0EAD6; /* Parchment beige */
+    color: #2A2118;      /* Deep espresso brown */
+}
+
+/* === Header & Navigation === */
+header {
+    background: #1A3A6B; /* Sapphire */
+    padding: 10px;
+}
+.navbar a {
+    color: #FAF7F2;      /* Warm cream */
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.navbar a:hover {
+    color: #B8860B;      /* Dark gold */
+}
+
+/* === Main Content === */
+main {
+    padding: 20px;
+}
+
+/* === Footer === */
+footer {
+    background: #1A3A6B; /* Sapphire */
+    color: #FAF7F2;      /* Warm cream */
+    text-align: center;
+    padding: 10px;
+}
+
+/* === Centered Text Utility === */
+.center-text {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* === Background Image Utility === */
+.bg-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #FAF7F2;      /* Warm cream for contrast */
+    padding: 20px;
+}
+
+/* === Gallery === */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    justify-items: center;
+    max-width: 1000px;
+    margin: auto;
+}
+.gallery img {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 5px;
+    border: 4px solid #5C2D82; /* Amethyst border */
+}
+
+/* === Buttons === */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #1B6B45; /* Emerald */
+    color: #FAF7F2;      /* Warm cream */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.1s;
+}
+.btn:hover {
+    background: #9B1D2A; /* Ruby */
+    transform: translateY(-2px);
+}
+.btn:active {
+    transform: translateY(0);
+}
+
+/* === Card Style (for portfolio/story blocks) === */
+.card {
+    background: #FAF7F2; /* Warm cream */
+    border: 1px solid #5C2D82; /* Amethyst border */
+    padding: 30px;
+    border-radius: 8px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+.card h2 {
+    margin-top: 0;
+    color: #1A3A6B; /* Sapphire */
+}
+.card figure img {
+    justify-content: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.card figure figcaption {
+    text-align: center;
+}
+
+pre {
+    white-space: pre-wrap; /* Preserves whitespace and enables wrapping */
+    word-wrap: break-word; /* Ensures long words break to the next line */
+    font-family: calibri;
+    font-size: 16px;
+}
