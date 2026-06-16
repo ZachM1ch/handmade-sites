@@ -7,8 +7,7 @@
         <li><a href="/portfolio/">View my coding projects</a></li>
         <li><a href="/gallery/">Browse my art</a></li>
         <li><a href="/stories/">Read my stories</a></li>
-		<li><a href="/wedding/">Wedding information</a></li>
-		<li><a href="/tac-ops/">Tac Ops demo app</a></li>
+		<!--<li><a href="/wedding/">Wedding information</a></li>-->
     </ul>
 </section>
 

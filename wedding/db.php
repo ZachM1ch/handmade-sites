@@ -1,29 +1,22 @@
 <?php
-/**
- * /wedding/php/db.php
- * PDO database connection for the wedding site.
- * Update credentials below before deployment.
- */
+// Wedding database connection via PDO
+// Update credentials to match your server configuration
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'u565780247_wedding');
-define('DB_USER', 'u565780247_groom');
-define('DB_PASS', 'iLOVEmyWIFE10-09-2027');
-define('DB_CHAR', 'utf8mb4');
-
-$dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHAR;
-
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-];
+define('DB_NAME', 'your_database_name');
+define('DB_USER', 'your_database_user');
+define('DB_PASS', 'your_database_password');
 
 try {
-    $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+    $pdo = new PDO(
+        'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4',
+        DB_USER,
+        DB_PASS,
+        [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
+    );
 } catch (PDOException $e) {
-    // Don't expose DB details to the user
-    error_log("DB Connection failed: " . $e->getMessage());
-    http_response_code(500);
-    die("A database error occurred. Please try again later.");
+    die('Database connection failed: ' . $e->getMessage());
 }
