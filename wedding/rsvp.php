@@ -10,14 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name          = trim($_POST['name'] ?? '');
     $email         = trim($_POST['email'] ?? '');
     $attending     = $_POST['attending'] ?? '';
-    $guest_count   = intval($_POST['guest_count'] ?? 1);
+	$entree     = $_POST['entree'] ?? '';
     $dietary_notes = trim($_POST['dietary_notes'] ?? '');
     $message       = trim($_POST['message'] ?? '');
 
     if ($name && in_array($attending, ['yes', 'no'])) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO rsvps (name, email, attending, guest_count, dietary_notes, message) VALUES (?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$name, $email, $attending, $guest_count, $dietary_notes, $message]);
+            $stmt = $pdo->prepare("INSERT INTO rsvps (name, email, attending, entree, dietary_notes, message) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$name, $email, $attending, $entree, $dietary_notes, $message]);
             $success = true;
         } catch (PDOException $e) {
             $error = true;
@@ -57,7 +57,7 @@ include($_SERVER['DOCUMENT_ROOT']."/wedding/includes/header.php");
             <input type="email" name="email" style="width:100%; padding:8px; box-sizing:border-box;">
         </p>
 
-        <p>
+		<p>
             <label data-en="Will you be attending? *" data-es="¿Asistirá? *">Will you be attending? *</label><br>
             <select name="attending" required style="padding:8px;">
                 <option value="" data-en="-- Select --" data-es="-- Seleccionar --">-- Select --</option>
@@ -67,8 +67,14 @@ include($_SERVER['DOCUMENT_ROOT']."/wedding/includes/header.php");
         </p>
 
         <p>
-            <label data-en="Number of Guests (including yourself)" data-es="Número de Invitados (incluyéndose)">Number of Guests (including yourself)</label><br>
-            <input type="number" name="guest_count" min="1" max="10" value="1" style="padding:8px; width:80px;">
+            <label data-en="Food: *" data-es="Comida: *">Food: *</label><br>
+            <select name="entree" required style="padding:8px;">
+                <option value="" data-en="-- Select --" data-es="-- Seleccionar --">-- Select --</option>
+                <option value="beef" data-en="Rib" data-es="Rib">Rib</option>
+                <option value="chix" data-en="Breast" data-es="Breast">Breast</option>
+				<option value="fish" data-en="Salmon" data-es="Salmon">Salmon</option>
+				<option value="veg" data-en="Napoleon" data-es="Napoleon">Napoleon</option>
+            </select>
         </p>
 
         <p>

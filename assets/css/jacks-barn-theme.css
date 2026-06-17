@@ -44,6 +44,10 @@ footer {
     padding: 10px;
 }
 
+h2 {
+	color: #5C2D82; /* Amethyst */
+}
+
 /* === Centered Text Utility === */
 .center-text {
     text-align: center;
@@ -109,7 +113,7 @@ footer {
 }
 .card h2 {
     margin-top: 0;
-    color: #5C2D82; /* Sapphire */
+    color: #5C2D82; /* Amethyst */
 }
 .card figure img {
     justify-content: center;

@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS rsvps (
     name          VARCHAR(150) NOT NULL,
     email         VARCHAR(150),
     attending     ENUM('yes', 'no') NOT NULL,
-    guest_count   TINYINT UNSIGNED DEFAULT 1,
+	entree		  TEXT,
     dietary_notes TEXT,
     message       TEXT,
     submitted_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
