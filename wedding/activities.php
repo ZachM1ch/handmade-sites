@@ -8,15 +8,44 @@
     </p>
 
     <h2 data-en="Dining" data-es="Restaurantes">Dining</h2>
-    <p data-en="Barbara's Cafe &mdash; Oxford, NJ"
-       data-es="Barbara's Cafe &mdash; Oxford, NJ">
-        Barbara's Cafe &mdash; Oxford, NJ
+    <p data-en="Barbara's Cafe &mdash; Oxford, NJ (1.9 mi)"
+       data-es="Barbara's Cafe &mdash; Oxford, NJ (1.9 mi)">
+        Barbara's Cafe &mdash; Oxford, NJ (1.9 mi)
     </p>
+	<p data-en="Riverside Diner &mdash; Belvidere, NJ (2.4 mi)"
+       data-es="Riverside Diner &mdash; Belvidere, NJ (2.4 mi)">
+        Riverside Diner &mdash; Belvidere, NJ (2.4 mi)
+    </p>
+	<p data-en="The Draught House &mdash; Washington, NJ (4.3 mi)"
+       data-es="The Draught House &mdash; Washington, NJ (4.3 mi)">
+        The Draught House &mdash; Washington, NJ (4.3 mi)
+    </p>
+	<p data-en="Allie's Cupcakery &mdash; Washington, NJ (5.8 mi)"
+       data-es="Allie's Cupcakery &mdash; Washington, NJ (5.8 mi)">
+        Allie's Cupcakery &mdash; Washington, NJ (5.8 mi)
+    </p>
+	<p data-en="Washington Diner &mdash; Washington, NJ (5.9 mi)"
+       data-es="Washington Diner &mdash; Washington, NJ (5.9 mi)">
+        Washington Diner &mdash; Washington, NJ (5.9 mi)
+    </p>
+	
 
     <h2 data-en="Sightseeing &amp; Activities" data-es="Lugares de Interés y Actividades">Sightseeing</h2>
-    <p data-en="Oxford Furnace Lake &mdash; Oxford, NJ"
-       data-es="Oxford Furnace Lake &mdash; Oxford, NJ">
-        Oxford Furnace Lake &mdash; Oxford, NJ
+    <p data-en="Oxford Furnace Lake &mdash; Oxford, NJ (2.8 mi)"
+       data-es="Oxford Furnace Lake &mdash; Oxford, NJ (2.8 mi)">
+        Oxford Furnace Lake &mdash; Oxford, NJ (2.8 mi)
+    </p>
+	<p data-en="Mackey's Orchard &mdash; Belvidere, NJ (4.4 mi)"
+       data-es="Mackey's Orchard &mdash; Belvidere, NJ (4.4 mi)">
+        Mackey's Orchard &mdash; Belvidere, NJ (4.4 mi)
+    </p>
+	<p data-en="Oakwood Lanes &mdash; Washington, NJ (4.7 mi)"
+       data-es="Oakwood Lanes &mdash; Washington, NJ (4.7 mi)">
+        Oakwood Lanes &mdash; Washington, NJ (4.7 mi)
+    </p>
+	<p data-en="Point Mountain &mdash; Glen Gardener, NJ (9.4 mi)"
+       data-es="Point Mountain &mdash; Glen Gardener, NJ (9.4 mi)">
+        Point Mountain &mdash; Glen Gardener, NJ (9.4 mi)
     </p>
 </section>
 

@@ -9,8 +9,20 @@
         123 Placeholder Road, Bankton, NJ 00000
     </p>
 
+	<!-- Venue Card -->
+    <div class="card" style="text-align:center; margin-bottom:36px;">
+        <p style="font-size:2rem; margin:0 0 10px;">🏛️</p>
+        <h2 style="margin-bottom:4px;">The Grand Pavilion</h2>
+        <p style="color:var(--text-mid); font-size:0.95rem; margin:0 0 16px;">
+            1487 NJ-31, Oxford, NJ 07863
+        </p>
+        <a href="https://maps.app.goo.gl/YEZ1PQK677XNrzzJ9" target="_blank" rel="noopener" class="btn btn-ruby">
+            <span data-en="Open in Google Maps" data-es="Abrir en Google Maps">Open in Google Maps</span>
+        </a>
+    </div>
+
     <p>
-        <a class="btn" href="https://maps.google.com/?q=123+Placeholder+Road+Bankton+NJ" target="_blank"
+        <a class="btn" href="https://maps.google.com/?q=1487+NJ-31+Oxford+NJ" target="_blank"
            data-en="Open in Google Maps" data-es="Abrir en Google Maps">Open in Google Maps</a>
     </p>
 
