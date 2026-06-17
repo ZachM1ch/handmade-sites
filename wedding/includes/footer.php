@@ -7,5 +7,7 @@
     </p>
 </footer>
 
+<script src="/assets/js/wedding-lang.js"></script>
+
 </body>
 </html>
