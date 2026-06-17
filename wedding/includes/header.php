@@ -24,5 +24,3 @@
 </header>
 
 <main>
-
-<script src="/assets/js/wedding-lang.js"></script>
