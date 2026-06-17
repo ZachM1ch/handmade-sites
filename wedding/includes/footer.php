@@ -1,9 +1,9 @@
 </main>
 
 <footer>
-    <p data-en="Alex & Jordan &mdash; June 14, 2026 &mdash; The Grand Pavilion, Bankton NJ"
-       data-es="Alex y Jordan &mdash; 14 de junio de 2026 &mdash; The Grand Pavilion, Bankton NJ">
-        Alex &amp; Jordan &mdash; June 14, 2026 &mdash; The Grand Pavilion, Bankton NJ
+    <p data-en="Zachary &amp; Alina &mdash; October 9, 2027 &mdash; The Loft at Jack's Barn, Oxford NJ"
+       data-es="Zachary y Alina &mdash; 9 de octubre de 2027 &mdash; The Loft at Jack's Barn, Oxford NJ">
+        Zachary &amp; Alina &mdash; October 9, 2027 &mdash; The Loft at Jack's Barn, Oxford NJ
     </p>
 </footer>
 
