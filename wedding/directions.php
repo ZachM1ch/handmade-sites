@@ -3,23 +3,13 @@
 <section class="card">
     <h1 data-en="Directions" data-es="Direcciones">Directions</h1>
 
-    <h2 data-en="The Grand Pavilion" data-es="The Grand Pavilion">The Grand Pavilion</h2>
-    <p data-en="123 Placeholder Road, Bankton, NJ 00000"
-       data-es="123 Calle Ejemplo, Bankton, Nueva Jersey 00000">
-        123 Placeholder Road, Bankton, NJ 00000
+    <h2 data-en="The Loft at Jack's Barn" data-es="The Loft at Jack's Barn">The Loft at Jack's Barn</h2>
+    <p data-en="1487 NJ-31, Oxford, NJ 07863"
+       data-es="1487 NJ-31, Oxford, NJ 07863">
+        1487 NJ-31, Oxford, NJ 07863
     </p>
 
-	<!-- Venue Card -->
-    <div class="card" style="text-align:center; margin-bottom:36px;">
-        <p style="font-size:2rem; margin:0 0 10px;">🏛️</p>
-        <h2 style="margin-bottom:4px;">The Grand Pavilion</h2>
-        <p style="color:var(--text-mid); font-size:0.95rem; margin:0 0 16px;">
-            1487 NJ-31, Oxford, NJ 07863
-        </p>
-        <a href="https://maps.app.goo.gl/YEZ1PQK677XNrzzJ9" target="_blank" rel="noopener" class="btn btn-ruby">
-            <span data-en="Open in Google Maps" data-es="Abrir en Google Maps">Open in Google Maps</span>
-        </a>
-    </div>
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1067.4196908526008!2d-74.99736454249575!3d40.8253540006523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c478ee21f20227%3A0xb533b20d4d2a1275!2sJack&#39;s%20Barn!5e0!3m2!1sen!2sus!4v1781738793418!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
     <p>
         <a class="btn" href="https://maps.google.com/?q=1487+NJ-31+Oxford+NJ" target="_blank"
