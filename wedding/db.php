@@ -3,9 +3,9 @@
 // Update credentials to match your server configuration
 
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'your_database_name');
-define('DB_USER', 'your_database_user');
-define('DB_PASS', 'your_database_password');
+define('DB_NAME', 'u565780247_wedding');
+define('DB_USER', 'u565780247_groom');
+define('DB_PASS', 'groomOn10092027!!');
 
 try {
     $pdo = new PDO(
