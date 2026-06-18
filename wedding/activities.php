@@ -11,30 +11,67 @@
     <p data-en="Barbara's Cafe &mdash; Oxford, NJ (1.9 mi)"
        data-es="Barbara's Cafe &mdash; Oxford, NJ (1.9 mi)">
         Barbara's Cafe &mdash; Oxford, NJ (1.9 mi)
+		
 		<ul style="list-style-type: square;">
-			<li> data-en="Saturday: 9AM - 6PM &mdash; Sunday 8AM - 3PM"
-			data-es="Sabados: 9AM - 6PM &mdash; Domingo 8AM - 3PM"
-			Saturday: 9AM - 6PM &mdash; Sunday 8AM - 3PM</li>
-			<li>data-en="Dominican Food"
-			data-es="Comida Dominicana"
-			Dominican Food</li>
+			<li data-en="Saturday: 9AM - 6PM &mdash; Sunday: 8AM - 3PM"
+				data-es="Sábado: 9AM - 6PM &mdash; Domingo: 8AM - 3PM">
+				Saturday: 9AM - 6PM &mdash; Sunday: 8AM - 3PM</li>
+			<li data-en="Dominican Food"
+				data-es="Comida Dominicana">
+				Dominican Food</li>
 		</ul>
     </p>
 	<p data-en="Riverside Diner &mdash; Belvidere, NJ (2.4 mi)"
        data-es="Riverside Diner &mdash; Belvidere, NJ (2.4 mi)">
         Riverside Diner &mdash; Belvidere, NJ (2.4 mi)
+		
+		<ul style="list-style-type: square;">
+			<li data-en="Saturday: 7AM - 10PM &mdash; Sunday: 7AM - 10PM"
+				data-es="Sábado: 7AM - 10PM &mdash; Domingo: 7AM - 10PM">
+				Saturday: 7AM - 10PM &mdash; Sunday: 7AM - 10PM</li>
+			<li data-en="American Diner Food"
+				data-es="Comida Americana">
+				American Diner Food</li>
+		</ul>
     </p>
 	<p data-en="The Draught House &mdash; Washington, NJ (4.3 mi)"
        data-es="The Draught House &mdash; Washington, NJ (4.3 mi)">
         The Draught House &mdash; Washington, NJ (4.3 mi)
+		
+		<ul style="list-style-type: square;">
+			<li data-en="Saturday: 12PM - 1AM &mdash; Sunday: 12PM - 8PM"
+				data-es="Sábado: 12PM - 1AM &mdash; Domingo: 12PM - 8PM">
+				Saturday: 12PM - 1AM &mdash; Sunday: 12PM - 8PM</li>
+			<li data-en="American Food"
+				data-es="Comida Americana">
+				American Food</li>
+		</ul>
     </p>
-	<p data-en="Allie's Cupcakery &mdash; Washington, NJ (5.8 mi)"
-       data-es="Allie's Cupcakery &mdash; Washington, NJ (5.8 mi)">
-        Allie's Cupcakery &mdash; Washington, NJ (5.8 mi)
-    </p>
+	<!--<p data-en="Allie's Cupcakery &amp; Café &mdash; Washington, NJ (5.8 mi)"
+       data-es="Allie's Cupcakery &amp; Café &mdash; Washington, NJ (5.8 mi)">
+        Allie's Cupcakery &amp; Café &mdash; Washington, NJ (5.8 mi)
+		
+		<ul style="list-style-type: square;">
+			<li data-en="Saturday: CLOSED &mdash; Sunday: CLOSED"
+				data-es="Sábado: CLOSED &mdash; Domingo: CLOSED">
+				Saturday: CLOSED &mdash; Sunday: CLOSED</li>
+			<li data-en="Cupcakes &amp; Lunch"
+				data-es="Pastelitos y Almuerzo">
+				Cupcakes &amp; Lunch</li>
+		</ul>
+    </p>-->
 	<p data-en="Washington Diner &mdash; Washington, NJ (5.9 mi)"
        data-es="Washington Diner &mdash; Washington, NJ (5.9 mi)">
         Washington Diner &mdash; Washington, NJ (5.9 mi)
+		
+		<ul style="list-style-type: square;">
+			<li data-en="Saturday: 7AM - 10PM &mdash; Sunday: 7AM - 10PM"
+				data-es="Sábado: 7AM - 10PM &mdash; Domingo: 7AM - 10PM">
+				Saturday: 7AM - 10PM &mdash; Sunday: 7AM - 10PM</li>
+			<li data-en="American Diner Food"
+				data-es="Comida Americana">
+				American Diner Food</li>
+		</ul>
     </p>
 	
 
