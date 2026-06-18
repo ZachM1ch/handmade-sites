@@ -11,6 +11,14 @@
     <p data-en="Barbara's Cafe &mdash; Oxford, NJ (1.9 mi)"
        data-es="Barbara's Cafe &mdash; Oxford, NJ (1.9 mi)">
         Barbara's Cafe &mdash; Oxford, NJ (1.9 mi)
+		<ul style="list-style-type: square;">
+			<li> data-en="Saturday: 9AM - 6PM &mdash; Sunday 8AM - 3PM"
+			data-es="Sabados: 9AM - 6PM &mdash; Domingo 8AM - 3PM"
+			Saturday: 9AM - 6PM &mdash; Sunday 8AM - 3PM</li>
+			<li>data-en="Dominican Food"
+			data-es="Comida Dominicana"
+			Dominican Food</li>
+		</ul>
     </p>
 	<p data-en="Riverside Diner &mdash; Belvidere, NJ (2.4 mi)"
        data-es="Riverside Diner &mdash; Belvidere, NJ (2.4 mi)">
