@@ -10,7 +10,7 @@ function applyLang(lang) {
         }
     });
     var btn = document.getElementById('lang-toggle');
-    if (btn) btn.textContent = (lang === 'es') ? 'EN' : 'ES';
+    if (btn) btn.textContent = (lang === 'es') ? 'English' : 'Español';
     document.documentElement.lang = lang;
     localStorage.setItem('weddingLang', lang);
 }
