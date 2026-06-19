@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($pageTitle) ? $pageTitle . " | Alex & Jordan's Wedding" : "Alex & Jordan's Wedding"; ?></title>
+    <title><?php echo isset($pageTitle) ? $pageTitle . " | Zachary & Alina's Wedding" : "Zachary & Alina's Wedding"; ?></title>
     <link rel="stylesheet" href="/assets/css/jacks-barn-theme.css">
 </head>
 <body>
