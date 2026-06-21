@@ -163,6 +163,10 @@ pre {
     width: 600px;            /* Set your desired width here */
 }
 
+.center-box-flex h3 {
+    text-align: center;
+}
+
 .center-box-flex img {
     display: block;      /* Converts the inline image to a block element */
     margin-left: auto;
