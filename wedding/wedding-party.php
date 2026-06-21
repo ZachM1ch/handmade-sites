@@ -3,7 +3,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
 
 <section class="card">
     <div>
-        <h1 style="text-align:center; color:var(--jewel-sapphire)" data-en="Wedding Party" data-es="Cortejo Nupcial">Wedding Party</h1>
+        <h1 style="text-align:center" data-en="Wedding Party" data-es="Cortejo Nupcial">Wedding Party</h1>
         <p style="text-align:center" data-en="We are honored to celebrate with these wonderful people by our sides."
            data-es="Es un honor celebrar con estas maravillosas personas a nuestro lado.">
             We are honored to celebrate with these wonderful people by our sides.
@@ -11,14 +11,14 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
     </div>
     <div class="center-flex">
         <div class="center-box-flex">
-            <h2 style="text-align:center" data-en="Maid of Honor" data-es="Dama de Honor">Maid of Honor</h2>
+            <h2 style="text-align:center; color:var(--jewel-sapphire)" data-en="Maid of Honor" data-es="Dama de Honor">Maid of Honor</h2>
             <img src="..\assets\images\wedding\cian.png" alt="Cian" width="400" height="500">
             <h3 style="color:var(--jewel-emerald)" data-en="Cian &#9880;" data-es="Cian &#9880;">Cian &#9880;</h3>
             <p data-en="Placeholder bio goes here." data-es="La biografía de marcador de posición va aquí.">Placeholder
                 bio goes here.</p>
         </div>
         <div class="center-box-flex">
-            <h2 style="text-align:center" data-en="Best Man" data-es="Padrino de Boda">Best Man</h2>
+            <h2 style="text-align:center; color:var(--jewel-sapphire)" data-en="Best Man" data-es="Padrino de Boda">Best Man</h2>
             <img src="..\assets\images\wedding\coming_soon.png" alt="Kristen" width="400" height="500">
             <h3 style="color:var(--jewel-emerald)" data-en="Kristen &#8904;" data-es="Kristen &#8904;">Kristen &#8904;</h3>
             <p data-en="Kristen and I met back in high school in Ms Nicol’s Intro to Computer Science class.  Through high school we went to a bunch of concerts together and stayed close even after she moved away for college.  During COVID we spent a ton of time together playing games and watching movies together and keeping each other sane.  Even when our communications take a lull when life gets complex, every time we come back together it’s just like no time had passed at all.  Now Alina and I always take an annual trip in the beginning of fall to visit them, but in 2027 looks like they’ll be coming up to see us for this!  She is truly someone I could not imagine living without."
