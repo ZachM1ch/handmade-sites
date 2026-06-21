@@ -3,7 +3,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
 
 <section class="card">
     <div>
-        <h1 style="text-align:center" data-en="Wedding Party" data-es="Cortejo Nupcial">Wedding Party</h1>
+        <h1 style="text-align:center; color:var(--jewel-sapphire)" data-en="Wedding Party" data-es="Cortejo Nupcial">Wedding Party</h1>
         <p style="text-align:center" data-en="We are honored to celebrate with these wonderful people by our sides."
            data-es="Es un honor celebrar con estas maravillosas personas a nuestro lado.">
             We are honored to celebrate with these wonderful people by our sides.
@@ -34,7 +34,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
 
     <hr>
 
-    <div><h2 style="text-align:center" data-en="Bridesmaids" data-es="Damas de Honor">Bridesmaids</h2></div>
+    <div><h2 style="text-align:center; color:var(--jewel-sapphire)" data-en="Bridesmaids" data-es="Damas de Honor">Bridesmaids</h2></div>
     <div class="center-flex">
         <div class="center-box-flex">
             <img src="..\assets\images\wedding\monica.png" alt="Monica" width="400" height="500">
@@ -58,7 +58,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
 
     <hr>
 
-    <div><h2 style="text-align:center" data-en="Groomsmen" data-es="Padrinos">Groomsmen</h2></div>
+    <div><h2 style="text-align:center; color:var(--jewel-sapphire)" data-en="Groomsmen" data-es="Padrinos">Groomsmen</h2></div>
     <div class="center-flex">
         <div class="center-box-flex">
             <img src="..\assets\images\wedding\coming_soon.png" alt="Adam" width="400" height="500">
