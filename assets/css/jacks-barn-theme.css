@@ -159,6 +159,8 @@ pre {
 }
 
 .center-box-flex {
+    display: flex;
+    justify-content: center; /* Centers the image horizontally */
     padding: 20px;
     width: 600px;            /* Set your desired width here */
 }
