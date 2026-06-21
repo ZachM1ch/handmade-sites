@@ -12,7 +12,7 @@
 	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1067.4196908526008!2d-74.99736454249575!3d40.8253540006523!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c478ee21f20227%3A0xb533b20d4d2a1275!2sJack&#39;s%20Barn!5e0!3m2!1sen!2sus!4v1781738793418!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
     <p>
-        <a class="btn" href="https://maps.google.com/?q=1487+NJ-31+Oxford+NJ" target="_blank"
+        <a class="btn" href="https://maps.app.goo.gl/qVPGhJhag95sQYpz6" target="_blank"
            data-en="Open in Google Maps" data-es="Abrir en Google Maps">Open in Google Maps</a>
     </p>
 
