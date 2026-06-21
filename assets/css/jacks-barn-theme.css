@@ -121,7 +121,17 @@ h4 {
 }
 .card h2 {
     margin-top: 0;
+    color: #1A3A6B; /* Sapphire */
+}
+
+.card h3 {
+    margin-top: 0;
     color: #5C2D82; /* Amethyst */
+}
+
+.card h4 {
+    margin-top: 0;
+    color: #820D1E; /* Ruby */
 }
 .card figure img {
     justify-content: center;
