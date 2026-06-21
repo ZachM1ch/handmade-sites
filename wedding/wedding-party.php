@@ -10,20 +10,21 @@
     		</p>
 		</div>
 	</div>
-	<div class="center-flex">
-		<div>
+	<table>
+  		<tr>
+    		<td><div>
 			<h2 data-en="Maid of Honor" data-es="Dama de Honor">Maid of Honor</h2>
 			<img src="..\assets\images\wedding\cian.png" alt="Cian" width="400" height="500">
     		<p data-en="Cian &mdash; Placeholder bio goes here." data-es="Cian &mdash; La biografía de marcador de posición va aquí.">Cian &mdash; Placeholder bio goes here.</p>
-		</div>
-
-		<div>
+		</div></td>
+   			<td><div>
 			<h2 data-en="Best Man" data-es="Padrino de Boda">Best Man</h2>
 			<img src="..\assets\images\wedding\coming_soon.png" alt="Kristen" width="400" height="500">
     		<h3 data-en="Kristen" data-es="Kristen">Kristen</h3>
 			<p data-en="Kristen and I met back in high school in Ms Nicol’s Intro to Computer Science class.  Through high school we went to a bunch of concerts together and stayed close even after she moved away for college.  During COVID we spent a ton of time together playing games and watching movies together and keeping each other sane.  Even when our communications take a lull when life gets complex, every time we come back together it’s just like no time had passed at all.  Now Alina and I always take an annual trip in the beginning of fall to visit them, but in 2027 looks like they’ll be coming up to see us for this!  She is truly someone I could not imagine living without." data-es="">Kristen and I met back in high school in Ms Nicol’s Intro to Computer Science class.  Through high school we went to a bunch of concerts together and stayed close even after she moved away for college.  During COVID we spent a ton of time together playing games and watching movies together and keeping each other sane.  Even when our communications take a lull when life gets complex, every time we come back together it’s just like no time had passed at all.  Now Alina and I always take an annual trip in the beginning of fall to visit them, but in 2027 looks like they’ll be coming up to see us for this!  She is truly someone I could not imagine living without.</p>
-		</div>
-	</div>
+		</div></td>
+  		</tr>
+	</table>
     
     <h2 data-en="Bridesmaids" data-es="Damas de Honor">Bridesmaids</h2>
 	<img src="..\assets\images\wedding\monica.png" alt="Monica" width="400" height="500">
