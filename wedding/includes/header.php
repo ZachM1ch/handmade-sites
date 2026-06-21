@@ -20,8 +20,8 @@
         <a href="/wedding/registry.php" data-en="Registry" data-es="Registro">Registry</a>
         <a href="/wedding/songs.php" data-en="Song Requests" data-es="Canciones">Song Requests</a>
         <button id="lang-toggle" onclick="toggleLang()" style="margin-left:auto; padding:5px 14px; font-weight:bold; cursor:pointer; border:2px solid #FAF7F2; background:transparent; color:#FAF7F2; border-radius:4px;"
-                onmouseover="this.style.color='darkgoldenrod'"
-                onmouseout="this.style.color='darkgoldenrod'">ESPAÑOL</button>
+                onmouseover="this.style.color='darkgoldenrod'; this.style.borderColor='darkgoldenrod'"
+                onmouseout="this.style.color='#FAF7F2'; this.style.borderColor='#FAF7F2'">ESPAÑOL</button>
     </nav>
 </header>
 
