@@ -183,6 +183,5 @@ pre {
     display: block;      /* Converts the inline image to a block element */
     margin-left: auto;
     margin-right: auto;  /* Simplifies to "margin: 0 auto;" */
-    border-color: darkgoldenrod;
-    border-width: 3px;
+    border: 5px solid darkgoldenrod;
 }
