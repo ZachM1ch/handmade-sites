@@ -61,7 +61,8 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
     <div><h2 data-en="Groomsmen" data-es="Padrinos">Groomsmen</h2></div>
     <div class="center-flex">
         <div class="center-box-flex">
-            <img src="..\assets\images\weddingdfgdfg>Adam</h3>
+            <img src="..\assets\images\wedding\coming_soon.png" alt="Adam" width="400" height="500">
+            <h3 data-en="Adam" data-es="Adam">Adam</h3>
             <p data-en="Adam and I have know each other since we were 5 years old way back in Ms Viggiano’s afternoon kindergarten class.  Without question he is one of my longest and closest friends.  Over 22 years of friendship we’ve had countless sleepovers and late night game sessions, and he always been so eager to indulge Alina and my spiral into owning too many board games and giving us an excuse to play more of them.  I’ve gone to the same school as Adam functionally my entire life, through elementary school, middle school, high school, community college, and university and now we work together, our desks only 30 feet apart.  He’s always been a constant in my life."
                data-es="">Adam and I have know each other since we were 5 years old way back in Ms Viggiano’s afternoon
                 kindergarten class. Without question he is one of my longest and closest friends. Over 22 years of
