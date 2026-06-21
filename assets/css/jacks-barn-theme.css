@@ -8,6 +8,17 @@
    Light:    #FAF7F2 (cream, for reversed text)
 === */
 
+:root {
+    /* Jewel Accents */
+    --jewel-ruby:       #9B1B30;
+    --jewel-amethyst:   #6B3A8C;
+    --jewel-sapphire:   #1A4A8C;
+    --jewel-emerald:    #1A6B4A;
+    --jewel-topaz:      #C47A1A;
+    --jewel-garnet:     #7B1A3A;
+    --jewel-rose:       #C4366A;
+}
+
 /* === Global Body Styles === */
 body {
     font-family: Arial, sans-serif;
@@ -18,7 +29,7 @@ body {
 
 /* === Header & Navigation === */
 header {
-    background: #1A3A6B; /* Sapphire */
+    background: #820D1E; /* Ruby */
     padding: 10px;
 }
 .navbar a {
@@ -38,14 +49,14 @@ main {
 
 /* === Footer === */
 footer {
-    background: #1A3A6B; /* Sapphire */
+    background: #820D1E; /* Ruby */
     color: #FAF7F2;      /* Warm cream */
     text-align: center;
     padding: 10px;
 }
 
 h2 {
-	color: #1A3A6B; /* Sapphire */
+	color: #820D1E; /* Ruby */
 }
 
 h3 {
@@ -53,7 +64,7 @@ h3 {
 }
 
 h4 {
-	color: #820D1E; /* Ruby */
+	color: #1A3A6B; /* Sapphire */
 }
 
 /* === Centered Text Utility === */
@@ -102,7 +113,7 @@ h4 {
     transition: background 0.3s, transform 0.1s;
 }
 .btn:hover {
-    background: #9B1D2A; /* Ruby */
+    background: #1A3A6B; /* Sapphire */
     transform: translateY(-2px);
 }
 .btn:active {
@@ -121,7 +132,7 @@ h4 {
 }
 .card h2 {
     margin-top: 0;
-    color: #1A3A6B; /* Sapphire */
+    color: #820D1E; /* Ruby */
 }
 
 .card h3 {
@@ -131,7 +142,7 @@ h4 {
 
 .card h4 {
     margin-top: 0;
-    color: #820D1E; /* Ruby */
+    color: #1A3A6B; /* Sapphire */
 }
 .card figure img {
     justify-content: center;
@@ -164,6 +175,7 @@ pre {
 }
 
 .center-box-flex h3 {
+    margin-top: 15px;
     text-align: center;
 }
 
