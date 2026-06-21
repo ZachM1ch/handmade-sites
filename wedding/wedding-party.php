@@ -44,7 +44,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
         </div>
         <div class="center-box-flex">
             <img src="..\assets\images\wedding\jennifer.png" alt="Jennifer" width="400" height="500">
-            <h3 style="color:var(--jewel-topaz:)" data-en="Jennifer" data-es="Jennifer">Jennifer</h3>
+            <h3 style="color:var(--jewel-topaz)" data-en="Jennifer" data-es="Jennifer">Jennifer</h3>
             <p data-en="Placeholder bio goes here." data-es="La biografía de marcador de posición va aquí.">Placeholder
                 bio goes here.</p>
         </div>
@@ -74,7 +74,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
         </div>
         <div class="center-box-flex">
             <img src="..\assets\images\wedding\coming_soon.png" alt="Kevin" width="400" height="500">
-            <h3 style="color:var(--jewel-topaz:)" data-en="Kevin" data-es="Kevin">Kevin</h3>
+            <h3 style="color:var(--jewel-topaz)" data-en="Kevin" data-es="Kevin">Kevin</h3>
             <p data-en="" data-es=""></p>
         </div>
         <div class="center-box-flex">
