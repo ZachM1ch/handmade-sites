@@ -45,7 +45,15 @@ footer {
 }
 
 h2 {
+	color: #1A3A6B; /* Sapphire */
+}
+
+h3 {
 	color: #5C2D82; /* Amethyst */
+}
+
+h4 {
+	color: #820D1E; /* Ruby */
 }
 
 /* === Centered Text Utility === */

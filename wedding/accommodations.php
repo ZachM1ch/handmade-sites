@@ -2,21 +2,15 @@
 
 <section class="card">
     <h1 data-en="Accommodations" data-es="Alojamiento">Accommodations</h1>
-    <p data-en="We have reserved a block of rooms at the hotels below. Be sure to mention the wedding to receive the group rate."
-       data-es="Hemos reservado un bloque de habitaciones en los hoteles a continuación. Asegúrese de mencionar la boda para recibir la tarifa de grupo.">
-        We have reserved a block of rooms at the hotels below. Be sure to mention the wedding to receive the group rate.
+    <p data-en="Rooms are available at this nearby hotel:"
+       data-es="Hay habitaciones disponibles en este hotel cercano:">
+        Rooms are available at this nearby hotel:
     </p>
 
-    <h2 data-en="Hotel Placeholder 1" data-es="Hotel Ejemplo 1">Hotel Placeholder 1</h2>
-    <p data-en="Address, phone number, and booking details go here. Group rate cutoff: [date]."
-       data-es="La dirección, número de teléfono y detalles de reserva van aquí. Fecha límite de tarifa de grupo: [fecha].">
-        Address, phone number, and booking details go here. Group rate cutoff: [date].
-    </p>
-
-    <h2 data-en="Hotel Placeholder 2" data-es="Hotel Ejemplo 2">Hotel Placeholder 2</h2>
-    <p data-en="Address, phone number, and booking details go here. Group rate cutoff: [date]."
-       data-es="La dirección, número de teléfono y detalles de reserva van aquí. Fecha límite de tarifa de grupo: [fecha].">
-        Address, phone number, and booking details go here. Group rate cutoff: [date].
+    <h2 data-en="Courtyard by Mariott" data-es="Courtyard by Mariott">Courtyard by Mariott</h2>
+    <p data-en="300 Corporate Dr, Lebanon, NJ 08833.  Phone: (908) 236-8500"
+       data-es="300 Corporate Dr, Lebanon, NJ 08833.  Teléfono: (908) 236-8500">
+        300 Corporate Dr, Lebanon, NJ 08833.  Phone: (908) 236-8500
     </p>
 </section>
 
