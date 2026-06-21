@@ -32,7 +32,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
         </div>
     </div>
 
-    <hr>
+    <hr style="color:darkgoldenrod">
 
     <div><h2 style="text-align:center; color:var(--jewel-sapphire)" data-en="Bridesmaids" data-es="Damas de Honor">Bridesmaids</h2></div>
     <div class="center-flex">
@@ -56,7 +56,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
         </div>
     </div>
 
-    <hr>
+    <hr style="color:darkgoldenrod">
 
     <div><h2 style="text-align:center; color:var(--jewel-sapphire)" data-en="Groomsmen" data-es="Padrinos">Groomsmen</h2></div>
     <div class="center-flex">
