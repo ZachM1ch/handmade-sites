@@ -1,15 +1,16 @@
 <?php $pageTitle = "Wedding Party"; include($_SERVER['DOCUMENT_ROOT']."/wedding/includes/header.php"); ?>
 
 <section class="card">
-	<div class="center">
+	<div class="center-flex">
 		<div>
 			<h1 data-en="Wedding Party" data-es="Cortejo Nupcial">Wedding Party</h1>
     		<p data-en="We are honored to celebrate with these wonderful people by our sides."
        		data-es="Es un honor celebrar con estas maravillosas personas a nuestro lado.">
-        	We are honored to celebrate with these wonderful people by our sides.
+     		We are honored to celebrate with these wonderful people by our sides.
     		</p>
 		</div>
-		
+	</div>
+	<div class="center-flex">
 		<div>
 			<h2 data-en="Maid of Honor" data-es="Dama de Honor">Maid of Honor</h2>
 			<img src="..\assets\images\wedding\cian.png" alt="Cian" width="400" height="500">

@@ -150,8 +150,9 @@ pre {
     font-size: 16px;
 }
 
-.center {
+.center-flex {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 15px; 
 }
