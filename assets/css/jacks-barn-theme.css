@@ -161,8 +161,6 @@ pre {
 .center-box-flex {
     padding: 20px;
     width: 600px;            /* Set your desired width here */
-    justify-content: center;
-    align-content: center;
 }
 
 .center-image {
