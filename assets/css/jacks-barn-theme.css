@@ -14,7 +14,7 @@
     --jewel-amethyst:   #6B3A8C;
     --jewel-sapphire:   #1A4A8C;
     --jewel-emerald:    #1A6B4A;
-    --jewel-topaz:      #C47A1A;
+    --jewel-topaz:      #c7a11a;
     --jewel-garnet:     #7B1A3A;
     --jewel-rose:       #C4366A;
 }
@@ -39,7 +39,10 @@ header {
     font-weight: bold;
 }
 .navbar a:hover {
-    color: #B8860B;      /* Dark gold */
+    color: darkgoldenrod;      /* Dark gold */
+}
+.navbar button:hover {
+    color: darkgoldenrod;      /* Dark gold */
 }
 
 /* === Main Content === */
