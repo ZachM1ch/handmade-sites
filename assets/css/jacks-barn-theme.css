@@ -151,16 +151,18 @@ pre {
 }
 
 .center-flex {
-  display: flex;
-  justify-content: center; /* Centers the divs horizontally on the screen */
-  align-items: stretch;    /* Forces both divs to take up equal height */
-  gap: 50px;               /* Space between the two divs */
-  height: 90vh;           /* Takes up the full viewport height */
+    display: flex;
+    justify-content: center; /* Centers the divs horizontally on the screen */
+    align-items: stretch;    /* Forces both divs to take up equal height */
+    gap: 50px;               /* Space between the two divs */
+    height: 90vh;           /* Takes up the full viewport height */
 }
 
 .center-box-flex {
-  padding: 20px;
-  width: 600px;            /* Set your desired width here */
+    padding: 20px;
+    width: 600px;            /* Set your desired width here */
+    justify-content: center;
+    align-content: center;
 }
 
 .center-image {
