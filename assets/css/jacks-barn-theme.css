@@ -154,12 +154,12 @@ pre {
   display: flex;
   justify-content: center; /* Centers the divs horizontally on the screen */
   align-items: stretch;    /* Forces both divs to take up equal height */
-  gap: 10vh;               /* Space between the two divs */
+  gap: 50px;               /* Space between the two divs */
   height: 90vh;           /* Takes up the full viewport height */
 }
 
 .center-box-flex {
   padding: 20px;
-  width: 30vh;            /* Set your desired width here */
+  width: 600px;            /* Set your desired width here */
 
 }
