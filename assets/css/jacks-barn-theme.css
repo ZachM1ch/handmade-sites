@@ -190,3 +190,7 @@ pre {
     border: 5px solid darkgoldenrod;
     border-radius: 5px;
 }
+
+.fantasy-font {
+    font-family: Luminari, Arial, fantasy;
+}

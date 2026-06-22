@@ -17,21 +17,15 @@
     </p>
 
     <h2 data-en="Parking" data-es="Estacionamiento">Parking</h2>
-    <p data-en="Placeholder: Add parking instructions here."
-       data-es="Marcador de posición: Agregue instrucciones de estacionamiento aquí.">
-        Placeholder: Add parking instructions here.
+    <p data-en="Parking is available in the back of the property, through the front gates."
+       data-es="Se puede aparcar en la parte trasera de la propiedad, pasando por la puerta principal.">
+        Parking is available in the back of the property, through the front gates.
     </p>
 
-    <h2 data-en="From the North" data-es="Desde el Norte">From the North</h2>
-    <p data-en="Placeholder: Add driving directions from the north here."
-       data-es="Marcador de posición: Agregue indicaciones desde el norte aquí.">
-        Placeholder: Add driving directions from the north here.
-    </p>
-
-    <h2 data-en="From the South" data-es="Desde el Sur">From the South</h2>
-    <p data-en="Placeholder: Add driving directions from the south here."
-       data-es="Marcador de posición: Agregue indicaciones desde el sur aquí.">
-        Placeholder: Add driving directions from the south here.
+    <h2 data-en="From Rt-80" data-es="Desde la Ruta 80">From Rt-80</h2>
+    <p data-en='Take Exit 12 and turn left onto Hope Blairstown Road.  Continue straight for 1.5 miles until you reach the intersection at the center of White Township (QuickChek is on your right), then turn left onto Rt-46.  Continue for 0.5 miles and turn right onto Rt-31.  The venue will be on your right, just before the "Welcome to Oxford" sign.'
+       data-es='Tome la salida 12 y gire a la izquierda en Hope Blairstown Road. Continúe recto durante 2.4 km hasta llegar a la intersección en el centro de White Township (QuickChek estará a su derecha), luego gire a la izquierda en la Ruta 46. Continúe durante 800 metros y gire a la derecha en la Ruta 31. El lugar estará a su derecha, justo antes del letrero de "Welcome to Oxford".'>
+        Take Exit 12 and turn left onto Hope Blairstown Road.  Continue straight for 1.5 miles until you reach the intersection at the center of White Township (QuickChek is on your right), then turn left onto Rt-46.  Continue for 0.5 miles and turn right onto Rt-31.  The venue will be on your right, just before the "Welcome to Oxford" sign.
     </p>
 </section>
 
