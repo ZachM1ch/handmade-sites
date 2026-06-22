@@ -19,6 +19,13 @@
     --jewel-rose:       #C4366A;
 }
 
+@font-face {
+    font-family: 'Luminari Regular';
+    src: url('../fonts/Luminari-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* === Global Body Styles === */
 body {
     font-family: Arial, sans-serif;
@@ -192,5 +199,5 @@ pre {
 }
 
 .fantasy-font {
-    font-family: Luminari, Arial, fantasy;
+    font-family: "Luminari Regular", Times, fantasy;
 }
