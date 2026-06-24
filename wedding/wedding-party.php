@@ -18,17 +18,11 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
                 bio goes here.</p>
         </div>
         <div class="center-box-flex">
-            <h2 style="text-align:center; color:var(--jewel-sapphire)" data-en="Best Man" data-es="Padrino de Boda">Best Man</h2>
+            <h2 style="text-align:center; color:var(--jewel-sapphire)" data-en="Best (Wo)Man" data-es="Mejor Madrina">Best (Wo)Man</h2>
             <img src="..\assets\images\wedding\coming_soon.png" alt="Kristen" width="400" height="500">
             <h3 style="color:var(--jewel-emerald)" data-en="Kristen &#8904;" data-es="Kristen &#8904;">Kristen &#8904;</h3>
             <p data-en="Kristen and I met back in high school in Ms Nicol’s Intro to Computer Science class.  Through high school we went to a bunch of concerts together and stayed close even after she moved away for college.  During COVID we spent a ton of time together playing games and watching movies together and keeping each other sane.  Even when our communications take a lull when life gets complex, every time we come back together it’s just like no time had passed at all.  Now Alina and I always take an annual trip in the beginning of fall to visit them, but in 2027 looks like they’ll be coming up to see us for this!  She is truly someone I could not imagine living without."
-               data-es="">Kristen and I met back in high school in Ms Nicol’s Intro to Computer Science class. Through
-                high school we went to a bunch of concerts together and stayed close even after she moved away for
-                college. During COVID we spent a ton of time together playing games and watching movies together and
-                keeping each other sane. Even when our communications take a lull when life gets complex, every time we
-                come back together it’s just like no time had passed at all. Now Alina and I always take an annual trip
-                in the beginning of fall to visit them, but in 2027 looks like they’ll be coming up to see us for this!
-                She is truly someone I could not imagine living without.</p>
+               data-es="La biografía de marcador de posición va aquí.">Kristen and I met back in high school in Ms Nicol’s Intro to Computer Science class. Through high school we went to a bunch of concerts together and stayed close even after she moved away for college. During COVID we spent a ton of time together playing games and watching movies together and keeping each other sane. Even when our communications take a lull when life gets complex, every time we come back together it’s just like no time had passed at all. Now Alina and I always take an annual trip in the beginning of fall to visit them, but in 2027 looks like they’ll be coming up to see us for this! She is truly someone I could not imagine living without.</p>
         </div>
     </div>
 
@@ -63,29 +57,20 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php"); ?>
         <div class="center-box-flex">
             <img src="..\assets\images\wedding\coming_soon.png" alt="Adam" width="400" height="500">
             <h3 style="color:var(--jewel-amethyst)" data-en="Adam &#8904;" data-es="Adam &#8904;">Adam &#8904;</h3>
-            <p data-en="Adam and I have know each other since we were 5 years old way back in Ms Viggiano’s afternoon kindergarten class.  Without question he is one of my longest and closest friends.  Over 22 years of friendship we’ve had countless sleepovers and late night game sessions, and he always been so eager to indulge Alina and my spiral into owning too many board games and giving us an excuse to play more of them.  I’ve gone to the same school as Adam functionally my entire life, through elementary school, middle school, high school, community college, and university and now we work together, our desks only 30 feet apart.  He’s always been a constant in my life."
-               data-es="">Adam and I have know each other since we were 5 years old way back in Ms Viggiano’s afternoon
-                kindergarten class. Without question he is one of my longest and closest friends. Over 22 years of
-                friendship we’ve had countless sleepovers and late night game sessions, and he always been so eager to indulge
-                Alina and my spiral into owning too many board games and giving us an excuse to play more of them. I’ve gone to the
-                same school as Adam functionally my entire life, through elementary school, middle school, high school,
-                community college, and university and now we work together, our desks only 30 feet apart. He’s always been a
-                constant in my life.</p>
+            <p data-en="Adam and I have know each other since we were 5 years old way back in Ms Viggiano’s afternoon kindergarten class.  Without question, he is one of my longest and closest friends.  Over 22 years of friendship we’ve had countless sleepovers and late night game sessions, and he has always been so eager to indulge Alina and my spiral into owning too many board games and giving us an excuse to play more of them.  I’ve gone to the same school as Adam functionally my entire life, through elementary school, middle school, high school, community college, and university... and now we work together, our desks only 30 feet apart.  He’s always been a constant in my life."
+               data-es="La biografía de marcador de posición va aquí.">Adam and I have know each other since we were 5 years old way back in Ms Viggiano’s afternoon kindergarten class. Without question, he is one of my longest and closest friends. Over 22 years of friendship we’ve had countless sleepovers and late night game sessions, and he has always been so eager to indulge Alina and my spiral into owning too many board games and giving us an excuse to play more of them. I’ve gone to the same school as Adam functionally my entire life, through elementary school, middle school, high school, community college, and university... and now we work together, our desks only 30 feet apart. He’s always been a constant in my life.</p>
         </div>
         <div class="center-box-flex">
             <img src="..\assets\images\wedding\coming_soon.png" alt="Kevin" width="400" height="500">
             <h3 style="color:var(--jewel-topaz)" data-en="Kevin &#8904;" data-es="Kevin &#8904;">Kevin &#8904;</h3>
-            <p data-en="" data-es=""></p>
+            <p data-en="Believe it or not, I think I met Kevin just a couple of minutes before I met Adam.  It should be no surprise then with his inclusion as one of my groomsmen, that we have maintained that friendship these past 22 years ever since Kindergarten.  The more I think about it, Kevin has been one of the most consistent friends I have had all my life through high school, but while we may have drifted slightly apart after college I like to think we have since come back together to the point of flourishing.  He has thoroughly indulged me in our shared love for the card game Magic: The Gathering and is always quick to share the new cards he finds and listen when I want to do the same.  That is, when we’re not gathered with the others playing games late into the night!"
+               data-es="La biografía de marcador de posición va aquí.">Believe it or not, I think I met Kevin just a couple of minutes before I met Adam.  It should be no surprise then with his inclusion as one of my groomsmen, that we have maintained that friendship these past 22 years ever since Kindergarten.  The more I think about it, Kevin has been one of the most consistent friends I have had all my life through high school, but while we may have drifted slightly apart after college I like to think we have since come back together to the point of flourishing.  He has thoroughly indulged me in our shared love for the card game Magic: The Gathering and is always quick to share the new cards he finds and listen when I want to do the same.  That is, when we’re not gathered with the others playing games late into the night!</p>
         </div>
         <div class="center-box-flex">
             <img src="..\assets\images\wedding\coming_soon.png" alt="Keegan" width="400" height="500">
             <h3 style="color:var(--jewel-ruby)" data-en="Keegan &#8904;" data-es="Keegan &#8904;">Keegan &#8904;</h3>
-            <p data-en="Of the three members of my groomsmen, as my cousin, I’ve known Keegan since he was born.  Once he moved to the other side of town from my childhood home, he, my sister Emily, and I spent nearly every day together as kids, especially over summer where we would go to Myya and Grandpa’s house every Wednesday, grab some McDonalds and go swimming.  Some of my most foundational memories playing games, hanging out, and going to the beach are with Keegan.  I cannot remember what he looked like before he grew his hair out."
-               data-es="">Of the three members of my groomsmen, as my cousin, I’ve known Keegan since he was born. Once
-                he moved to the other side of town from my childhood home, he, my sister Emily, and I spent nearly every day
-                together as kids, especially over summer where we would go to Myya and Grandpa’s house every Wednesday, grab some
-                McDonalds and go swimming. Some of my most foundational memories playing games, hanging out, and going to the
-                beach are with Keegan. I cannot remember what he looked like before he grew his hair out.</p>
+            <p data-en="Of the four members of my groomsmen, as my cousin, I’ve known Keegan since he was born.  Once he moved to the other side of town from my childhood home, he, my sister Emily, and I spent nearly every day together as kids, especially over summer where we would go to Myya and Grandpa’s house every Wednesday, grab some McDonalds and go swimming.  Some of my most foundational memories playing games, hanging out, and going to the beach are with Keegan.  I cannot remember what he looked like before he grew his hair out."
+               data-es="La biografía de marcador de posición va aquí.">Of the four members of my groomsmen, as my cousin, I’ve known Keegan since he was born. Once he moved to the other side of town from my childhood home, he, my sister Emily, and I spent nearly every day together as kids, especially over summer where we would go to Myya and Grandpa’s house every Wednesday, grab some McDonald’s and go swimming. Some of my most foundational memories playing games, hanging out, and going to the beach are with Keegan. I cannot remember what he looked like before he grew his hair out.</p>
         </div>
     </div>
 </section>
