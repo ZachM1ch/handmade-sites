@@ -84,26 +84,22 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
                 <table style="width:100%; border-collapse:collapse;">
                     <tr>
                         <td style="font-weight:bold; white-space:nowrap;">(Beef)</td>
-                        <td>
-                            <p data-en="Slow cooked boneless black angus short rib" data-es="Slow cooked boneless black angus short rib">Slow cooked boneless black angus short rib</p><br>
+                        <td data-en="Slow cooked boneless black angus short rib" data-es="Slow cooked boneless black angus short rib">Slow cooked boneless black angus short rib
                         </td>
                     </tr>
                     <tr>
                         <td style="font-weight:bold; white-space:nowrap;">(Chicken)</td>
-                        <td>
-                            <p data-en="Chicken breast, citrus brined all natural" data-es="Chicken breast, citrus brined all natural">Chicken breast, citrus brined all natural</p><br>
+                        <td data-en="Chicken breast, citrus brined all natural" data-es="Chicken breast, citrus brined all natural">Chicken breast, citrus brined all natural
                         </td>
                     </tr>
                     <tr>
                         <td style="font-weight:bold; white-space:nowrap;">(Fish)</td>
-                        <td>
-                            <p data-en="Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce" data-es="Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce">Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce</p><br>
+                        <td data-en="Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce" data-es="Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce">Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce
                         </td>
                     </tr>
                     <tr>
                         <td style="font-weight:bold; white-space:nowrap;">(Vegetable)</td>
-                        <td>
-                            <p data-en="Vegetable Napoleon" data-es="Vegetable Napoleon">Vegetable Napoleon</p><br>
+                        <td data-en="Vegetable Napoleon" data-es="Vegetable Napoleon">Vegetable Napoleon
                         </td>
                     </tr>
                 </table>
