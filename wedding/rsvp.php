@@ -37,24 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
 ?>
 
-<script>
-    const attendingDropdown = document.getElementById('attendingDropdown');
-    const foodFields = document.getElementById('foodFields');
 
-    // Listen for selection changes
-    attendingDropdown.addEventListener('change', function ()
-    {
-        // If the user selected 'yes', show the fields. Otherwise, hide them.
-        if (this.value === 'yes')
-        {
-            foodFields.style.display = 'block';
-        }
-        else
-        {
-            foodFields.style.display = 'none';
-        }
-    });
-</script>
 
 <section class="card">
     <h1 data-en="RSVP" data-es="Confirmación de Asistencia">RSVP</h1>
@@ -98,20 +81,20 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
                 <p>
                     <label data-en="Food:" data-es="Comida:">Food:</label><br>
 
-                <ul style="list-style-type: square;">
-                    <li><b>(Beef)</b> Slow cooked boneless black angus short rib</li>
-                    <li><b>(Chicken)</b> Chicken breast, citrus brined all natural</li>
-                    <li><b>(Fish)</b> Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce</li>
-                    <li><b>(Vegetable)</b> Vegetable Napoleon</li>
-                </ul>
+                    <ul style="list-style-type: square;">
+                        <li><b>(Beef)</b> Slow cooked boneless black angus short rib</li>
+                        <li><b>(Chicken)</b> Chicken breast, citrus brined all natural</li>
+                        <li><b>(Fish)</b> Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce</li>
+                        <li><b>(Vegetable)</b> Vegetable Napoleon</li>
+                    </ul>
 
-                <select name="entree" style="padding:8px;">
-                    <option value="" data-en="-- Select --" data-es="-- Seleccionar --">-- Select --</option>
-                    <option value="beef" data-en="Beef" data-es="Beef">Beef</option>
-                    <option value="chix" data-en="Chicken" data-es="Chicken">Chicken</option>
-                    <option value="fish" data-en="Fish" data-es="Fish">Fish</option>
-                    <option value="veg" data-en="Vegetable" data-es="Vegetable">Vegetable</option>
-                </select>
+                    <select name="entree" style="padding:8px;">
+                        <option value="" data-en="-- Select --" data-es="-- Seleccionar --">-- Select --</option>
+                        <option value="beef" data-en="Beef" data-es="Beef">Beef</option>
+                        <option value="chix" data-en="Chicken" data-es="Chicken">Chicken</option>
+                        <option value="fish" data-en="Fish" data-es="Fish">Fish</option>
+                        <option value="veg" data-en="Vegetable" data-es="Vegetable">Vegetable</option>
+                    </select>
                 </p>
 
                 <p>
@@ -121,6 +104,25 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
                               style="width:100%; padding:8px; box-sizing:border-box;"></textarea>
                 </p>
             </div>
+
+            <script>
+                const attendingDropdown = document.getElementById('attendingDropdown');
+                const foodFields = document.getElementById('foodFields');
+
+                // Listen for selection changes
+                attendingDropdown.addEventListener('change', function ()
+                {
+                    // If the user selected 'yes', show the fields. Otherwise, hide them.
+                    if (this.value === 'yes')
+                    {
+                        foodFields.style.display = 'block';
+                    }
+                    else
+                    {
+                        foodFields.style.display = 'none';
+                    }
+                });
+            </script>
 
             <p>
                 <label data-en="Message for the Couple (optional)" data-es="Mensaje para la Pareja (opcional)">Message
