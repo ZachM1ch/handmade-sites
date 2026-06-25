@@ -99,10 +99,10 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
                     <label data-en="Food:" data-es="Comida:">Food:</label><br>
 
                 <ul style="list-style-type: square;">
-                    <li>Slow cooked boneless black angus short rib (Beef)</li>
-                    <li>Chicken breast, citrus brined all natural (Chicken)</li>
-                    <li>Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce (Fish)</li>
-                    <li>Vegetable Napoleon (Vegetable)</li>
+                    <li><b>(Beef)</b> Slow cooked boneless black angus short rib</li>
+                    <li><b>(Chicken)</b> Chicken breast, citrus brined all natural</li>
+                    <li><b>(Fish)</b> Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce</li>
+                    <li><b>(Vegetable)</b> Vegetable Napoleon</li>
                 </ul>
 
                 <select name="entree" style="padding:8px;">
