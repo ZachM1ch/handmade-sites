@@ -81,12 +81,32 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
                 <p>
                     <label data-en="Food:" data-es="Comida:">Food:</label><br>
 
-                    <ul style="list-style-type: square;">
-                        <li><b>(Beef)</b> Slow cooked boneless black angus short rib</li>
-                        <li><b>(Chicken)</b> Chicken breast, citrus brined all natural</li>
-                        <li><b>(Fish)</b> Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce</li>
-                        <li><b>(Vegetable)</b> Vegetable Napoleon</li>
-                    </ul>
+                <table style="width:100%; border-collapse:collapse;">
+                    <tr>
+                        <td style="padding:10px 20px 10px 0; font-weight:bold; white-space:nowrap;"><b>(Beef)</b></td>
+                        <td style="padding:10px 0;">
+                            <p data-en="Slow cooked boneless black angus short rib" data-es="Slow cooked boneless black angus short rib">Slow cooked boneless black angus short rib</p><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px 20px 10px 0; font-weight:bold; white-space:nowrap;"><b>(Chicken)</b></td>
+                        <td style="padding:10px 0;">
+                            <p data-en="Chicken breast, citrus brined all natural" data-es="Chicken breast, citrus brined all natural">Chicken breast, citrus brined all natural</p><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px 20px 10px 0; font-weight:bold; white-space:nowrap;"><b>(Fish)</b></td>
+                        <td style="padding:10px 0;">
+                            <p data-en="Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce" data-es="Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce">Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce</p><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding:10px 20px 10px 0; font-weight:bold; white-space:nowrap;"><b>(Vegetable)</b></td>
+                        <td style="padding:10px 0;">
+                            <p data-en="Vegetable Napoleon" data-es="Vegetable Napoleon">Vegetable Napoleon</p><br>
+                        </td>
+                    </tr>
+                </table>
 
                     <select name="entree" style="padding:8px;">
                         <option value="" data-en="-- Select --" data-es="-- Seleccionar --">-- Select --</option>
