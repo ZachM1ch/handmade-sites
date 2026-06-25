@@ -126,6 +126,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
             <script>
                 const attendingDropdown = document.getElementById('attendingDropdown');
                 const foodFields = document.getElementById('foodFields');
+                foodFields.style.display = 'none';
 
                 // Listen for selection changes
                 attendingDropdown.addEventListener('change', function ()
