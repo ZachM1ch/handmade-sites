@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $email = trim($_POST['email'] ?? '');
     $attending = $_POST['attending'] ?? '';
     $entree = ($attending == 'yes' && $_POST['entree']) ? $_POST['entree'] : '';
-    $dietary_notes = trim($_POST['dietary_notes'] ?? '');
+    $dietary_notes = ($attending == 'yes' && trim($_POST['dietary_notes']) ? $_POST['dietary_notes'] : '');
     $message = trim($_POST['message'] ?? '');
 
     if ($name && in_array($attending, ['yes', 'no']))
@@ -57,7 +57,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
         <form method="POST" action="/wedding/rsvp.php">
 
             <p>
-                <label data-en="Your Name *" data-es="Su Nombre *">Your Name *</label><br>
+                <label data-en="Your Name <span style='color: red;'>*</span>" data-es="Su Nombre <span style='color: red;'>*</span>">Your Name <span style='color: red;'>*</span></label><br>
                 <input type="text" name="name" required style="width:100%; padding:8px; box-sizing:border-box;">
             </p>
 
@@ -67,7 +67,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
             </p>
 
             <p>
-                <label data-en="Will you be attending? *" data-es="¿Asistirá? *">Will you be attending? *</label><br>
+                <label data-en="Will you be attending? <span style='color: red;'>*</span>" data-es="¿Asistirá? <span style='color: red;'>*</span>">Will you be attending? <span style='color: red;'>*</span></label><br>
                 <select id="attendingDropdown" name="attending" required style="padding:8px;">
                     <option value="" data-en="-- Select --" data-es="-- Seleccionar --">-- Select --</option>
                     <option value="yes" data-en="Yes, I will attend" data-es="Sí, asistiré">Yes, I will attend</option>
@@ -105,7 +105,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
                 </table>
                 <br>
 
-                    <label data-en="Food:" data-es="Comida:">Food:</label><br>
+                    <label data-en="Food: <span style='color: red;'>*</span>" data-es="Comida: <span style='color: red;'>*</span>">Food: <span style='color: red;'>*</span></label><br>
                     <select name="entree" style="padding:8px;">
                         <option value="" data-en="-- Select --" data-es="-- Seleccionar --">-- Select --</option>
                         <option value="beef" data-en="Beef" data-es="Beef">Beef</option>
