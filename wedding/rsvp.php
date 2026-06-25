@@ -97,13 +97,21 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
             <div id="foodFields">
                 <p>
                     <label data-en="Food:" data-es="Comida:">Food:</label><br>
-                    <select name="entree" style="padding:8px;">
-                        <option value="" data-en="-- Select --" data-es="-- Seleccionar --">-- Select --</option>
-                        <option value="beef" data-en="Rib" data-es="Rib">Rib</option>
-                        <option value="chix" data-en="Breast" data-es="Breast">Breast</option>
-                        <option value="fish" data-en="Salmon" data-es="Salmon">Salmon</option>
-                        <option value="veg" data-en="Napoleon" data-es="Napoleon">Napoleon</option>
-                    </select>
+
+                <ul style="list-style-type: square;">
+                    <li>Slow cooked boneless black angus short rib (Beef)</li>
+                    <li>Chicken breast, citrus brined all natural (Chicken)</li>
+                    <li>Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce (Fish)</li>
+                    <li>Vegetable Napoleon (Vegetable)</li>
+                </ul>
+
+                <select name="entree" style="padding:8px;">
+                    <option value="" data-en="-- Select --" data-es="-- Seleccionar --">-- Select --</option>
+                    <option value="beef" data-en="Beef" data-es="Beef">Beef</option>
+                    <option value="chix" data-en="Chicken" data-es="Chicken">Chicken</option>
+                    <option value="fish" data-en="Fish" data-es="Fish">Fish</option>
+                    <option value="veg" data-en="Vegetable" data-es="Vegetable">Vegetable</option>
+                </select>
                 </p>
 
                 <p>
