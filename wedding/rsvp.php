@@ -83,25 +83,25 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
 
                 <table style="width:100%; border-collapse:collapse;">
                     <tr>
-                        <td style="padding:10px 20px 10px 0; font-weight:bold; white-space:nowrap;"><b>(Beef)</b></td>
+                        <td style="font-weight:bold; white-space:nowrap;"></td>
                         <td style="padding:10px 0;">
                             <p data-en="Slow cooked boneless black angus short rib" data-es="Slow cooked boneless black angus short rib">Slow cooked boneless black angus short rib</p><br>
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding:10px 20px 10px 0; font-weight:bold; white-space:nowrap;"><b>(Chicken)</b></td>
+                        <td style="font-weight:bold; white-space:nowrap;">(Chicken)</td>
                         <td style="padding:10px 0;">
                             <p data-en="Chicken breast, citrus brined all natural" data-es="Chicken breast, citrus brined all natural">Chicken breast, citrus brined all natural</p><br>
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding:10px 20px 10px 0; font-weight:bold; white-space:nowrap;"><b>(Fish)</b></td>
+                        <td style="font-weight:bold; white-space:nowrap;">(Fish)</td>
                         <td style="padding:10px 0;">
                             <p data-en="Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce" data-es="Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce">Salmon herb and citrus marinated. Orange, honey and dill sour crème sauce</p><br>
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding:10px 20px 10px 0; font-weight:bold; white-space:nowrap;"><b>(Vegetable)</b></td>
+                        <td style="font-weight:bold; white-space:nowrap;">(Vegetable)</td>
                         <td style="padding:10px 0;">
                             <p data-en="Vegetable Napoleon" data-es="Vegetable Napoleon">Vegetable Napoleon</p><br>
                         </td>
