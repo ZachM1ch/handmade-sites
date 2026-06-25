@@ -79,7 +79,7 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
 
             <div id="foodFields">
                 <p>
-                    <label data-en="Food:" data-es="Comida:">Food:</label><br>
+
 
                 <table style="width:100%; border-collapse:collapse;">
                     <tr>
@@ -103,7 +103,9 @@ include($_SERVER['DOCUMENT_ROOT'] . "/wedding/includes/header.php");
                         </td>
                     </tr>
                 </table>
+                <br>
 
+                    <label data-en="Food:" data-es="Comida:">Food:</label><br>
                     <select name="entree" style="padding:8px;">
                         <option value="" data-en="-- Select --" data-es="-- Seleccionar --">-- Select --</option>
                         <option value="beef" data-en="Beef" data-es="Beef">Beef</option>
