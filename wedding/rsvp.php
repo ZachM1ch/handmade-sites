@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $attending = $_POST['attending'] ?? '';
-    $entree = $_POST['entree'] ?? '';
+    $entree = ($attending == 'yes' && $_POST['entree']) ? $_POST['entree'] : '';
     $dietary_notes = trim($_POST['dietary_notes'] ?? '');
     $message = trim($_POST['message'] ?? '');
 
