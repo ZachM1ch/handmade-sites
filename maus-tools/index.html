@@ -68,6 +68,7 @@ body.tab-tables .mapctl{display:none!important}
 .tbl tbody tr:nth-child(even) td{background:rgba(0,0,0,.05)}
 .tbl td:first-child,.tbl td.nw{width:1%;white-space:nowrap;font-weight:700}
 @media print{.tabs{display:none}}
+#tbbar{margin-bottom:8px}#tbsel{max-width:70vw}#tbmsg{font-size:13px;color:var(--mute)}
 </style>
 </head>
 <body>
@@ -78,6 +79,12 @@ body.tab-tables .mapctl{display:none!important}
     <button role="tab" id="tab-map" aria-selected="true">Map</button>
     <button role="tab" id="tab-tables" aria-selected="false">Tables</button>
   </nav>
+  <div class="bar" id="tbbar">
+    <label>Tables <select id="tbsel" aria-label="Active tables"></select></label>
+    <button class="alt" id="tbdel" hidden>Remove</button>
+    <label class="btn">Add tables JSON<input id="file" type="file" accept=".json,application/json" multiple hidden></label>
+    <span id="tbmsg" role="status"></span>
+  </div>
   <div class="bar">
     <button class="mapctl" id="gen">Generate new map</button>
     <label class="mapctl">Seed <input id="seed" type="text" placeholder="seed code" aria-label="Seed code"></label>
@@ -85,7 +92,6 @@ body.tab-tables .mapctl{display:none!important}
     <button class="alt" id="txt">Download text</button>
     <button class="alt mapctl" id="save">Save map</button>
     <label class="btn mapctl">Load map<input id="mapfile" type="file" hidden></label>
-    <label class="btn">Load tables JSON<input id="file" type="file" accept=".json,application/json" hidden></label>
     <label class="mapctl"><input id="centre" type="checkbox" checked> Friendly settlement in centre hex</label>
   </div>
   <div class="bar mapctl" style="margin-top:8px">
@@ -305,11 +311,16 @@ function makePDF(){
   const u=new Uint8Array(out.length);for(let i=0;i<out.length;i++)u[i]=out.charCodeAt(i)&255;
   return u;
 }
-function loadMap(t,name){
+async function loadMap(t,name){
   const m=JSON.parse(t);
   if(m.format!=='mausmap'||!Array.isArray(m.hexes)||!m.settings)throw new Error('this is not a .mausmap file');
   const R=m.settings.radius;
   if(!(R>=1&&R<=6)||m.hexes.length!==hexCount(R))throw new Error('the hex count does not match the grid size');
+  if(m.tables&&m.tables!==srcName){
+    const e=LIB.find(x=>x.name===m.tables);
+    if(!e)throw new Error(`it was made with the tables file "${m.tables}", which isn't in your library. Add that file first`);
+    await ensureJson(e);useEntry(e,false);
+  }
   $('#grid').value=R;setRanges(R,false);$('#smin').value=m.settings.min;$('#smax').value=m.settings.max;showRanges();$('#centre').checked=!!m.settings.centre;
   $('#seed').value=m.seed||'';state={grid:buildGrid(R),hook:m.hook,hexes:m.hexes};
   $('#src').textContent='Map: '+name;render();
@@ -452,6 +463,58 @@ function setView(v){
   $('#txt').textContent=v==='tables'?'Download tables text':'Download text';
   closeMenu();
 }
+
+const mem={};
+const store={
+  get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},
+  set(k,v){mem[k]=v;try{localStorage.setItem(k,v);return true}catch(e){return false}}
+};
+let LIB=[],curId='';
+const cur=()=>LIB.find(e=>e.id===curId);
+const say=m=>{$('#tbmsg').textContent=m||''};
+function libSave(){
+  const ok=store.set('hexcrawl.library',JSON.stringify(LIB.filter(e=>e.kind==='saved').map(e=>({name:e.name,json:e.json}))));
+  if(!ok)say("Couldn't save to this browser's storage (private mode or full). The file works until you close the page.");
+  return ok;
+}
+function renderLib(){
+  const lab=e=>`${e.title||e.name}${e.title&&e.title!==e.name?' - '+e.name:''}${e.kind==='builtin'?' (built in)':e.kind==='hosted'?' (hosted)':''}`;
+  const grp=(name,k)=>{const l=LIB.filter(e=>k.includes(e.kind));return l.length?`<optgroup label="${name}">${l.map(e=>`<option value="${esc(e.id)}"${e.id===curId?' selected':''}>${esc(lab(e))}</option>`).join('')}</optgroup>`:''};
+  $('#tbsel').innerHTML=grp('Included',['builtin','hosted'])+grp('Saved on the server',['server'])+grp('Saved in this browser',['saved']);
+  $('#tbsel').value=curId;
+  const c=cur();
+  $('#tbdel').hidden=!(c&&(c.kind==='saved'||(c.kind==='server'&&SERVER&&SERVER.canSave&&!SERVER.protected.includes(c.name))));
+}
+function useEntry(e,regen){
+  const tb=validate(JSON.parse(e.json));
+  T=tb;buildCOL();srcName=e.name;curId=e.id;state=null;$('#seed').value='';
+  store.set('hexcrawl.current',e.id);
+  if(regen)generate();
+  renderLib();
+}
+let SERVER=null;
+const API='tables.php';
+const keyGet=()=>{try{return sessionStorage.getItem('hexcrawl.key')||''}catch(e){return ''}};
+const keySet=v=>{try{sessionStorage.setItem('hexcrawl.key',v)}catch(e){}};
+async function api(q,o,retry){
+  o=o||{};o.headers=Object.assign({'X-Requested-With':'hexcrawl'},o.headers||{});
+  if(o.method==='POST'&&SERVER&&SERVER.needsKey){
+    let k=keyGet();if(!k){k=prompt('Enter the upload password for this site:')||'';keySet(k)}
+    o.headers['X-Tables-Key']=k;
+  }
+  const r=await fetch(API+q,o);
+  if(r.status===401&&!retry){keySet('');return api(q,o,true)}
+  return r;
+}
+async function ensureJson(e){
+  if(typeof e.json==='string')return;
+  const r=await api('?name='+encodeURIComponent(e.name));
+  if(!r.ok)throw new Error(`the server could not return ${e.name} (${r.status})`);
+  e.json=await r.text();
+  if(!e.title){try{e.title=JSON.parse(e.json).title||''}catch(x){}}
+}
+async function useTables(e,regen){await ensureJson(e);useEntry(e,regen)}
+const defaultEntry=()=>LIB.find(e=>e.id==='hosted')||LIB.find(e=>e.id==='server:hexcrawl-tables.json')||LIB.find(e=>e.id==='builtin');
 let ctxN=null,openedAt=0,skipUntil=0,lp=null,lpFired=false;
 function openMenu(n,x,y){
   ctxN=n;openedAt=Date.now();const h=hx(n),m=$('#ctx');
@@ -490,19 +553,94 @@ $('#txt').onclick=()=>view==='tables'?download(slug()+'-tables.txt',tablesText()
 $('#tab-map').onclick=()=>setView('map');
 $('#tab-tables').onclick=()=>setView('tables');
 $('#pdf').onclick=()=>view==='tables'?download(slug()+'-tables.pdf',makeTablesPDF(),'application/pdf'):download('hexcrawl.pdf',makePDF(),'application/pdf');
-$('#save').onclick=()=>download('hexcrawl.mausmap',JSON.stringify({format:'mausmap',version:1,title:T.title,seed:$('#seed').value,settings:{radius:+$('#grid').value,min:+$('#smin').value,max:+$('#smax').value,centre:$('#centre').checked},hook:state.hook,hexes:state.hexes},null,1),'application/json');
-$('#mapfile').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{try{loadMap(t,f.name)}catch(err){alert('Could not load '+f.name+': '+err.message)}});e.target.value=''};
-$('#file').onchange=e=>{
-  const f=e.target.files[0];if(!f)return;
-  f.text().then(t=>{try{T=validate(JSON.parse(t));buildCOL();srcName=f.name;generate()}catch(err){alert('Could not use '+f.name+': '+err.message)}});
-  e.target.value='';
+$('#save').onclick=()=>download('hexcrawl.mausmap',JSON.stringify({format:'mausmap',version:1,title:T.title,tables:srcName,seed:$('#seed').value,settings:{radius:+$('#grid').value,min:+$('#smin').value,max:+$('#smax').value,centre:$('#centre').checked},hook:state.hook,hexes:state.hexes},null,1),'application/json');
+$('#mapfile').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(async t=>{try{await loadMap(t,f.name)}catch(err){alert('Could not load '+f.name+': '+err.message)}});e.target.value=''};
+async function addFile(f){
+  const text=await f.text(),tb=validate(JSON.parse(text)),title=tb.title||'';
+  let why='';
+  if(SERVER&&SERVER.canSave){
+    try{
+      const r=await api('?name='+encodeURIComponent(f.name),{method:'POST',body:text}),j=await r.json().catch(()=>({}));
+      if(r.ok&&j.name){
+        let e=LIB.find(x=>x.id==='server:'+j.name);const upd=!!e;
+        if(e){e.json=text;e.title=title}else{e={id:'server:'+j.name,kind:'server',name:j.name,title,json:text};LIB.push(e)}
+        return {e,where:'server',upd};
+      }
+      why=j.error||`the server answered ${r.status}`;
+    }catch(err){why='the server could not be reached'}
+  }else if(SERVER)why="the server folder isn't writable";
+  let e=LIB.find(x=>x.kind==='saved'&&x.name===f.name);const upd=!!e;
+  if(e){e.json=text;e.title=title}else{e={id:'saved:'+f.name,kind:'saved',name:f.name,json:text,title};LIB.push(e)}
+  return {e,where:'browser',upd,why};
+}
+$('#file').onchange=async e=>{
+  const files=[...e.target.files];e.target.value='';
+  let last=null,srv=0,brw=0,upd=0;const bad=[],why=new Set();
+  for(const f of files){
+    try{const r=await addFile(f);last=r.e;if(r.where==='server')srv++;else brw++;if(r.upd)upd++;if(r.why)why.add(r.why)}
+    catch(err){bad.push(`Could not use ${f.name}: ${err.message}`)}
+  }
+  if(brw)libSave();
+  if(last){
+    try{
+      await useTables(last,true);
+      const parts=[];
+      if(srv)parts.push(`Saved ${srv} file${srv===1?'':'s'} on the server`);
+      if(brw)parts.push(`saved ${brw} in this browser${why.size?` (not saved on the server: ${[...why].join('; ')})`:''}`);
+      say(parts.join(', ').replace(/^./,c=>c.toUpperCase())+(upd?` (${upd} replaced)`:'')+'.');
+    }catch(err){bad.push(`Could not use ${last.name}: ${err.message}`)}
+  }
+  renderLib();
+  if(bad.length)alert(bad.join('\n'));
+};
+$('#tbsel').onchange=async()=>{
+  const e=LIB.find(x=>x.id===$('#tbsel').value);
+  try{await useTables(e,true);say('')}catch(err){alert(`Could not use ${e.name}: ${err.message}`);renderLib()}
+};
+$('#tbdel').onclick=async()=>{
+  const e=cur();if(!e)return;
+  if(e.kind==='server'){
+    if(!confirm(`Delete ${e.name} from the server? This removes it for everyone who uses this page.`))return;
+    try{
+      const r=await api(`?action=delete&name=${encodeURIComponent(e.name)}`,{method:'POST'});
+      if(!r.ok){const j=await r.json().catch(()=>({}));alert(j.error||`The server answered ${r.status}.`);return}
+    }catch(err){alert('The server could not be reached.');return}
+  }else if(e.kind==='saved'){
+    if(!confirm(`Remove ${e.name} from this browser?`))return;
+  }else return;
+  LIB=LIB.filter(x=>x!==e);if(e.kind==='saved')libSave();
+  await useTables(defaultEntry(),true);say(`Removed ${e.name}.`);
 };
 (async()=>{
-  let ft=null,note='';
-  try{const res=await fetch('hexcrawl-tables.json');if(res.ok)ft=await res.json()}catch(e){}
-  if(ft){try{T=validate(ft);srcName='hexcrawl-tables.json'}catch(e){note=e.message}}
-  if(!T){T=validate(JSON.parse($('#default-tables').textContent));srcName='built-in copy'+(note?` (hexcrawl-tables.json was ignored: ${note})`:' (load a JSON to replace)')}
-  buildCOL();initControls();generate();
+  LIB=[{id:'builtin',kind:'builtin',name:'built-in copy',json:$('#default-tables').textContent}];
+  let hostedErr='';
+  try{
+    const r=await fetch(API,{headers:{'X-Requested-With':'hexcrawl'}});
+    if(r.ok&&/json/.test(r.headers.get('content-type')||'')){
+      const j=await r.json();
+      if(j&&Array.isArray(j.tables)){
+        SERVER={canSave:!!j.canSave,needsKey:!!j.needsKey,protected:j.protected||[]};
+        j.tables.forEach(x=>LIB.push({id:'server:'+x.name,kind:'server',name:x.name,title:x.title||'',json:null}));
+      }
+    }
+  }catch(e){}
+  if(!SERVER){
+    try{
+      const res=await fetch('hexcrawl-tables.json');
+      if(res.ok){const txt=await res.text();try{validate(JSON.parse(txt));LIB.push({id:'hosted',kind:'hosted',name:'hexcrawl-tables.json',json:txt})}catch(e){hostedErr=e.message}}
+    }catch(e){}
+  }
+  try{
+    JSON.parse(store.get('hexcrawl.library')||'[]').forEach(s=>{
+      try{const tb=validate(JSON.parse(s.json));LIB.push({id:'saved:'+s.name,kind:'saved',name:s.name,json:s.json,title:tb.title||''})}catch(e){}
+    });
+  }catch(e){}
+  LIB.forEach(e=>{if(e.title===undefined){try{e.title=JSON.parse(e.json).title||''}catch(x){e.title=''}}});
+  const want=store.get('hexcrawl.current'),start=LIB.find(e=>e.id===want)||defaultEntry();
+  try{await useTables(start,false)}catch(e){await useTables(LIB[0],false)}
+  initControls();generate();renderLib();
+  if(SERVER&&!SERVER.canSave)say("The server folder isn't writable, so uploads are saved in this browser.");
+  else if(hostedErr)say(`hexcrawl-tables.json was ignored: ${hostedErr}`);
 })();
 </script>
 </body>
