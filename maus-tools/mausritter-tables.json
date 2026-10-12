@@ -1,0 +1,121 @@
+{
+  "title": "Maus Hexcrawl",
+  "map": {
+    "radius": 2,
+    "centre": 1
+  },
+  "hexType": [
+    {"min":1,"max":2,"name":"Countryside","key":"countryside","color":"#cfc27a","settlementWeight":1.4},
+    {"min":3,"max":4,"name":"Forest","key":"forest","color":"#76a06f","settlementWeight":1.0},
+    {"min":5,"max":5,"name":"River","key":"river","color":"#80aac6","settlementWeight":1.2},
+    {"min":6,"max":6,"name":"Human town","key":"human_town","color":"#ada4ac","settlementWeight":0.6}
+  ],
+  "legend": {
+    "centre": {"label": "Centre settlement", "color": "#d9985a"},
+    "settlement": "House icon: settlement"
+  },
+  "generation": {
+    "clusterStrength": 3,
+    "settlementNear": {"river": 1.5}
+  },
+  "landmarks": {
+    "countryside": ["Anthill","Beech, lightning split","Bone-white tree","Cow skeleton","Field of flowers","Field of wheat","Hedge row","Hollow tree stump","Huge flat rock","Lily-lined pond","Massive fallen tree","Old craggy oak","Old farmhouse","Quiet dirt road","Rabbit warren","Sparrow nest","Stand of pine trees","Steep hill","Stone wall","Tangle of fig roots"],
+    "forest": ["Abandoned shack","Bright clearing","Cascading waterfalls","Cliff face","Cold, fresh spring","Dense underbrush","Face in ancient oak","Fox hole","Grove of ferns","Hollow tree stump","Huge pine tree","Human walking track","Human-made clearing","Meandering brook","Overgrown ruins","Ring of stones","Rocky outcropping","Sunken hollow","Tangle of roots","Termite-riddled tree"],
+    "river": ["Canal lock","Converging tributaries","Draping willow","Eroded riverbank","Fallen tree crossing","High waterfall","Huge boulder","Huge concrete dam","Isolated island","Muddy flats","Rocky rapids","Row of dead trees","Silty dam","Stepping-stones","Stone bridge","Stony shallows","Submerged trash","Sunken barge","Twisted roots","Wooden bridge"],
+    "human_town": ["Abandoned car","Apartment balcony","Blackberry hedge","Busy road","Drainpipe outlet","Dumped furniture","Greenhouse","Mouse ruins","Newly built house","Overgrown garden bed","Pigeon nest","Pile of trash","Rocky riverbed","Shopping trolley","Stagnant pond","Steel bridge","Trash-filled skip","Tree-lined footpath","Underground car park","Woodshed"]
+  },
+  "details": [
+    {"settlement": true, "text": "Mouse settlement"},
+    {"entries": [
+      ["Small mouse farm","What threatens their crops?"],
+      ["Noblemouse's castle","What does it defend against?"],
+      ["Friendly mouse roadhouse","What is in the basement?"],
+      ["Mouse hunting lodge","What is their quarry?"],
+      ["Mining outpost","What have they uncovered?"],
+      ["Mouse hermit's hut","Why do they shun society?"],
+      ["Natural caves","What is living here?"],
+      ["Hedge-knight's tower","What is their quest?"]
+    ]},
+    {"entries": [
+      ["Songbird's nest","What sad tales do they sing of?"],
+      ["Tribe of huge, peaceful beasts","What do they fear?"],
+      ["Rat bandit hideout","Who do they prey on?"],
+      ["Crow coven's spire","What spells do they caw?"],
+      ["Hive of insects","What do they hunger for?"],
+      ["Den of a great predator","What treasure do they guard?"],
+      ["Frog fortress","What lies hidden in the dungeon?"],
+      ["Mouse wizard's tower","What spell is almost finished?"]
+    ]},
+    {"entries": [
+      ["Dangerous natural feature","How can it be avoided?"],
+      ["Lonely shrine","Who maintains it? What do they worship?"],
+      ["Noblemouse's manor","Why was it abandoned?"],
+      ["Abandoned settlement","What clues did they leave?"],
+      ["Ruined watchtower","What did it guard from?"],
+      ["Natural feature, peaceful and safe","Who gathers here?"],
+      ["Natural feature, out of place","How did it form?"],
+      ["Rickety bridge","What does it cross over?"]
+    ]},
+    {"entries": [
+      ["Ancient bat cult temple","What was summoned?"],
+      ["Faerie ring","What business do the faeries have here?"],
+      ["Beetle graveyard","What do the ghosts want?"],
+      ["Mouse witch's hut","What does she brew?"],
+      ["Small, deep pond","What is at the bottom?"],
+      ["Out-of-season plantlife","Why are they growing here?"],
+      ["Owl sorcerer's nest","What are they searching for?"],
+      ["Strange magical anomaly","Why is it spreading?"]
+    ]},
+    {"entries": [
+      ["Crashed Lilliputian airship","How can it be repaired?"],
+      ["Humming stone","What happens when touched?"],
+      ["Completely lifeless","What disaster has occurred?"],
+      ["Regularly used by humans","What do they do here?"],
+      ["Damaged by humans","What have they done?"],
+      ["Ancient ruins of a past civilisation","Who built this?"],
+      ["Cat lord's hunting ground","What trophies remain?"],
+      ["Repurposed human construction","How is it used?"]
+    ]}
+  ],
+  "hooks": [
+    "Searching for a lost family member",
+    "Investigating on orders of a noblemouse",
+    "Mouse wizard requires a certain spell component",
+    "Site is lair of a creature harassing a settlement",
+    "Following an inherited treasure map",
+    "Seeking shelter from a terrible storm"
+  ],
+  "settlement": {
+    "size": [
+      {"name":"Farm/manor","note":"1-3 families","features":1,"industry":1,"tavern":false},
+      {"name":"Crossroads","note":"3-5 families","features":1,"industry":1,"tavern":false},
+      {"name":"Hamlet","note":"50-150 mice","features":1,"industry":1,"tavern":true},
+      {"name":"Village","note":"150-300 mice","features":1,"industry":1,"tavern":true},
+      {"name":"Town","note":"300-1000 mice","features":1,"industry":2,"tavern":true},
+      {"name":"City","note":"1000+ mice","features":2,"industry":2,"tavern":true}
+    ],
+    "governance": [
+      {"min":2,"max":3,"text":"Guided by village elders"},
+      {"min":4,"max":5,"text":"Administered by a knight or lower-caste lord"},
+      {"min":6,"max":7,"text":"Organised by a guild committee"},
+      {"min":8,"max":9,"text":"Free settlement, governed by council of burghermice"},
+      {"min":10,"max":11,"text":"House of an upper caste noblemouse"},
+      {"min":12,"max":12,"text":"Seat of baronial power"}
+    ],
+    "inhabitants": ["Shave elaborate patterns in their fur","Intoxicated by strange plants","Wary of doing business with outsiders","Curious for news from afar","Believe grooming their fur is bad luck","Wear finely embroidered clothes","Brew honey-mead, flavoured with pungent herbs","Cover their faces with long hoods","Impoverished by a cat lord's tithes","Ceremonially crop their tails","Brave hunters of large beasts","All descended from single matriarch","Bake delicious berry pies","Lab escapees, naive about the world","Spend their days lazing by a stream","Long-standing blood feud with another settlement","Dig grand tunnels, overseen by the guild","Wear large, wide-brimmed hats","Have laws and customs confusing to outsiders","On friendly terms with a predator"],
+    "features": ["Maze of defensive, trap-filled tunnels","Exceedingly comfortable, well-appointed inn","Shrine carved of black wood","Meditative mushroom garden","Cow skull, repurposed as a guildhouse","Mess of closely packed shanties","Neat rows of hanging wooden houses","Ornate gate, guarded by statues","Secret bat cult temple","Beetle racing rink","Storehouse, stocked with preserves","Hidden riverboat dock","Crumbling marble palace, built by ancient mice","Scavenged human machine, working","Wooden bridge connects the settlement","Unnervingly tall, twisting tower","Beautiful flower garden","Pigeon rider's roost","Overgrown statue of an ancient hero","Spiral stairwell, leading deep underground"],
+    "industry": ["Farmers, tending to towering crops","Woodcutters, with saws and harnesses","Rough and scarred fishermice, with nets and rafts","Dark and musty mushroom farm","Grains drying on every flat surface","Pungent cheese, cured for years","Gardens of rare herbs. Drying racks are guarded","Hive of bees and their veiled keepers","Merchants and traders, often in need of guards","Stonemasons, working a nearby quarry","Flour mill, driven by a large water-wheel","Deep mine for iron, silver or tin","Keep silkworms and weave fine cloth","Expert explorers of caves and tunnels","Kiln-fired pottery, glazed in cheerful colours","Wool mill, draped in bright cloth","Excellent school, rowdy pupils","Bustling, well-stocked market","Smelly scavenged trash pile, carefully picked over","Beautiful furniture of carved and polished wood"],
+    "events": ["Disaster, everyone packing to leave","Wedding, streets bedecked in flowers","Preparing for grand seasonal feast","An illness has struck","Storehouse has been plundered by insects","Market day, farmers flock to the settlement","Mice are at each other's throats","Warband forming to defeat a beast","Several children have gone missing","Noblemouse makes a frivolous demand","Traveling theatre troupe arrives","Funeral, streets thick with smoke","Conman whips up an irrational scheme","Pet beetle gone mad, attacking mice","Faerie emissary with an impossible request","Strangely quick-growing plant nearby","Valuable heirloom has been stolen","Cat lord demands a heavy tithe","Coming of age ceremony for the young mice","Wizard tower arrives on tortoise-back"],
+    "nameStart": [
+      ["Oaks","Berry","Willow","Stump","Pine","Moon","Green","Black","Stone","Hill","Fig","Apple"],
+      ["Swamp","Owl","Fox","Acorn","Copper","Robber","Colby","Drain","Rose","Thistle","Friend","Trunk"]
+    ],
+    "nameEnd": [
+      ["thorpe","ville","mill","dale","grove","town","vale","seed","ashe","bush","stitch","shine"],
+      ["stand","hill","tower","farm","bridge","gate","creek","pond","nest","ford","grave","burn"]
+    ],
+    "tavernA": ["White","Green","Black","Red","Silver","Crooked","Friendly","Hidden","Wiley","Glass","Thorny","Broken"],
+    "tavernB": ["Beetle","Fox","Wedge","Kernel","Rat","Cheese","Eagle","Worm","Bee","Lantern","Rose","Knight"],
+    "meals": ["Spiced baked carrot","Boiled worm broth","Blackberry pie","Pungent aged cheese","Barley porridge","Thick river-fish steak","Baked apple","Fried, crumbed insect legs","Fresh buttered bread","Scavenged candy","Honey-roasted seeds","Mushroom stew"]
+  }
+}

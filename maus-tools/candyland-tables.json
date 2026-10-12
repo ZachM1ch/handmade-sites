@@ -1,0 +1,726 @@
+{
+ "title": "Candyland Hexcrawl",
+ "map": {
+  "radius": 2,
+  "centre": 1
+ },
+ "hexType": [
+  {
+   "min": 1,
+   "max": 1,
+   "name": "Gumdrop Hills",
+   "key": "gumdrop_hills",
+   "color": "#e8899f",
+   "settlementWeight": 1.2
+  },
+  {
+   "min": 2,
+   "max": 2,
+   "name": "Peppermint Forest",
+   "key": "peppermint_forest",
+   "color": "#86cfa5",
+   "settlementWeight": 1.0
+  },
+  {
+   "min": 3,
+   "max": 3,
+   "name": "Chocolate River",
+   "key": "chocolate_river",
+   "color": "#9a7560",
+   "settlementWeight": 0.8
+  },
+  {
+   "min": 4,
+   "max": 4,
+   "name": "Licorice Swamp",
+   "key": "licorice_swamp",
+   "color": "#8f8aa6",
+   "settlementWeight": 0.3
+  },
+  {
+   "min": 5,
+   "max": 5,
+   "name": "Lollipop Meadow",
+   "key": "lollipop_meadow",
+   "color": "#f0d062",
+   "settlementWeight": 1.5
+  },
+  {
+   "min": 6,
+   "max": 6,
+   "name": "Cotton Candy Clouds",
+   "key": "cotton_candy_clouds",
+   "color": "#a9cdee",
+   "settlementWeight": 0.2
+  },
+  {
+   "min": 7,
+   "max": 7,
+   "name": "Gingerbread Town",
+   "key": "gingerbread_town",
+   "color": "#e3a45c",
+   "settlementWeight": 2.5
+  },
+  {
+   "min": 8,
+   "max": 8,
+   "name": "Rock Candy Peaks",
+   "key": "rock_candy_peaks",
+   "color": "#dcd3ec",
+   "settlementWeight": 0.4
+  }
+ ],
+ "legend": {
+  "centre": {
+   "label": "Centre settlement",
+   "color": "#e25a5a"
+  },
+  "settlement": "House icon: settlement"
+ },
+ "generation": {
+  "clusterStrength": 3,
+  "settlementNear": {
+   "chocolate_river": 1.6
+  }
+ },
+ "landmarks": {
+  "gumdrop_hills": [
+   "Giant gumdrop",
+   "Sticky sinkhole",
+   "Sugar-dusted ridge",
+   "Cracked gumdrop cave",
+   "Jellybean boulder field",
+   "Cinnamon-drop grove",
+   "Licorice rope bridge",
+   "Hard-candy pond",
+   "Syrup spring",
+   "Gummy-bear herd",
+   "Rolling taffy slope",
+   "Lemon-drop lookout",
+   "Candy-cane fence",
+   "Marzipan mound",
+   "Chewy trail",
+   "Rock-sugar outcrop",
+   "Nougat cliff",
+   "Pastille stepping stones",
+   "Toffee-brittle shelf",
+   "Abandoned gumball cart"
+  ],
+  "peppermint_forest": [
+   "Candy-cane thicket",
+   "Striped grove",
+   "Frosted clearing",
+   "Peppermint-bark stump",
+   "Minty brook",
+   "Wafer-leaf canopy",
+   "Sugar-glass pond",
+   "Hollow candy cane",
+   "Crunchy leaf litter",
+   "Spearmint ferns",
+   "Hard-candy mushrooms",
+   "Frozen-syrup falls",
+   "Twisted red-white tree",
+   "Lollipop saplings",
+   "Sugar-snow drift",
+   "Cinnamon-stick hut",
+   "Glazed boulder",
+   "Wintergreen hollow",
+   "Ring of peppermint discs",
+   "Clearing of cut stumps"
+  ],
+  "chocolate_river": [
+   "Cocoa waterfall",
+   "Molten-chocolate rapids",
+   "Caramel eddy",
+   "Marshmallow raft",
+   "Wafer bridge",
+   "Truffle island",
+   "Chocolate mudflats",
+   "Fudge dam",
+   "Sprinkle-strewn bank",
+   "Milk-chocolate shallows",
+   "Drifting biscuit barge",
+   "Cocoa-bean stepping stones",
+   "Bubbling hot spring",
+   "Whipped-cream foam",
+   "Frozen chocolate bend",
+   "Licorice-rope ferry",
+   "Dark-chocolate cliff",
+   "Cookie-crumb beach",
+   "Syrup whirlpool",
+   "Sunken sugar mill"
+  ],
+  "licorice_swamp": [
+   "Black-licorice bog",
+   "Sticky tar pit",
+   "Twisted licorice roots",
+   "Molasses mire",
+   "Gnarled liquorice tree",
+   "Bubbling treacle",
+   "Rotting gummy logs",
+   "Sugar-fog hollow",
+   "Aniseed reeds",
+   "Sunken sweetshop",
+   "Overgrown candy-apple tree",
+   "Sinking boardwalk",
+   "Stagnant syrup pool",
+   "Glowing jelly lights",
+   "Tangle of rope licorice",
+   "Cracked caramel shell",
+   "Cocoa-mulch flats",
+   "Stilt hut of wafer planks",
+   "Tar-black pond",
+   "Hollow of drowned jellybeans"
+  ],
+  "lollipop_meadow": [
+   "Field of lollipops",
+   "Spiral-swirl hill",
+   "Single giant lollipop",
+   "Sugar-flower patch",
+   "Rainbow sprinkle field",
+   "Candy-corn rows",
+   "Gummy-worm burrows",
+   "Bubblegum bubble",
+   "Marshmallow haystack",
+   "Abandoned picnic blanket",
+   "Rock-candy sundial",
+   "Candy-floss hedge",
+   "Honeycomb mound",
+   "Wind chimes of cane",
+   "Jawbreaker boulder",
+   "Sherbet pond",
+   "Fudge-brown path",
+   "Jellybean scarecrow",
+   "Sugar-cube wall",
+   "Ring of toadstool candies"
+  ],
+  "cotton_candy_clouds": [
+   "Cloud bank",
+   "Spun-sugar cliff",
+   "Fluffy pink dune",
+   "Sticky strand bridge",
+   "Sunset cotton shelf",
+   "Rain of sprinkles",
+   "Pop-rock thunderhead",
+   "Floating sugar island",
+   "Wispy vapor valley",
+   "Blue cotton mist",
+   "Crackling static field",
+   "Melted-sugar drip",
+   "Sherbet fog",
+   "Cloud-edge overlook",
+   "Meringue peak",
+   "Sugar-spun nest",
+   "Dissolving floor",
+   "Rainbow arc",
+   "Whipped-cream cumulus",
+   "Sticky thread tangle"
+  ],
+  "gingerbread_town": [
+   "Gingerbread cottage",
+   "Frosting-trimmed gate",
+   "Cracked cookie road",
+   "Icing fountain",
+   "Candy-window shop",
+   "Gumdrop lamp post",
+   "Wafer-shingle roof",
+   "Sugar-glass greenhouse",
+   "Licorice picket fence",
+   "Abandoned bakery",
+   "Crumbling gingerbread wall",
+   "Sprinkle garden bed",
+   "Marzipan statue",
+   "Pretzel archway",
+   "Peppermint clock tower",
+   "Rock-candy chimney",
+   "Shuttered sweet shop",
+   "Spun-sugar scaffold",
+   "Gingersnap watchtower",
+   "Biscuit-tile market square"
+  ],
+  "rock_candy_peaks": [
+   "Crystal spire",
+   "Sugar-crystal cave",
+   "Cliff of amber candy",
+   "Glittering scree",
+   "Frozen-syrup glacier",
+   "Geode of sherbet",
+   "Sparkling ledge",
+   "Jagged sugar ridge",
+   "Singing crystal",
+   "Rock-candy arch",
+   "Blue-crystal cavern",
+   "Brittle summit",
+   "Fallen crystal pillar",
+   "Echoing crevasse",
+   "Sugar-glass lake",
+   "Quartz-sweet vein",
+   "Prismatic cliff",
+   "Crystal-clear pool",
+   "Brittle sugar bridge",
+   "Hidden hollow of geodes"
+  ]
+ },
+ "details": [
+  {
+   "settlement": true,
+   "text": "Candyfolk settlement"
+  },
+  {
+   "entries": [
+    [
+     "Gingerbread farmstead",
+     "What pests threaten the crops?"
+    ],
+    [
+     "Frosted baron's keep",
+     "What does it defend against?"
+    ],
+    [
+     "Friendly sugar inn",
+     "What is in the cellar?"
+    ],
+    [
+     "Lollipop hunters' lodge",
+     "What is their quarry?"
+    ],
+    [
+     "Rock-candy dig site",
+     "What have they uncovered?"
+    ],
+    [
+     "Hermit's gumdrop hollow",
+     "Why do they shun others?"
+    ],
+    [
+     "Honeycomb caves",
+     "What is living here?"
+    ],
+    [
+     "Knight-errant's cane tower",
+     "What is their quest?"
+    ]
+   ]
+  },
+  {
+   "entries": [
+    [
+     "Spun-sugar songbird's nest",
+     "What sweet songs does it sing?"
+    ],
+    [
+     "Herd of gentle gummy beasts",
+     "What do they fear?"
+    ],
+    [
+     "Crumb-bandit hideout",
+     "Who do they prey on?"
+    ],
+    [
+     "Crow coven's toffee spire",
+     "What gossip do they caw?"
+    ],
+    [
+     "Swarm of sugar ants",
+     "What do they hunger for?"
+    ],
+    [
+     "Den of a great jam-drake",
+     "What treasure does it guard?"
+    ],
+    [
+     "Marshmallow frog fortress",
+     "What lies hidden in the dungeon?"
+    ],
+    [
+     "Pulled-taffy wizard's tower",
+     "What spell is almost finished?"
+    ]
+   ]
+  },
+  {
+   "entries": [
+    [
+     "Dangerous natural feature",
+     "How can it be avoided?"
+    ],
+    [
+     "Lonely shrine to the Sugar Moon",
+     "Who tends it? What do they worship?"
+    ],
+    [
+     "Abandoned baron's manor",
+     "Why was it abandoned?"
+    ],
+    [
+     "Deserted settlement",
+     "What clues did they leave?"
+    ],
+    [
+     "Ruined watchtower",
+     "What did it watch for?"
+    ],
+    [
+     "Natural feature, peaceful and safe",
+     "Who gathers here?"
+    ],
+    [
+     "Natural feature, out of place",
+     "How did it form?"
+    ],
+    [
+     "Rickety wafer bridge",
+     "What does it cross over?"
+    ]
+   ]
+  },
+  {
+   "entries": [
+    [
+     "Ancient Sour Moon temple",
+     "What was summoned?"
+    ],
+    [
+     "Fairy ring of sprinkles",
+     "What business do the faeries have here?"
+    ],
+    [
+     "Biscuit graveyard",
+     "What do the ghosts want?"
+    ],
+    [
+     "Candy witch's hut",
+     "What does she brew?"
+    ],
+    [
+     "Small, deep syrup pond",
+     "What is at the bottom?"
+    ],
+    [
+     "Out-of-season plantlife",
+     "Why are they growing here?"
+    ],
+    [
+     "Marzipan sorcerer's nest",
+     "What are they searching for?"
+    ],
+    [
+     "Strange magical anomaly",
+     "Why is it spreading?"
+    ]
+   ]
+  },
+  {
+   "entries": [
+    [
+     "Crashed lollipop airship",
+     "How can it be repaired?"
+    ],
+    [
+     "Humming sugar stone",
+     "What happens when touched?"
+    ],
+    [
+     "Completely lifeless and grey",
+     "What disaster has occurred?"
+    ],
+    [
+     "Regularly visited by the Bakers",
+     "What do they do here?"
+    ],
+    [
+     "Damaged by a Baker's careless hand",
+     "What have they done?"
+    ],
+    [
+     "Ancient ruins of a past confectioner empire",
+     "Who built this?"
+    ],
+    [
+     "Sour baron's hunting ground",
+     "What trophies remain?"
+    ],
+    [
+     "Repurposed Baker's tool",
+     "How is it used?"
+    ]
+   ]
+  }
+ ],
+ "hooks": [
+  "Searching for a lost sibling",
+  "Investigating on orders of a gingerbread baron",
+  "Sugar wizard requires a rare ingredient",
+  "Site is lair of a creature harassing a settlement",
+  "Following an inherited recipe map",
+  "Seeking shelter from a terrible sugar storm"
+ ],
+ "settlement": {
+  "size": [
+   {
+    "name": "Farm/manor",
+    "note": "1-3 families",
+    "features": 1,
+    "industry": 1,
+    "tavern": false
+   },
+   {
+    "name": "Crossroads",
+    "note": "3-5 families",
+    "features": 1,
+    "industry": 1,
+    "tavern": false
+   },
+   {
+    "name": "Hamlet",
+    "note": "50-150 candyfolk",
+    "features": 1,
+    "industry": 1,
+    "tavern": true
+   },
+   {
+    "name": "Village",
+    "note": "150-300 candyfolk",
+    "features": 1,
+    "industry": 1,
+    "tavern": true
+   },
+   {
+    "name": "Town",
+    "note": "300-1000 candyfolk",
+    "features": 1,
+    "industry": 2,
+    "tavern": true
+   },
+   {
+    "name": "City",
+    "note": "1000+ candyfolk",
+    "features": 2,
+    "industry": 2,
+    "tavern": true
+   }
+  ],
+  "governance": [
+   {
+    "min": 2,
+    "max": 3,
+    "text": "Guided by village elders"
+   },
+   {
+    "min": 4,
+    "max": 5,
+    "text": "Administered by a knight or minor lord"
+   },
+   {
+    "min": 6,
+    "max": 7,
+    "text": "Organised by a guild committee"
+   },
+   {
+    "min": 8,
+    "max": 9,
+    "text": "Free settlement, governed by council of master confectioners"
+   },
+   {
+    "min": 10,
+    "max": 11,
+    "text": "House of an upper-crust noble"
+   },
+   {
+    "min": 12,
+    "max": 12,
+    "text": "Seat of ducal power"
+   }
+  ],
+  "inhabitants": [
+   "Sculpt elaborate patterns into their icing",
+   "Intoxicated by strange syrups",
+   "Wary of doing business with outsiders",
+   "Curious for news from afar",
+   "Believe a sticky handshake seals any bargain",
+   "Wear finely piped sugar lace",
+   "Brew fiery cinnamon cider",
+   "Cover their faces with sugar veils",
+   "Impoverished by a sour baron's tithes",
+   "Ceremonially trim their licorice braids",
+   "Brave hunters of ant-lions",
+   "All descended from one great baker",
+   "Bake delicious berry tarts",
+   "Escapees from a Baker's display case, naive about the world",
+   "Spend their days lazing in warm syrup baths",
+   "Long-standing feud with another settlement",
+   "Dig grand tunnels, overseen by the guild",
+   "Wear large, wide-brimmed sugar hats",
+   "Have laws and customs confusing to outsiders",
+   "On friendly terms with a jam-drake"
+  ],
+  "features": [
+   "Maze of defensive, sticky-trap tunnels",
+   "Exceedingly comfortable, well-appointed inn",
+   "Shrine carved of dark chocolate",
+   "Meditative mint garden",
+   "Giant gumball, repurposed as a guildhall",
+   "Mess of closely packed biscuit shanties",
+   "Neat rows of hanging candy-cane houses",
+   "Ornate gate, guarded by marzipan statues",
+   "Secret Sour Moon cult temple",
+   "Lollipop-stick racing track",
+   "Storehouse, stocked with preserves",
+   "Hidden chocolate-river dock",
+   "Crumbling meringue palace, built by ancient confectioners",
+   "Scavenged Baker's machine, still working",
+   "Wafer bridge connects the settlement",
+   "Unnervingly tall, twisting pulled-sugar tower",
+   "Beautiful sugar-flower garden",
+   "Gumdrop-glider roost",
+   "Overgrown statue of an ancient hero",
+   "Spiral stairwell, leading deep underground"
+  ],
+  "industry": [
+   "Farmers, tending towering sugarcane",
+   "Cane cutters, with saws and harnesses",
+   "Rough and scarred fishers, with nets and rafts",
+   "Dark and musty cocoa-mushroom farm",
+   "Sprinkles drying on every flat surface",
+   "Pungent sour candy, cured for years",
+   "Gardens of rare mint. Drying racks are guarded",
+   "Hive of honeybees and their veiled keepers",
+   "Merchants and traders, often in need of guards",
+   "Rock-candy quarry crews",
+   "Sugar mill, driven by a large syrup wheel",
+   "Deep mine for rock sugar, amber or crystal",
+   "Spinners of cotton candy into fine cloth",
+   "Expert explorers of caves and tunnels",
+   "Kiln-fired sugar glass, shaped in cheerful colours",
+   "Licorice rope-works, draped in bright coils",
+   "Excellent school, rowdy pupils",
+   "Bustling, well-stocked market",
+   "Smelly pile of discarded Baker's scraps, carefully picked over",
+   "Beautiful furniture of carved and polished candy cane"
+  ],
+  "events": [
+   "Disaster, a melting heatwave and everyone packing to leave",
+   "Wedding, streets bedecked in sugar flowers",
+   "Preparing for grand seasonal feast",
+   "An illness has struck",
+   "Storehouse has been plundered by ants",
+   "Market day, farmers flock to the settlement",
+   "Residents are at each other's throats",
+   "Warband forming to defeat a beast",
+   "Several children have gone missing",
+   "Baron makes a frivolous demand",
+   "Travelling theatre troupe arrives",
+   "Funeral, streets thick with burnt-sugar smoke",
+   "Conman whips up an irrational scheme",
+   "Pet gummy bear gone mad, attacking passers-by",
+   "Faerie emissary with an impossible request",
+   "Strangely quick-growing plant nearby",
+   "Valuable heirloom has been stolen",
+   "Sour baron demands a heavy tithe",
+   "Coming of age ceremony for the young",
+   "Wizard tower arrives on a giant snail's back"
+  ],
+  "nameStart": [
+   [
+    "Sugar",
+    "Candy",
+    "Honey",
+    "Gumdrop",
+    "Mint",
+    "Cocoa",
+    "Jelly",
+    "Toffee",
+    "Taffy",
+    "Fudge",
+    "Caramel",
+    "Berry"
+   ],
+   [
+    "Lolly",
+    "Cherry",
+    "Syrup",
+    "Butter",
+    "Sherbet",
+    "Maple",
+    "Nougat",
+    "Peanut",
+    "Cream",
+    "Rock",
+    "Spice",
+    "Treacle"
+   ]
+  ],
+  "nameEnd": [
+   [
+    "ville",
+    "vale",
+    "dale",
+    "wick",
+    "ton",
+    "ford",
+    "shire",
+    "haven",
+    "hollow",
+    "mont",
+    "burgh",
+    "field"
+   ],
+   [
+    "bridge",
+    "swirl",
+    "crunch",
+    "glaze",
+    "pop",
+    "hill",
+    "spire",
+    "stick",
+    "twist",
+    "bite",
+    "brook",
+    "drop"
+   ]
+  ],
+  "tavernA": [
+   "Sticky",
+   "Sugared",
+   "Crimson",
+   "Frosted",
+   "Gilded",
+   "Lazy",
+   "Jolly",
+   "Crumbly",
+   "Bitter",
+   "Twirling",
+   "Wobbly",
+   "Syrupy"
+  ],
+  "tavernB": [
+   "Gumdrop",
+   "Lollipop",
+   "Wafer",
+   "Biscuit",
+   "Truffle",
+   "Cane",
+   "Pretzel",
+   "Bonbon",
+   "Marshmallow",
+   "Jawbreaker",
+   "Dumpling",
+   "Spoon"
+  ],
+  "meals": [
+   "Hot cocoa with a marshmallow raft",
+   "Caramel-glazed roasted nuts",
+   "Peppermint broth",
+   "Gingerbread dumplings",
+   "Sticky toffee pudding",
+   "Fried dough with sprinkles",
+   "Cinnamon-roasted apple",
+   "Honeycomb with soft cheese",
+   "Candied-ginger stew",
+   "Jam-filled pastries",
+   "Buttered crumpets with syrup",
+   "Crispy caramel-crusted sausage"
+  ]
+ }
+}
