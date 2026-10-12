@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hexcrawl Generator</title>
+<link rel="icon" href="data:,">
 <style>
 :root{--ink:#1c1e1b;--paper:#e9ebe6;--card:#f6f7f3;--line:#b9bdb2;--mute:#5d6258}
 *{box-sizing:border-box}
@@ -69,6 +70,17 @@ body.tab-tables .mapctl{display:none!important}
 .tbl td:first-child,.tbl td.nw{width:1%;white-space:nowrap;font-weight:700}
 @media print{.tabs{display:none}}
 #tbbar{margin-bottom:8px}#tbsel{max-width:70vw}#tbmsg{font-size:13px;color:var(--mute)}
+.hist{position:sticky;top:0;z-index:5;background:var(--card);border:1.5px solid var(--ink);padding:6px 12px;margin:0 0 14px;box-shadow:0 3px 8px rgba(0,0,0,.12)}
+.hist[hidden]{display:none}
+.hist header{display:flex;justify-content:space-between;align-items:center}
+.hist button{padding:1px 9px;font-size:13px}
+.hist ol{margin:4px 0 0;padding-left:20px;font-size:13.5px;max-height:7.5em;overflow:auto}
+.hist li b{font-weight:700}.hist li span{color:var(--mute)}
+.tbl h3{align-items:center}.tbl h3 .hr{display:flex;gap:8px;align-items:center}
+.rollbtn{padding:2px 12px;font-size:13px}
+.tbl .res{margin:2px 0 6px;font-size:14px;padding:4px 8px;background:#fff3c4;border-left:4px solid #d4a017}.tbl .res:empty{display:none}
+.tbl tr.hit td,.tbl td.hit{background:#ffe08a!important;font-weight:700}
+@media print{.hist,.rollbtn,.res{display:none}}
 </style>
 </head>
 <body>
@@ -89,6 +101,7 @@ body.tab-tables .mapctl{display:none!important}
     <button class="mapctl" id="gen">Generate new map</button>
     <label class="mapctl">Seed <input id="seed" type="text" placeholder="seed code" aria-label="Seed code"></label>
     <button class="alt" id="pdf">Download PDF</button>
+    <button class="alt mapctl" id="png">Download PNG</button>
     <button class="alt" id="txt">Download text</button>
     <button class="alt mapctl" id="save">Save map</button>
     <label class="btn mapctl">Load map<input id="mapfile" type="file" hidden></label>
@@ -98,6 +111,8 @@ body.tab-tables .mapctl{display:none!important}
     <label>Grid size <select id="grid"></select></label>
     <label>Settlements, min <input id="smin" type="range" min="1" max="19" value="2"> <output id="vmin"></output></label>
     <label>max <input id="smax" type="range" min="1" max="19" value="4"> <output id="vmax"></output></label>
+    <label title="Neighbouring hexes tend to share a biome, so the map forms regions"><input id="cluster" type="checkbox"> Cluster biomes</label>
+    <label title="Settlements favour biomes and neighbours the tables file weights highly"><input id="terrain" type="checkbox"> Terrain-aware settlements</label>
   </div>
 </header>
 <main>
@@ -111,7 +126,7 @@ body.tab-tables .mapctl{display:none!important}
   <div id="tablesview" hidden></div>
 </main>
 <div id="ctx" role="menu" hidden></div>
-<script id="default-tables" type="application/json">{"title": "Mouse Hexcrawl", "map": {"radius": 2, "centre": 1}, "hexType": [{"min": 1, "max": 2, "name": "Countryside", "key": "countryside", "color": "#cfc27a"}, {"min": 3, "max": 4, "name": "Forest", "key": "forest", "color": "#76a06f"}, {"min": 5, "max": 5, "name": "River", "key": "river", "color": "#80aac6"}, {"min": 6, "max": 6, "name": "Human town", "key": "human_town", "color": "#ada4ac"}], "legend": {"centre": {"label": "Centre settlement", "color": "#d9985a"}, "settlement": "House icon: settlement"}, "landmarks": {"countryside": ["Anthill", "Beech, lightning split", "Bone-white tree", "Cow skeleton", "Field of flowers", "Field of wheat", "Hedge row", "Hollow tree stump", "Huge flat rock", "Lily-lined pond", "Massive fallen tree", "Old craggy oak", "Old farmhouse", "Quiet dirt road", "Rabbit warren", "Sparrow nest", "Stand of pine trees", "Steep hill", "Stone wall", "Tangle of fig roots"], "forest": ["Abandoned shack", "Bright clearing", "Cascading waterfalls", "Cliff face", "Cold, fresh spring", "Dense underbrush", "Face in ancient oak", "Fox hole", "Grove of ferns", "Hollow tree stump", "Huge pine tree", "Human walking track", "Human-made clearing", "Meandering brook", "Overgrown ruins", "Ring of stones", "Rocky outcropping", "Sunken hollow", "Tangle of roots", "Termite-riddled tree"], "river": ["Canal lock", "Converging tributaries", "Draping willow", "Eroded riverbank", "Fallen tree crossing", "High waterfall", "Huge boulder", "Huge concrete dam", "Isolated island", "Muddy flats", "Rocky rapids", "Row of dead trees", "Silty dam", "Stepping-stones", "Stone bridge", "Stony shallows", "Submerged trash", "Sunken barge", "Twisted roots", "Wooden bridge"], "human_town": ["Abandoned car", "Apartment balcony", "Blackberry hedge", "Busy road", "Drainpipe outlet", "Dumped furniture", "Greenhouse", "Mouse ruins", "Newly built house", "Overgrown garden bed", "Pigeon nest", "Pile of trash", "Rocky riverbed", "Shopping trolley", "Stagnant pond", "Steel bridge", "Trash-filled skip", "Tree-lined footpath", "Underground car park", "Woodshed"]}, "details": [{"settlement": true, "text": "Mouse settlement"}, {"entries": [["Small mouse farm", "What threatens their crops?"], ["Noblemouse's castle", "What does it defend against?"], ["Friendly mouse roadhouse", "What is in the basement?"], ["Mouse hunting lodge", "What is their quarry?"], ["Mining outpost", "What have they uncovered?"], ["Mouse hermit's hut", "Why do they shun society?"], ["Natural caves", "What is living here?"], ["Hedge-knight's tower", "What is their quest?"]]}, {"entries": [["Songbird's nest", "What sad tales do they sing of?"], ["Tribe of huge, peaceful beasts", "What do they fear?"], ["Rat bandit hideout", "Who do they prey on?"], ["Crow coven's spire", "What spells do they caw?"], ["Hive of insects", "What do they hunger for?"], ["Den of a great predator", "What treasure do they guard?"], ["Frog fortress", "What lies hidden in the dungeon?"], ["Mouse wizard's tower", "What spell is almost finished?"]]}, {"entries": [["Dangerous natural feature", "How can it be avoided?"], ["Lonely shrine", "Who maintains it? What do they worship?"], ["Noblemouse's manor", "Why was it abandoned?"], ["Abandoned settlement", "What clues did they leave?"], ["Ruined watchtower", "What did it guard from?"], ["Natural feature, peaceful and safe", "Who gathers here?"], ["Natural feature, out of place", "How did it form?"], ["Rickety bridge", "What does it cross over?"]]}, {"entries": [["Ancient bat cult temple", "What was summoned?"], ["Faerie ring", "What business do the faeries have here?"], ["Beetle graveyard", "What do the ghosts want?"], ["Mouse witch's hut", "What does she brew?"], ["Small, deep pond", "What is at the bottom?"], ["Out-of-season plantlife", "Why are they growing here?"], ["Owl sorcerer's nest", "What are they searching for?"], ["Strange magical anomaly", "Why is it spreading?"]]}, {"entries": [["Crashed Lilliputian airship", "How can it be repaired?"], ["Humming stone", "What happens when touched?"], ["Completely lifeless", "What disaster has occurred?"], ["Regularly used by humans", "What do they do here?"], ["Damaged by humans", "What have they done?"], ["Ancient ruins of a past civilisation", "Who built this?"], ["Cat lord's hunting ground", "What trophies remain?"], ["Repurposed human construction", "How is it used?"]]}], "hooks": ["Searching for a lost family member", "Investigating on orders of a noblemouse", "Mouse wizard requires a certain spell component", "Site is lair of a creature harassing a settlement", "Following an inherited treasure map", "Seeking shelter from a terrible storm"], "settlement": {"size": [{"name": "Farm/manor", "note": "1-3 families", "features": 1, "industry": 1, "tavern": false}, {"name": "Crossroads", "note": "3-5 families", "features": 1, "industry": 1, "tavern": false}, {"name": "Hamlet", "note": "50-150 mice", "features": 1, "industry": 1, "tavern": true}, {"name": "Village", "note": "150-300 mice", "features": 1, "industry": 1, "tavern": true}, {"name": "Town", "note": "300-1000 mice", "features": 1, "industry": 2, "tavern": true}, {"name": "City", "note": "1000+ mice", "features": 2, "industry": 2, "tavern": true}], "governance": [{"min": 2, "max": 3, "text": "Guided by village elders"}, {"min": 4, "max": 5, "text": "Administered by a knight or lower-caste lord"}, {"min": 6, "max": 7, "text": "Organised by a guild committee"}, {"min": 8, "max": 9, "text": "Free settlement, governed by council of burghermice"}, {"min": 10, "max": 11, "text": "House of an upper caste noblemouse"}, {"min": 12, "max": 12, "text": "Seat of baronial power"}], "inhabitants": ["Shave elaborate patterns in their fur", "Intoxicated by strange plants", "Wary of doing business with outsiders", "Curious for news from afar", "Believe grooming their fur is bad luck", "Wear finely embroidered clothes", "Brew honey-mead, flavoured with pungent herbs", "Cover their faces with long hoods", "Impoverished by a cat lord's tithes", "Ceremonially crop their tails", "Brave hunters of large beasts", "All descended from single matriarch", "Bake delicious berry pies", "Lab escapees, naive about the world", "Spend their days lazing by a stream", "Long-standing blood feud with another settlement", "Dig grand tunnels, overseen by the guild", "Wear large, wide-brimmed hats", "Have laws and customs confusing to outsiders", "On friendly terms with a predator"], "features": ["Maze of defensive, trap-filled tunnels", "Exceedingly comfortable, well-appointed inn", "Shrine carved of black wood", "Meditative mushroom garden", "Cow skull, repurposed as a guildhouse", "Mess of closely packed shanties", "Neat rows of hanging wooden houses", "Ornate gate, guarded by statues", "Secret bat cult temple", "Beetle racing rink", "Storehouse, stocked with preserves", "Hidden riverboat dock", "Crumbling marble palace, built by ancient mice", "Scavenged human machine, working", "Wooden bridge connects the settlement", "Unnervingly tall, twisting tower", "Beautiful flower garden", "Pigeon rider's roost", "Overgrown statue of an ancient hero", "Spiral stairwell, leading deep underground"], "industry": ["Farmers, tending to towering crops", "Woodcutters, with saws and harnesses", "Rough and scarred fishermice, with nets and rafts", "Dark and musty mushroom farm", "Grains drying on every flat surface", "Pungent cheese, cured for years", "Gardens of rare herbs. Drying racks are guarded", "Hive of bees and their veiled keepers", "Merchants and traders, often in need of guards", "Stonemasons, working a nearby quarry", "Flour mill, driven by a large water-wheel", "Deep mine for iron, silver or tin", "Keep silkworms and weave fine cloth", "Expert explorers of caves and tunnels", "Kiln-fired pottery, glazed in cheerful colours", "Wool mill, draped in bright cloth", "Excellent school, rowdy pupils", "Bustling, well-stocked market", "Smelly scavenged trash pile, carefully picked over", "Beautiful furniture of carved and polished wood"], "events": ["Disaster, everyone packing to leave", "Wedding, streets bedecked in flowers", "Preparing for grand seasonal feast", "An illness has struck", "Storehouse has been plundered by insects", "Market day, farmers flock to the settlement", "Mice are at each other's throats", "Warband forming to defeat a beast", "Several children have gone missing", "Noblemouse makes a frivolous demand", "Traveling theatre troupe arrives", "Funeral, streets thick with smoke", "Conman whips up an irrational scheme", "Pet beetle gone mad, attacking mice", "Faerie emissary with an impossible request", "Strangely quick-growing plant nearby", "Valuable heirloom has been stolen", "Cat lord demands a heavy tithe", "Coming of age ceremony for the young mice", "Wizard tower arrives on tortoise-back"], "nameStart": [["Oaks", "Berry", "Willow", "Stump", "Pine", "Moon", "Green", "Black", "Stone", "Hill", "Fig", "Apple"], ["Swamp", "Owl", "Fox", "Acorn", "Copper", "Robber", "Colby", "Drain", "Rose", "Thistle", "Friend", "Trunk"]], "nameEnd": [["thorpe", "ville", "mill", "dale", "grove", "town", "vale", "seed", "ashe", "bush", "stitch", "shine"], ["stand", "hill", "tower", "farm", "bridge", "gate", "creek", "pond", "nest", "ford", "grave", "burn"]], "tavernA": ["White", "Green", "Black", "Red", "Silver", "Crooked", "Friendly", "Hidden", "Wiley", "Glass", "Thorny", "Broken"], "tavernB": ["Beetle", "Fox", "Wedge", "Kernel", "Rat", "Cheese", "Eagle", "Worm", "Bee", "Lantern", "Rose", "Knight"], "meals": ["Spiced baked carrot", "Boiled worm broth", "Blackberry pie", "Pungent aged cheese", "Barley porridge", "Thick river-fish steak", "Baked apple", "Fried, crumbed insect legs", "Fresh buttered bread", "Scavenged candy", "Honey-roasted seeds", "Mushroom stew"]}}</script>
+<script id="default-tables" type="application/json">{"title": "Mouse Hexcrawl", "map": {"radius": 2, "centre": 1}, "hexType": [{"min": 1, "max": 2, "name": "Countryside", "key": "countryside", "color": "#cfc27a", "settlementWeight": 1.4}, {"min": 3, "max": 4, "name": "Forest", "key": "forest", "color": "#76a06f", "settlementWeight": 1.0}, {"min": 5, "max": 5, "name": "River", "key": "river", "color": "#80aac6", "settlementWeight": 1.2}, {"min": 6, "max": 6, "name": "Human town", "key": "human_town", "color": "#ada4ac", "settlementWeight": 0.6}], "legend": {"centre": {"label": "Centre settlement", "color": "#d9985a"}, "settlement": "House icon: settlement"}, "generation": {"clusterStrength": 3, "settlementNear": {"river": 1.5}}, "landmarks": {"countryside": ["Anthill", "Beech, lightning split", "Bone-white tree", "Cow skeleton", "Field of flowers", "Field of wheat", "Hedge row", "Hollow tree stump", "Huge flat rock", "Lily-lined pond", "Massive fallen tree", "Old craggy oak", "Old farmhouse", "Quiet dirt road", "Rabbit warren", "Sparrow nest", "Stand of pine trees", "Steep hill", "Stone wall", "Tangle of fig roots"], "forest": ["Abandoned shack", "Bright clearing", "Cascading waterfalls", "Cliff face", "Cold, fresh spring", "Dense underbrush", "Face in ancient oak", "Fox hole", "Grove of ferns", "Hollow tree stump", "Huge pine tree", "Human walking track", "Human-made clearing", "Meandering brook", "Overgrown ruins", "Ring of stones", "Rocky outcropping", "Sunken hollow", "Tangle of roots", "Termite-riddled tree"], "river": ["Canal lock", "Converging tributaries", "Draping willow", "Eroded riverbank", "Fallen tree crossing", "High waterfall", "Huge boulder", "Huge concrete dam", "Isolated island", "Muddy flats", "Rocky rapids", "Row of dead trees", "Silty dam", "Stepping-stones", "Stone bridge", "Stony shallows", "Submerged trash", "Sunken barge", "Twisted roots", "Wooden bridge"], "human_town": ["Abandoned car", "Apartment balcony", "Blackberry hedge", "Busy road", "Drainpipe outlet", "Dumped furniture", "Greenhouse", "Mouse ruins", "Newly built house", "Overgrown garden bed", "Pigeon nest", "Pile of trash", "Rocky riverbed", "Shopping trolley", "Stagnant pond", "Steel bridge", "Trash-filled skip", "Tree-lined footpath", "Underground car park", "Woodshed"]}, "details": [{"settlement": true, "text": "Mouse settlement"}, {"entries": [["Small mouse farm", "What threatens their crops?"], ["Noblemouse's castle", "What does it defend against?"], ["Friendly mouse roadhouse", "What is in the basement?"], ["Mouse hunting lodge", "What is their quarry?"], ["Mining outpost", "What have they uncovered?"], ["Mouse hermit's hut", "Why do they shun society?"], ["Natural caves", "What is living here?"], ["Hedge-knight's tower", "What is their quest?"]]}, {"entries": [["Songbird's nest", "What sad tales do they sing of?"], ["Tribe of huge, peaceful beasts", "What do they fear?"], ["Rat bandit hideout", "Who do they prey on?"], ["Crow coven's spire", "What spells do they caw?"], ["Hive of insects", "What do they hunger for?"], ["Den of a great predator", "What treasure do they guard?"], ["Frog fortress", "What lies hidden in the dungeon?"], ["Mouse wizard's tower", "What spell is almost finished?"]]}, {"entries": [["Dangerous natural feature", "How can it be avoided?"], ["Lonely shrine", "Who maintains it? What do they worship?"], ["Noblemouse's manor", "Why was it abandoned?"], ["Abandoned settlement", "What clues did they leave?"], ["Ruined watchtower", "What did it guard from?"], ["Natural feature, peaceful and safe", "Who gathers here?"], ["Natural feature, out of place", "How did it form?"], ["Rickety bridge", "What does it cross over?"]]}, {"entries": [["Ancient bat cult temple", "What was summoned?"], ["Faerie ring", "What business do the faeries have here?"], ["Beetle graveyard", "What do the ghosts want?"], ["Mouse witch's hut", "What does she brew?"], ["Small, deep pond", "What is at the bottom?"], ["Out-of-season plantlife", "Why are they growing here?"], ["Owl sorcerer's nest", "What are they searching for?"], ["Strange magical anomaly", "Why is it spreading?"]]}, {"entries": [["Crashed Lilliputian airship", "How can it be repaired?"], ["Humming stone", "What happens when touched?"], ["Completely lifeless", "What disaster has occurred?"], ["Regularly used by humans", "What do they do here?"], ["Damaged by humans", "What have they done?"], ["Ancient ruins of a past civilisation", "Who built this?"], ["Cat lord's hunting ground", "What trophies remain?"], ["Repurposed human construction", "How is it used?"]]}], "hooks": ["Searching for a lost family member", "Investigating on orders of a noblemouse", "Mouse wizard requires a certain spell component", "Site is lair of a creature harassing a settlement", "Following an inherited treasure map", "Seeking shelter from a terrible storm"], "settlement": {"size": [{"name": "Farm/manor", "note": "1-3 families", "features": 1, "industry": 1, "tavern": false}, {"name": "Crossroads", "note": "3-5 families", "features": 1, "industry": 1, "tavern": false}, {"name": "Hamlet", "note": "50-150 mice", "features": 1, "industry": 1, "tavern": true}, {"name": "Village", "note": "150-300 mice", "features": 1, "industry": 1, "tavern": true}, {"name": "Town", "note": "300-1000 mice", "features": 1, "industry": 2, "tavern": true}, {"name": "City", "note": "1000+ mice", "features": 2, "industry": 2, "tavern": true}], "governance": [{"min": 2, "max": 3, "text": "Guided by village elders"}, {"min": 4, "max": 5, "text": "Administered by a knight or lower-caste lord"}, {"min": 6, "max": 7, "text": "Organised by a guild committee"}, {"min": 8, "max": 9, "text": "Free settlement, governed by council of burghermice"}, {"min": 10, "max": 11, "text": "House of an upper caste noblemouse"}, {"min": 12, "max": 12, "text": "Seat of baronial power"}], "inhabitants": ["Shave elaborate patterns in their fur", "Intoxicated by strange plants", "Wary of doing business with outsiders", "Curious for news from afar", "Believe grooming their fur is bad luck", "Wear finely embroidered clothes", "Brew honey-mead, flavoured with pungent herbs", "Cover their faces with long hoods", "Impoverished by a cat lord's tithes", "Ceremonially crop their tails", "Brave hunters of large beasts", "All descended from single matriarch", "Bake delicious berry pies", "Lab escapees, naive about the world", "Spend their days lazing by a stream", "Long-standing blood feud with another settlement", "Dig grand tunnels, overseen by the guild", "Wear large, wide-brimmed hats", "Have laws and customs confusing to outsiders", "On friendly terms with a predator"], "features": ["Maze of defensive, trap-filled tunnels", "Exceedingly comfortable, well-appointed inn", "Shrine carved of black wood", "Meditative mushroom garden", "Cow skull, repurposed as a guildhouse", "Mess of closely packed shanties", "Neat rows of hanging wooden houses", "Ornate gate, guarded by statues", "Secret bat cult temple", "Beetle racing rink", "Storehouse, stocked with preserves", "Hidden riverboat dock", "Crumbling marble palace, built by ancient mice", "Scavenged human machine, working", "Wooden bridge connects the settlement", "Unnervingly tall, twisting tower", "Beautiful flower garden", "Pigeon rider's roost", "Overgrown statue of an ancient hero", "Spiral stairwell, leading deep underground"], "industry": ["Farmers, tending to towering crops", "Woodcutters, with saws and harnesses", "Rough and scarred fishermice, with nets and rafts", "Dark and musty mushroom farm", "Grains drying on every flat surface", "Pungent cheese, cured for years", "Gardens of rare herbs. Drying racks are guarded", "Hive of bees and their veiled keepers", "Merchants and traders, often in need of guards", "Stonemasons, working a nearby quarry", "Flour mill, driven by a large water-wheel", "Deep mine for iron, silver or tin", "Keep silkworms and weave fine cloth", "Expert explorers of caves and tunnels", "Kiln-fired pottery, glazed in cheerful colours", "Wool mill, draped in bright cloth", "Excellent school, rowdy pupils", "Bustling, well-stocked market", "Smelly scavenged trash pile, carefully picked over", "Beautiful furniture of carved and polished wood"], "events": ["Disaster, everyone packing to leave", "Wedding, streets bedecked in flowers", "Preparing for grand seasonal feast", "An illness has struck", "Storehouse has been plundered by insects", "Market day, farmers flock to the settlement", "Mice are at each other's throats", "Warband forming to defeat a beast", "Several children have gone missing", "Noblemouse makes a frivolous demand", "Traveling theatre troupe arrives", "Funeral, streets thick with smoke", "Conman whips up an irrational scheme", "Pet beetle gone mad, attacking mice", "Faerie emissary with an impossible request", "Strangely quick-growing plant nearby", "Valuable heirloom has been stolen", "Cat lord demands a heavy tithe", "Coming of age ceremony for the young mice", "Wizard tower arrives on tortoise-back"], "nameStart": [["Oaks", "Berry", "Willow", "Stump", "Pine", "Moon", "Green", "Black", "Stone", "Hill", "Fig", "Apple"], ["Swamp", "Owl", "Fox", "Acorn", "Copper", "Robber", "Colby", "Drain", "Rose", "Thistle", "Friend", "Trunk"]], "nameEnd": [["thorpe", "ville", "mill", "dale", "grove", "town", "vale", "seed", "ashe", "bush", "stitch", "shine"], ["stand", "hill", "tower", "farm", "bridge", "gate", "creek", "pond", "nest", "ford", "grave", "burn"]], "tavernA": ["White", "Green", "Black", "Red", "Silver", "Crooked", "Friendly", "Hidden", "Wiley", "Glass", "Thorny", "Broken"], "tavernB": ["Beetle", "Fox", "Wedge", "Kernel", "Rat", "Cheese", "Eagle", "Worm", "Bee", "Lantern", "Rose", "Knight"], "meals": ["Spiced baked carrot", "Boiled worm broth", "Blackberry pie", "Pungent aged cheese", "Barley porridge", "Thick river-fish steak", "Baked apple", "Fried, crumbed insect legs", "Fresh buttered bread", "Scavenged candy", "Honey-roasted seeds", "Mushroom stew"]}}</script>
 <script>
 const $=s=>document.querySelector(s);
 let rng=Math.random;
@@ -148,29 +163,72 @@ function buildGrid(R){
   return g;
 }
 const hexCount=R=>3*R*(R+1)+1;
-function genHex(n,isCentre,isSet){
+const GEN=()=>T.generation||{};
+const clStrength=()=>{const v=GEN().clusterStrength;return typeof v==='number'&&v>=0?v:3};
+function nbMap(grid){
+  const pos=new Map(grid.map(g=>[g.q+','+g.r,g.n])),nb=new Map();
+  grid.forEach(g=>nb.set(g.n,DIRS.map(([a,b])=>pos.get((g.q+a)+','+(g.r+b))).filter(Boolean)));
+  return nb;
+}
+function pickBiome(neighKeys,strength){
+  const w=T.hexType.map(e=>(e.max-e.min+1)*(1+strength*neighKeys.filter(k=>k===e.key).length));
+  let x=rng()*w.reduce((a,b)=>a+b,0);
+  for(let i=0;i<w.length;i++){x-=w[i];if(x<0)return T.hexType[i]}
+  return T.hexType[w.length-1];
+}
+function assignTypes(grid,nb,keep,centreN,strength){
+  const ty=new Map();
+  keep.forEach((h,n)=>{const e=T.hexType.find(x=>x.key===h.key);if(e)ty.set(n,e)});
+  const order=grid.map(g=>g.n).filter(n=>!keep.has(n)&&n!==centreN);
+  for(let i=order.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[order[i],order[j]]=[order[j],order[i]]}
+  order.forEach(n=>{const ks=nb.get(n).map(m=>ty.get(m)&&ty.get(m).key).filter(Boolean);ty.set(n,pickBiome(ks,strength))});
+  return ty;
+}
+function placeSettlements(nb,ty,cand,count){
+  const near=GEN().settlementNear||{};
+  const wt=n=>{
+    const e=ty.get(n);let v=e&&typeof e.settlementWeight==='number'?e.settlementWeight:1;
+    nb.get(n).forEach(m=>{const k=ty.get(m)&&ty.get(m).key;if(k&&typeof near[k]==='number')v*=near[k]});
+    return Math.max(0,v);
+  };
+  const pool=cand.map(n=>({n,w:wt(n)})),out=new Set();
+  for(let i=0;i<count&&pool.length;i++){
+    const tot=pool.reduce((a,p)=>a+p.w,0);let idx=0;
+    if(tot<=0)idx=Math.floor(rng()*pool.length);
+    else{let x=rng()*tot;for(;idx<pool.length-1;idx++){x-=pool[idx].w;if(x<0)break}}
+    out.add(pool[idx].n);pool.splice(idx,1);
+  }
+  return out;
+}
+function genHex(n,isCentre,isSet,forced){
   const h={n};
   if(isCentre){h.type='Friendly settlement';h.key='centre';h.set=genSettlement();return h;}
-  const ty=ranged(T.hexType,r(dmax(T.hexType)));h.type=ty.name;h.key=ty.key;
+  const ty=forced||ranged(T.hexType,r(dmax(T.hexType)));h.type=ty.name;h.key=ty.key;
   h.landmark=pick(T.landmarks[ty.key]);
   const d=(isSet&&T.details.find(x=>x.settlement))||pick(T.details.filter(x=>!x.settlement));
   if(d.settlement){h.detail=d.text;h.set=genSettlement();}else h.detail=pick(d.entries);
   return h;
 }
 function generate(){
-  const sv=$('#seed').value.trim(),m=/^(\d)\.(\d+)\.(\d+)\.([01])\.(\w+)$/.exec(sv);
-  if(sv&&!m){alert('Seed codes look like 2.2.4.1.k3j9x1');return}
-  if(m){$('#grid').value=m[1];setRanges(+m[1],false);$('#smin').value=m[2];$('#smax').value=m[3];showRanges();$('#centre').checked=m[4]==='1'}
-  const tok=m?m[5]:Math.random().toString(36).slice(2,8);
+  const sv=$('#seed').value.trim(),m=/^(\d)\.(\d+)\.(\d+)\.([01])(?:\.([01])([01]))?\.(\w+)$/.exec(sv);
+  if(sv&&!m){alert('Seed codes look like 2.2.4.1.00.k3j9x1');return}
+  if(m){$('#grid').value=m[1];setRanges(+m[1],false);$('#smin').value=m[2];$('#smax').value=m[3];showRanges();$('#centre').checked=m[4]==='1';$('#cluster').checked=m[5]==='1';$('#terrain').checked=m[6]==='1'}
+  const tok=m?m[7]:Math.random().toString(36).slice(2,8);
   rng=mulberry(tok.split('').reduce((a,c)=>(a*31+c.charCodeAt(0))|0,7));
-  const R=+$('#grid').value,grid=buildGrid(R),c=T.map.centre||1,cen=$('#centre').checked;
+  const R=+$('#grid').value,grid=buildGrid(R),c=T.map.centre||1,cen=$('#centre').checked,cl=$('#cluster').checked,te=$('#terrain').checked;
   const lo=+$('#smin').value,hi=+$('#smax').value,want=lo+Math.floor(rng()*(hi-lo+1));
   const keep=new Map((state&&state.grid.length===grid.length?state.hexes:[]).filter(h=>h.locked).map(h=>[h.n,h]));
   const free=grid.map(g=>g.n).filter(n=>!keep.has(n)),cenFree=cen&&free.includes(c);
   const have=[...keep.values()].filter(h=>h.set).length+(cenFree?1:0);
-  const sett=new Set(pickN(free.filter(n=>!(cenFree&&n===c)),Math.max(0,want-have)));
-  state={grid,hook:pick(T.hooks),hexes:grid.map(g=>keep.get(g.n)||genHex(g.n,cenFree&&g.n===c,sett.has(g.n)))};
-  $('#seed').value=keep.size?'':`${R}.${lo}.${hi}.${cen?1:0}.${tok}`;
+  const cand=free.filter(n=>!(cenFree&&n===c)),need=Math.max(0,want-have);
+  let types=null,sett;
+  if(cl||te){
+    const nb=nbMap(grid);
+    types=assignTypes(grid,nb,keep,cenFree?c:-1,cl?clStrength():0);
+    sett=te?placeSettlements(nb,types,cand,need):new Set(pickN(cand,need));
+  }else sett=new Set(pickN(cand,need));
+  state={grid,hook:pick(T.hooks),hexes:grid.map(g=>keep.get(g.n)||genHex(g.n,cenFree&&g.n===c,sett.has(g.n),types&&types.get(g.n)))};
+  $('#seed').value=keep.size?'':`${R}.${lo}.${hi}.${cen?1:0}.${cl?1:0}${te?1:0}.${tok}`;
   $('#title').textContent=T.title||'Hexcrawl Generator';
   $('#src').textContent='Tables: '+srcName;
   render();
@@ -179,7 +237,12 @@ const hx=n=>state.hexes.find(h=>h.n===n);
 function reroll(n){
   const i=state.hexes.findIndex(h=>h.n===n),o=state.hexes[i];
   rng=Math.random;
-  const h=genHex(n,o.key==='centre',!!o.set);h.locked=o.locked;state.hexes[i]=h;
+  let forced;
+  if($('#cluster').checked&&o.key!=='centre'){
+    const nb=nbMap(state.grid).get(n),ks=nb.map(m=>hx(m).key).filter(k=>k!=='centre');
+    forced=pickBiome(ks,clStrength());
+  }
+  const h=genHex(n,o.key==='centre',!!o.set,forced);h.locked=o.locked;state.hexes[i]=h;
   $('#h'+n).outerHTML=card(h);drawMap();$('#seed').value='';
 }
 const legendItems=()=>[...T.hexType.map(e=>[e.legend||e.name,e.key]),[((T.legend||{}).centre||{}).label||'Centre settlement','centre']];
@@ -187,17 +250,29 @@ const legendNote=()=>(T.legend&&T.legend.settlement)||'House icon: settlement';
 function legend(){
   $('#legend').innerHTML=legendItems().map(([n,k])=>`<span><i style="background:${COL[k]||'#ddd'}"></i>${esc(n)}</span>`).join('')+`<span>${esc(legendNote())}</span>`;
 }
-function svgLabel(h,x,y){
+function labelLines(h){
   const w=[];let l='';
   for(const t of (h.set?h.set.name.main:(h.landmark||'')).split(' ')){const c=l?l+' '+t:t;if(l&&c.length>11){w.push(l);l=t}else l=c}
   w.push(l);
   const L=w.slice(0,2).map(s=>s.length>11?s.slice(0,10)+'…':s);if(w.length>2)L[1]=L[1].replace(/.$/,'…');
-  return L.map((s,i)=>`<text class="t" x="${x}" y="${y+14+i*10}">${esc(s)}</text>`).join('');
+  return L;
+}
+function svgLabel(h,x,y){return labelLines(h).map((s,i)=>`<text class="t" x="${x}" y="${y+14+i*10}">${esc(s)}</text>`).join('')}
+function geom(){
+  const s=40,hh=Math.sqrt(3)*s,by={};state.hexes.forEach(x=>by[x.n]=x);
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  const cells=state.grid.map(({n,q,r})=>{
+    const x=1.5*q*s,y=hh*(r+q/2);
+    x0=Math.min(x0,x-s);x1=Math.max(x1,x+s);y0=Math.min(y0,y-hh/2);y1=Math.max(y1,y+hh/2);
+    const pts=[0,1,2,3,4,5].map(a=>[x+s*Math.cos(a*Math.PI/3),y+s*Math.sin(a*Math.PI/3)].map(v=>v.toFixed(1)).join(',')).join(' ');
+    return {n,x,y,pts,k:by[n]};
+  });
+  return {cells,x0,x1,y0,y1};
 }
 function validate(t){
   const need=(c,m)=>{if(!c)throw new Error(m)},arr=(a,m)=>need(Array.isArray(a)&&a.length,m+' must be a non-empty list');
   need(t&&t.map,'missing "map"');arr(t.hexType,'"hexType"');
-  t.hexType.forEach((e,i)=>{need(e.name&&e.key&&e.min>=1&&e.max>=e.min,`hexType[${i}] needs name, key, min and max`);need(!e.color||/^#[0-9a-f]{6}$/i.test(e.color),`hexType[${i}].color must look like #a1b2c3`);arr(t.landmarks&&t.landmarks[e.key],`"landmarks.${e.key}"`)});
+  t.hexType.forEach((e,i)=>{need(e.name&&e.key&&e.min>=1&&e.max>=e.min,`hexType[${i}] needs name, key, min and max`);need(!e.color||/^#[0-9a-f]{6}$/i.test(e.color),`hexType[${i}].color must look like #a1b2c3`);need(e.settlementWeight===undefined||(typeof e.settlementWeight==='number'&&e.settlementWeight>=0),`hexType[${i}].settlementWeight must be a number, 0 or more`);arr(t.landmarks&&t.landmarks[e.key],`"landmarks.${e.key}"`)});
   arr(t.details,'"details"');
   t.details.forEach((d,i)=>need(d.settlement||(Array.isArray(d.entries)&&d.entries.length),`details[${i}] needs "settlement": true or a non-empty "entries" list`));
   arr(t.hooks,'"hooks"');const S=t.settlement;need(S,'missing "settlement"');
@@ -205,6 +280,15 @@ function validate(t){
   S.size.forEach((e,i)=>need(e.name&&e.note,`settlement.size[${i}] needs name and note`));
   S.governance.forEach((e,i)=>need(e.text&&e.min>=1&&e.max>=e.min,`settlement.governance[${i}] needs text, min and max`));
   ['nameStart','nameEnd'].forEach(k=>{arr(S[k],`"settlement.${k}"`);S[k].forEach((c,i)=>arr(c,`"settlement.${k}[${i}]"`))});
+  const g=t.generation;
+  if(g!==undefined){
+    need(g&&typeof g==='object'&&!Array.isArray(g),'"generation" must be an object');
+    need(g.clusterStrength===undefined||(typeof g.clusterStrength==='number'&&g.clusterStrength>=0),'generation.clusterStrength must be a number, 0 or more');
+    if(g.settlementNear!==undefined){
+      need(g.settlementNear&&typeof g.settlementNear==='object'&&!Array.isArray(g.settlementNear),'generation.settlementNear must be an object');
+      Object.entries(g.settlementNear).forEach(([k,v])=>{need(t.hexType.some(e=>e.key===k),`generation.settlementNear.${k} is not a hexType key`);need(typeof v==='number'&&v>=0,`generation.settlementNear.${k} must be a number, 0 or more`)});
+    }
+  }
   const cc=t.legend&&t.legend.centre&&t.legend.centre.color;need(!cc||/^#[0-9a-f]{6}$/i.test(cc),'legend.centre.color must look like #a1b2c3');
   return t;
 }
@@ -232,22 +316,52 @@ ${s&&h.landmark?`<p class="lm">${esc(h.type)}: ${esc(h.landmark)}</p>`:''}${d?`<
 <div class="act"><label><input type="checkbox" ${h.locked?'checked':''} onchange="hx(${h.n}).locked=this.checked;drawMap()"> Lock</label><button class="alt" onclick="reroll(${h.n})">Reroll</button></div></article>`;
 }
 function drawMap(){
-  const s=40,h=Math.sqrt(3)*s,by={};state.hexes.forEach(x=>by[x.n]=x);
-  let o='',x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
-  state.grid.forEach(({n,q,r})=>{
-    const x=1.5*q*s,y=h*(r+q/2),k=by[n];
-    x0=Math.min(x0,x-s);x1=Math.max(x1,x+s);y0=Math.min(y0,y-h/2);y1=Math.max(y1,y+h/2);
-    const p=[0,1,2,3,4,5].map(a=>[x+s*Math.cos(a*Math.PI/3),y+s*Math.sin(a*Math.PI/3)].map(v=>v.toFixed(1)).join(',')).join(' ');
-    o+=`<g class="hx${k.locked?' lk':''}" data-n="${n}"><title>${esc(k.set?k.set.name.main:k.landmark||'')} (${esc(k.type)})</title><polygon points="${p}" fill="${COL[k.key]||'#ddd'}"/><text class="n" x="${x}" y="${y+2}">${n}</text>${svgLabel(k,x,y)}${k.set?`<path transform="translate(${x},${y-26})" d="M-6,0L0,-6L6,0V6H-6Z" fill="#1c1e1b"/>`:''}</g>`;
+  const g=geom();let o='';
+  g.cells.forEach(({n,x,y,pts,k})=>{
+    o+=`<g class="hx${k.locked?' lk':''}" data-n="${n}"><title>${esc(k.set?k.set.name.main:k.landmark||'')} (${esc(k.type)})</title><polygon points="${pts}" fill="${COL[k.key]||'#ddd'}"/><text class="n" x="${x}" y="${y+2}">${n}</text>${svgLabel(k,x,y)}${k.set?`<path transform="translate(${x},${y-26})" d="M-6,0L0,-6L6,0V6H-6Z" fill="#1c1e1b"/>`:''}</g>`;
   });
-  $('#map').setAttribute('viewBox',`${x0-4} ${y0-4} ${x1-x0+8} ${y1-y0+8}`);
-  $('#map').style.maxWidth=Math.min(1000,(x1-x0)*1.75)+'px';
+  $('#map').setAttribute('viewBox',`${g.x0-4} ${g.y0-4} ${g.x1-g.x0+8} ${g.y1-g.y0+8}`);
+  $('#map').style.maxWidth=Math.min(1000,(g.x1-g.x0)*1.75)+'px';
   $('#map').innerHTML=o;
+}
+function exportSVG(){
+  const g=geom(),pad=16,mapW=g.x1-g.x0,mapH=g.y1-g.y0,W=Math.max(mapW+2*pad,560),title=T.title||'Hexcrawl';
+  const items=[...legendItems().map(([n,k])=>({n,c:COL[k]||'#dddddd'})),{n:legendNote(),c:null}];
+  const iw=i=>(i.c?20:0)+i.n.length*6.6+22,rowsL=[[]];let cw=0;
+  items.forEach(i=>{if(cw+iw(i)>W-2*pad&&rowsL[rowsL.length-1].length){rowsL.push([]);cw=0}rowsL[rowsL.length-1].push(i);cw+=iw(i)});
+  const seed=$('#seed').value.trim(),top=54,H=top+mapH+22+rowsL.length*20+(seed?26:12)+pad;
+  const ox=(W-mapW)/2-g.x0,oy=top-g.y0,F='Georgia,serif',A='Helvetica,Arial,sans-serif';
+  let o=`<rect width="${W}" height="${H}" fill="#e9ebe6"/><text x="${W/2}" y="34" text-anchor="middle" font-family="${F}" font-size="26" font-weight="700" fill="#1c1e1b">${esc(title)}</text><g transform="translate(${ox.toFixed(1)},${oy.toFixed(1)})" stroke-linejoin="round">`;
+  g.cells.forEach(({n,x,y,pts,k})=>{
+    o+=`<polygon points="${pts}" fill="${COL[k.key]||'#ddd'}" stroke="#1c1e1b" stroke-width="1.5"/><text x="${x}" y="${y+2}" text-anchor="middle" font-family="${F}" font-size="20" font-weight="700" fill="#1c1e1b">${n}</text>`;
+    labelLines(k).forEach((s,i)=>{o+=`<text x="${x}" y="${y+14+i*10}" text-anchor="middle" font-family="${A}" font-size="8" fill="#1c1e1b">${esc(s)}</text>`});
+    if(k.set)o+=`<path transform="translate(${x},${y-26})" d="M-6,0L0,-6L6,0V6H-6Z" fill="#1c1e1b"/>`;
+  });
+  o+='</g>';
+  rowsL.forEach((row,ri)=>{
+    const tw=row.reduce((a,i)=>a+iw(i),0)-22;let x=(W-tw)/2;const y=top+mapH+24+ri*20;
+    row.forEach(i=>{
+      if(i.c){o+=`<rect x="${x.toFixed(1)}" y="${y-11}" width="14" height="14" fill="${i.c}" stroke="#1c1e1b" stroke-width="1.5"/>`;x+=20}
+      o+=`<text x="${x.toFixed(1)}" y="${y}" font-family="${A}" font-size="12" fill="#1c1e1b">${esc(i.n)}</text>`;x+=i.n.length*6.6+22;
+    });
+  });
+  if(seed)o+=`<text x="${W/2}" y="${H-pad+2}" text-anchor="middle" font-family="${A}" font-size="10" fill="#5d6258">Seed ${esc(seed)}</text>`;
+  return {svg:`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">${o}</svg>`,W,H};
+}
+function exportPNG(){
+  const {svg,W,H}=exportSVG(),sc=Math.max(2,Math.min(5,2200/W)),img=new Image();
+  img.onload=()=>{
+    const cv=document.createElement('canvas');cv.width=Math.round(W*sc);cv.height=Math.round(H*sc);
+    const c=cv.getContext('2d');c.fillStyle='#e9ebe6';c.fillRect(0,0,cv.width,cv.height);c.drawImage(img,0,0,cv.width,cv.height);
+    cv.toBlob(b=>{if(b)download(slug()+'-map.png',b,'image/png');else alert('The browser could not create the image.')},'image/png');
+  };
+  img.onerror=()=>alert('The browser could not draw the map image.');
+  img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
 function render(){
   closeMenu();
   $('#hook').innerHTML=`<b>Starting adventure hook:</b> ${esc(state.hook)}`;
-  drawMap();legend();$('#cards').innerHTML=state.hexes.map(card).join('');renderTables();
+  drawMap();legend();$('#cards').innerHTML=state.hexes.map(card).join('');
 }
 function hexInfo(h){
   const s=h.set,L=[];
@@ -321,7 +435,7 @@ async function loadMap(t,name){
     if(!e)throw new Error(`it was made with the tables file "${m.tables}", which isn't in your library. Add that file first`);
     await ensureJson(e);useEntry(e,false);
   }
-  $('#grid').value=R;setRanges(R,false);$('#smin').value=m.settings.min;$('#smax').value=m.settings.max;showRanges();$('#centre').checked=!!m.settings.centre;
+  $('#grid').value=R;setRanges(R,false);$('#smin').value=m.settings.min;$('#smax').value=m.settings.max;showRanges();$('#centre').checked=!!m.settings.centre;$('#cluster').checked=!!m.settings.cluster;$('#terrain').checked=!!m.settings.terrain;
   $('#seed').value=m.seed||'';state={grid:buildGrid(R),hook:m.hook,hexes:m.hexes};
   $('#src').textContent='Map: '+name;render();
 }
@@ -332,40 +446,75 @@ function download(name,data,type){
 const slug=()=>(T.title||'hexcrawl').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'hexcrawl';
 const dn=n=>'d'+n,rl=(a,b)=>a===b?String(a):`${a}-${b}`,alpha=i=>String.fromCharCode(65+i);
 let TB=[],view='map';
+const rr=n=>1+Math.floor(Math.random()*n);
+let ROLLS=[];
 function buildTables(){
-  const S=T.settlement,list=(title,arr,head,x)=>Object.assign({title,dice:dn(arr.length),head:[dn(arr.length),head],rows:arr.map((v,i)=>[String(i+1),v])},x||{});
-  const hd=dmax(T.hexType),hc=[{title:'Hex type',dice:dn(hd),head:[dn(hd),'Hex type'],rows:T.hexType.map(e=>[rl(e.min,e.max),e.name])}];
+  const S=T.settlement;
+  const list=(title,arr,head,x)=>{const n=arr.length;return Object.assign({title,dice:dn(n),head:[dn(n),head],rows:arr.map((v,i)=>[String(i+1),v]),
+    roll(){const k=rr(n);return {label:`${dn(n)}: ${k}`,hits:[[k-1]],text:String(arr[k-1])}}},x||{})};
+  const hd=dmax(T.hexType),hc=[{title:'Hex type',dice:dn(hd),head:[dn(hd),'Hex type'],rows:T.hexType.map(e=>[rl(e.min,e.max),e.name]),
+    roll(){const k=rr(hd);let i=T.hexType.findIndex(e=>k>=e.min&&k<=e.max);if(i<0)i=T.hexType.length-1;return {label:`${dn(hd)}: ${k}`,hits:[[i]],text:T.hexType[i].name}}}];
   T.hexType.forEach(e=>hc.push(list(`${e.name} landmarks`,T.landmarks[e.key],'Landmark',{color:COL[e.key]})));
-  const gn=T.details.length,en=Math.max(...T.details.map(d=>d.entries?d.entries.length:0)),hasSet=T.details.some(d=>d.settlement),rows=[];
+  const gn=T.details.length,en=Math.max(...T.details.map(d=>d.entries?d.entries.length:0)),hasSet=T.details.some(d=>d.settlement),rows=[],rowOf=[];
   T.details.forEach((d,gi)=>{
-    if(d.settlement)rows.push([String(gi+1),'-',`${d.text} (see the settlement tables)`]);
-    else d.entries.forEach((e,ei)=>{const[a,q]=tp(e);rows.push([ei?'':String(gi+1),String(ei+1),q?`${a} (${q})`:a])});
+    rowOf[gi]=[];
+    if(d.settlement){rowOf[gi][0]=rows.length;rows.push([String(gi+1),'-',`${d.text} (see the settlement tables)`])}
+    else d.entries.forEach((e,ei)=>{const[a,q]=tp(e);rowOf[gi][ei]=rows.length;rows.push([ei?'':String(gi+1),String(ei+1),q?`${a} (${q})`:a])});
   });
-  hc.push({title:'Landmark details',dice:`${dn(gn)} x ${dn(en)}`,wide:true,nw:[1],note:'Roll both dice: the first picks the group, the second the entry.'+(hasSet?' A dash marks a settlement; the generator places settlements with its sliders instead of rolling it.':''),head:[dn(gn),dn(en),'Detail'],rows});
-  const sz=S.size,n=sz.length,st=[];
-  st.push({title:'Settlement size',dice:`2${dn(n)}, lowest`,wide:true,note:`Roll 2${dn(n)} and keep the lower die.`,head:[dn(n),'Size','Population','Features','Industries','Tavern'],rows:sz.map((e,i)=>[String(i+1),e.name,e.note,String(e.features||1),String(e.industry||1),e.tavern?'Yes':'No'])});
-  st.push({title:'Governance',dice:'d6 + size',note:'Roll d6 and add the size roll.',head:['d6 + size','Governance'],rows:S.governance.map(g=>[rl(g.min,g.max),g.text])});
+  hc.push({title:'Landmark details',dice:`${dn(gn)} x ${dn(en)}`,wide:true,nw:[1],note:'Roll both dice: the first picks the group, the second the entry.'+(hasSet?' A dash marks a settlement; the generator places settlements with its sliders instead of rolling it.':''),head:[dn(gn),dn(en),'Detail'],rows,
+    roll(){
+      const g=rr(gn)-1,d=T.details[g];
+      if(d.settlement)return {label:`${dn(gn)}: ${g+1}`,hits:[[rowOf[g][0]]],text:`${d.text} (see the settlement tables)`};
+      const e=rr(d.entries.length)-1,[a,q]=tp(d.entries[e]);
+      return {label:`${dn(gn)}: ${g+1}, ${dn(en)}: ${e+1}`,hits:[[rowOf[g][e]]],text:q?`${a} (${q})`:a};
+    }});
+  const sz=S.size,n=sz.length,st=[],low=()=>{const a=rr(n),b=rr(n);return {a,b,v:Math.min(a,b)}};
+  st.push({title:'Settlement size',dice:`2${dn(n)}, lowest`,wide:true,note:`Roll 2${dn(n)} and keep the lower die.`,head:[dn(n),'Size','Population','Features','Industries','Tavern'],rows:sz.map((e,i)=>[String(i+1),e.name,e.note,String(e.features||1),String(e.industry||1),e.tavern?'Yes':'No']),
+    roll(){const z=low(),e=sz[z.v-1];return {label:`2${dn(n)}: ${z.a}, ${z.b}, keep ${z.v}`,hits:[[z.v-1]],text:`${e.name} (${e.note})`}}});
+  st.push({title:'Governance',dice:'d6 + size',note:'Roll d6 and add the size roll. This button rolls the size for you.',head:['d6 + size','Governance'],rows:S.governance.map(g=>[rl(g.min,g.max),g.text]),
+    roll(){const z=low(),g=rr(6),tot=g+z.v;let i=S.governance.findIndex(x=>tot>=x.min&&tot<=x.max);if(i<0)i=S.governance.length-1;return {label:`d6: ${g} + size ${z.v} (2${dn(n)}: ${z.a}, ${z.b}) = ${tot}`,hits:[[i]],text:S.governance[i].text}}});
   st.push(list('Inhabitants',S.inhabitants,'Inhabitants',{note:'What habits and customs do they have?'}));
   st.push(list('Notable feature',S.features,'Notable feature',{note:'What sets this settlement apart?'}));
   st.push(list('Industry',S.industry,'Industry',{note:'What trade do they work?'}));
   st.push(list('Event',S.events,'Event',{note:'What is happening as the characters arrive?'}));
-  const nl=Math.max(...S.nameStart.concat(S.nameEnd).map(c=>c.length));
-  st.push({title:'Settlement name seeds',dice:dn(nl),wide:true,note:'Roll twice. Choose a start and an end, then adjust until it sounds right.',head:[dn(nl),...S.nameStart.map((_,i)=>'Start '+alpha(i)),...S.nameEnd.map((_,i)=>'End '+alpha(i))],rows:Array.from({length:nl},(_,i)=>[String(i+1),...S.nameStart.map(c=>c[i]||''),...S.nameEnd.map(c=>c[i]||'')])});
+  const nl=Math.max(...S.nameStart.concat(S.nameEnd).map(c=>c.length)),ns=S.nameStart.length;
+  st.push({title:'Settlement name seeds',dice:dn(nl),wide:true,note:'Roll twice. Choose a start and an end, then adjust until it sounds right.',head:[dn(nl),...S.nameStart.map((_,i)=>'Start '+alpha(i)),...S.nameEnd.map((_,i)=>'End '+alpha(i))],rows:Array.from({length:nl},(_,i)=>[String(i+1),...S.nameStart.map(c=>c[i]||''),...S.nameEnd.map(c=>c[i]||'')]),
+    roll(){
+      const i=rr(nl),j=rr(nl),a=S.nameStart.map(c=>c[i-1]).filter(Boolean),b=S.nameEnd.map(c=>c[j-1]).filter(Boolean),names=[];
+      a.forEach(x=>b.forEach(y=>names.push(cap(x)+y.toLowerCase())));
+      return {label:`${dn(nl)}: ${i} (start), ${j} (end)`,hits:[...S.nameStart.map((_,c)=>[i-1,1+c]),...S.nameEnd.map((_,c)=>[j-1,1+ns+c])],text:`${names.join(', ')}`};
+    }});
   const tl=Math.max(S.tavernA.length,S.tavernB.length,S.meals.length);
-  st.push({title:'Taverns and inns',dice:dn(tl),wide:true,note:'Taverns are named "The" plus Name A and Name B.',head:[dn(tl),'Name A','Name B','Specialty meal'],rows:Array.from({length:tl},(_,i)=>[String(i+1),S.tavernA[i]||'',S.tavernB[i]||'',S.meals[i]||''])});
+  st.push({title:'Taverns and inns',dice:dn(tl),wide:true,note:'Taverns are named "The" plus Name A and Name B.',head:[dn(tl),'Name A','Name B','Specialty meal'],rows:Array.from({length:tl},(_,i)=>[String(i+1),S.tavernA[i]||'',S.tavernB[i]||'',S.meals[i]||'']),
+    roll(){const a=rr(S.tavernA.length),b=rr(S.tavernB.length),m=rr(S.meals.length);return {label:`${dn(tl)}: ${a}, ${b}, ${m}`,hits:[[a-1,1],[b-1,2],[m-1,3]],text:`The ${S.tavernA[a-1]} ${S.tavernB[b-1]} (specialty: ${S.meals[m-1]})`}}});
   return [
     {title:'Hex contents',intro:'For each hex, roll or choose a hex type, then a landmark from that type\'s list, then a detail for the landmark.',tables:hc},
     {title:'Starting hooks',intro:'Pick or roll a reason for the players to visit the first adventure site.',tables:[list('Starting adventure hook',T.hooks,'Hook')]},
     {title:'Settlements',intro:'Use these whenever a landmark turns out to be a settlement.',tables:st}
   ];
 }
-function tblHTML(t){
+function tblHTML(t,si,ti){
   const nw=t.nw||[];
-  return `<section class="tbl${t.wide?' wide':''}" style="--c:${t.color||'#1c1e1b'}"><h3>${esc(t.title)}<span>${esc(t.dice)}</span></h3>${t.note?`<p class="note">${esc(t.note)}</p>`:''}<table><thead><tr>${t.head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${t.rows.map(r=>`<tr>${r.map((c,i)=>`<td${nw.includes(i)?' class="nw"':''}>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></section>`;
+  return `<section class="tbl${t.wide?' wide':''}" data-t="${si}-${ti}" style="--c:${t.color||'#1c1e1b'}"><h3><b>${esc(t.title)}</b><span class="hr"><span>${esc(t.dice)}</span><button class="rollbtn" data-roll="${si}-${ti}" aria-label="Roll ${esc(t.title)}">Roll</button></span></h3>${t.note?`<p class="note">${esc(t.note)}</p>`:''}<div class="res" role="status"></div><table><thead><tr>${t.head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${t.rows.map(r=>`<tr>${r.map((c,i)=>`<td${nw.includes(i)?' class="nw"':''}>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></section>`;
 }
 function renderTables(){
-  TB=buildTables();
-  $('#tablesview').innerHTML=TB.map(s=>`<h2>${esc(s.title)}</h2><p class="note">${esc(s.intro)}</p><div class="tgrid">${s.tables.map(tblHTML).join('')}</div>`).join('');
+  TB=buildTables();ROLLS=[];
+  $('#tablesview').innerHTML=`<aside class="hist" id="rollhist" hidden><header><b>Recent rolls</b><button class="alt" id="clearrolls">Clear</button></header><ol id="rolllist"></ol></aside>`+TB.map((s,si)=>`<h2>${esc(s.title)}</h2><p class="note">${esc(s.intro)}</p><div class="tgrid">${s.tables.map((t,ti)=>tblHTML(t,si,ti)).join('')}</div>`).join('');
+}
+function showRolls(){
+  $('#rollhist').hidden=!ROLLS.length;
+  $('#rolllist').innerHTML=ROLLS.map(x=>`<li><b>${esc(x.t)}</b> <span>${esc(x.label)}</span> &rarr; ${esc(x.text)}</li>`).join('');
+}
+function doRoll(key){
+  const [si,ti]=key.split('-').map(Number),t=TB[si]&&TB[si].tables[ti];if(!t)return;
+  const r=t.roll(),el=document.querySelector(`.tbl[data-t="${key}"]`);
+  el.querySelectorAll('.hit').forEach(x=>x.classList.remove('hit'));
+  const trs=el.querySelectorAll('tbody tr');
+  r.hits.forEach(([row,col])=>{const tr=trs[row];if(!tr)return;if(col===undefined)tr.classList.add('hit');else if(tr.children[col])tr.children[col].classList.add('hit')});
+  el.querySelector('.res').innerHTML=`<b>${esc(r.label)}</b> &rarr; ${esc(r.text)}`;
+  ROLLS.unshift({t:t.title,label:r.label,text:r.text});ROLLS=ROLLS.slice(0,10);showRolls();
+  const hit=el.querySelector('.hit');
+  if(hit){const b=hit.getBoundingClientRect();if(b.top<80||b.bottom>innerHeight)hit.scrollIntoView({block:'center',behavior:'smooth'})}
 }
 function tablesText(){
   const L=[`${(T.title||'Hexcrawl').toUpperCase()} - ROLLABLE TABLES`,'Tables: '+srcName,''];
@@ -487,7 +636,7 @@ function renderLib(){
 }
 function useEntry(e,regen){
   const tb=validate(JSON.parse(e.json));
-  T=tb;buildCOL();srcName=e.name;curId=e.id;state=null;$('#seed').value='';
+  T=tb;buildCOL();renderTables();srcName=e.name;curId=e.id;state=null;$('#seed').value='';
   store.set('hexcrawl.current',e.id);
   if(regen)generate();
   renderLib();
@@ -551,9 +700,14 @@ $('#smin').oninput=()=>{if(+$('#smin').value>+$('#smax').value)$('#smax').value=
 $('#smax').oninput=()=>{if(+$('#smax').value<+$('#smin').value)$('#smin').value=$('#smax').value;showRanges()};
 $('#txt').onclick=()=>view==='tables'?download(slug()+'-tables.txt',tablesText()):download('hexcrawl.txt',toText());
 $('#tab-map').onclick=()=>setView('map');
+$('#tablesview').addEventListener('click',e=>{
+  const b=e.target.closest('[data-roll]');if(b){doRoll(b.dataset.roll);return}
+  if(e.target.closest('#clearrolls')){ROLLS=[];showRolls()}
+});
 $('#tab-tables').onclick=()=>setView('tables');
+$('#png').onclick=exportPNG;
 $('#pdf').onclick=()=>view==='tables'?download(slug()+'-tables.pdf',makeTablesPDF(),'application/pdf'):download('hexcrawl.pdf',makePDF(),'application/pdf');
-$('#save').onclick=()=>download('hexcrawl.mausmap',JSON.stringify({format:'mausmap',version:1,title:T.title,tables:srcName,seed:$('#seed').value,settings:{radius:+$('#grid').value,min:+$('#smin').value,max:+$('#smax').value,centre:$('#centre').checked},hook:state.hook,hexes:state.hexes},null,1),'application/json');
+$('#save').onclick=()=>download('hexcrawl.mausmap',JSON.stringify({format:'mausmap',version:1,title:T.title,tables:srcName,seed:$('#seed').value,settings:{radius:+$('#grid').value,min:+$('#smin').value,max:+$('#smax').value,centre:$('#centre').checked,cluster:$('#cluster').checked,terrain:$('#terrain').checked},hook:state.hook,hexes:state.hexes},null,1),'application/json');
 $('#mapfile').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(async t=>{try{await loadMap(t,f.name)}catch(err){alert('Could not load '+f.name+': '+err.message)}});e.target.value=''};
 async function addFile(f){
   const text=await f.text(),tb=validate(JSON.parse(text)),title=tb.title||'';

@@ -10,56 +10,64 @@
    "max": 1,
    "name": "Gumdrop Hills",
    "key": "gumdrop_hills",
-   "color": "#e8899f"
+   "color": "#e8899f",
+   "settlementWeight": 1.2
   },
   {
    "min": 2,
    "max": 2,
    "name": "Peppermint Forest",
    "key": "peppermint_forest",
-   "color": "#86cfa5"
+   "color": "#86cfa5",
+   "settlementWeight": 1.0
   },
   {
    "min": 3,
    "max": 3,
    "name": "Chocolate River",
    "key": "chocolate_river",
-   "color": "#9a7560"
+   "color": "#9a7560",
+   "settlementWeight": 0.8
   },
   {
    "min": 4,
    "max": 4,
    "name": "Licorice Swamp",
    "key": "licorice_swamp",
-   "color": "#8f8aa6"
+   "color": "#8f8aa6",
+   "settlementWeight": 0.3
   },
   {
    "min": 5,
    "max": 5,
    "name": "Lollipop Meadow",
    "key": "lollipop_meadow",
-   "color": "#f0d062"
+   "color": "#f0d062",
+   "settlementWeight": 1.5
   },
   {
    "min": 6,
    "max": 6,
    "name": "Cotton Candy Clouds",
    "key": "cotton_candy_clouds",
-   "color": "#a9cdee"
+   "color": "#a9cdee",
+   "settlementWeight": 0.2
   },
   {
    "min": 7,
    "max": 7,
    "name": "Gingerbread Town",
    "key": "gingerbread_town",
-   "color": "#e3a45c"
+   "color": "#e3a45c",
+   "settlementWeight": 2.5
   },
   {
    "min": 8,
    "max": 8,
    "name": "Rock Candy Peaks",
    "key": "rock_candy_peaks",
-   "color": "#dcd3ec"
+   "color": "#dcd3ec",
+   "settlementWeight": 0.4
   }
  ],
  "legend": {
@@ -68,6 +76,12 @@
    "color": "#e25a5a"
   },
   "settlement": "House icon: settlement"
+ },
+ "generation": {
+  "clusterStrength": 3,
+  "settlementNear": {
+   "chocolate_river": 1.6
+  }
  },
  "landmarks": {
   "gumdrop_hills": [

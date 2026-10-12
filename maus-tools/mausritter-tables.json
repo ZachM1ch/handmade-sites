@@ -1,18 +1,22 @@
 {
-  "title": "Mouse Hexcrawl",
+  "title": "Maus Hexcrawl",
   "map": {
     "radius": 2,
     "centre": 1
   },
   "hexType": [
-    {"min":1,"max":2,"name":"Countryside","key":"countryside","color":"#cfc27a"},
-    {"min":3,"max":4,"name":"Forest","key":"forest","color":"#76a06f"},
-    {"min":5,"max":5,"name":"River","key":"river","color":"#80aac6"},
-    {"min":6,"max":6,"name":"Human town","key":"human_town","color":"#ada4ac"}
+    {"min":1,"max":2,"name":"Countryside","key":"countryside","color":"#cfc27a","settlementWeight":1.4},
+    {"min":3,"max":4,"name":"Forest","key":"forest","color":"#76a06f","settlementWeight":1.0},
+    {"min":5,"max":5,"name":"River","key":"river","color":"#80aac6","settlementWeight":1.2},
+    {"min":6,"max":6,"name":"Human town","key":"human_town","color":"#ada4ac","settlementWeight":0.6}
   ],
   "legend": {
     "centre": {"label": "Centre settlement", "color": "#d9985a"},
     "settlement": "House icon: settlement"
+  },
+  "generation": {
+    "clusterStrength": 3,
+    "settlementNear": {"river": 1.5}
   },
   "landmarks": {
     "countryside": ["Anthill","Beech, lightning split","Bone-white tree","Cow skeleton","Field of flowers","Field of wheat","Hedge row","Hollow tree stump","Huge flat rock","Lily-lined pond","Massive fallen tree","Old craggy oak","Old farmhouse","Quiet dirt road","Rabbit warren","Sparrow nest","Stand of pine trees","Steep hill","Stone wall","Tangle of fig roots"],
