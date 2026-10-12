@@ -1,0 +1,3590 @@
+{
+ "title": "The Temple of the Nameless Star",
+ "map": {
+  "radius": 3,
+  "centre": 1
+ },
+ "hexType": [
+  {
+   "min": 1,
+   "max": 1,
+   "name": "Sand-Choked Halls",
+   "key": "sand_halls",
+   "color": "#dcc488",
+   "settlementWeight": 1.0
+  },
+  {
+   "min": 2,
+   "max": 2,
+   "name": "Hypostyle Forest",
+   "key": "hypostyle",
+   "color": "#bfa576",
+   "settlementWeight": 1.0
+  },
+  {
+   "min": 3,
+   "max": 3,
+   "name": "Flooded Cisterns",
+   "key": "cisterns",
+   "color": "#79b2b8",
+   "settlementWeight": 1.6
+  },
+  {
+   "min": 4,
+   "max": 4,
+   "name": "Scarab Catacombs",
+   "key": "catacombs",
+   "color": "#b3a89a",
+   "settlementWeight": 0.5
+  },
+  {
+   "min": 5,
+   "max": 5,
+   "name": "Papyrus Archive",
+   "key": "archive",
+   "color": "#d6c98f",
+   "settlementWeight": 1.4
+  },
+  {
+   "min": 6,
+   "max": 6,
+   "name": "Embalming Workshops",
+   "key": "embalming",
+   "color": "#a9bda4",
+   "settlementWeight": 0.6
+  },
+  {
+   "min": 7,
+   "max": 7,
+   "name": "Gilded Vaults",
+   "key": "vaults",
+   "color": "#e6c25a",
+   "settlementWeight": 0.4
+  },
+  {
+   "min": 8,
+   "max": 8,
+   "name": "Star-Ceiling Galleries",
+   "key": "star_galleries",
+   "color": "#8d9ad0",
+   "settlementWeight": 0.8
+  },
+  {
+   "min": 9,
+   "max": 9,
+   "name": "Serpent Labyrinth",
+   "key": "labyrinth",
+   "color": "#93ad74",
+   "settlementWeight": 0.3
+  },
+  {
+   "min": 10,
+   "max": 10,
+   "name": "Sun-Disk Sanctum",
+   "key": "sun_sanctum",
+   "color": "#eba06a",
+   "settlementWeight": 1.2
+  },
+  {
+   "min": 11,
+   "max": 11,
+   "name": "Hall of Judgement",
+   "key": "judgement",
+   "color": "#a592bd",
+   "settlementWeight": 0.2
+  },
+  {
+   "min": 12,
+   "max": 12,
+   "name": "The Unmaking",
+   "key": "unmaking",
+   "color": "#b48aa8",
+   "settlementWeight": 0.05
+  }
+ ],
+ "legend": {
+  "centre": {
+   "label": "Lamp-lit refuge",
+   "color": "#f2d36b"
+  },
+  "settlement": "House icon: mouse enclave"
+ },
+ "generation": {
+  "clusterStrength": 4,
+  "settlementNear": {
+   "cisterns": 1.5,
+   "sun_sanctum": 1.3
+  }
+ },
+ "landmarks": {
+  "sand_halls": [
+   "Drifted sand dune",
+   "Toppled sphinx",
+   "Half-buried doorway",
+   "Painted procession wall",
+   "Rope left by robbers",
+   "Footprints in fine sand",
+   "Broken offering jar",
+   "Sand-fall from the ceiling",
+   "Robbers' tunnel",
+   "Cracked lintel",
+   "Statue of a kneeling scribe",
+   "Empty torch sconce",
+   "Mummified cat in a niche",
+   "Heap of broken pottery",
+   "Moaning wind shaft",
+   "Hieroglyph-carved threshold",
+   "Flakes of fallen gold leaf",
+   "Sunlit crack in the roof",
+   "Human brush marks in the dust",
+   "Dried lotus garland"
+  ],
+  "hypostyle": [
+   "Papyrus-capital column",
+   "Fallen column",
+   "Leaning column",
+   "Column painted with stars",
+   "Shaft of sunlight",
+   "Bat roost in the capitals",
+   "Cracked column base",
+   "Ring of seven columns",
+   "Column carved with a face",
+   "Column hollowed out by mice",
+   "Spider-silk canopy",
+   "Moving shadow between pillars",
+   "Broken lintel bridge",
+   "Lotus-capital column",
+   "Column of black stone",
+   "Echoing aisle",
+   "Column scored by claws",
+   "Fallen roof slab",
+   "Offerings at a column's foot",
+   "Column that hums"
+  ],
+  "cisterns": [
+   "Still black pool",
+   "Flooded stairway",
+   "Sunken reed boat",
+   "Reed thicket",
+   "Bronze sluice gate",
+   "Dripping aqueduct",
+   "Submerged statue head",
+   "Floating papyrus raft",
+   "Silt bank",
+   "Nilometer stair",
+   "Algae-lit water",
+   "Broken water wheel",
+   "Drowned shrine",
+   "Crocodile-carved spout",
+   "Lily-pad stepping path",
+   "Cold spring",
+   "Whirlpool drain",
+   "Frog chorus pool",
+   "Rusted human pump",
+   "Waterfall from a crack"
+  ],
+  "catacombs": [
+   "Wall of skull niches",
+   "Stacked sarcophagi",
+   "Ossuary heap",
+   "Beetle-gnawed coffin",
+   "Mummy shelf",
+   "Collapsed burial shaft",
+   "Canopic jar alcove",
+   "Scarab-dug tunnels",
+   "Bone bridge",
+   "Broken coffin lid",
+   "Linen-wrapped bundle",
+   "Painted coffin face",
+   "Tomb of a mouse lord",
+   "Name-scratched niche",
+   "Pile of funerary masks",
+   "Sealed burial door",
+   "Model burial boat",
+   "Shroud-hung corridor",
+   "Rat-gnawed bones",
+   "Burial pit with a ladder"
+  ],
+  "archive": [
+   "Scroll racks",
+   "Fallen shelf",
+   "Spilled ink pot",
+   "Scribe's palette",
+   "Dusty reading table",
+   "Heap of burned scrolls",
+   "Map wall",
+   "Star chart on the ceiling",
+   "Sealed scroll chest",
+   "Names carved in stone",
+   "Tunnel of rolled papyrus",
+   "Mouse nest of shredded scrolls",
+   "Stack of clay tablets",
+   "Chief scribe's lectern",
+   "Ink-stained floor",
+   "Lamp alcove",
+   "Scroll that writes itself",
+   "Barred forbidden shelf",
+   "Bookworm tunnels",
+   "Collapsed reading room"
+  ],
+  "embalming": [
+   "Natron drying beds",
+   "Embalming table",
+   "Canopic jar rack",
+   "Linen bolt store",
+   "Resin vats",
+   "Hook rack",
+   "Lamp kiln",
+   "Mask workshop",
+   "Salt-crusted floor",
+   "Myrrh store",
+   "Drain channels",
+   "Abandoned bronze tools",
+   "Half-wrapped body",
+   "Ritual washbasin",
+   "Incense burner",
+   "Drying line of bandages",
+   "Jars marked with four gods",
+   "Stained stone slab",
+   "Sealed preparation chamber",
+   "Shelf of spare amulets"
+  ],
+  "vaults": [
+   "Gold-leaf wall",
+   "Spilled coin heap",
+   "Golden shrine box",
+   "Golden chariot",
+   "Jewel-studded throne",
+   "Cedar chest",
+   "Gilded statue",
+   "Ivory game board",
+   "Hoard of faience beads",
+   "Treasure-counting table",
+   "Gold-dusted floor",
+   "Lapis inlay mural",
+   "Vault door left ajar",
+   "Robber's dropped sack",
+   "Golden funerary mask",
+   "Silver mirror",
+   "Jars of precious oil",
+   "Weighing scales",
+   "Model of the solar barque",
+   "Pile of broken seals"
+  ],
+  "star_galleries": [
+   "Painted star ceiling",
+   "Mural of the sky-goddess",
+   "Sighting shaft to the sky",
+   "Bronze star wheel",
+   "Water clock",
+   "Zodiac floor",
+   "Starlight shaft",
+   "Constellation that moves",
+   "Astronomer's ladder",
+   "Shattered lens",
+   "Orrery of the wandering stars",
+   "Obsidian mirror",
+   "Star-map table",
+   "Mural of the dark between stars",
+   "Crack showing the real sky",
+   "Meteorite on a plinth",
+   "Statue of a night watcher",
+   "Hour-priest's chair",
+   "Gallery of the thirty-six decans",
+   "Silent dome"
+  ],
+  "labyrinth": [
+   "Coiling corridor",
+   "Dead end",
+   "Shed serpent skin",
+   "Scale-patterned floor",
+   "Hissing vent",
+   "False door",
+   "Spiral ramp",
+   "Twin doorways",
+   "Serpent painted along the wall",
+   "Crossroads of four doors",
+   "Narrow crawlway",
+   "Pit of old bones",
+   "Rolling-stone groove",
+   "Mirror passage",
+   "Low-ceilinged squeeze",
+   "Sand-trap floor",
+   "Serpent-head fountain",
+   "Ring of serpent statues",
+   "Endless stair",
+   "Way-marks scratched by mice"
+  ],
+  "sun_sanctum": [
+   "Golden sun-disk",
+   "Light well",
+   "Sunlit altar",
+   "Solar barque shrine",
+   "Array of bright mirrors",
+   "Hot stone floor",
+   "Obelisk shard",
+   "Lotus pool in sunlight",
+   "Falcon statue",
+   "Burning brazier",
+   "Sun-scorched mural",
+   "Gold-flecked dust",
+   "Courtyard open to the sky",
+   "Sundial",
+   "Fallen sun-disk",
+   "Sun-priest's dais",
+   "Shadow clock",
+   "Fig tree in a courtyard",
+   "Glaring corridor",
+   "Shrine of the rising sun"
+  ],
+  "judgement": [
+   "Golden scales",
+   "Feather on a pedestal",
+   "Forty-two judge statues",
+   "The Devourer's pit",
+   "Gate of the underworld",
+   "River of night",
+   "Mural of the lake of fire",
+   "Boat of the dead",
+   "Mural of the field of reeds",
+   "Weighing stone",
+   "Doorkeeper statue",
+   "Heart-shaped jar",
+   "Wall of spoken names",
+   "Pillar of the dead",
+   "Gate of knives",
+   "False door for the ka",
+   "Ba-bird roost",
+   "Carved book of gates",
+   "Cold judgement throne",
+   "Black pylon"
+  ],
+  "unmaking": [
+   "Wall that breathes",
+   "Stair leading up into the floor",
+   "Chamber of wrong angles",
+   "Starlight seeping through stone",
+   "Hieroglyphs crawling off the wall",
+   "Black sand",
+   "Floating debris",
+   "Pulsing crack",
+   "Mirror showing another place",
+   "Room larger on the inside",
+   "Melted statues",
+   "Mural of a silent scream",
+   "Pool reflecting alien stars",
+   "Ceiling you can fall into",
+   "Vault with claw marks on the inside",
+   "Ring of chained statues",
+   "Smell of lightning",
+   "Door to nowhere",
+   "Field of eyes in the stone",
+   "Sigil of the nameless star"
+  ]
+ },
+ "details": [
+  {
+   "settlement": true,
+   "text": "Mouse enclave"
+  },
+  {
+   "entries": [
+    [
+     "Lamp-keepers' outpost",
+     "What keeps their lamps burning?"
+    ],
+    [
+     "High priest-mouse's sealed chapel",
+     "What does it protect?"
+    ],
+    [
+     "Friendly way-station",
+     "What is behind the false wall?"
+    ],
+    [
+     "Relic hunters' camp",
+     "What are they digging for?"
+    ],
+    [
+     "Natron diggings",
+     "What have they uncovered?"
+    ],
+    [
+     "Hermit scribe's cell",
+     "What are they copying, and why?"
+    ],
+    [
+     "Unmapped side chambers",
+     "What is living here?"
+    ],
+    [
+     "Pilgrim knight's vigil",
+     "What is their oath?"
+    ]
+   ]
+  },
+  {
+   "entries": [
+    [
+     "Ibis scribe's perch",
+     "What forbidden name do they know?"
+    ],
+    [
+     "Procession of giant scarabs",
+     "Where are they rolling it?"
+    ],
+    [
+     "Grave-rat den",
+     "Who do they rob?"
+    ],
+    [
+     "Temple cat's sun-court",
+     "What tribute does she demand?"
+    ],
+    [
+     "Scorpion nest in a canopic jar",
+     "What are they guarding?"
+    ],
+    [
+     "Crocodile's flooded throne",
+     "What lies in the silt?"
+    ],
+    [
+     "Shabti workshop, still working",
+     "Who gives them orders?"
+    ],
+    [
+     "Star-mage mouse's observatory",
+     "What alignment are they waiting for?"
+    ]
+   ]
+  },
+  {
+   "entries": [
+    [
+     "Collapsed ceiling, open to the sand",
+     "How can it be crossed?"
+    ],
+    [
+     "Forgotten offering table",
+     "Who still leaves gifts, and to whom?"
+    ],
+    [
+     "Plundered noble tomb",
+     "Who took what, and why?"
+    ],
+    [
+     "Abandoned mouse enclave",
+     "What clues did they leave?"
+    ],
+    [
+     "Broken guardian colossus",
+     "What did it guard?"
+    ],
+    [
+     "Quiet lamp-lit chapel",
+     "Who gathers here?"
+    ],
+    [
+     "Wall of moving hieroglyphs",
+     "What are they saying?"
+    ],
+    [
+     "Narrow ledge over a shaft",
+     "What is at the bottom?"
+    ]
+   ]
+  },
+  {
+   "entries": [
+    [
+     "Altar of the nameless star",
+     "What was summoned?"
+    ],
+    [
+     "Ring of drifting ka-lights",
+     "What do the spirits want?"
+    ],
+    [
+     "Scarab ossuary",
+     "What do the ghosts want?"
+    ],
+    [
+     "Embalmer-witch's workshop",
+     "What is she preserving?"
+    ],
+    [
+     "Sacred pool of black water",
+     "What is at the bottom?"
+    ],
+    [
+     "Papyrus growing in darkness",
+     "How does it live without the sun?"
+    ],
+    [
+     "Jackal priest's shrine",
+     "What are they searching for?"
+    ],
+    [
+     "Spreading crack of starlight",
+     "Why is it widening?"
+    ]
+   ]
+  },
+  {
+   "entries": [
+    [
+     "Wrecked solar barque",
+     "How can it sail again?"
+    ],
+    [
+     "Humming obelisk",
+     "What happens when touched?"
+    ],
+    [
+     "Utterly silent chamber",
+     "What swallowed the sound?"
+    ],
+    [
+     "Human excavation trench",
+     "What are the archaeologists after?"
+    ],
+    [
+     "Blasted open by human dynamite",
+     "What did they break open?"
+    ],
+    [
+     "Older ruins beneath the temple",
+     "Who built them, before the builders?"
+    ],
+    [
+     "Temple cat's hunting gallery",
+     "What trophies remain?"
+    ],
+    [
+     "Abandoned human camp gear",
+     "How is it used now?"
+    ]
+   ]
+  }
+ ],
+ "hooks": [
+  "Searching for a lost family member",
+  "Investigating on orders of the high priest-mouse",
+  "Star-mage needs a rare spell component",
+  "Site is lair of a creature harassing an enclave",
+  "Following an inherited burial-map",
+  "Fleeing a sandstorm through a breach in the roof"
+ ],
+ "settlement": {
+  "size": [
+   {
+    "name": "Shrine-niche camp",
+    "note": "1-3 families",
+    "features": 1,
+    "industry": 1,
+    "tavern": false
+   },
+   {
+    "name": "Lamp station",
+    "note": "3-5 families",
+    "features": 1,
+    "industry": 1,
+    "tavern": false
+   },
+   {
+    "name": "Enclave",
+    "note": "50-150 mice",
+    "features": 1,
+    "industry": 1,
+    "tavern": true
+   },
+   {
+    "name": "Hall village",
+    "note": "150-300 mice",
+    "features": 1,
+    "industry": 1,
+    "tavern": true
+   },
+   {
+    "name": "Gallery town",
+    "note": "300-1000 mice",
+    "features": 1,
+    "industry": 2,
+    "tavern": true
+   },
+   {
+    "name": "Necropolis city",
+    "note": "1000+ mice",
+    "features": 2,
+    "industry": 2,
+    "tavern": true
+   }
+  ],
+  "governance": [
+   {
+    "min": 2,
+    "max": 3,
+    "text": "Guided by the lamp elders"
+   },
+   {
+    "min": 4,
+    "max": 5,
+    "text": "Kept by a temple-guard captain"
+   },
+   {
+    "min": 6,
+    "max": 7,
+    "text": "Organised by the scribes' guild"
+   },
+   {
+    "min": 8,
+    "max": 9,
+    "text": "Free enclave, ruled by a council of keepers"
+   },
+   {
+    "min": 10,
+    "max": 11,
+    "text": "House of a high priest-mouse"
+   },
+   {
+    "min": 12,
+    "max": 12,
+    "text": "Seat of the Mouse Pharaoh"
+   }
+  ],
+  "inhabitants": [
+   "Paint kohl around their eyes, every one of them",
+   "Intoxicated by blue lotus",
+   "Wary of anyone who came down from the sand",
+   "Hungry for news of the world above",
+   "Believe speaking a true name aloud is bad luck",
+   "Wear finely pleated linen",
+   "Brew barley beer flavoured with dates",
+   "Wrap their faces in linen against the dust",
+   "Impoverished by a temple cat's offerings",
+   "Shave their fur for the rites",
+   "Brave hunters of scarabs and serpents",
+   "All descended from a single priestess",
+   "Bake honey-and-date cakes",
+   "Escaped from the archaeologists' crates, naive about everything",
+   "Spend their days in the one warm sunbeam",
+   "Long-standing blood feud with another enclave",
+   "Dig new chambers, overseen by the guild",
+   "Wear tall linen headdresses",
+   "Keep rites and taboos confusing to outsiders",
+   "On friendly terms with a crocodile"
+  ],
+  "features": [
+   "Maze of trap-filled corridors",
+   "Exceedingly comfortable, lamp-lit inn",
+   "Shrine carved of black basalt",
+   "Meditative garden of pale fungus",
+   "Sacred bull skull, repurposed as a guildhall",
+   "Mess of shanties in burial niches",
+   "Neat rows of homes in a painted wall",
+   "Gate flanked by mouse-headed sphinxes",
+   "Secret shrine to the nameless star",
+   "Scarab-racing track",
+   "Storehouse of offering bread and dates",
+   "Hidden landing for reed boats",
+   "Crumbling palace of an ancient mouse pharaoh",
+   "Scavenged human machine from the dig, working",
+   "Rope bridge across a burial shaft",
+   "Unnervingly tall, narrow tower in a column",
+   "Garden of lotus under a light well",
+   "Ibis riders' roost",
+   "Overgrown statue of a mouse hero",
+   "Stair spiralling down toward the river of night"
+  ],
+  "industry": [
+   "Farmers, growing barley under light wells",
+   "Reed cutters, with sickles and harnesses",
+   "Cistern fishers, with nets and reed rafts",
+   "Dark and musty fungus farm",
+   "Dates drying on every flat surface",
+   "Pungent goat cheese, aged in tomb jars",
+   "Gardens of rare herbs and myrrh. Drying racks are guarded",
+   "Hive of bees in a hollow statue",
+   "Relic traders, often in need of guards",
+   "Stone carvers, working in the quarry corridors",
+   "Grain mill, turned by a cistern wheel",
+   "Natron and copper mines",
+   "Linen weavers of exquisite fine cloth",
+   "Expert guides to the labyrinth",
+   "Faience workers, glazing beads in temple blue",
+   "Papyrus makers, beating reeds into sheets",
+   "Scribe school, rowdy pupils",
+   "Bustling market in a fallen hall",
+   "Smelly heap of the archaeologists' trash, carefully picked over",
+   "Furniture of carved and gilded cedar"
+  ],
+  "events": [
+   "Sandstorm through the roof, everyone packing to leave",
+   "Wedding, halls hung with lotus garlands",
+   "Preparing for the festival of the returning sun",
+   "A wasting sickness has struck",
+   "Storehouse plundered by scarabs",
+   "Market day, traders flock in from the halls",
+   "Neighbours at each other's throats over a burial niche",
+   "Warband forming to face a beast",
+   "Several children have gone missing in the dark",
+   "High priest-mouse makes a frivolous demand",
+   "Travelling troupe of harpers and dancers arrives",
+   "Funeral, halls thick with incense smoke",
+   "Conman selling maps to a vault that doesn't exist",
+   "Pet scarab gone mad, attacking mice",
+   "Spirit emissary with an impossible request",
+   "Strange pale plant growing fast, without light",
+   "A valuable amulet has been stolen",
+   "Temple cat demands a heavy offering",
+   "Coming-of-age rite for the young mice",
+   "Star-mage's tower arrives on a giant tortoise"
+  ],
+  "nameStart": [
+   [
+    "Sun",
+    "Reed",
+    "Lotus",
+    "Scarab",
+    "Lamp",
+    "Ibis",
+    "Gold",
+    "Natron",
+    "Sand",
+    "Pillar",
+    "Myrrh",
+    "Dusk"
+   ],
+   [
+    "Kohl",
+    "Ankh",
+    "Ochre",
+    "Lapis",
+    "Date",
+    "Bennu",
+    "Sphinx",
+    "Star",
+    "Linen",
+    "Fig",
+    "Basalt",
+    "Cedar"
+   ]
+  ],
+  "nameEnd": [
+   [
+    "hall",
+    "niche",
+    "crypt",
+    "court",
+    "gate",
+    "well",
+    "stair",
+    "shrine",
+    "nook",
+    "vault",
+    "steps",
+    "alcove"
+   ],
+   [
+    "hotep",
+    "mose",
+    "ankh",
+    "nefer",
+    "kheper",
+    "set",
+    "pet",
+    "meri",
+    "ra",
+    "ka",
+    "ba",
+    "tep"
+   ]
+  ],
+  "tavernA": [
+   "Gilded",
+   "Sleeping",
+   "Blue",
+   "Silent",
+   "Burning",
+   "Crooked",
+   "Hidden",
+   "Weighed",
+   "Painted",
+   "Thirsty",
+   "Broken",
+   "Lamplit"
+  ],
+  "tavernB": [
+   "Scarab",
+   "Jackal",
+   "Lamp",
+   "Ibis",
+   "Lotus",
+   "Sarcophagus",
+   "Ankh",
+   "Cobra",
+   "Feather",
+   "Jar",
+   "Pillar",
+   "Eye"
+  ],
+  "meals": [
+   "Honey-date cakes",
+   "Barley beer and bread",
+   "Roasted locust skewers",
+   "Lentil and onion stew",
+   "Figs with goat cheese",
+   "Papyrus-pith porridge",
+   "Dried cistern perch",
+   "Emmer flatbread with cumin",
+   "Pomegranate seeds",
+   "Lotus-root fritters",
+   "Spiced melon",
+   "Garlic and leek broth"
+  ]
+ },
+ "site": {
+  "construction": [
+   "Robbed royal tomb",
+   "Mortuary chapel",
+   "Sealed burial chamber",
+   "Hidden granary of offerings",
+   "Catacomb of sacred animals",
+   "Scarab-dug tunnels",
+   "Human excavation pit",
+   "Flooded cistern works",
+   "Serpent-bored burrows",
+   "Hollow colossus",
+   "Astronomer-priest's sanctum",
+   "Enclave grain store",
+   "Grave-rat king's nest",
+   "Skeleton of a sacred crocodile",
+   "School of embalmer-witches",
+   "Gate to the underworld",
+   "Natron mine",
+   "Robbers' hideout",
+   "Cave beneath the temple floor",
+   "Abandoned mouse enclave"
+  ],
+  "ruination": [
+   "Flooded by the river",
+   "Curse unleashed",
+   "Sand and long ages",
+   "Human excavation",
+   "Overrun by pale fungus",
+   "Slipped halfway into the underworld",
+   "Attacked by a great beast",
+   "Sandstorm through a breach",
+   "Haunting ka",
+   "Mysterious abandonment",
+   "Priestly civil war",
+   "Embalmers' plague"
+  ],
+  "inhabitants": [
+   "Tomb-robber mice, mad with gold",
+   "Mice, touched by the nameless star",
+   "Grave rats",
+   "Things from between the stars",
+   "Mummified original builders",
+   "Restless ka-spirits",
+   "Shabti servants still at their tasks",
+   "Ill-tempered sacred asp",
+   "Swarming scarabs and scorpions",
+   "Temple cat and her mummified servants"
+  ],
+  "inhabitantCreatures": [
+   {
+    "common": "mouse"
+   },
+   {
+    "common": "mouse"
+   },
+   {
+    "common": "rat"
+   },
+   {
+    "common": "*"
+   },
+   {
+    "common": "mummy"
+   },
+   {
+    "common": "ka"
+   },
+   {
+    "common": "shabti"
+   },
+   {
+    "common": "asp"
+   },
+   {
+    "common": "scarab|scorpion"
+   },
+   {
+    "common": "mummy",
+    "boss": "cat"
+   }
+  ],
+  "searching": [
+   "A safe place to hide from the dark",
+   "Cache of offering bread",
+   "Lost family or friend",
+   "Ancient gold and lapis artworks",
+   "The last scraps in a looted tomb",
+   "Rare embalming resins",
+   "Strange and powerful spell",
+   "The true name of a god"
+  ],
+  "secret": [
+   "Obelisk humming with star-power",
+   "The builders' sleeping body",
+   "Signs of the archaeologists' experiments",
+   "Forgotten tomb of a mouse pharaoh",
+   "Stair down to the river of night",
+   "Crack opening onto the stars"
+  ],
+  "rivalry": [
+   "competing for the same prize",
+   "guarding it from them",
+   "trying to drive them out",
+   "hunting them",
+   "sealed in here alongside them",
+   "bound to them by an ancient oath"
+  ],
+  "roomTypes": [
+   {
+    "min": 1,
+    "max": 2,
+    "name": "Empty",
+    "key": "empty",
+    "creature": 2,
+    "treasure": 2,
+    "label": "Feature",
+    "color": "#e4d8bd"
+   },
+   {
+    "min": 3,
+    "max": 3,
+    "name": "Obstacle",
+    "key": "obstacle",
+    "creature": 2,
+    "treasure": 1,
+    "label": "Obstacle",
+    "color": "#d6b25e"
+   },
+   {
+    "min": 4,
+    "max": 4,
+    "name": "Trap",
+    "key": "trap",
+    "creature": 1,
+    "treasure": 2,
+    "label": "Trap",
+    "color": "#d4836a"
+   },
+   {
+    "min": 5,
+    "max": 5,
+    "name": "Puzzle",
+    "key": "puzzle",
+    "creature": 1,
+    "treasure": 5,
+    "label": "Puzzle",
+    "color": "#79b2b8"
+   },
+   {
+    "min": 6,
+    "max": 6,
+    "name": "Lair",
+    "key": "lair",
+    "creature": 5,
+    "treasure": 4,
+    "label": "Lair",
+    "color": "#a592bd"
+   }
+  ],
+  "obstacle": [
+   "Stone door sealed with a priest's clay seal. The seal-stamp is in another room. Forcing it takes time and makes noise.",
+   "Ramp of slick, sand-polished stone. Without rope or spikes, mice risk exhaustion or falling.",
+   "Burial chamber whose only exit is a shaft in the centre of the ceiling, 6\" from any wall.",
+   "Ka wailing inside the walls. Each Turn spent here or in adjacent rooms gives a Frightened Condition.",
+   "Sand-fall blocking the corridor, leaving a gap too small to crawl through.",
+   "Passage completely flooded with black water.",
+   "Deep drift of fine sand. Gives an Exhausted Condition per 6\" traveled.",
+   "Long, polished granite ramp sloping upward."
+  ],
+  "trap": [
+   "Stone block that slides shut behind the mice when the offering is lifted, then the ceiling starts pouring sand.",
+   "Floor of balance scales: step on the wrong pan and bronze darts fly from the walls (d8 damage, DEX save for half).",
+   "Sealed chamber thick with ancient resin vapour. Sweet, cloying smell. d20 damage if ignited.",
+   "Thin linen thread stretched across a burial shaft. Safe if crossed slowly, one at a time.",
+   "Pit blocking the way. A sacred asp is asleep at the bottom.",
+   "Three canopic jars with animal-headed lids: one safe, two hold curses. Opening a cursed jar deals d12 magical damage.",
+   "Ring of drifting ka-lights with a young mouse inside. Those within beg others to step in and stay forever.",
+   "Floor freshly coated with sticky resin. Requires a STR save to break a foot loose."
+  ],
+  "puzzle": [
+   "Golden scales with a feather on one pan. Treasure is released only when the other pan is balanced exactly.",
+   "Three alabaster ointment jars of different colours. Each is inert alone but powerful or dangerous when mixed.",
+   "A block of natron with a magic sword sealed inside. It is very hard, but dissolves in fresh water.",
+   "Treasure is at the bottom of a deep burial shaft.",
+   "Large bronze offering bowl, upside down. Treasure is stuck to the inside of the bowl.",
+   "Door carved with a hieroglyph riddle: speak the right god's name to open it. A wrong name collapses the corridor behind you."
+  ],
+  "lair": [
+   "Temporary camp around a stolen lamp",
+   "Recently taken from another creature",
+   "Cell built by priests to hold the creature",
+   "Guarding eggs or young",
+   "Permanent home, newly settled",
+   "Permanent home, furnished from looted tombs"
+  ],
+  "empty": [
+   "Robbed offering niche",
+   "Cluster of pale fungus",
+   "Collapsed ceiling",
+   "Shed scarab husks on the walls",
+   "Furniture made of broken coffins",
+   "Painted eye on the wall",
+   "Overturned offering tables",
+   "Wall of faded hieroglyphs",
+   "Sand drifted into the corners",
+   "Painted procession, now faded",
+   "Planks laid over a flooded floor",
+   "Palm roots breaking through the ceiling",
+   "Rotting heap of dates",
+   "Scattering of funerary beads",
+   "Bunting of gold leaf hung by mice",
+   "Crocodile-skull doorway",
+   "Water dripping into a stone basin",
+   "Stern statue of a mouse scribe",
+   "Cracked tile floor",
+   "Alabaster altar"
+  ],
+  "exits": [
+   [
+    "Corridor",
+    4,
+    1
+   ],
+   [
+    "Doorway",
+    4,
+    1
+   ],
+   [
+    "Stair",
+    2,
+    1
+   ],
+   [
+    "Rope ladder",
+    2,
+    1
+   ],
+   [
+    "Crawlway",
+    1,
+    2
+   ],
+   [
+    "Shaft climb",
+    1,
+    1
+   ],
+   [
+    "Sealed door",
+    1,
+    2,
+    "locked"
+   ],
+   [
+    "Secret panel",
+    0.5,
+    3,
+    "hidden"
+   ],
+   [
+    "Flooded conduit",
+    0.4,
+    1,
+    "water"
+   ]
+  ],
+  "activities": [
+   "searching for {s}",
+   "guarding {s}",
+   "arguing over the loot",
+   "dragging a sack of grave goods",
+   "resting by a lamp, careless and noisy",
+   "on patrol",
+   "resetting an old trap",
+   "fleeing from {other}",
+   "sealing a doorway",
+   "following fresh tracks in the dust",
+   "feasting on offering bread",
+   "lost in the dark",
+   "hunting for prey",
+   "carrying a captive to the altar"
+  ],
+  "dangerActs": [
+   "hunting",
+   "awake after an age of sleep",
+   "stalking the inhabitants",
+   "guarding its hoard",
+   "in a terrible temper",
+   "newly woken, looking for a lair"
+  ],
+  "distant": [
+   "unwound",
+   "ibis",
+   "shabti",
+   "scarab",
+   "scorpion",
+   "ka"
+  ],
+  "wanderers": [
+   "scarab",
+   "scorpion",
+   "asp",
+   "mummy",
+   "mouse",
+   "rat",
+   "ka",
+   "shabti"
+  ],
+  "dangers": [
+   "asp",
+   "crocodile",
+   "cat",
+   "jackal",
+   "unwound",
+   "ibis"
+  ]
+ },
+ "fit": {
+  "detail": {
+   "High priest-mouse's sealed chapel": {
+    "construction": "Mortuary chapel"
+   },
+   "Natron diggings": {
+    "construction": "Natron mine"
+   },
+   "Unmapped side chambers": {
+    "construction": "Cave beneath the temple floor"
+   },
+   "Grave-rat den": {
+    "construction": "Grave-rat king's nest",
+    "inhabitants": "Grave rats"
+   },
+   "Procession of giant scarabs": {
+    "construction": "Scarab-dug tunnels",
+    "inhabitants": "Swarming scarabs and scorpions"
+   },
+   "Scorpion nest in a canopic jar": {
+    "inhabitants": "Swarming scarabs and scorpions"
+   },
+   "Temple cat's sun-court": {
+    "inhabitants": "Temple cat and her mummified servants"
+   },
+   "Crocodile's flooded throne": {
+    "construction": "Flooded cistern works",
+    "ruination": "Flooded by the river"
+   },
+   "Shabti workshop, still working": {
+    "inhabitants": "Shabti servants still at their tasks"
+   },
+   "Star-mage mouse's observatory": {
+    "construction": "Astronomer-priest's sanctum"
+   },
+   "Plundered noble tomb": {
+    "construction": "Robbed royal tomb"
+   },
+   "Abandoned mouse enclave": {
+    "construction": "Abandoned mouse enclave",
+    "ruination": "Mysterious abandonment"
+   },
+   "Broken guardian colossus": {
+    "construction": "Hollow colossus"
+   },
+   "Altar of the nameless star": {
+    "inhabitants": "Things from between the stars",
+    "ruination": "Curse unleashed"
+   },
+   "Ring of drifting ka-lights": {
+    "inhabitants": "Restless ka-spirits"
+   },
+   "Scarab ossuary": {
+    "construction": "Catacomb of sacred animals",
+    "inhabitants": "Restless ka-spirits"
+   },
+   "Embalmer-witch's workshop": {
+    "construction": "School of embalmer-witches"
+   },
+   "Spreading crack of starlight": {
+    "inhabitants": "Things from between the stars"
+   },
+   "Human excavation trench": {
+    "construction": "Human excavation pit",
+    "ruination": "Human excavation"
+   },
+   "Blasted open by human dynamite": {
+    "construction": "Human excavation pit",
+    "ruination": "Human excavation"
+   },
+   "Older ruins beneath the temple": {
+    "construction": "Cave beneath the temple floor"
+   },
+   "Temple cat's hunting gallery": {
+    "inhabitants": "Temple cat and her mummified servants"
+   },
+   "Abandoned human camp gear": {
+    "construction": "Human excavation pit"
+   },
+   "Utterly silent chamber": {
+    "ruination": "Slipped halfway into the underworld"
+   }
+  },
+  "landmark": {
+   "Robbers' tunnel": {
+    "construction": "Robbers' hideout"
+   },
+   "Column hollowed out by mice": {
+    "construction": "Hollow colossus"
+   },
+   "Flooded stairway": {
+    "construction": "Flooded cistern works"
+   },
+   "Bronze sluice gate": {
+    "construction": "Flooded cistern works"
+   },
+   "Tomb of a mouse lord": {
+    "construction": "Sealed burial chamber"
+   },
+   "Sealed burial door": {
+    "construction": "Sealed burial chamber"
+   },
+   "Scarab-dug tunnels": {
+    "construction": "Scarab-dug tunnels"
+   },
+   "Wall of skull niches": {
+    "construction": "Catacomb of sacred animals"
+   },
+   "Ossuary heap": {
+    "construction": "Catacomb of sacred animals"
+   },
+   "Sealed preparation chamber": {
+    "construction": "School of embalmer-witches"
+   },
+   "Embalming table": {
+    "construction": "School of embalmer-witches"
+   },
+   "Golden shrine box": {
+    "construction": "Robbed royal tomb"
+   },
+   "Vault door left ajar": {
+    "construction": "Robbed royal tomb"
+   },
+   "Sighting shaft to the sky": {
+    "construction": "Astronomer-priest's sanctum"
+   },
+   "Bronze star wheel": {
+    "construction": "Astronomer-priest's sanctum"
+   },
+   "Gate of the underworld": {
+    "construction": "Gate to the underworld"
+   },
+   "Boat of the dead": {
+    "construction": "Gate to the underworld"
+   },
+   "Human brush marks in the dust": {
+    "construction": "Human excavation pit"
+   },
+   "Rusted human pump": {
+    "construction": "Human excavation pit"
+   }
+  },
+  "ruination": {
+   "sand_halls": {
+    "Sandstorm through a breach": 3
+   },
+   "cisterns": {
+    "Flooded by the river": 3
+   },
+   "catacombs": {
+    "Haunting ka": 2
+   },
+   "embalming": {
+    "Embalmers' plague": 2
+   },
+   "vaults": {
+    "Curse unleashed": 2
+   },
+   "judgement": {
+    "Slipped halfway into the underworld": 3
+   },
+   "unmaking": {
+    "Curse unleashed": 3
+   },
+   "archive": {
+    "Sand and long ages": 2
+   },
+   "labyrinth": {
+    "Overrun by pale fungus": 2
+   }
+  }
+ },
+ "treasure": {
+  "main": [
+   {
+    "min": 1,
+    "max": 1,
+    "text": "Magic sword",
+    "kind": "sword"
+   },
+   {
+    "min": 2,
+    "max": 2,
+    "text": "Random spell",
+    "kind": "spell"
+   },
+   {
+    "min": 3,
+    "max": 3,
+    "text": "Roll for Trinket",
+    "kind": "trinkets",
+    "label": "Trinket"
+   },
+   {
+    "min": 4,
+    "max": 4,
+    "text": "Roll for Valuable treasure",
+    "kind": "valuable",
+    "label": "Valuable"
+   },
+   {
+    "min": 5,
+    "max": 5,
+    "text": "Roll for Unusual treasure",
+    "kind": "unusual",
+    "label": "Unusual"
+   },
+   {
+    "min": 6,
+    "max": 8,
+    "text": "Roll for Large treasure",
+    "kind": "large",
+    "label": "Large"
+   },
+   {
+    "min": 9,
+    "max": 10,
+    "text": "Roll for Useful treasure",
+    "kind": "useful",
+    "label": "Useful"
+   },
+   {
+    "min": 11,
+    "max": 11,
+    "text": "Cedar chest containing d6 x 100 pips",
+    "pips": 100,
+    "fmt": "Cedar chest containing {n} pips"
+   },
+   {
+    "min": 12,
+    "max": 14,
+    "text": "Linen bag containing d6 x 50 pips",
+    "pips": 50,
+    "fmt": "Linen bag containing {n} pips"
+   },
+   {
+    "min": 15,
+    "max": 17,
+    "text": "Faience bowl holding d6 x 10 pips",
+    "pips": 10,
+    "fmt": "Faience bowl holding {n} pips"
+   },
+   {
+    "min": 18,
+    "max": 20,
+    "text": "Scattering of d6 x 5 pips in the dust",
+    "pips": 5,
+    "fmt": "Scattering of {n} pips in the dust"
+   }
+  ],
+  "trinkets": [
+   "Ka-lantern (casts a light that banishes ghosts)",
+   "Twin speaking scarabs (one speaks what the other hears)",
+   "Reed breathing tube (always contains air)",
+   "Priest's obsidian knife (grants passage into the sanctum)",
+   "Magic lotus seeds (grow fully in d6 Turns)",
+   "Working gadget from the human dig (make up something fun)"
+  ],
+  "valuable": [
+   "Jar of sacred honey (100p)",
+   "Gold scarab chain (2 slots, 500p)",
+   "Carnelian amulet (400p)",
+   "Gold signet ring of a scribe (500p)",
+   "Polished lapis eye (1000p)",
+   "Collar of faience and gold (2 slots, 1500p)"
+  ],
+  "large": [
+   "Oversized golden offering spoon (2 slots, 300p)",
+   "Ivory headrest (4 slots, 400p)",
+   "Sealed jar of fine palm wine (4 slots, 500p)",
+   "Ancient statue of a mouse scribe (4 slots, 500p)",
+   "Gilded mouse throne (6 slots, 1000p)",
+   "Giant golden sun-disk (4 slots, 1000p)"
+  ],
+  "unusual": [
+   "Bundle of myrrh (200p to an apothecary)",
+   "Jar of black embalming resin (200p to a witch)",
+   "Fragment of a fallen star (300p to a wizard)",
+   "Heirloom of sentimental value to a high priest-mouse",
+   "Papyrus deed granting a burial niche to the holder",
+   "Treasure map on papyrus"
+  ],
+  "useful": [
+   "d6 packs of offering-bread rations",
+   "d6 bundles of torches",
+   "Mundane weapon",
+   "Mundane armour",
+   "Jar of lamp oil and a lamp",
+   "Lost mouse, willing to help"
+  ],
+  "swords": [
+   [
+    "Copper khopesh",
+    "While wielded: you roll critical damage Saves with Advantage"
+   ],
+   [
+    "Mask-blade of the jackal",
+    "While wielded: you may disguise yourself as any mouse-sized creature"
+   ],
+   [
+    "Rusted human trowel",
+    "Critical damage: give a Frightened Condition"
+   ],
+   [
+    "Asp-fang dagger",
+    "Critical damage: deal d6 additional damage to DEX"
+   ],
+   [
+    "Toy pharaoh's sceptre",
+    "While wielded: if you lead a warband, they have +1 Armour"
+   ],
+   [
+    "Reed-and-lapis blade",
+    "While wielded: you can hold your breath underwater for 1 Turn"
+   ],
+   [
+    "Obsidian sickle",
+    "Critical damage: your next attack is Enhanced"
+   ],
+   [
+    "Silver embalmer's hook",
+    "Critical damage: clear all usage dots from a non-spell item in your inventory"
+   ],
+   [
+    "Sacred lotus stem",
+    "Critical damage: remove a Condition"
+   ],
+   [
+    "Blade of star-shadow",
+    "While wielded: you are invisible when standing perfectly still"
+   ]
+  ],
+  "swordClass": [
+   {
+    "min": 1,
+    "max": 4,
+    "text": "Medium (d6 one paw/d8 both paws)"
+   },
+   {
+    "min": 5,
+    "max": 5,
+    "text": "Light (d6 one paw, can be dual-wielded)"
+   },
+   {
+    "min": 6,
+    "max": 6,
+    "text": "Heavy (d10 both paws)"
+   }
+  ],
+  "curses": [
+   [
+    "Roll critical damage saves with Disadvantage",
+    "Making a selfless sacrifice in a life or death situation"
+   ],
+   [
+    "When you gain an Exhausted Condition, gain another",
+    "Serving a season in a poor enclave's lamp-house"
+   ],
+   [
+    "Make a WIL save to not attack when threatened",
+    "Making lasting peace with a mortal enemy"
+   ],
+   [
+    "Reaction rolls are made with -1 modifier",
+    "Giving away everything you own, no cheating"
+   ],
+   [
+    "If you see an ally take damage, take a Frightened Condition",
+    "Speaking a dying mouse's true name at their burial"
+   ],
+   [
+    "Spells cast in your presence always mark usage",
+    "Sealing a crack of the Unmaking for good"
+   ]
+  ],
+  "spells": [
+   [
+    2,
+    "Eye of the Sun",
+    "Shoot a ball of fire up to 24\". Deal [SUM] + [DICE] damage to all creatures within 6\".",
+    "Leave in the brazier of the Sun-Disk Sanctum for three days and nights."
+   ],
+   [
+    3,
+    "Breath of Life",
+    "Heal [SUM] STR damage and remove the Injured Condition from a creature.",
+    "Cut self for d6 STR damage, sprinkle the spell with the blood."
+   ],
+   [
+    4,
+    "Arrow of the Huntress",
+    "Deal [SUM] + [DICE] damage to a creature within sight.",
+    "Drop down a burial shaft at least 30ft deep. Touch the spell within one Turn."
+   ],
+   [
+    5,
+    "Gaze of the Lioness",
+    "Give the Frightened Condition to [DICE] creatures.",
+    "Receive the Frightened Condition from a hostile creature while carrying the spell."
+   ],
+   [
+    6,
+    "Veil of Night",
+    "Create a [SUM] x 2\" diameter sphere of pure darkness for [DICE] Turns.",
+    "Leave uncovered in a sealed burial chamber for three days."
+   ],
+   [
+    7,
+    "Waters of the River",
+    "Remove Exhausted or Frightened Condition from [DICE] + 1 creatures.",
+    "Leave in the flooded cisterns for three days."
+   ],
+   [
+    8,
+    "Tongue of the Ibis",
+    "Make your meaning clear to [DICE] creatures of another species for [DICE] Turns.",
+    "Give away freely to a creature of another species."
+   ],
+   [
+    9,
+    "Ghost Scarab",
+    "Create an illusory scarab that can carry 6 inventory slots for [DICE] x 6 Turns.",
+    "Bury in the scarab catacombs for three nights."
+   ],
+   [
+    10,
+    "Sun-Disk",
+    "Force [DICE] creatures to make a WIL save or become stunned. Alternately, create light as bright as a torch for [SUM] turns.",
+    "Catch in the first light of a sunrise and the last light of sunset through a light well, for three days."
+   ],
+   [
+    11,
+    "Ring of Balance",
+    "Creates [DICE] x 6\" ring of force. It is invisible and immovable. Lasts [DICE] Turns.",
+    "Build a bronze ring the same size as last cast. Pass the spell through it. Dissolves the ring."
+   ],
+   [
+    12,
+    "Opening of the Way",
+    "Open a door or container, as if a Save were made with STR score of 10 + [DICE] x 4.",
+    "Seal in a coffin, inside a coffin, inside a coffin. Leave for three days."
+   ],
+   [
+    13,
+    "Embalmer's Oil",
+    "Cover [DICE] x 6\" area in slippery, flammable oil. Creatures in the area must make a DEX save or fall prone.",
+    "Soak in embalming resin. Leave until it hardens."
+   ],
+   [
+    14,
+    "Colossus",
+    "Grow a creature to [DICE] + 1 times its original size for 1 Turn.",
+    "Leave on the head of a colossus for three days."
+   ],
+   [
+    15,
+    "Hidden Name",
+    "Make creature invisible for [DICE] Turns. Any movement reduces duration by 1 Turn.",
+    "Go a day without opening your eyes once, while holding the spell."
+   ],
+   [
+    16,
+    "Offering to the Cat",
+    "Turn object into an irresistible lure for cats. Lasts [DICE] Turns.",
+    "Give a temple cat a gift it truly desires."
+   ]
+  ],
+  "formerMouse": [
+   "Robbed royal tomb",
+   "Mortuary chapel",
+   "Sealed burial chamber",
+   "Hidden granary of offerings",
+   "Hollow colossus",
+   "Astronomer-priest's sanctum",
+   "Enclave grain store",
+   "School of embalmer-witches",
+   "Natron mine",
+   "Abandoned mouse enclave"
+  ],
+  "magical": [
+   "Astronomer-priest's sanctum",
+   "School of embalmer-witches",
+   "Gate to the underworld",
+   "Curse unleashed",
+   "Slipped halfway into the underworld",
+   "Haunting ka",
+   "Obelisk humming with star-power",
+   "Crack opening onto the stars",
+   "Stair down to the river of night"
+  ]
+ },
+ "creatures": [
+  {
+   "key": "cat",
+   "name": "Temple cat",
+   "plural": "Temple cats",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "Warband scale. 15hp, STR 15, DEX 15, WIL 12, Armour 1",
+   "attacks": "d6 swipe, d8 bite",
+   "notes": "Sacred. Harming one turns every enclave against you",
+   "wants": "to be worshipped. Mice who bring offerings and praise may be spared",
+   "vt": "Daughters of the cat goddess",
+   "variants": [
+    [
+     "Mau-Re",
+     "Demands offerings of the finest fish"
+    ],
+    [
+     "Neferet",
+     "Hoards gold, jewels and amulets"
+    ],
+    [
+     "Sekhet",
+     "Plays cruel games with captives"
+    ],
+    [
+     "Ma'ati",
+     "Rules by the harsh law of balance"
+    ],
+    [
+     "Ptahet",
+     "Loves music, painting and beautiful things"
+    ],
+    [
+     "Ankhesmau",
+     "Gathering every cat in the temple to rule it"
+    ]
+   ]
+  },
+  {
+   "key": "jackal",
+   "name": "Jackal warden",
+   "plural": "Jackal wardens",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "14hp, STR 14, DEX 14, WIL 12, Armour 1",
+   "attacks": "d8 bite",
+   "notes": "Can smell the living through stone",
+   "wants": "to keep the dead and the living apart",
+   "vt": "Jackal wardens",
+   "variants": [
+    [
+     "Gatekeeper",
+     "Will not let anything pass without hearing its name"
+    ],
+    [
+     "Hound of the scales",
+     "Drags the dishonest to the Hall of Judgement"
+    ],
+    [
+     "Black-furred",
+     "Unseen in darkness, always surprises"
+    ],
+    [
+     "Twin-headed",
+     "Two bites each turn"
+    ],
+    [
+     "Starved",
+     "Hasn't eaten since the temple was sealed"
+    ],
+    [
+     "Golden collar",
+     "Serves a living priest-mouse"
+    ]
+   ]
+  },
+  {
+   "key": "scarab",
+   "name": "Scarab",
+   "plural": "Scarabs",
+   "counts": [
+    "d3",
+    "d6",
+    "d6"
+   ],
+   "stats": "4hp, STR 8, DEX 10, WIL 6, Armour 2",
+   "attacks": "d6 mandibles",
+   "crit": "Clings on: Disadvantage on DEX saves until pried off",
+   "wants": "to roll every dead thing down into the dark",
+   "vt": "Scarab kinds",
+   "variants": [
+    [
+     "Golden",
+     "Armour 3, worth 50p if killed whole"
+    ],
+    [
+     "Flesh-eater",
+     "Swarms in d6 x 10, strips a body in a Turn"
+    ],
+    [
+     "Great roller",
+     "As big as a cat. 12hp, STR 15"
+    ],
+    [
+     "Sun-carrier",
+     "Glows like a torch"
+    ],
+    [
+     "Stone",
+     "A statue that wakes when touched"
+    ],
+    [
+     "Star-touched",
+     "Its shell shows a sky that isn't ours"
+    ]
+   ]
+  },
+  {
+   "key": "scorpion",
+   "name": "Scorpion",
+   "plural": "Scorpions",
+   "counts": [
+    "1",
+    "1",
+    "d3"
+   ],
+   "stats": "8hp, STR 10, DEX 12, WIL 8, Armour 2",
+   "attacks": "d6 claws or d6 sting (damages DEX instead of STR)",
+   "crit": "Venom takes hold, d12 damage to STR",
+   "wants": "to guard the sleep of the dead",
+   "vt": "Scorpions of the goddess",
+   "variants": [
+    [
+     "Giant",
+     "As big as a snake. 12hp, STR 15, Armour 3"
+    ],
+    [
+     "Deathstalker",
+     "Pale yellow, d8 sting"
+    ],
+    [
+     "Wall-crawler",
+     "Drops from the ceiling onto prey"
+    ],
+    [
+     "Mother",
+     "Carries d6 young that scatter when hit"
+    ],
+    [
+     "Glowing",
+     "Shines blue in starlight, can't hide in the galleries"
+    ],
+    [
+     "Sand-swimmer",
+     "Moves under the sand, always surprises"
+    ]
+   ]
+  },
+  {
+   "key": "asp",
+   "name": "Sacred asp",
+   "plural": "Sacred asps",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "12hp, STR 12, DEX 14, WIL 10, Armour 1",
+   "attacks": "d8 venomous bite",
+   "crit": "Venom takes hold, d12 damage to STR",
+   "notes": "Can spit venom 12\": DEX save or blinded for a Turn",
+   "wants": "to coil undisturbed around something golden",
+   "vt": "Asps",
+   "variants": [
+    [
+     "Uraeus",
+     "Wears a gold crown, serves the priests"
+    ],
+    [
+     "Shadow",
+     "Slithers always just out of sight"
+    ],
+    [
+     "Bone",
+     "Serpent skeleton, raised by a curse"
+    ],
+    [
+     "Twin-headed",
+     "Bites twice, never sleeps"
+    ],
+    [
+     "Glyph-scaled",
+     "Born with a spell written on its scales"
+    ],
+    [
+     "Chaos-born",
+     "Black and endless, a sliver of the great serpent"
+    ]
+   ]
+  },
+  {
+   "key": "crocodile",
+   "name": "Sacred crocodile",
+   "plural": "Sacred crocodiles",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "Warband scale. 18hp, STR 16, DEX 8, WIL 10, Armour 2",
+   "attacks": "d10 bite",
+   "crit": "Death roll: dragged under water, d6 STR damage per Round until rescued or escape",
+   "notes": "Only ever found in the cisterns",
+   "wants": "to be fed, and to be left in the deep",
+   "vt": "Crocodiles of the river god",
+   "variants": [
+    [
+     "Golden-earringed",
+     "Worshipped by an enclave, fed on offerings"
+    ],
+    [
+     "Old Silt",
+     "Older than the temple, almost always asleep"
+    ],
+    [
+     "Blind",
+     "Hunts by the ripples of the water"
+    ],
+    [
+     "Mummified",
+     "Wrapped and dead, but still hungry"
+    ],
+    [
+     "Bone-white",
+     "Never seen the sun; cannot stand light"
+    ],
+    [
+     "Hatchling",
+     "Small, curious, followed by an angry mother"
+    ]
+   ]
+  },
+  {
+   "key": "ibis",
+   "name": "Ibis scribe",
+   "plural": "Ibis scribes",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "12hp, STR 12, DEX 15, WIL 16, Armour 1",
+   "attacks": "d8 beak",
+   "notes": "Flies 3x normal speed, knows two glyph-songs",
+   "wants": "to keep the temple's records true, and its secrets secret",
+   "vt": "Glyph-songs",
+   "variants": [
+    [
+     "Dawn",
+     "Create a blindingly bright light"
+    ],
+    [
+     "Lament",
+     "All who hear: make WIL save or take Frightened"
+    ],
+    [
+     "Foretelling",
+     "Vaguely foretell a future event"
+    ],
+    [
+     "Gust",
+     "Powerful wingbeat. Make STR save or be knocked down"
+    ],
+    [
+     "Remembering",
+     "See a past event concerning those present"
+    ],
+    [
+     "True name",
+     "All who hear: cannot lie while the song lasts"
+    ]
+   ]
+  },
+  {
+   "key": "mummy",
+   "name": "Mummy",
+   "plural": "Mummies",
+   "counts": [
+    "1",
+    "d3",
+    "d3"
+   ],
+   "stats": "6hp, STR 12, DEX 6, WIL 10, Armour 1",
+   "attacks": "d6 claw",
+   "crit": "Grave-rot: the target takes the Injured Condition",
+   "notes": "Mummified mice and rats. Fire deals double damage",
+   "wants": "to finish the duties of its former life",
+   "vt": "Mummies",
+   "variants": [
+    [
+     "Priest",
+     "Knows one spell"
+    ],
+    [
+     "Guard",
+     "d8 bronze spear"
+    ],
+    [
+     "Scribe",
+     "Still recording every intruder's name"
+    ],
+    [
+     "Royal",
+     "Armour 2, followed by d3 lesser mummies"
+    ],
+    [
+     "Child",
+     "Wants to play; terribly strong"
+    ],
+    [
+     "Unwrapped",
+     "Fast and frantic. DEX 12"
+    ]
+   ]
+  },
+  {
+   "key": "ka",
+   "name": "Ka-spirit",
+   "plural": "Ka-spirits",
+   "counts": [
+    "1",
+    "1",
+    "d3"
+   ],
+   "stats": "9hp, STR 5, DEX 10, WIL 10",
+   "attacks": "ghostly power, d8 chilling touch (damages WIL)",
+   "crit": "Possess the creature",
+   "notes": "Only harmed by silver or magic weapons. Calmed by an offering and its name spoken aloud",
+   "wants": "its name spoken, and an offering made",
+   "vt": "Ka powers",
+   "variants": [
+    [
+     "Shimmer",
+     "Create d3 illusions of itself"
+    ],
+    [
+     "Poltergeist",
+     "Throws a creature or object d6 x 6\""
+    ],
+    [
+     "Duat-pull",
+     "Pull a creature into the underworld for a Round"
+    ],
+    [
+     "Doom",
+     "Give the Frightened Condition to a creature"
+    ],
+    [
+     "Hunger",
+     "Eats all rations carried by a creature"
+    ],
+    [
+     "False door",
+     "Step into a wall, reappear elsewhere"
+    ]
+   ]
+  },
+  {
+   "key": "shabti",
+   "name": "Shabti",
+   "plural": "Shabtis",
+   "counts": [
+    "d3",
+    "d6",
+    "d6"
+   ],
+   "stats": "4hp, STR 10, DEX 8, WIL 4, Armour 2",
+   "attacks": "d6 tool",
+   "notes": "Clay servant figurines that follow the last order they were given, forever",
+   "wants": "to finish their assigned labour",
+   "vt": "Shabti",
+   "variants": [
+    [
+     "Farmer",
+     "Tends fields that turned to dust long ago"
+    ],
+    [
+     "Porter",
+     "Can carry 6 inventory slots"
+    ],
+    [
+     "Guard",
+     "d8 spear, Armour 3"
+    ],
+    [
+     "Scribe",
+     "Will copy anything shown to it"
+    ],
+    [
+     "Overseer",
+     "Commands every shabti within sight"
+    ],
+    [
+     "Cracked",
+     "Erratic, obeys the last thing anyone said"
+    ]
+   ]
+  },
+  {
+   "key": "mouse",
+   "name": "Mouse",
+   "plural": "Mice",
+   "counts": [
+    "d3",
+    "d6",
+    "d6"
+   ],
+   "stats": "3hp, STR 9, DEX 9, WIL 9",
+   "attacks": "d6 sword or d6 sling",
+   "wants": "to get out alive, and rich",
+   "vt": "Rival tomb-robbers",
+   "variants": [
+    [
+     "Senet",
+     "Card-sharp and lockpick, never plays fair"
+    ],
+    [
+     "Old Hapu",
+     "Has been down here for years. Knows too much"
+    ],
+    [
+     "Ahmose",
+     "Disgraced temple guard, still wears the bronze"
+    ],
+    [
+     "Merit",
+     "Off-kilter star-mage, looking for spells"
+    ],
+    [
+     "Kamut",
+     "Loves fire. Fears the dark more than anything"
+    ],
+    [
+     "Djedi",
+     "Massive mouse, claims to be a lost prince"
+    ]
+   ]
+  },
+  {
+   "key": "rat",
+   "name": "Grave rat",
+   "plural": "Grave rats",
+   "counts": [
+    "d3",
+    "d6",
+    "d6",
+    "2d6"
+   ],
+   "stats": "3hp, STR 12, DEX 8, WIL 8",
+   "attacks": "d6 cleaver",
+   "wants": "easy loot, and to take from the weak",
+   "vt": "Grave-rat gangs",
+   "variants": [
+    [
+     "Shroud-thieves",
+     "Set elaborate traps in the catacombs"
+    ],
+    [
+     "Canal rats",
+     "Expert reed-boat smugglers in the cisterns"
+    ],
+    [
+     "Gilded Teeth",
+     "Gold-capped teeth, bribed by everyone"
+    ],
+    [
+     "Bronze-helms",
+     "1 armour scavenged bronze scale and helms"
+    ],
+    [
+     "Scroll-burners",
+     "Destroy every record they find"
+    ],
+    [
+     "The Knot",
+     "Tails tangled together in a single knot"
+    ]
+   ]
+  },
+  {
+   "key": "unwound",
+   "name": "Unwound",
+   "plural": "Unwound",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "14hp, STR 14, DEX 12, WIL 16, Armour 1",
+   "attacks": "d10 grasping wrongness (damages WIL instead of STR)",
+   "crit": "The target forgets its own name: takes the Drained Condition",
+   "notes": "A thing from beyond the stars. Only harmed by magic, sunlight or silver. Hard to look at",
+   "wants": "to unmake whatever the temple was built to hold shut",
+   "vt": "Unwound",
+   "variants": [
+    [
+     "Many-eyed",
+     "Every eye sees a different moment"
+    ],
+    [
+     "Hollow",
+     "Wears the shape of a mouse, badly"
+    ],
+    [
+     "Starlit",
+     "Lights the room with a cold, wrong light"
+    ],
+    [
+     "Whispering",
+     "Everyone within 12\" hears their name, constantly"
+    ],
+    [
+     "Folded",
+     "Takes up less room than it should. Moves through cracks"
+    ],
+    [
+     "The Herald",
+     "Speaks for the Nameless Star, and makes offers"
+    ]
+   ]
+  }
+ ],
+ "npc": {
+  "social": [
+   [
+    "Scavenger",
+    "d6p"
+   ],
+   [
+    "Porter",
+    "d6 x 10p"
+   ],
+   [
+    "Lamp-keeper",
+    "d6 x 10p"
+   ],
+   [
+    "Scribe",
+    "d6 x 50p"
+   ],
+   [
+    "Priest of a guild",
+    "d4 x 100p"
+   ],
+   [
+    "Vizier-mouse",
+    "d4 x 1000p"
+   ]
+  ],
+  "birthsign": [
+   [
+    "Sun-Disk",
+    "Brave / Reckless"
+   ],
+   [
+    "Scarab",
+    "Industrious / Unimaginative"
+   ],
+   [
+    "Ibis",
+    "Inquisitive / Stubborn"
+   ],
+   [
+    "Jackal",
+    "Generous / Wrathful"
+   ],
+   [
+    "Moon",
+    "Wise / Mysterious"
+   ],
+   [
+    "Mother",
+    "Nurturing / Worrying"
+   ]
+  ],
+  "appearance": [
+   "Kohl-rimmed eyes",
+   "Bright, patched linen",
+   "Wreath of lotus flowers",
+   "Dust-caked kilt",
+   "Tall linen headdress",
+   "Pockets full of barley",
+   "Reed walking staff",
+   "Carries a notched bronze dagger",
+   "Long, wild fur",
+   "Very, very old",
+   "Bandaged tail",
+   "Tail wrapped in gold wire",
+   "Missing an ear",
+   "Long whiskers dyed blue",
+   "Twinkling eyes",
+   "Heavy black cloak",
+   "Old burn scars",
+   "Very young",
+   "Shaved for the rites",
+   "Fur braided with faience beads"
+  ],
+  "quirk": [
+   "Constantly sweeping sand away",
+   "Reads omens in everything",
+   "Very high energy",
+   "Has walked every hall, knows them all",
+   "Cursed by a star-mage",
+   "Jumps at every shadow",
+   "Ashamed of robbing a tomb",
+   "Very competitive",
+   "Flamboyant beer drinker",
+   "Extremely polite",
+   "Unreservedly honest",
+   "Slow, careful speech",
+   "Quick, whispering speech",
+   "Secret servant of a temple cat",
+   "Raised by grave rats",
+   "Banished from their enclave",
+   "Keeps many pet beetles",
+   "Terrified of the dark",
+   "Local hero",
+   "Hums hymns nobody else knows"
+  ],
+  "wants": [
+   "Freedom",
+   "Safety",
+   "To see the sun",
+   "Excitement",
+   "Power",
+   "Meaning",
+   "Health",
+   "Wealth",
+   "Protection",
+   "Love",
+   "To protect",
+   "Food",
+   "Friendship",
+   "Rest",
+   "Forbidden knowledge",
+   "Savagery",
+   "Beauty",
+   "Revenge",
+   "To serve",
+   "A proper burial"
+  ],
+  "relationship": [
+   "Parent",
+   "Sibling",
+   "Cousin",
+   "Second cousin",
+   "Grandparent",
+   "Related, but don't know it",
+   "Married",
+   "Former lovers",
+   "In love, unrequited",
+   "Drinking buddies",
+   "Debt owed",
+   "Long and tumultuous",
+   "Sworn enemies",
+   "Guild siblings",
+   "Childhood friends",
+   "One robbed the other's tomb",
+   "Worked a dig together",
+   "Grew up together",
+   "Serve the same priest",
+   "Never met before"
+  ],
+  "birthnames": [
+   "Ahmose",
+   "Akhet",
+   "Amunet",
+   "Ankh",
+   "Anhur",
+   "Aten",
+   "Bakt",
+   "Bennu",
+   "Djedi",
+   "Djehuty",
+   "Ebony",
+   "Hapu",
+   "Henut",
+   "Heqet",
+   "Huy",
+   "Ipy",
+   "Ipuwer",
+   "Iset",
+   "Itet",
+   "Kamut",
+   "Kawab",
+   "Khaba",
+   "Kheti",
+   "Kiya",
+   "Maya",
+   "Merit",
+   "Meryt",
+   "Mosi",
+   "Nakht",
+   "Nebet",
+   "Nefer",
+   "Neferu",
+   "Nodjmet",
+   "Paser",
+   "Pentu",
+   "Ptahmose",
+   "Ramses",
+   "Ranofer",
+   "Rekh",
+   "Sabu",
+   "Satiah",
+   "Sen",
+   "Senet",
+   "Seni",
+   "Sitre",
+   "Tahar",
+   "Takhat",
+   "Tiy",
+   "Tutu",
+   "Wenis",
+   "Acacia",
+   "Alabaster",
+   "Amber",
+   "Anise",
+   "Barley",
+   "Basalt",
+   "Carnelian",
+   "Cedar",
+   "Coriander",
+   "Cumin",
+   "Date",
+   "Dill",
+   "Ebon",
+   "Emmer",
+   "Faience",
+   "Fennel",
+   "Fig",
+   "Flax",
+   "Garnet",
+   "Henna",
+   "Ibis",
+   "Jasper",
+   "Juniper",
+   "Kohl",
+   "Lapis",
+   "Leek",
+   "Linen",
+   "Lotus",
+   "Malachite",
+   "Melon",
+   "Mint",
+   "Myrrh",
+   "Natron",
+   "Ochre",
+   "Onyx",
+   "Papyrus",
+   "Pistachio",
+   "Pomegranate",
+   "Reed",
+   "Resin",
+   "Saffron",
+   "Sesame",
+   "Sycamore",
+   "Tamarisk",
+   "Thyme",
+   "Topaz",
+   "Turquoise",
+   "Willow",
+   "Wick",
+   "Zebu"
+  ],
+  "matrinames": [
+   "Sandborn",
+   "Reedweaver",
+   "Lampwick",
+   "Duskhollow",
+   "Scarabkin",
+   "Niche-dweller",
+   "Goldleaf",
+   "Starwatcher",
+   "Inkpaw",
+   "Lotusmere",
+   "Kohleye",
+   "Pillarsby",
+   "Ashstone",
+   "Linenfold",
+   "Dateborn",
+   "Cistern",
+   "Brightwell",
+   "Graveling",
+   "Sunward",
+   "Silentstep"
+  ]
+ },
+ "seeds": [
+  [
+   "Cistern fisher",
+   "Has been accused of robbing a tomb",
+   "A player's hireling is responsible"
+  ],
+  [
+   "Unruly family",
+   "Looking for a new burial niche to live in",
+   "Need to cross the flooded cisterns"
+  ],
+  [
+   "Star-mage",
+   "Is being followed",
+   "Antagonist is their own shadow"
+  ],
+  [
+   "Scarab herder",
+   "Discovered a strange artifact",
+   "They have forgotten their own name"
+  ],
+  [
+   "Barley farmer",
+   "Saw an unsettling omen in the stars",
+   "The antagonist is in disguise"
+  ],
+  [
+   "Enclave elder",
+   "Want to ruin a rival enclave",
+   "Player mouse's home is involved"
+  ],
+  [
+   "Relic hunter",
+   "Want to retrieve a lost amulet",
+   "It is protected by strange beasts"
+  ],
+  [
+   "Lamp-oil seller",
+   "Lamp-house has gone dark",
+   "Antagonist is their closest friend"
+  ],
+  [
+   "Travelling relic trader",
+   "Most valued possession was stolen",
+   "They are the true antagonist"
+  ],
+  [
+   "Ibis rider",
+   "Has been kidnapped",
+   "Player mouse's friend is involved"
+  ],
+  [
+   "Beer brewer",
+   "Has been exiled from the enclave",
+   "They've been framed"
+  ],
+  [
+   "Embalmer",
+   "Searching for a rare resin",
+   "It's very urgent"
+  ],
+  [
+   "Message runner",
+   "Lost in the labyrinth",
+   "They carry vital information"
+  ],
+  [
+   "Scavenger",
+   "Has had all their offering bread stolen",
+   "The antagonist had a good reason"
+  ],
+  [
+   "Crate escapee",
+   "On the run from the archaeologists",
+   "They're tagged with a museum label"
+  ],
+  [
+   "Natron miner",
+   "Waylaid by grave rats",
+   "The antagonist is very drunk"
+  ],
+  [
+   "Baker",
+   "Ate a cursed date",
+   "Antagonist is a family member"
+  ],
+  [
+   "Pilgrim knight",
+   "Family member is missing in the dark",
+   "They're dying"
+  ],
+  [
+   "Temple tax collector",
+   "Lost a chest of pips",
+   "They're very drunk"
+  ],
+  [
+   "Matriarch",
+   "Accused of murder",
+   "Antagonist is a shape-shifter"
+  ],
+  [
+   "Prospector",
+   "Pack tortoise is stuck in a sand-trap",
+   "They're much richer than they look"
+  ],
+  [
+   "Scribes' guild master",
+   "Has been murdered",
+   "Player mouse's rival is involved"
+  ],
+  [
+   "High priest-mouse",
+   "Their chapel is under attack",
+   "Antagonist wants retribution"
+  ],
+  [
+   "Grave rat",
+   "Wants to rob a rival gang",
+   "A ka is haunting the hideout"
+  ],
+  [
+   "Queen bee",
+   "Swarm moving to a new hollow statue",
+   "Their followers disagree"
+  ],
+  [
+   "Ant army officer",
+   "Hunted by enemies",
+   "They are badly injured"
+  ],
+  [
+   "Ibis scribe",
+   "Wants to retrieve a forbidden scroll",
+   "It is deep in the Unmaking"
+  ],
+  [
+   "Temple cat",
+   "Wants to be entertained",
+   "They've trapped the player mice"
+  ],
+  [
+   "Duckling",
+   "Has lost its mother in the cisterns",
+   "Need to reach the drowned shrine"
+  ],
+  [
+   "Giant millipede",
+   "Wants somewhere warm to sleep",
+   "Needs an item carried by a player mouse"
+  ],
+  [
+   "Lilliputian archaeologist",
+   "Wants to reach the Mouse Pharaoh",
+   "They don't understand local customs"
+  ],
+  [
+   "Trapped ka",
+   "Wants its true name spoken",
+   "It can't leave its tomb"
+  ],
+  [
+   "Herald of the Nameless Star",
+   "Wants to bargain for a mouse",
+   "A player mouse is their target"
+  ],
+  [
+   "Swarm of sand flies",
+   "Want to steal from a player mouse",
+   "Antagonist is unusually skilled"
+  ],
+  [
+   "Grandmother scorpion",
+   "Has lost an ancient treasure",
+   "She's eaten it"
+  ],
+  [
+   "Baby ibis",
+   "Cannot get back to its perch",
+   "Need to climb a column"
+  ]
+ ],
+ "mouse": {
+  "noun": "mouse",
+  "nounPlural": "mice",
+  "backgrounds": [
+   [
+    1,
+    1,
+    "Escaped dig specimen",
+    "Spell: Magic missile",
+    "Bronze scale plate (Heavy armour)"
+   ],
+   [
+    1,
+    2,
+    "Offering-table forager",
+    "Linen scale & reed shield (Light armour)",
+    "Cookpots"
+   ],
+   [
+    1,
+    3,
+    "Jar dweller",
+    "Spell: Be understood",
+    "Bottle of goat's milk"
+   ],
+   [
+    1,
+    4,
+    "Embalmer's apprentice",
+    "Spell: Heal",
+    "Myrrh incense"
+   ],
+   [
+    1,
+    5,
+    "Linen weaver",
+    "Linen scale & reed shield (Light armour)",
+    "Bronze shears"
+   ],
+   [
+    1,
+    6,
+    "Tomb-gang tough",
+    "Bronze dagger (Light, d6)",
+    "Flask of date wine"
+   ],
+   [
+    2,
+    1,
+    "Wandering priest",
+    "Spell: Restore",
+    "Ankh amulet"
+   ],
+   [
+    2,
+    2,
+    "Scarab herder",
+    "Hireling: Loyal scarab",
+    "Pole, 6\""
+   ],
+   [
+    2,
+    3,
+    "Beer brewer",
+    "Hireling: Drunken torchbearer",
+    "Small jar of barley beer"
+   ],
+   [
+    2,
+    4,
+    "Cistern fisher",
+    "Net",
+    "Needle (Light, d6)"
+   ],
+   [
+    2,
+    5,
+    "Bronzesmith",
+    "Hammer (Medium, d6/d8)",
+    "Metal file"
+   ],
+   [
+    2,
+    6,
+    "Dig-camp scavenger",
+    "Wire, spool",
+    "Electric lantern"
+   ],
+   [
+    3,
+    1,
+    "Reed cutter",
+    "Axe (Medium, d6/d8)",
+    "Twine, roll"
+   ],
+   [
+    3,
+    2,
+    "Cultist of the Nameless Star",
+    "Spell: Darkness",
+    "Bag of star-glass shards"
+   ],
+   [
+    3,
+    3,
+    "Natron miner",
+    "Pickaxe (Medium, d6/d8)",
+    "Lantern"
+   ],
+   [
+    3,
+    4,
+    "Grave robber",
+    "Grave hook (Heavy, d10)",
+    "Mirror"
+   ],
+   [
+    3,
+    5,
+    "Wall rover",
+    "Fishhook",
+    "Thread, spool"
+   ],
+   [
+    3,
+    6,
+    "Relic trader",
+    "Hireling: Pack rat",
+    "20p IOU from a high priest-mouse"
+   ],
+   [
+    4,
+    1,
+    "Barque crew",
+    "Hammer (Medium, d6/d8)",
+    "Wooden spikes"
+   ],
+   [
+    4,
+    2,
+    "Snake charmer",
+    "Pole, 6\"",
+    "Reed flute"
+   ],
+   [
+    4,
+    3,
+    "Ibis rider",
+    "Fishhook",
+    "Goggles"
+   ],
+   [
+    4,
+    4,
+    "Conduit guide",
+    "Metal file",
+    "Thread, spool"
+   ],
+   [
+    4,
+    5,
+    "Tomb guard",
+    "Chain, 6\"",
+    "Spear (Heavy, d10)"
+   ],
+   [
+    4,
+    6,
+    "Fungus farmer",
+    "Dried mushroom (as rations)",
+    "Linen spore mask"
+   ],
+   [
+    5,
+    1,
+    "Sand digger",
+    "Shovel",
+    "Wooden spikes"
+   ],
+   [
+    5,
+    2,
+    "Map scribe",
+    "Reed pen & ink",
+    "Compass"
+   ],
+   [
+    5,
+    3,
+    "Trap thief",
+    "Block of cheese",
+    "Glue"
+   ],
+   [
+    5,
+    4,
+    "Pilgrim",
+    "Tent",
+    "Treasure map, dubious"
+   ],
+   [
+    5,
+    5,
+    "Barley farmer",
+    "Spear (Heavy, d10)",
+    "Whistle"
+   ],
+   [
+    5,
+    6,
+    "Message runner",
+    "Bedroll",
+    "Sealed papyrus"
+   ],
+   [
+    6,
+    1,
+    "Harper",
+    "Musical instrument",
+    "Disguise kit"
+   ],
+   [
+    6,
+    2,
+    "Senet gambler",
+    "Set of loaded knucklebones",
+    "Mirror"
+   ],
+   [
+    6,
+    3,
+    "Lamp-oil presser",
+    "Bucket",
+    "Wooden spikes"
+   ],
+   [
+    6,
+    4,
+    "Bee keeper",
+    "Jar of honey",
+    "Net"
+   ],
+   [
+    6,
+    5,
+    "Archive scribe",
+    "Scrap of a forbidden scroll",
+    "Reed pen & ink"
+   ],
+   [
+    6,
+    6,
+    "Pauper noblemouse",
+    "Linen headdress",
+    "Perfume"
+   ]
+  ],
+  "coatLabel": [
+   "Coat colour",
+   "Coat pattern"
+  ],
+  "coat": [
+   [
+    "Sand",
+    "Ochre",
+    "Jackal black",
+    "Kohl grey",
+    "Gold-dusted",
+    "Linen white"
+   ],
+   [
+    "Solid",
+    "Brindle",
+    "Kohl-lined",
+    "Banded",
+    "Speckled",
+    "Dusted"
+   ]
+  ],
+  "detailLabel": "Physical detail",
+  "details": [
+   "Scarred body",
+   "Corpulent body",
+   "Skeletal body",
+   "Willowy body",
+   "Tiny body",
+   "Massive body",
+   "Painted with ochre",
+   "Foreign clothes",
+   "Pleated linen",
+   "Patched kilt",
+   "Jewelled collar",
+   "Dust-caked wrappings",
+   "Missing ear",
+   "Lumpy face",
+   "Beautiful face",
+   "Round face",
+   "Delicate face",
+   "Long, jackal-like face",
+   "Groomed fur",
+   "Braided fur",
+   "Henna-dyed fur",
+   "Shaved fur",
+   "Frizzy fur",
+   "Silky fur",
+   "Night black eyes",
+   "Eye patch",
+   "Blood red eyes",
+   "Kohl-rimmed eyes",
+   "Sharp eyes",
+   "Eyes that reflect starlight",
+   "Cropped tail",
+   "Whip-like tail",
+   "Tufted tail",
+   "Stubby tail",
+   "Gold-ringed tail",
+   "Curly tail"
+  ],
+  "starting": [
+   "Torches",
+   "Rations (dates and bread)"
+  ],
+  "weapons": [
+   {
+    "class": "Improvised",
+    "damage": "d6",
+    "hands": "Main paw or both paws",
+    "slots": 1,
+    "cost": "1p",
+    "examples": [
+     "Bone",
+     "Potsherd"
+    ],
+    "note": "Always mark usage after a fight"
+   },
+   {
+    "class": "Light",
+    "damage": "d6",
+    "hands": "Main paw or off paw",
+    "slots": 1,
+    "cost": "10p",
+    "examples": [
+     "Bronze dagger",
+     "Needle"
+    ],
+    "note": "If attacking with two weapons, roll both dice and use the best result"
+   },
+   {
+    "class": "Medium",
+    "damage": "d6/d8",
+    "hands": "Main paw or both paws",
+    "slots": 1,
+    "cost": "20p",
+    "examples": [
+     "Khopesh",
+     "Axe"
+    ],
+    "note": "d6 in one paw, d8 wielded in both"
+   },
+   {
+    "class": "Heavy",
+    "damage": "d10",
+    "hands": "Both paws",
+    "slots": 2,
+    "cost": "40p",
+    "examples": [
+     "Spear",
+     "Grave hook"
+    ],
+    "note": ""
+   },
+   {
+    "class": "Light ranged",
+    "damage": "d6",
+    "hands": "Main paw",
+    "slots": 1,
+    "cost": "10p",
+    "examples": [
+     "Sling",
+     "Throwing stick"
+    ],
+    "note": "Needs a pouch of stones (body slot)"
+   },
+   {
+    "class": "Heavy ranged",
+    "damage": "d8",
+    "hands": "Both paws",
+    "slots": 2,
+    "cost": "40p",
+    "examples": [
+     "Composite bow",
+     "Crossbow"
+    ],
+    "note": "Needs a quiver of arrows (body slot)"
+   }
+  ],
+  "armour": [
+   {
+    "class": "Light armour",
+    "def": 1,
+    "where": "Off paw and one body slot",
+    "cost": "150p",
+    "examples": [
+     "Linen scale & reed shield"
+    ]
+   },
+   {
+    "class": "Heavy armour",
+    "def": 1,
+    "where": "Two body slots",
+    "cost": "500p",
+    "examples": [
+     "Bronze scale plate"
+    ]
+   }
+  ],
+  "conditions": [
+   {
+    "name": "Exhausted",
+    "effect": "",
+    "clear": "After long rest"
+   },
+   {
+    "name": "Frightened",
+    "effect": "Disadvantage on WIL saves. Can't move closer to the source of fear",
+    "clear": "After short rest"
+   },
+   {
+    "name": "Hungry",
+    "effect": "",
+    "clear": "After meal"
+   },
+   {
+    "name": "Injured",
+    "effect": "Disadvantage on STR and DEX saves",
+    "clear": "After full rest"
+   },
+   {
+    "name": "Drained",
+    "effect": "Disadvantage on WIL saves",
+    "clear": "After long rest"
+   }
+  ],
+  "levels": [
+   {
+    "level": 1,
+    "hd": "1d6",
+    "grit": 0,
+    "xp": 0
+   },
+   {
+    "level": 2,
+    "hd": "2d6",
+    "grit": 1,
+    "xp": 1000
+   },
+   {
+    "level": 3,
+    "hd": "3d6",
+    "grit": 2,
+    "xp": 3000
+   },
+   {
+    "level": 4,
+    "hd": "4d6",
+    "grit": 2,
+    "xp": 6000
+   },
+   {
+    "level": 5,
+    "hd": "4d6",
+    "grit": 3,
+    "xp": 11000
+   }
+  ],
+  "levelNote": "After level 5, each level needs 5000 more XP (4d6 Hit Dice, 3 Grit).",
+  "gear": [
+   {
+    "group": "Tools, mouse made",
+    "note": "Available in most enclaves. These items are mouse-sized.",
+    "carry": true,
+    "items": [
+     [
+      "Bedroll",
+      "10p"
+     ],
+     [
+      "Bellows",
+      "10p"
+     ],
+     [
+      "Papyrus, blank",
+      "300p"
+     ],
+     [
+      "Scroll, reading",
+      "600p"
+     ],
+     [
+      "Bottle",
+      "1p"
+     ],
+     [
+      "Bucket",
+      "5p"
+     ],
+     [
+      "Caltrops, bag",
+      "10p"
+     ],
+     [
+      "Ochre chalk",
+      "1p"
+     ],
+     [
+      "Chisel",
+      "5p"
+     ],
+     [
+      "Cookpots",
+      "10p"
+     ],
+     [
+      "Crowbar",
+      "10p"
+     ],
+     [
+      "Drill",
+      "10p"
+     ],
+     [
+      "Glue",
+      "5p"
+     ],
+     [
+      "Grease",
+      "5p"
+     ],
+     [
+      "Hammer",
+      "10p"
+     ],
+     [
+      "Horn",
+      "10p"
+     ],
+     [
+      "Hourglass",
+      "300p"
+     ],
+     [
+      "Linen bandages",
+      "5p"
+     ],
+     [
+      "Lockpicks",
+      "100p"
+     ],
+     [
+      "Metal file",
+      "5p"
+     ],
+     [
+      "Mirror",
+      "200p"
+     ],
+     [
+      "Musical instrument",
+      "200p"
+     ],
+     [
+      "Net",
+      "10p"
+     ],
+     [
+      "Padlock and key, small",
+      "20p"
+     ],
+     [
+      "Perfume",
+      "50p"
+     ],
+     [
+      "Pick",
+      "10p"
+     ],
+     [
+      "Reed pen & ink",
+      "10p"
+     ],
+     [
+      "Set of loaded knucklebones",
+      "5p"
+     ],
+     [
+      "Shovel",
+      "10p"
+     ],
+     [
+      "Tent",
+      "80p"
+     ],
+     [
+      "Waterskin",
+      "5p"
+     ],
+     [
+      "Whistle",
+      "5p"
+     ],
+     [
+      "Wooden pole, 6\"",
+      "1p"
+     ],
+     [
+      "Wooden spikes",
+      "1p"
+     ]
+    ]
+   },
+   {
+    "group": "Tools, from the human dig",
+    "note": "Traded from mice who raid the archaeologists' camp above.",
+    "carry": true,
+    "items": [
+     [
+      "Fishing hook",
+      "20p"
+     ],
+     [
+      "Paintbrush bristle",
+      "20p"
+     ],
+     [
+      "Lens",
+      "200p"
+     ],
+     [
+      "Necklace chain",
+      "40p"
+     ],
+     [
+      "Needle",
+      "20p"
+     ],
+     [
+      "Matches, packet",
+      "80p"
+     ],
+     [
+      "Padlock and key, large",
+      "100p"
+     ],
+     [
+      "String, roll",
+      "40p"
+     ],
+     [
+      "Soap, small block",
+      "10p"
+     ],
+     [
+      "Thread, spool",
+      "20p"
+     ],
+     [
+      "Mouse trap",
+      "100p"
+     ],
+     [
+      "Poison",
+      "100p"
+     ]
+    ]
+   },
+   {
+    "group": "Weapons and armour",
+    "note": "",
+    "carry": true,
+    "items": [
+     [
+      "Improvised weapon (bone, potsherd, etc.)",
+      "1p"
+     ],
+     [
+      "Light weapon (bronze dagger, needle, etc.)",
+      "10p"
+     ],
+     [
+      "Medium weapon (khopesh, axe, etc.)",
+      "20p"
+     ],
+     [
+      "Heavy weapon (spear, grave hook, etc.)",
+      "40p"
+     ],
+     [
+      "Light ranged weapon (sling, throwing stick, etc.)",
+      "10p"
+     ],
+     [
+      "Heavy ranged weapon (composite bow, crossbow, etc.)",
+      "40p"
+     ],
+     [
+      "Arrows, quiver",
+      "5p"
+     ],
+     [
+      "Stones, pouch",
+      "1p"
+     ],
+     [
+      "Light armour",
+      "150p"
+     ],
+     [
+      "Heavy armour",
+      "500p"
+     ],
+     [
+      "Silvered weapon (always mark usage after fight)",
+      "x10"
+     ],
+     [
+      "Repairs, per dot",
+      "10%"
+     ]
+    ]
+   },
+   {
+    "group": "Light sources",
+    "note": "Light is life down here.",
+    "carry": true,
+    "items": [
+     [
+      "Torches",
+      "10p"
+     ],
+     [
+      "Oil lamp",
+      "50p"
+     ],
+     [
+      "Lamp oil",
+      "10p"
+     ],
+     [
+      "Electric lantern (6 usage dots)",
+      "200p"
+     ],
+     [
+      "Batteries, for electric lantern",
+      "50p"
+     ]
+    ]
+   },
+   {
+    "group": "Clothing",
+    "note": "",
+    "carry": true,
+    "items": [
+     [
+      "Linen, coarse",
+      "10p"
+     ],
+     [
+      "Linen, fine",
+      "50p"
+     ],
+     [
+      "Pleated royal linen",
+      "1000p"
+     ],
+     [
+      "Wool cloak against the deep cold",
+      "150p"
+     ],
+     [
+      "Oiled cloak",
+      "100p"
+     ]
+    ]
+   },
+   {
+    "group": "Lodging and food",
+    "note": "",
+    "carry": false,
+    "items": [
+     [
+      "Sleeping niche (per night)",
+      "1p"
+     ],
+     [
+      "Private chamber (per night)",
+      "5p"
+     ],
+     [
+      "Warm bath in a cistern",
+      "2p"
+     ],
+     [
+      "Travel rations",
+      "5p"
+     ],
+     [
+      "Meal",
+      "2p"
+     ],
+     [
+      "Feast of offerings",
+      "50p"
+     ],
+     [
+      "Night out in the gallery town",
+      "100p"
+     ]
+    ]
+   },
+   {
+    "group": "Transport hire",
+    "note": "Prices are per mouse, per hex.",
+    "carry": false,
+    "items": [
+     [
+      "Scarab cart",
+      "5p"
+     ],
+     [
+      "Reed boat through the cisterns",
+      "10p"
+     ],
+     [
+      "Ibis flight",
+      "200p"
+     ]
+    ]
+   }
+  ],
+  "bricabrac": [
+   [
+    "d8 pips"
+   ],
+   [
+    "Dried blue lotus petal, carefully folded",
+    "Clay amulet of the Mother",
+    "Stub of a reed pen",
+    "Dried herbs in a linen pouch",
+    "Wire bent into the shape of a scarab",
+    "Letter of passage from a high priest-mouse",
+    "Smooth piece of blue faience",
+    "Half-eaten date cake, wrapped in linen"
+   ],
+   [
+    "Smoke-blackened jackal tooth",
+    "Bronze cup etched with a hunt",
+    "Carnelian bead that is always warm",
+    "Knife cut from a human sardine tin",
+    "Clay jar of thick honey",
+    "Scorpion sting wired to a wooden handle",
+    "Piece of candied date",
+    "Butterfly wings pressed in papyrus"
+   ],
+   [
+    "Map to a sealed tomb inside an enclave",
+    "Note from a temple cat regarding a player mouse",
+    "Wooden idol of a serpent eating its own tail",
+    "A human child's milk tooth from the dig",
+    "Pot of malachite eye paint",
+    "Angry ant queen in a glass jar",
+    "Rolled papyrus of an ancient battle",
+    "Ball of wet clay that never dries out"
+   ],
+   [
+    "Lock of a ka's hair, impossibly cold",
+    "Vial of red ochre ink",
+    "Woven reed basket with leather straps",
+    "Fragment of a spell tablet",
+    "Dried, poisonous mushroom",
+    "A human's museum label",
+    "Bundle of dried papyrus, bound with linen",
+    "Pipe carved from bone"
+   ],
+   [
+    "Scrap of mummy linen",
+    "Quiver of silver-tipped arrows",
+    "Wreath of silver wire",
+    "Very strong magnet from the dig",
+    "Bouncy rubber ball",
+    "Crocodile-leather satchel",
+    "Extremely spicy dried pepper",
+    "Fly preserved in resin"
+   ]
+  ]
+ },
+ "hirelings": {
+  "stats": {
+   "hp": "d6",
+   "str": "2d6",
+   "dex": "2d6",
+   "wil": "2d6"
+  },
+  "slots": 6,
+  "note": "In an enclave, spend a day asking around. Make a WIL save or pay 20p, then roll the Number to see how many are looking for work.",
+  "types": [
+   [
+    "Torchbearer",
+    "d6",
+    "1p"
+   ],
+   [
+    "Porter",
+    "d6",
+    "2p"
+   ],
+   [
+    "Sand digger",
+    "d4",
+    "5p"
+   ],
+   [
+    "Bronzesmith",
+    "d2",
+    "8p"
+   ],
+   [
+    "Temple guide",
+    "d4",
+    "10p"
+   ],
+   [
+    "Spear-mouse",
+    "d6",
+    "10p"
+   ],
+   [
+    "Scribe",
+    "d2",
+    "20p"
+   ],
+   [
+    "Temple-guard captain",
+    "d3",
+    "25p"
+   ],
+   [
+    "Glyph reader",
+    "d2",
+    "30p"
+   ]
+  ]
+ }
+}

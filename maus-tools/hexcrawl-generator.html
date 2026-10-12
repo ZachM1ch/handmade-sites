@@ -773,12 +773,18 @@ function setView(v){
 }
 
 // ---------- tables library (shared: tables-lib.js) ----------
+let tablesR=0;
 const TL=TablesLib.create({
   listAll:false,
   defaults:['hosted:hexcrawl-tables.json','server:hexcrawl-tables.json'],
   parse:json=>validate(JSON.parse(json)),
   guard:()=>guardPins(),
-  onUse(tb,e,regen){T=tb;buildCOL();renderTables();srcName=e.name;state=null;$('#seed').value='';if(regen)generate()}
+  // A new tables file brings its own map size, unless the grid was changed by hand from the old file's size.
+  onUse(tb,e,regen){
+    const oldR=tablesR;T=tb;tablesR=(T.map&&T.map.radius)||2;buildCOL();renderTables();srcName=e.name;state=null;$('#seed').value='';
+    if(regen&&$('#grid').options.length&&+$('#grid').value===oldR&&tablesR!==oldR&&tablesR>=1&&tablesR<=6){$('#grid').value=tablesR;setRanges(tablesR,true)}
+    if(regen)generate();
+  }
 });
 
 // ---------- player view ----------

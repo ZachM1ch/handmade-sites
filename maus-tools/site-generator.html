@@ -547,7 +547,7 @@ ${rm.treasure?`<div class="tr"><b>Treasure</b> <small>${rm.treasure.items.length
 }
 function siteLines(s){
   const T=s.theme,L=[];
-  L.push(`Theme: ${T.construction}. Ruined by ${lc1(T.ruination)}.`,`Inhabitants: ${factionText(s.factions[0])}. Searching for or protecting: ${lc1(T.searching)}.`,`Rival faction: ${factionText(s.factions[1])}. ${cap(T.rivalry)}.`,`Secret: ${T.secret}.`,`Starting hook: ${T.hook}.`);
+  L.push(`Theme: ${T.construction}. Ruination: ${lc1(T.ruination)}.`,`Inhabitants: ${factionText(s.factions[0])}. Searching for or protecting: ${lc1(T.searching)}.`,`Rival faction: ${factionText(s.factions[1])}. ${cap(T.rivalry)}.`,`Secret: ${T.secret}.`,`Starting hook: ${T.hook}.`);
   if(s.notes.trim())L.push('',...s.notes.trim().split('\n'));
   L.push('','ROOMS');
   s.rooms.forEach((rm,i)=>{
