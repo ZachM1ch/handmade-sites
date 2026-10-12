@@ -662,5 +662,1749 @@
    "Fried cricket legs",
    "Dried-apple turnover"
   ]
- }
+ },
+ "site": {
+  "construction": [
+   "Ancient sun-cult cliff temple",
+   "Abandoned army lookout post",
+   "Cattle baron's adobe hacienda",
+   "Hidden drought cache",
+   "Burial mesa of ancient mice",
+   "Burrow dug by kangaroo rats or badgers",
+   "Human ranch house or barn",
+   "Dry culvert or irrigation pipes",
+   "Claustrophobic harvester-ant tunnels",
+   "Giant saguaro, hollowed out by mice",
+   "Snake-oil wizard's tower",
+   "Settlement's windmill and water works",
+   "Packrat king's midden",
+   "Skeleton of a great longhorn",
+   "Desert witches' academy",
+   "Gateway to the spirit trail",
+   "Played-out silver mine",
+   "Outlaw hideout",
+   "Slot-canyon cave",
+   "Abandoned ghost town"
+  ],
+  "ruination": [
+   "Flash flood",
+   "Magical mishap",
+   "Sun and wind erosion",
+   "Human dynamite blasting",
+   "Choked by drifting sand",
+   "Shifted onto the spirit trail",
+   "Attacked by great beast",
+   "Terrible dust storm",
+   "Haunting spirits",
+   "Mysterious abandonment",
+   "Range war",
+   "Fever outbreak"
+  ],
+  "inhabitants": [
+   "Mice, crazed by thirst or gold fever",
+   "Mice, sun-touched and strange",
+   "Packrat outlaws",
+   "Creatures from across the border",
+   "Original settlers, strangely changed",
+   "Ghosts of the trail",
+   "Dust-devil spirits",
+   "Ill-tempered rattlesnake",
+   "Swarming scorpions and tarantulas",
+   "Coyote chief and their gang"
+  ],
+  "inhabitantCreatures": [
+   {
+    "common": "mouse"
+   },
+   {
+    "common": "mouse"
+   },
+   {
+    "common": "packrat"
+   },
+   {
+    "common": "*"
+   },
+   {
+    "common": "mouse"
+   },
+   {
+    "common": "ghost"
+   },
+   {
+    "common": "dust_spirit"
+   },
+   {
+    "common": "rattlesnake"
+   },
+   {
+    "common": "scorpion|tarantula"
+   },
+   {
+    "common": "packrat",
+    "boss": "coyote"
+   }
+  ],
+  "searching": [
+   "A safe place to hide from the law",
+   "Cache of fresh water",
+   "Lost family or friend",
+   "Ancient turquoise artworks",
+   "The last scraps in a played-out claim",
+   "Rare medicinal cactus blossoms",
+   "Strange and powerful spell",
+   "Buried strongbox of pips"
+  ],
+  "secret": [
+   "Meteorite humming with arcane energy",
+   "Fossil of a precursor beast, half awake",
+   "Signs of human experimentation",
+   "Forgotten grave of an ancient queen",
+   "Underground river beneath the desert",
+   "Portal onto the spirit trail"
+  ],
+  "rivalry": [
+   "competing for the same prize",
+   "guarding it from them",
+   "trying to run them off",
+   "hunting them for food",
+   "trapped here alongside them",
+   "holding an uneasy truce with them"
+  ],
+  "roomTypes": [
+   {
+    "min": 1,
+    "max": 2,
+    "name": "Empty",
+    "key": "empty",
+    "creature": 2,
+    "treasure": 2,
+    "label": "Feature",
+    "color": "#e3d3b5"
+   },
+   {
+    "min": 3,
+    "max": 3,
+    "name": "Obstacle",
+    "key": "obstacle",
+    "creature": 2,
+    "treasure": 1,
+    "label": "Obstacle",
+    "color": "#d0a15a"
+   },
+   {
+    "min": 4,
+    "max": 4,
+    "name": "Trap",
+    "key": "trap",
+    "creature": 1,
+    "treasure": 2,
+    "label": "Trap",
+    "color": "#cf7b56"
+   },
+   {
+    "min": 5,
+    "max": 5,
+    "name": "Puzzle",
+    "key": "puzzle",
+    "creature": 1,
+    "treasure": 5,
+    "label": "Puzzle",
+    "color": "#72b8ad"
+   },
+   {
+    "min": 6,
+    "max": 6,
+    "name": "Lair",
+    "key": "lair",
+    "creature": 5,
+    "treasure": 4,
+    "label": "Lair",
+    "color": "#a08ab0"
+   }
+  ],
+  "obstacle": [
+   "Barred mesquite door. The key is hidden in another room. Breaking it down takes time and makes noise.",
+   "Sheer sandstone climb. Without rope, mice risk exhaustion or falling.",
+   "Chamber whose only exit is in the centre of the ceiling, 6\" from any wall.",
+   "Wind-whistle crack that shrieks without end. Each Turn spent here or in adjacent rooms gives a Frightened Condition.",
+   "Tunnel choked with sand, leaving a gap too small to crawl through.",
+   "Cistern passage completely filled with water.",
+   "Wide drift of loose sand. Gives an Exhausted Condition per 6\" traveled.",
+   "Long, smooth, upward-sloping clay pipe."
+  ],
+  "trap": [
+   "Adobe slab chiselled loose from its frame. A wedge behind it tips it forward when the latch is lifted.",
+   "Puddled corridor strung with copper wire, wired to a human battery in an alcove.",
+   "Dark tunnel filled with sulfur gas from a mud pot. Strong rotten-egg smell. d20 damage if ignited.",
+   "Rotten rope bridge over a deep shaft. Safe if crossed slowly, one at a time.",
+   "Pit blocking the way. A rattlesnake is asleep at the bottom.",
+   "Door with three cactus-shaped handles: one safe, two hiding spines dipped in venom. Venomous handles deal d12 damage.",
+   "Whirling ring of dust with a young mouse dancing inside. Those within beg desperately for others to join.",
+   "Floor painted with fresh pine pitch. A STR save pulls a foot loose."
+  ],
+  "puzzle": [
+   "Floor of copper sheeting, scorching hot under a skylight. A piece of valuable treasure sits in the centre.",
+   "Three corked bottles of different-coloured tonic. Each is harmless alone but powerful or dangerous when mixed.",
+   "A block of salt crystal with a magic sword sealed inside. It is very hard, but dissolves in fresh water, and water is scarce here.",
+   "Treasure is at the bottom of a deep, dry well.",
+   "Large tin washtub, upside down. Treasure is taped to the inside of the tub.",
+   "Baited mousetrap. The lever is wired to a support beam and will collapse the tunnel if triggered."
+  ],
+  "lair": [
+   "Temporary camp around a cold fire",
+   "Recently taken from another creature",
+   "Corral built by mice to hold the creature",
+   "Guarding eggs or young",
+   "Permanent home, newly settled",
+   "Permanent home, lined with stolen comforts"
+  ],
+  "empty": [
+   "Abandoned wasp nest",
+   "Cluster of cactus seedlings",
+   "Collapsed adobe wall",
+   "Shed snakeskins on the walls",
+   "Furniture made of tin cans",
+   "Faded sun symbol painted on the wall",
+   "Overturned card table and stools",
+   "Old wanted posters for wallpaper",
+   "Sand drifted ankle-deep",
+   "Petroglyph mural, now faded",
+   "Planks laid over a dry well",
+   "Mesquite roots bursting through the walls",
+   "Rotting pile of mesquite pods",
+   "Scattering of coyote teeth",
+   "Shiny bottle-cap bunting",
+   "Cow-skull doorway",
+   "Steady drip from a hidden seep",
+   "Stern statue of a founding mouse",
+   "Cracked, sun-baked floor",
+   "Turquoise-inlaid altar"
+  ],
+  "exits": [
+   [
+    "Tunnel",
+    4,
+    1
+   ],
+   [
+    "Doorway",
+    4,
+    1
+   ],
+   [
+    "Ladder",
+    2,
+    1
+   ],
+   [
+    "Adobe steps",
+    2,
+    1
+   ],
+   [
+    "Narrow crack",
+    1,
+    2
+   ],
+   [
+    "Rope climb",
+    1,
+    1
+   ],
+   [
+    "Barred door",
+    1,
+    2,
+    "locked"
+   ],
+   [
+    "Hidden passage",
+    0.5,
+    3,
+    "hidden"
+   ],
+   [
+    "Underground stream",
+    0.3,
+    1,
+    "water"
+   ]
+  ],
+  "activities": [
+   "searching for {s}",
+   "guarding {s}",
+   "arguing over the take",
+   "dragging a sack of loot",
+   "resting in the shade, careless",
+   "riding patrol",
+   "setting an ambush",
+   "fleeing from {other}",
+   "digging for water",
+   "following fresh tracks",
+   "feasting on stolen food",
+   "lost and parched",
+   "hunting for prey",
+   "hauling a captive"
+  ],
+  "dangerActs": [
+   "hunting",
+   "awake and hungry",
+   "stalking the inhabitants",
+   "guarding its hoard",
+   "in a terrible temper",
+   "driven in by the dust storm"
+  ],
+  "distant": [
+   "vulture",
+   "horned_lizard",
+   "owl",
+   "dust_spirit",
+   "tarantula",
+   "scorpion"
+  ],
+  "wanderers": [
+   "tarantula",
+   "scorpion",
+   "rattlesnake",
+   "horned_lizard",
+   "mouse",
+   "packrat",
+   "ghost"
+  ],
+  "dangers": [
+   "rattlesnake",
+   "owl",
+   "coyote",
+   "gila",
+   "scorpion",
+   "vulture"
+  ]
+ },
+ "fit": {
+  "detail": {
+   "Lawmouse's adobe fort": {
+    "construction": "Abandoned army lookout post"
+   },
+   "Prospectors' claim": {
+    "construction": "Played-out silver mine"
+   },
+   "Cliff dwellings": {
+    "construction": "Slot-canyon cave"
+   },
+   "Packrat bandit hideout": {
+    "construction": "Outlaw hideout",
+    "inhabitants": "Packrat outlaws"
+   },
+   "Scorpion burrow colony": {
+    "inhabitants": "Swarming scorpions and tarantulas"
+   },
+   "Rattlesnake baron's den": {
+    "inhabitants": "Ill-tempered rattlesnake"
+   },
+   "Snake-oil wizard's wagon": {
+    "construction": "Snake-oil wizard's tower"
+   },
+   "Flash-flood gully": {
+    "ruination": "Flash flood"
+   },
+   "Abandoned rancher's hacienda": {
+    "construction": "Cattle baron's adobe hacienda",
+    "ruination": "Mysterious abandonment"
+   },
+   "Ghost town": {
+    "construction": "Abandoned ghost town",
+    "inhabitants": "Ghosts of the trail"
+   },
+   "Ruined lookout tower": {
+    "construction": "Abandoned army lookout post"
+   },
+   "Ancient sun-cult temple": {
+    "construction": "Ancient sun-cult cliff temple"
+   },
+   "Ring of dancing dust devils": {
+    "construction": "Gateway to the spirit trail",
+    "inhabitants": "Dust-devil spirits"
+   },
+   "Bone-bleached cattle graveyard": {
+    "construction": "Skeleton of a great longhorn",
+    "inhabitants": "Ghosts of the trail"
+   },
+   "Mouse witch's adobe": {
+    "construction": "Desert witches' academy"
+   },
+   "Mirage that never fades": {
+    "ruination": "Magical mishap"
+   },
+   "Completely lifeless and bone-dry": {
+    "ruination": "Choked by drifting sand"
+   },
+   "Regularly used by humans": {
+    "construction": "Human ranch house or barn"
+   },
+   "Damaged by humans": {
+    "construction": "Human ranch house or barn",
+    "ruination": "Human dynamite blasting"
+   },
+   "Ancient ruins of a vanished civilisation": {
+    "construction": "Burial mesa of ancient mice"
+   },
+   "Coyote chief's hunting ground": {
+    "inhabitants": "Coyote chief and their gang"
+   },
+   "Repurposed human wreckage": {
+    "construction": "Human ranch house or barn"
+   },
+   "Crashed Lilliputian balloon": {
+    "inhabitants": "Creatures from across the border"
+   }
+  },
+  "landmark": {
+   "Towering saguaro": {
+    "construction": "Giant saguaro, hollowed out by mice"
+   },
+   "Woodpecker-hollowed saguaro": {
+    "construction": "Giant saguaro, hollowed out by mice"
+   },
+   "Kangaroo-rat mounds": {
+    "construction": "Burrow dug by kangaroo rats or badgers"
+   },
+   "Desert tortoise burrow": {
+    "construction": "Burrow dug by kangaroo rats or badgers"
+   },
+   "Gila monster burrow": {
+    "construction": "Burrow dug by kangaroo rats or badgers"
+   },
+   "Kit fox den": {
+    "construction": "Burrow dug by kangaroo rats or badgers"
+   },
+   "Packrat midden": {
+    "construction": "Packrat king's midden"
+   },
+   "Bleached cow skull": {
+    "construction": "Skeleton of a great longhorn"
+   },
+   "Skeleton of a giant beast": {
+    "construction": "Skeleton of a great longhorn"
+   },
+   "Cliff alcove dwellings": {
+    "construction": "Burial mesa of ancient mice"
+   },
+   "Slot canyon": {
+    "construction": "Slot-canyon cave"
+   },
+   "Cave mouth": {
+    "construction": "Slot-canyon cave"
+   },
+   "Boulder-roofed overhang": {
+    "construction": "Slot-canyon cave"
+   },
+   "Abandoned salt works": {
+    "construction": "Human ranch house or barn"
+   },
+   "Boarded-up general store": {
+    "construction": "Human ranch house or barn"
+   },
+   "Hay barn": {
+    "construction": "Human ranch house or barn"
+   },
+   "Saloon porch": {
+    "construction": "Human ranch house or barn"
+   },
+   "Timbered mine entrance": {
+    "construction": "Played-out silver mine"
+   },
+   "Old irrigation ditch": {
+    "construction": "Dry culvert or irrigation pipes"
+   },
+   "Windmill pump": {
+    "construction": "Settlement's windmill and water works"
+   },
+   "Buried adobe wall tip": {
+    "construction": "Abandoned ghost town"
+   }
+  },
+  "ruination": {
+   "saguaro_scrub": {
+    "Sun and wind erosion": 2
+   },
+   "red_rock_mesas": {
+    "Sun and wind erosion": 2
+   },
+   "salt_flats": {
+    "Terrible dust storm": 2
+   },
+   "arroyo_oasis": {
+    "Flash flood": 3
+   },
+   "dune_sea": {
+    "Choked by drifting sand": 3
+   },
+   "frontier_town": {
+    "Human dynamite blasting": 2,
+    "Range war": 2
+   }
+  }
+ },
+ "treasure": {
+  "main": [
+   {
+    "min": 1,
+    "max": 1,
+    "text": "Magic sword",
+    "kind": "sword"
+   },
+   {
+    "min": 2,
+    "max": 2,
+    "text": "Random spell",
+    "kind": "spell"
+   },
+   {
+    "min": 3,
+    "max": 3,
+    "text": "Roll for Trinket",
+    "kind": "trinkets",
+    "label": "Trinket"
+   },
+   {
+    "min": 4,
+    "max": 4,
+    "text": "Roll for Valuable treasure",
+    "kind": "valuable",
+    "label": "Valuable"
+   },
+   {
+    "min": 5,
+    "max": 5,
+    "text": "Roll for Unusual treasure",
+    "kind": "unusual",
+    "label": "Unusual"
+   },
+   {
+    "min": 6,
+    "max": 8,
+    "text": "Roll for Large treasure",
+    "kind": "large",
+    "label": "Large"
+   },
+   {
+    "min": 9,
+    "max": 10,
+    "text": "Roll for Useful treasure",
+    "kind": "useful",
+    "label": "Useful"
+   },
+   {
+    "min": 11,
+    "max": 11,
+    "text": "Strongbox containing d6 x 100 pips",
+    "pips": 100,
+    "fmt": "Strongbox containing {n} pips"
+   },
+   {
+    "min": 12,
+    "max": 14,
+    "text": "Saddlebag containing d6 x 50 pips",
+    "pips": 50,
+    "fmt": "Saddlebag containing {n} pips"
+   },
+   {
+    "min": 15,
+    "max": 17,
+    "text": "Tin canteen holding d6 x 10 pips",
+    "pips": 10,
+    "fmt": "Tin canteen holding {n} pips"
+   },
+   {
+    "min": 18,
+    "max": 20,
+    "text": "Scattering of d6 x 5 pips in the sand",
+    "pips": 5,
+    "fmt": "Scattering of {n} pips in the sand"
+   }
+  ],
+  "trinkets": [
+   "Spirit lantern (casts a light that banishes ghosts)",
+   "Talking tin cans (one speaks what the other hears)",
+   "Bottomless canteen (always holds one more sip of water)",
+   "Sun-cult obsidian knife (grants passage into the sanctum)",
+   "Magic cactus seeds (grow fully in d6 Turns)",
+   "Working human gadget (make up something fun)"
+  ],
+  "valuable": [
+   "Wheel of aged ranch cheese (100p)",
+   "Silver spur (2 slots, 500p)",
+   "Turquoise pendant (400p)",
+   "Gold nugget (500p)",
+   "Polished fire opal (1000p)",
+   "String of turquoise beads (2 slots, 1500p)"
+  ],
+  "large": [
+   "Oversized silver belt buckle (2 slots, 300p)",
+   "Carved bone comb (4 slots, 400p)",
+   "Huge bottle of fine mesquite whiskey (4 slots, 500p)",
+   "Ancient sandstone idol (4 slots, 500p)",
+   "Cattle baron's carved saddle-chair (6 slots, 1000p)",
+   "Giant gold pocket watch (4 slots, 1000p)"
+  ],
+  "unusual": [
+   "Bundle of rare cactus blossoms (200p to an apothecary)",
+   "Odd-coloured dried mushrooms (200p to a witch)",
+   "Shard of glowing meteorite (300p to a wizard)",
+   "Heirloom of sentimental value to a cattle baron",
+   "Land deed and water rights to a spring",
+   "Treasure map"
+  ],
+  "useful": [
+   "d6 packs of jerky rations, well preserved",
+   "d6 bundles of torches",
+   "Mundane weapon",
+   "Mundane armour",
+   "Full canteen and a wide-brimmed hat",
+   "Lost mouse, willing to help"
+  ],
+  "swords": [
+   [
+    "Silver spur rowel",
+    "While wielded: you roll critical damage Saves with Advantage"
+   ],
+   [
+    "Mirage blade",
+    "While wielded: you may disguise yourself as any mouse-sized creature"
+   ],
+   [
+    "Rusty horseshoe nail",
+    "Critical damage: give a Frightened Condition"
+   ],
+   [
+    "Rattler's fang",
+    "Critical damage: deal d6 additional damage to DEX"
+   ],
+   [
+    "Sheriff's tin-star sabre",
+    "While wielded: if you lead a posse or warband, they have +1 Armour"
+   ],
+   [
+    "Canteen-cap cutlass",
+    "While wielded: you can go a full day without water and suffer nothing for it"
+   ],
+   [
+    "Obsidian sliver",
+    "Critical damage: your next attack is Enhanced"
+   ],
+   [
+    "Barbed-wire blade",
+    "Critical damage: clear all usage dots from a non-spell item in your inventory"
+   ],
+   [
+    "Cholla spine",
+    "Critical damage: remove a Condition"
+   ],
+   [
+    "Buzzard's shadow",
+    "While wielded: you are invisible when standing perfectly still in shade"
+   ]
+  ],
+  "swordClass": [
+   {
+    "min": 1,
+    "max": 4,
+    "text": "Medium (d6 one paw/d8 both paws)"
+   },
+   {
+    "min": 5,
+    "max": 5,
+    "text": "Light (d6 one paw, can be dual-wielded)"
+   },
+   {
+    "min": 6,
+    "max": 6,
+    "text": "Heavy (d10 both paws)"
+   }
+  ],
+  "curses": [
+   [
+    "Roll critical damage saves with Disadvantage",
+    "Saving a stranger's life at the risk of your own"
+   ],
+   [
+    "When you gain an Exhausted Condition, gain another",
+    "Working a season on a poor homestead"
+   ],
+   [
+    "Make a WIL save to not draw on anyone who insults you",
+    "Making lasting peace with a sworn rival"
+   ],
+   [
+    "Reaction rolls are made with -1 modifier",
+    "Giving away everything you own, no cheating"
+   ],
+   [
+    "If you see an ally take damage, take a Frightened Condition",
+    "Fulfilling a dying mouse's last request"
+   ],
+   [
+    "Spells cast in your presence always mark usage",
+    "Destroying a snake-oil wizard's source of power"
+   ]
+  ],
+  "spells": [
+   [
+    2,
+    "Fireball",
+    "Shoot a fireball up to 24\". Deal [SUM] + [DICE] damage to all creatures within 6\".",
+    "Leave in the heart of a burning brushfire for three days and nights."
+   ],
+   [
+    3,
+    "Heal",
+    "Heal [SUM] STR damage and remove the Injured Condition from a creature.",
+    "Cut self for d6 STR damage, sprinkle the spell with the blood."
+   ],
+   [
+    4,
+    "Magic Missile",
+    "Deal [SUM] + [DICE] damage to a creature within sight.",
+    "Drop from the top of a mesa. Touch the spell within one Turn."
+   ],
+   [
+    5,
+    "Fear",
+    "Give the Frightened Condition to [DICE] creatures.",
+    "Receive the Frightened Condition from a hostile creature while carrying the spell."
+   ],
+   [
+    6,
+    "Darkness",
+    "Create a [SUM] x 2\" diameter sphere of pure darkness for [DICE] Turns.",
+    "Leave uncovered at the bottom of a mine shaft for three days."
+   ],
+   [
+    7,
+    "Restore",
+    "Remove Exhausted or Frightened Condition from [DICE] + 1 creatures.",
+    "Bury beside a desert spring for three days."
+   ],
+   [
+    8,
+    "Be Understood",
+    "Make your meaning clear to [DICE] creatures of another species for [DICE] Turns.",
+    "Give away freely to a creature of another species."
+   ],
+   [
+    9,
+    "Ghost Beetle",
+    "Create an illusory beetle that can carry 6 inventory slots for [DICE] x 6 Turns.",
+    "Bury in a cattle graveyard for three nights."
+   ],
+   [
+    10,
+    "Light",
+    "Force [DICE] creatures to make a WIL save or become stunned. Alternately, create light as bright as a torch for [SUM] turns.",
+    "Lay out on the salt flats from sunrise to sunset for three days."
+   ],
+   [
+    11,
+    "Invisible Ring",
+    "Creates [DICE] x 6\" ring of force. It is invisible and immovable. Lasts [DICE] Turns.",
+    "Build an iron ring the same size as last cast. Pass the spell through it. Dissolves the ring."
+   ],
+   [
+    12,
+    "Knock",
+    "Open a door or container, as if a Save were made with STR score of 10 + [DICE] x 4.",
+    "Lock in a strongbox, inside a strongbox, inside a strongbox. Leave for three days."
+   ],
+   [
+    13,
+    "Grease",
+    "Cover [DICE] x 6\" area in slippery, flammable grease. Creatures in the area must make a DEX save or fall prone.",
+    "Rub all over with rendered fat. Leave in the sun until it turns rancid."
+   ],
+   [
+    14,
+    "Grow",
+    "Grow a creature to [DICE] + 1 times its original size for 1 Turn.",
+    "Leave on the top of a saguaro for three days."
+   ],
+   [
+    15,
+    "Invisibility",
+    "Make creature invisible for [DICE] Turns. Any movement reduces duration by 1 Turn.",
+    "Go a day without opening your eyes once, while holding the spell."
+   ],
+   [
+    16,
+    "Coyote Lure",
+    "Turn object into an irresistible lure for coyotes. Lasts [DICE] Turns.",
+    "Give a coyote a gift it truly desires."
+   ]
+  ],
+  "formerMouse": [
+   "Ancient sun-cult cliff temple",
+   "Abandoned army lookout post",
+   "Cattle baron's adobe hacienda",
+   "Hidden drought cache",
+   "Burial mesa of ancient mice",
+   "Giant saguaro, hollowed out by mice",
+   "Snake-oil wizard's tower",
+   "Settlement's windmill and water works",
+   "Desert witches' academy",
+   "Played-out silver mine",
+   "Abandoned ghost town"
+  ],
+  "magical": [
+   "Snake-oil wizard's tower",
+   "Desert witches' academy",
+   "Gateway to the spirit trail",
+   "Ancient sun-cult cliff temple",
+   "Magical mishap",
+   "Shifted onto the spirit trail",
+   "Haunting spirits",
+   "Meteorite humming with arcane energy",
+   "Portal onto the spirit trail"
+  ]
+ },
+ "creatures": [
+  {
+   "key": "coyote",
+   "name": "Coyote",
+   "plural": "Coyotes",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "Warband scale. 15hp, STR 15, DEX 15, WIL 10, Armour 1",
+   "attacks": "d6 swipe, d8 bite",
+   "notes": "Can call d6 more coyotes with a howl, once a night",
+   "wants": "to be fed and flattered. Mice who pay tribute may be allowed to pass",
+   "vt": "Coyote chiefs",
+   "variants": [
+    [
+     "Old Mesquite",
+     "Loves fine food and finer company"
+    ],
+    [
+     "Silvertongue",
+     "Hoards silver, turquoise and coin"
+    ],
+    [
+     "Laughing Jack",
+     "Plays cruel games with captives"
+    ],
+    [
+     "The Judge",
+     "Rules by harsh, unbending frontier law"
+    ],
+    [
+     "Moonsinger",
+     "Loves song, poetry and beautiful things"
+    ],
+    [
+     "Red Ruth",
+     "Gathering every gang in the territory to take it"
+    ]
+   ]
+  },
+  {
+   "key": "scorpion",
+   "name": "Scorpion",
+   "plural": "Scorpions",
+   "counts": [
+    "1",
+    "1",
+    "d3"
+   ],
+   "stats": "8hp, STR 10, DEX 12, WIL 8, Armour 2",
+   "attacks": "d6 claws or d6 sting (damages DEX instead of STR)",
+   "crit": "Venom takes hold, d12 damage to STR",
+   "wants": "to lie in wait and devour",
+   "vt": "Scorpion kinds",
+   "variants": [
+    [
+     "Giant hairy",
+     "As big as a snake. 12hp, STR 15, Armour 3"
+    ],
+    [
+     "Bark",
+     "Climbs walls and ceilings, drops onto prey"
+    ],
+    [
+     "Glowing",
+     "Shines blue under moonlight, can't hide at night"
+    ],
+    [
+     "Mother",
+     "Carries d6 young on her back that scatter when hit"
+    ],
+    [
+     "Whip",
+     "Sprays stinging vinegar, makes targets Frightened"
+    ],
+    [
+     "Sand-swimmer",
+     "Moves under the sand, always surprises"
+    ]
+   ]
+  },
+  {
+   "key": "vulture",
+   "name": "Vulture",
+   "plural": "Vultures",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "12hp, STR 12, DEX 15, WIL 15, Armour 1",
+   "attacks": "d8 tearing beak",
+   "notes": "Flies 3x normal speed, knows two omens",
+   "wants": "to see that every dead thing is given back to the desert",
+   "vt": "Vulture omens",
+   "variants": [
+    [
+     "Circling",
+     "Everyone below knows a death is coming; WIL save or Frightened"
+    ],
+    [
+     "Carrion",
+     "Speaks with the recently dead for one question"
+    ],
+    [
+     "High sight",
+     "Vaguely foretell a future event"
+    ],
+    [
+     "Downdraft",
+     "Powerful gust. Make STR save or be knocked down"
+    ],
+    [
+     "Bone reading",
+     "See a past event concerning those present"
+    ],
+    [
+     "Last word",
+     "All who hear: cannot lie while the omen lasts"
+    ]
+   ]
+  },
+  {
+   "key": "dust_spirit",
+   "name": "Dust spirit",
+   "plural": "Dust spirits",
+   "counts": [
+    "1",
+    "d3",
+    "d3"
+   ],
+   "stats": "6hp, STR 10, DEX 15, WIL 15",
+   "attacks": "d8 stinging sand",
+   "notes": "Knows one spell. Only harmed by silver, magic, or being made to settle in still air",
+   "wants": "to carry out the Wind Mother's strange agenda",
+   "vt": "Dust spirit agendas",
+   "variants": [
+    [
+     "Stealing",
+     "newborn mice, to raise as wind-children"
+    ],
+    [
+     "Giving gifts",
+     "that cause violent jealousy"
+    ],
+    [
+     "Whistling tunes",
+     "that lure mice out into the desert"
+    ],
+    [
+     "Wearing a mirage",
+     "to look like a mouse in distress"
+    ],
+    [
+     "Fouling",
+     "the water in every well and canteen"
+    ],
+    [
+     "Tricking",
+     "a settlement out of its water rights"
+    ]
+   ]
+  },
+  {
+   "key": "horned_lizard",
+   "name": "Horned lizard",
+   "plural": "Horned lizards",
+   "counts": [
+    "1",
+    "1",
+    "d3"
+   ],
+   "stats": "6hp, STR 12, DEX 12, WIL 8, Armour 2",
+   "attacks": "d10 lance or d6 bite",
+   "crit": "Squirts blood from its eyes; the attacker makes a WIL save or is Frightened",
+   "notes": "Always goes first unless surprised",
+   "wants": "to gallantly complete their quest",
+   "vt": "Horned lizard knights",
+   "variants": [
+    [
+     "Sir Gravel",
+     "Strong, kind of heart and simple of mind"
+    ],
+    [
+     "Phineas",
+     "Cursed human, searching for a cure"
+    ],
+    [
+     "Dame Spinosa",
+     "Unsound sense of honor, rash in anger"
+    ],
+    [
+     "Sir Crag",
+     "Set on slaying a great beast, no matter the cost"
+    ],
+    [
+     "Burr",
+     "Desperate to prove themself at the rodeo joust"
+    ],
+    [
+     "Old Horny",
+     "Searching for the legendary Silver Canteen"
+    ]
+   ]
+  },
+  {
+   "key": "ghost",
+   "name": "Ghost",
+   "plural": "Ghosts",
+   "counts": [
+    "1",
+    "1",
+    "d3"
+   ],
+   "stats": "9hp, STR 5, DEX 10, WIL 10",
+   "attacks": "trail power, d8 chilling touch (damages WIL)",
+   "crit": "Possess the creature",
+   "notes": "Only harmed by silver or magic weapons",
+   "wants": "to finish the last ride that death cut short",
+   "vt": "Ghostly powers",
+   "variants": [
+    [
+     "Mirage",
+     "Create d3 illusions of itself"
+    ],
+    [
+     "Poltergeist",
+     "Throws a creature or object d6 x 6\""
+    ],
+    [
+     "Spirit trail",
+     "Pull a creature onto the spirit trail for a Round"
+    ],
+    [
+     "Death rattle",
+     "Give Frightened Condition to a creature"
+    ],
+    [
+     "Thirst",
+     "Turns all water carried by a creature to dust"
+    ],
+    [
+     "Drifting",
+     "Float into wall or floor, reappear elsewhere"
+    ]
+   ]
+  },
+  {
+   "key": "mouse",
+   "name": "Mouse",
+   "plural": "Mice",
+   "counts": [
+    "d3",
+    "d6",
+    "d6"
+   ],
+   "stats": "3hp, STR 9, DEX 9, WIL 9",
+   "attacks": "d6 sword or d6 sling",
+   "wants": "to feel safe and stay watered",
+   "vt": "Rival mouse drifters",
+   "variants": [
+    [
+     "Ambrose Thorne",
+     "Disgraced lawmouse, still wears the badge"
+    ],
+    [
+     "Prudence",
+     "Off-kilter hedge wizard, collecting spells"
+    ],
+    [
+     "Hollis",
+     "Trying to steal enough to buy back the family claim"
+    ],
+    [
+     "Silver Sal",
+     "Card sharp and con artist. Appears unthreatening"
+    ],
+    [
+     "Cinder",
+     "Loves dynamite. Fears the quiet"
+    ],
+    [
+     "Big Tex",
+     "Massive mouse exiled from a far-off territory"
+    ]
+   ]
+  },
+  {
+   "key": "owl",
+   "name": "Elf owl",
+   "plural": "Elf owls",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "15hp, STR 15, DEX 15, WIL 15, Armour 1",
+   "attacks": "d10 bite",
+   "notes": "Flies 3x normal speed. Knows two spells. Lives in saguaro hollows",
+   "wants": "to collect rare knowledge and spells",
+   "vt": "Owl sorcerers",
+   "variants": [
+    [
+     "Cornelius",
+     "Builds clockwork servants from scrap"
+    ],
+    [
+     "Mirage",
+     "In league with the dust spirits"
+    ],
+    [
+     "Professor Hoot",
+     "Creates chimeric servants"
+    ],
+    [
+     "Twilight",
+     "Can shape-shift into any other bird"
+    ],
+    [
+     "Saguaro",
+     "Binds trail ghosts into spells"
+    ],
+    [
+     "La Lechuza",
+     "Human witch trapped in owl form"
+    ]
+   ]
+  },
+  {
+   "key": "packrat",
+   "name": "Packrat",
+   "plural": "Packrats",
+   "counts": [
+    "d3",
+    "d6",
+    "d6",
+    "2d6"
+   ],
+   "stats": "3hp, STR 12, DEX 8, WIL 8",
+   "attacks": "d6 cleaver",
+   "notes": "Always trades something for anything it takes",
+   "wants": "shiny things, easy loot, to take from the weak",
+   "vt": "Packrat gangs",
+   "variants": [
+    [
+     "The Midden Boys",
+     "Construct elaborate scavenged traps"
+    ],
+    [
+     "Arroyo Runners",
+     "Expert flash-flood raft smugglers"
+    ],
+    [
+     "Glow Rats",
+     "Bizarre looks, chewed something from a human lab"
+    ],
+    [
+     "Tin Rangers",
+     "1 armour tin-can breastplates and helms"
+    ],
+    [
+     "The Dandies",
+     "Top hats, vests and stolen pocket watches"
+    ],
+    [
+     "The Knot",
+     "Tails tangled together in a single gordian knot"
+    ]
+   ]
+  },
+  {
+   "key": "rattlesnake",
+   "name": "Rattlesnake",
+   "plural": "Rattlesnakes",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "12hp, STR 12, DEX 10, WIL 10, Armour 2",
+   "attacks": "d8 venomous bite",
+   "crit": "Swallow whole, d4 STR damage per Round until rescued or escape",
+   "notes": "Rattles a warning before striking, unless hunting",
+   "wants": "to bask undisturbed",
+   "vt": "Strange snakes",
+   "variants": [
+    [
+     "Sidewinder",
+     "Moves sideways over sand at double speed"
+    ],
+    [
+     "Ghost",
+     "Slithers always just out of sight"
+    ],
+    [
+     "Bone",
+     "Snake skeleton, raised from the dead"
+    ],
+    [
+     "Baron",
+     "Wears a stolen top hat, demands tithes"
+    ],
+    [
+     "Scroll",
+     "Born with a spell etched into its scales"
+    ],
+    [
+     "Mojave",
+     "Venom also damages WIL"
+    ]
+   ]
+  },
+  {
+   "key": "tarantula",
+   "name": "Tarantula",
+   "plural": "Tarantulas",
+   "counts": [
+    "1",
+    "1",
+    "d3"
+   ],
+   "stats": "6hp, STR 8, DEX 12, WIL 10, Armour 1",
+   "attacks": "d6 bite (damages DEX instead of STR)",
+   "crit": "Flicks stinging hairs; the target is blinded for d6 Rounds",
+   "wants": "to feed its babies",
+   "vt": "Spider species",
+   "variants": [
+    [
+     "Black widow",
+     "Bright red hourglass, d10 damage bite"
+    ],
+    [
+     "Wolf spider",
+     "Hunts in packs of d6 spiders"
+    ],
+    [
+     "Wind spider",
+     "Mostly peaceful, runs faster than anything"
+    ],
+    [
+     "Trapdoor",
+     "Waits under a hidden lid, always surprises"
+    ],
+    [
+     "Tarantula hawk",
+     "Actually a giant wasp. Flies, d10 sting"
+    ],
+    [
+     "Ghost",
+     "Can only be harmed by silver or magic weapons"
+    ]
+   ]
+  },
+  {
+   "key": "gila",
+   "name": "Gila monster",
+   "plural": "Gila monsters",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "12hp, STR 14, DEX 6, WIL 10, Armour 2",
+   "attacks": "d8 bite",
+   "crit": "Locks its jaws, d4 STR damage per Round until pried free",
+   "notes": "Slow. Sleeps through the hottest part of the day",
+   "wants": "to eat once, then sleep for a month",
+   "vt": "Gila monsters",
+   "variants": [
+    [
+     "Old Beads",
+     "Older than any settlement, knows forgotten paths"
+    ],
+    [
+     "Hungry",
+     "Hasn't eaten all season"
+    ],
+    [
+     "Mother",
+     "Guards a clutch of eggs"
+    ],
+    [
+     "Brand",
+     "Bears a human's brand, hates people"
+    ],
+    [
+     "Sunken",
+     "Lives in a sinkhole spring"
+    ],
+    [
+     "Witch-bound",
+     "Familiar of a desert witch"
+    ]
+   ]
+  }
+ ],
+ "npc": {
+  "social": [
+   [
+    "Drifter",
+    "d6p"
+   ],
+   [
+    "Ranch hand",
+    "d6 x 10p"
+   ],
+   [
+    "Townsfolk",
+    "d6 x 10p"
+   ],
+   [
+    "Shopkeeper",
+    "d6 x 50p"
+   ],
+   [
+    "Guild boss",
+    "d4 x 100p"
+   ],
+   [
+    "Cattle baron",
+    "d4 x 1000p"
+   ]
+  ],
+  "birthsign": [
+   [
+    "Lone Star",
+    "Brave / Reckless"
+   ],
+   [
+    "Wagon Wheel",
+    "Industrious / Unimaginative"
+   ],
+   [
+    "Seed",
+    "Inquisitive / Stubborn"
+   ],
+   [
+    "Dust Storm",
+    "Generous / Wrathful"
+   ],
+   [
+    "Desert Moon",
+    "Wise / Mysterious"
+   ],
+   [
+    "Rain Mother",
+    "Nurturing / Worrying"
+   ]
+  ],
+  "appearance": [
+   "Sun-squinted eyes",
+   "Patched, faded duster",
+   "Sprig of sagebrush behind one ear",
+   "Trail-dusted clothes",
+   "Huge sombrero",
+   "Pockets full of seeds",
+   "Mesquite walking stick",
+   "Carries a rusty sling",
+   "Long, sun-bleached fur",
+   "Very, very old",
+   "Bandaged tail",
+   "Bandana tied on the tail",
+   "Notched ear",
+   "Waxed whiskers",
+   "Twinkling eyes",
+   "Heavy black poncho",
+   "Old brand scars",
+   "Very young",
+   "Shaved, sunburnt fur",
+   "Fur braided with beads"
+  ],
+  "quirk": [
+   "Constantly sharpening a knife",
+   "Obsessed with rain clouds",
+   "Very high energy",
+   "Well travelled, knows every trail",
+   "Cursed by a snake-oil wizard",
+   "Jumps at every rattle",
+   "Ashamed of past outlawry",
+   "Very competitive",
+   "Flamboyant drunkard",
+   "Extremely polite",
+   "Unreservedly honest",
+   "Slow, drawling speech",
+   "Quick, nervous speech",
+   "Secret informant for a coyote",
+   "Raised by packrats",
+   "Run out of their hometown",
+   "Keeps pet beetles",
+   "Hates the sun",
+   "Local hero",
+   "Very twitchy whiskers"
+  ],
+  "wants": [
+   "Freedom",
+   "Safety",
+   "Escape",
+   "Excitement",
+   "Power",
+   "Meaning",
+   "Health",
+   "Wealth",
+   "Protection",
+   "Love",
+   "To protect",
+   "Water",
+   "Friendship",
+   "Rest",
+   "Knowledge",
+   "Savagery",
+   "Beauty",
+   "Revenge",
+   "To serve",
+   "A fresh start"
+  ],
+  "relationship": [
+   "Parent",
+   "Sibling",
+   "Cousin",
+   "Second cousin",
+   "Grandparent",
+   "Related, but don't know it",
+   "Married",
+   "Former sweethearts",
+   "In love, unrequited",
+   "Drinking buddies",
+   "Debt owed",
+   "Long and tumultuous",
+   "Sworn enemies",
+   "Rode in the same posse",
+   "Childhood friends",
+   "One stole from the other",
+   "Worked the same claim",
+   "Grew up together",
+   "Serve the same baron",
+   "Never met before"
+  ],
+  "birthnames": [
+   "Abner",
+   "Ada",
+   "Agave",
+   "Amos",
+   "Annie",
+   "Aster",
+   "Augustus",
+   "Barley",
+   "Belle",
+   "Bonnie",
+   "Boone",
+   "Buck",
+   "Calico",
+   "Cassidy",
+   "Cedar",
+   "Chaparral",
+   "Cholla",
+   "Clay",
+   "Clementine",
+   "Cody",
+   "Coral",
+   "Cotton",
+   "Cricket",
+   "Daisy",
+   "Dakota",
+   "Delilah",
+   "Dusty",
+   "Ebenezer",
+   "Eli",
+   "Elmira",
+   "Esperanza",
+   "Ezra",
+   "Flint",
+   "Gideon",
+   "Ginger",
+   "Grady",
+   "Hattie",
+   "Hazel",
+   "Henrietta",
+   "Hollis",
+   "Hoyt",
+   "Ike",
+   "Ivy",
+   "Jebediah",
+   "Jesse",
+   "Josephine",
+   "Juniper",
+   "Kit",
+   "Laramie",
+   "Lark",
+   "Loretta",
+   "Lupe",
+   "Mabel",
+   "Mae",
+   "Manzanita",
+   "Marisol",
+   "Mesquite",
+   "Millie",
+   "Minnie",
+   "Nell",
+   "Nettie",
+   "Obadiah",
+   "Ocotillo",
+   "Olive",
+   "Opal",
+   "Otis",
+   "Paloma",
+   "Pearl",
+   "Penny",
+   "Pinto",
+   "Primrose",
+   "Prudence",
+   "Quill",
+   "Ramona",
+   "Rawhide",
+   "Rosalie",
+   "Rusty",
+   "Sage",
+   "Sadie",
+   "Silas",
+   "Sonora",
+   "Spur",
+   "Sunny",
+   "Tabitha",
+   "Tansy",
+   "Tex",
+   "Thaddeus",
+   "Tillie",
+   "Tumble",
+   "Ulysses",
+   "Verbena",
+   "Virgil",
+   "Wade",
+   "Willa",
+   "Wyatt",
+   "Yucca",
+   "Zeke",
+   "Zinnia",
+   "Zebulon",
+   "Birdie"
+  ],
+  "matrinames": [
+   "Ashcroft",
+   "Barlow",
+   "Brightwater",
+   "Cartwright",
+   "Dryden",
+   "Dustfoot",
+   "Goldsworth",
+   "Hollowell",
+   "Longspur",
+   "McCready",
+   "Mesagrove",
+   "Prickett",
+   "Redcliffe",
+   "Saltmarsh",
+   "Sandoval",
+   "Sunderland",
+   "Thornback",
+   "Whitlock",
+   "Wildeburrow",
+   "Yarrowby"
+  ]
+ },
+ "seeds": [
+  [
+   "Prospector",
+   "Has been accused of claim-jumping",
+   "A player's hireling is responsible"
+  ],
+  [
+   "Homesteading family",
+   "Looking for a new home",
+   "Need to cross the dune sea"
+  ],
+  [
+   "Snake-oil wizard",
+   "Is being followed",
+   "Antagonist is their own shadow"
+  ],
+  [
+   "Beetle wrangler",
+   "Discovered a strange artifact",
+   "They have sunstroke and amnesia"
+  ],
+  [
+   "Farmer",
+   "Saw an unsettling omen in the sky",
+   "The antagonist is in disguise"
+  ],
+  [
+   "Mayor",
+   "Want to run a rival out of town",
+   "Player mouse's home is involved"
+  ],
+  [
+   "Scavenger",
+   "Want to retrieve buried treasure",
+   "It is guarded by strange beasts"
+  ],
+  [
+   "Shopkeeper",
+   "Store has burned down",
+   "Antagonist is their closest friend"
+  ],
+  [
+   "Wagon-train trader",
+   "Most valued possession was stolen",
+   "They are the true antagonist"
+  ],
+  [
+   "Roadrunner rider",
+   "Has been kidnapped",
+   "Player mouse's friend is involved"
+  ],
+  [
+   "Whiskey brewer",
+   "Has been run out of town",
+   "They've been framed"
+  ],
+  [
+   "Herbalist",
+   "Searching for a rare cure",
+   "It's very urgent"
+  ],
+  [
+   "Stagecoach driver",
+   "Have lost their way",
+   "They carry vital information"
+  ],
+  [
+   "Drifter",
+   "Have had all their water stolen",
+   "The antagonist had a good reason"
+  ],
+  [
+   "Lab escapee",
+   "Are on the run from humans",
+   "They're being tracked by a chip"
+  ],
+  [
+   "Silver miner",
+   "Have been held up by packrats",
+   "The antagonist is very drunk"
+  ],
+  [
+   "Baker",
+   "Ate a poisonous cactus fruit",
+   "Antagonist is a family member"
+  ],
+  [
+   "Lawmouse",
+   "Family member is missing",
+   "They're dying"
+  ],
+  [
+   "Tax collector",
+   "Have lost a strongbox of pips",
+   "They're very drunk"
+  ],
+  [
+   "Matriarch",
+   "Has been accused of murder",
+   "Antagonist is a shape-shifter"
+  ],
+  [
+   "Prospector",
+   "Pack tortoise is stuck in quicksand",
+   "They're much richer than they look"
+  ],
+  [
+   "Water guild boss",
+   "Has been murdered",
+   "Player mouse's rival is involved"
+  ],
+  [
+   "Cattle baron",
+   "Their hacienda is under siege",
+   "Antagonist wants retribution"
+  ],
+  [
+   "Packrat outlaw",
+   "Want to rob a rival gang",
+   "A ghost is haunting the hideout"
+  ],
+  [
+   "Queen bee",
+   "Swarm traveling to a new home",
+   "Their followers disagree"
+  ],
+  [
+   "Ant army officer",
+   "Is hunted by enemies",
+   "They are badly injured"
+  ],
+  [
+   "Elf owl sorcerer",
+   "Want to retrieve a rare spell",
+   "It is deep in a slot canyon"
+  ],
+  [
+   "Coyote chief",
+   "Want to be entertained",
+   "They've trapped the player mice"
+  ],
+  [
+   "Quail chick",
+   "Has lost their mother",
+   "Need to cross the salt flats"
+  ],
+  [
+   "Giant millipede",
+   "Want somewhere cool to sleep",
+   "Need item carried by a player mouse"
+  ],
+  [
+   "Lilliputian ambassador",
+   "Want to reach the territorial governor",
+   "They don't understand local customs"
+  ],
+  [
+   "Trail ghost",
+   "Want to finish their last ride",
+   "They can't leave their current location"
+  ],
+  [
+   "Dust spirit",
+   "Want to steal a mouse away",
+   "A player mouse is their target"
+  ],
+  [
+   "Swarm of gnats",
+   "Want to steal from a player mouse",
+   "Antagonist is unusually skilled"
+  ],
+  [
+   "Grandmother tarantula",
+   "Has lost an ancient treasure",
+   "She's eaten it"
+  ],
+  [
+   "Baby hawk",
+   "Cannot get back to the nest",
+   "Need to climb a saguaro"
+  ]
+ ]
 }

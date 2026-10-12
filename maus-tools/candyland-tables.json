@@ -722,5 +722,1732 @@
    "Buttered crumpets with syrup",
    "Crispy caramel-crusted sausage"
   ]
- }
+ },
+ "site": {
+  "construction": [
+   "Ancient Sour Moon temple",
+   "Abandoned gingersnap watchtower",
+   "Baron's frosted country manor",
+   "Hidden winter sweet-store",
+   "Burial vault of ancient confectioners",
+   "Warren dug by gummy worms",
+   "Baker's kitchen or pantry",
+   "Pipes of the old syrup works",
+   "Claustrophobic sugar-ant tunnels",
+   "Giant candy cane, hollowed out by candyfolk",
+   "Pulled-taffy wizard's tower",
+   "Settlement's sugar mill",
+   "Crumb-bandit king's nest",
+   "Fossil of a great jam-drake",
+   "Candy witches' academy",
+   "Gatehouse to the fairy realm",
+   "Deep rock-candy mine",
+   "Bandits' hideout in a cookie jar",
+   "Honeycomb cave",
+   "Abandoned candyfolk village"
+  ],
+  "ruination": [
+   "Chocolate flood",
+   "Magical mishap",
+   "Gone stale",
+   "A Baker's careless hand",
+   "Overrun by sugar-bloom mould",
+   "Shifted between realms",
+   "Attacked by great beast",
+   "Terrible sugar storm",
+   "Haunting spirits",
+   "Mysterious abandonment",
+   "Internal warfare",
+   "Melted in a heatwave"
+  ],
+  "inhabitants": [
+   "Candyfolk, sugar-mad or desperate",
+   "Candyfolk, half-melted and strange",
+   "Crumb bandits",
+   "Creatures from beyond the Baker's table",
+   "Original residents, gone stale and bitter",
+   "Crumbly biscuit ghosts",
+   "Sprinkle-fairy vanguard",
+   "Ill-tempered jam-drake",
+   "Swarm of sugar ants",
+   "Sour baron and their servants"
+  ],
+  "inhabitantCreatures": [
+   {
+    "common": "candyfolk"
+   },
+   {
+    "common": "candyfolk"
+   },
+   {
+    "common": "crumb_bandit"
+   },
+   {
+    "common": "*"
+   },
+   {
+    "common": "candyfolk"
+   },
+   {
+    "common": "biscuit_ghost"
+   },
+   {
+    "common": "sprinkle_fairy"
+   },
+   {
+    "common": "jam_drake"
+   },
+   {
+    "common": "sugar_ant|gummy_worm"
+   },
+   {
+    "common": "crumb_bandit",
+    "boss": "sour_baron"
+   }
+  ],
+  "searching": [
+   "A safe place to live or hide",
+   "Cache of the finest sweets",
+   "Lost family or friend",
+   "Ancient sugar-glass artworks",
+   "The last crumbs in a picked-over ruin",
+   "Rare enchanted sprinkles",
+   "Strange and powerful spell",
+   "Vast hoard of pips"
+  ],
+  "secret": [
+   "Sugar monolith humming with arcane energy",
+   "The first gingerbread golem, preserved",
+   "Signs of a Baker's experiments",
+   "Forgotten grave of the first Candy Queen",
+   "Path into the molten heart of the world",
+   "Portal to the fairy realm"
+  ],
+  "rivalry": [
+   "competing for the same prize",
+   "protecting it from them",
+   "trying to drive them out",
+   "hunting them for a snack",
+   "trapped here alongside them",
+   "bargaining with them, uneasily"
+  ],
+  "roomTypes": [
+   {
+    "min": 1,
+    "max": 2,
+    "name": "Empty",
+    "key": "empty",
+    "creature": 2,
+    "treasure": 2,
+    "label": "Feature",
+    "color": "#f3dce6"
+   },
+   {
+    "min": 3,
+    "max": 3,
+    "name": "Obstacle",
+    "key": "obstacle",
+    "creature": 2,
+    "treasure": 1,
+    "label": "Obstacle",
+    "color": "#f0d062"
+   },
+   {
+    "min": 4,
+    "max": 4,
+    "name": "Trap",
+    "key": "trap",
+    "creature": 1,
+    "treasure": 2,
+    "label": "Trap",
+    "color": "#e8899f"
+   },
+   {
+    "min": 5,
+    "max": 5,
+    "name": "Puzzle",
+    "key": "puzzle",
+    "creature": 1,
+    "treasure": 5,
+    "label": "Puzzle",
+    "color": "#a9cdee"
+   },
+   {
+    "min": 6,
+    "max": 6,
+    "name": "Lair",
+    "key": "lair",
+    "creature": 5,
+    "treasure": 4,
+    "label": "Lair",
+    "color": "#9a8ab8"
+   }
+  ],
+  "obstacle": [
+   "Locked biscuit door. The key can be found in another room. Smashing it takes time and makes noise.",
+   "Steep wall of slick icing. Without spikes or rope, climbers risk exhaustion or falling.",
+   "Sugar-dome chamber with the only exit in the centre of the ceiling, 6\" from any wall.",
+   "Pop-rock vent that crackles and shrieks. Each Turn spent here or in adjacent rooms gives a Frightened Condition.",
+   "Tunnel caved in with crumbs, leaving a gap too small to crawl through.",
+   "Passage completely flooded with syrup.",
+   "Wide pool of half-set caramel blocking the way. Gives an Exhausted Condition per 6\" traveled.",
+   "Long, smooth, upward-sloping sugar-glass tube."
+  ],
+  "trap": [
+   "Gingerbread slab chiselled loose from its frame. A device behind it tips it forward when the handle is turned.",
+   "Hallway flooded with fizzy soda, electrified by a Baker's battery in an alcove.",
+   "Dark room thick with floating sugar dust. Sweet, choking smell. d20 damage if ignited.",
+   "Thin licorice string stretched across a deadly drop. Safe if traveling slowly, one at a time.",
+   "Pit blocking the way. A jam-drake is asleep at the bottom.",
+   "Door with three gumdrop handles: one safe, two coated in sour poison. Poison handles deal d12 damage.",
+   "Ring of sprinkle-fairy toadstools with a young candyfolk inside. Those within try desperately to get others to enter.",
+   "Floor covered in fresh, warm taffy. Requires a STR save to pull a foot loose."
+  ],
+  "puzzle": [
+   "Floor made of a hot griddle plate. A piece of valuable treasure sits in the centre.",
+   "Three syrup bottles of different colours. Each is inert alone but powerful or dangerous when mixed.",
+   "A block of hard candy with a magic sword embedded inside. It is very hard, but dissolves slowly in warm water.",
+   "Treasure is at the bottom of a deep syrup well.",
+   "Large steel mixing bowl, upside down. Treasure is taped to the inside of the bowl.",
+   "Baited mousetrap. The lever is wired to a wafer support beam and will collapse the corridor if triggered."
+  ],
+  "lair": [
+   "Temporary camp around a sugar-glass lamp",
+   "Recently taken from another creature",
+   "Built by candyfolk to hold the creature",
+   "Protecting young or eggs",
+   "Permanent home, newly settled",
+   "Permanent home, cosy with stolen cushions"
+  ],
+  "empty": [
+   "Abandoned ant nest",
+   "Cluster of hard-candy mushrooms",
+   "Collapsed wafer wall",
+   "Dried gummy husks on the walls",
+   "Furniture made of a Baker's scraps",
+   "Huge drawing of a sour moon on the wall",
+   "Mess of tables and chairs",
+   "Old recipe cards for wallpaper",
+   "Overgrown with spun-sugar moss",
+   "Piped-icing mural, now faded",
+   "Platforms hanging over flowing chocolate",
+   "Candy-cane roots bursting out of the walls",
+   "Rotting pile of stale gumdrops",
+   "Scattering of jawbreaker teeth",
+   "Shiny foil-wrapper banners",
+   "Jam-drake skull doorway",
+   "Steady drip of syrup from the ceiling",
+   "Stern marzipan statue of an ancient baker",
+   "Uneven, deeply cracked toffee floor",
+   "White sugar-cube altar"
+  ],
+  "exits": [
+   [
+    "Tunnel",
+    4,
+    1
+   ],
+   [
+    "Doorway",
+    4,
+    1
+   ],
+   [
+    "Pretzel ladder",
+    2,
+    1
+   ],
+   [
+    "Wafer stairs",
+    2,
+    1
+   ],
+   [
+    "Narrow crack",
+    1,
+    2
+   ],
+   [
+    "Climb",
+    1,
+    1
+   ],
+   [
+    "Locked door",
+    1,
+    2,
+    "locked"
+   ],
+   [
+    "Hidden passage",
+    0.5,
+    3,
+    "hidden"
+   ],
+   [
+    "Chocolate channel",
+    0.5,
+    1,
+    "water"
+   ]
+  ],
+  "activities": [
+   "searching for {s}",
+   "guarding {s}",
+   "arguing over spoils",
+   "dragging a sack of sweets",
+   "resting, careless and noisy",
+   "on patrol",
+   "setting a sticky trap",
+   "fleeing from {other}",
+   "patching a crumbling wall",
+   "following a trail of crumbs",
+   "feasting on stolen sweets",
+   "lost and frightened",
+   "hunting for prey",
+   "carrying a captive"
+  ],
+  "dangerActs": [
+   "hunting",
+   "awake and hungry",
+   "stalking the inhabitants",
+   "guarding its hoard",
+   "in a terrible temper",
+   "newly arrived, looking for a lair"
+  ],
+  "distant": [
+   "toffee_crow",
+   "marshmallow_frog",
+   "marzipan_owl",
+   "sprinkle_fairy",
+   "gummy_worm",
+   "sugar_spider"
+  ],
+  "wanderers": [
+   "sugar_spider",
+   "gummy_worm",
+   "jam_drake",
+   "marshmallow_frog",
+   "candyfolk",
+   "crumb_bandit",
+   "biscuit_ghost"
+  ],
+  "dangers": [
+   "jam_drake",
+   "marzipan_owl",
+   "sour_baron",
+   "gummy_worm",
+   "sugar_spider",
+   "toffee_crow"
+  ]
+ },
+ "fit": {
+  "detail": {
+   "Frosted baron's keep": {
+    "construction": "Baron's frosted country manor"
+   },
+   "Rock-candy dig site": {
+    "construction": "Deep rock-candy mine"
+   },
+   "Honeycomb caves": {
+    "construction": "Honeycomb cave"
+   },
+   "Crumb-bandit hideout": {
+    "construction": "Bandits' hideout in a cookie jar",
+    "inhabitants": "Crumb bandits"
+   },
+   "Swarm of sugar ants": {
+    "construction": "Claustrophobic sugar-ant tunnels",
+    "inhabitants": "Swarm of sugar ants"
+   },
+   "Den of a great jam-drake": {
+    "inhabitants": "Ill-tempered jam-drake"
+   },
+   "Pulled-taffy wizard's tower": {
+    "construction": "Pulled-taffy wizard's tower"
+   },
+   "Abandoned baron's manor": {
+    "construction": "Baron's frosted country manor",
+    "ruination": "Mysterious abandonment"
+   },
+   "Deserted settlement": {
+    "construction": "Abandoned candyfolk village",
+    "ruination": "Mysterious abandonment"
+   },
+   "Ruined watchtower": {
+    "construction": "Abandoned gingersnap watchtower"
+   },
+   "Ancient Sour Moon temple": {
+    "construction": "Ancient Sour Moon temple"
+   },
+   "Fairy ring of sprinkles": {
+    "construction": "Gatehouse to the fairy realm",
+    "inhabitants": "Sprinkle-fairy vanguard"
+   },
+   "Biscuit graveyard": {
+    "inhabitants": "Crumbly biscuit ghosts"
+   },
+   "Candy witch's hut": {
+    "construction": "Candy witches' academy"
+   },
+   "Strange magical anomaly": {
+    "ruination": "Magical mishap"
+   },
+   "Completely lifeless and grey": {
+    "ruination": "Gone stale"
+   },
+   "Regularly visited by the Bakers": {
+    "construction": "Baker's kitchen or pantry"
+   },
+   "Damaged by a Baker's careless hand": {
+    "construction": "Baker's kitchen or pantry",
+    "ruination": "A Baker's careless hand"
+   },
+   "Ancient ruins of a past confectioner empire": {
+    "construction": "Burial vault of ancient confectioners"
+   },
+   "Sour baron's hunting ground": {
+    "inhabitants": "Sour baron and their servants"
+   },
+   "Repurposed Baker's tool": {
+    "construction": "Baker's kitchen or pantry"
+   },
+   "Crashed lollipop airship": {
+    "inhabitants": "Creatures from beyond the Baker's table"
+   }
+  },
+  "landmark": {
+   "Cracked gumdrop cave": {
+    "construction": "Honeycomb cave"
+   },
+   "Sugar-crystal cave": {
+    "construction": "Honeycomb cave"
+   },
+   "Blue-crystal cavern": {
+    "construction": "Honeycomb cave"
+   },
+   "Hidden hollow of geodes": {
+    "construction": "Honeycomb cave"
+   },
+   "Honeycomb mound": {
+    "construction": "Honeycomb cave"
+   },
+   "Gummy-worm burrows": {
+    "construction": "Warren dug by gummy worms"
+   },
+   "Hollow candy cane": {
+    "construction": "Giant candy cane, hollowed out by candyfolk"
+   },
+   "Twisted red-white tree": {
+    "construction": "Giant candy cane, hollowed out by candyfolk"
+   },
+   "Abandoned bakery": {
+    "construction": "Baker's kitchen or pantry"
+   },
+   "Shuttered sweet shop": {
+    "construction": "Abandoned candyfolk village"
+   },
+   "Sunken sweetshop": {
+    "construction": "Abandoned candyfolk village"
+   },
+   "Crumbling gingerbread wall": {
+    "construction": "Abandoned candyfolk village"
+   },
+   "Gingersnap watchtower": {
+    "construction": "Abandoned gingersnap watchtower"
+   },
+   "Sunken sugar mill": {
+    "construction": "Settlement's sugar mill"
+   },
+   "Quartz-sweet vein": {
+    "construction": "Deep rock-candy mine"
+   }
+  },
+  "ruination": {
+   "chocolate_river": {
+    "Chocolate flood": 3
+   },
+   "licorice_swamp": {
+    "Overrun by sugar-bloom mould": 3
+   },
+   "cotton_candy_clouds": {
+    "Terrible sugar storm": 3
+   },
+   "gingerbread_town": {
+    "A Baker's careless hand": 2
+   },
+   "lollipop_meadow": {
+    "Melted in a heatwave": 2
+   },
+   "gumdrop_hills": {
+    "Gone stale": 2
+   },
+   "peppermint_forest": {
+    "Gone stale": 2
+   },
+   "rock_candy_peaks": {
+    "Attacked by great beast": 2
+   }
+  }
+ },
+ "treasure": {
+  "main": [
+   {
+    "min": 1,
+    "max": 1,
+    "text": "Magic sword",
+    "kind": "sword"
+   },
+   {
+    "min": 2,
+    "max": 2,
+    "text": "Random spell",
+    "kind": "spell"
+   },
+   {
+    "min": 3,
+    "max": 3,
+    "text": "Roll for Trinket",
+    "kind": "trinkets",
+    "label": "Trinket"
+   },
+   {
+    "min": 4,
+    "max": 4,
+    "text": "Roll for Valuable treasure",
+    "kind": "valuable",
+    "label": "Valuable"
+   },
+   {
+    "min": 5,
+    "max": 5,
+    "text": "Roll for Unusual treasure",
+    "kind": "unusual",
+    "label": "Unusual"
+   },
+   {
+    "min": 6,
+    "max": 8,
+    "text": "Roll for Large treasure",
+    "kind": "large",
+    "label": "Large"
+   },
+   {
+    "min": 9,
+    "max": 10,
+    "text": "Roll for Useful treasure",
+    "kind": "useful",
+    "label": "Useful"
+   },
+   {
+    "min": 11,
+    "max": 11,
+    "text": "Biscuit tin containing d6 x 100 pips",
+    "pips": 100,
+    "fmt": "Biscuit tin containing {n} pips"
+   },
+   {
+    "min": 12,
+    "max": 14,
+    "text": "Bonbon box containing d6 x 50 pips",
+    "pips": 50,
+    "fmt": "Bonbon box containing {n} pips"
+   },
+   {
+    "min": 15,
+    "max": 17,
+    "text": "Sugar pouch containing d6 x 10 pips",
+    "pips": 10,
+    "fmt": "Sugar pouch containing {n} pips"
+   },
+   {
+    "min": 18,
+    "max": 20,
+    "text": "Scattering of d6 x 5 pips among the crumbs",
+    "pips": 5,
+    "fmt": "Scattering of {n} pips among the crumbs"
+   }
+  ],
+  "trinkets": [
+   "Ghost-mint lantern (casts a light that banishes ghosts)",
+   "Speaking candy shells (one speaks what the other hears)",
+   "Bendy straw (always contains air)",
+   "Sour cultist's sugar dagger (grants passage into the sanctum)",
+   "Magic jellybeans (grow fully in d6 Turns)",
+   "Working Baker's gadget (make up something fun)"
+  ],
+  "valuable": [
+   "Wheel of honeycomb cheese (100p)",
+   "Silver sugar-tongs chain (2 slots, 500p)",
+   "Jewelled candy-glass pendant (400p)",
+   "Gold-leaf ring (500p)",
+   "Polished rock-sugar diamond (1000p)",
+   "String of sugar pearls (2 slots, 1500p)"
+  ],
+  "large": [
+   "Oversized silver cake fork (2 slots, 300p)",
+   "Ivory icing comb (4 slots, 400p)",
+   "Huge bottle of cherry cordial (4 slots, 500p)",
+   "Ancient marzipan statue (4 slots, 500p)",
+   "Ancient wafer throne (6 slots, 1000p)",
+   "Giant gold kitchen timer (4 slots, 1000p)"
+  ],
+  "unusual": [
+   "Bundle of rare mint leaves (200p to an apothecary)",
+   "Odd-coloured candied mushrooms (200p to a witch)",
+   "Eerily glowing sugar crystal (300p to a wizard)",
+   "Heirloom of sentimental value to a frosted noble",
+   "Legal documents granting land rights to the holder",
+   "Recipe map"
+  ],
+  "useful": [
+   "d6 packs of rations, well preserved",
+   "d6 bundles of torches",
+   "Mundane weapon",
+   "Mundane armour",
+   "Mundane utility item",
+   "Lost candyfolk, willing to help"
+  ],
+  "swords": [
+   [
+    "Candy-cane sabre",
+    "While wielded: you roll critical damage Saves with Advantage"
+   ],
+   [
+    "Fondant-fae rapier",
+    "While wielded: you may disguise yourself as any candyfolk-sized creature"
+   ],
+   [
+    "Rusty cake fork",
+    "Critical damage: give a Frightened Condition"
+   ],
+   [
+    "Jam-drake fang",
+    "Critical damage: deal d6 additional damage to DEX"
+   ],
+   [
+    "Toy soldier's cutlass",
+    "While wielded: if you lead a warband, they have +1 Armour"
+   ],
+   [
+    "Sugar-glass shard",
+    "While wielded: you can hold breath under syrup for 1 Turn"
+   ],
+   [
+    "Rock-candy spike",
+    "Critical damage: your next attack is Enhanced"
+   ],
+   [
+    "Silver cake tester",
+    "Critical damage: clear all usage dots from a non-spell item in your inventory"
+   ],
+   [
+    "Thorny sugar-rose stem",
+    "Critical damage: remove a Condition"
+   ],
+   [
+    "Dark-chocolate shadow",
+    "While wielded: you are invisible when standing perfectly still"
+   ]
+  ],
+  "swordClass": [
+   {
+    "min": 1,
+    "max": 4,
+    "text": "Medium (d6 one paw/d8 both paws)"
+   },
+   {
+    "min": 5,
+    "max": 5,
+    "text": "Light (d6 one paw, can be dual-wielded)"
+   },
+   {
+    "min": 6,
+    "max": 6,
+    "text": "Heavy (d10 both paws)"
+   }
+  ],
+  "curses": [
+   [
+    "Roll critical damage saves with Disadvantage",
+    "Making a selfless sacrifice in a life or death situation"
+   ],
+   [
+    "When you gain an Exhausted Condition, gain another",
+    "Trading places with a poor sugarcane farmer for a season"
+   ],
+   [
+    "Make a WIL save to not attack when threatened",
+    "Making lasting peace with a mortal enemy"
+   ],
+   [
+    "Reaction rolls are made with -1 modifier",
+    "Giving away everything you own, no cheating"
+   ],
+   [
+    "If you see an ally take damage, take a Frightened Condition",
+    "Fulfilling a dying candyfolk's last wish"
+   ],
+   [
+    "Spells cast in your presence always mark usage",
+    "Destroying a marzipan sorcerer's source of power"
+   ]
+  ],
+  "spells": [
+   [
+    2,
+    "Fireball",
+    "Shoot a fireball up to 24\". Deal [SUM] + [DICE] damage to all creatures within 6\".",
+    "Bake in the heart of a Baker's oven for three days and nights."
+   ],
+   [
+    3,
+    "Heal",
+    "Heal [SUM] STR damage and remove the Injured Condition from a creature.",
+    "Break off a crumb of yourself for d6 STR damage, sprinkle it on the spell."
+   ],
+   [
+    4,
+    "Magic Missile",
+    "Deal [SUM] + [DICE] damage to a creature within sight.",
+    "Drop from the top of a rock-candy peak. Touch the spell within one Turn."
+   ],
+   [
+    5,
+    "Fear",
+    "Give the Frightened Condition to [DICE] creatures.",
+    "Receive the Frightened Condition from a hostile creature while carrying the spell."
+   ],
+   [
+    6,
+    "Darkness",
+    "Create a [SUM] x 2\" diameter sphere of pure darkness for [DICE] Turns.",
+    "Leave inside a closed chocolate box for three days."
+   ],
+   [
+    7,
+    "Restore",
+    "Remove Exhausted or Frightened Condition from [DICE] + 1 creatures.",
+    "Bury in a peaceful lollipop meadow for three days."
+   ],
+   [
+    8,
+    "Be Understood",
+    "Make your meaning clear to [DICE] creatures of another species for [DICE] Turns.",
+    "Give away freely to a creature of another species."
+   ],
+   [
+    9,
+    "Ghost Gummy",
+    "Create an illusory gummy bear that can carry 6 inventory slots for [DICE] x 6 Turns.",
+    "Bury in a biscuit graveyard for three nights."
+   ],
+   [
+    10,
+    "Light",
+    "Force [DICE] creatures to make a WIL save or become stunned. Alternately, create light as bright as a torch for [SUM] turns.",
+    "Catch in the first light of a sunrise and the last light of sunset for three days."
+   ],
+   [
+    11,
+    "Invisible Ring",
+    "Creates [DICE] x 6\" ring of force. It is invisible and immovable. Lasts [DICE] Turns.",
+    "Build a sugar-glass ring the same size as last cast. Pass the spell through it. Dissolves the ring."
+   ],
+   [
+    12,
+    "Knock",
+    "Open a door or container, as if a Save were made with STR score of 10 + [DICE] x 4.",
+    "Put in a cookie tin, inside a cookie tin, inside a cookie tin. Leave for three days."
+   ],
+   [
+    13,
+    "Syrup Slick",
+    "Cover [DICE] x 6\" area in slippery, flammable syrup. Creatures in the area must make a DEX save or fall prone.",
+    "Soak in melted butter. Leave until it goes rancid."
+   ],
+   [
+    14,
+    "Grow",
+    "Grow a creature to [DICE] + 1 times its original size for 1 Turn.",
+    "Leave on top of the tallest lollipop for three days."
+   ],
+   [
+    15,
+    "Invisibility",
+    "Make creature invisible for [DICE] Turns. Any movement reduces duration by 1 Turn.",
+    "Go a day without opening your eyes once, while holding the spell."
+   ],
+   [
+    16,
+    "Sour Lure",
+    "Turn object into an irresistible lure for sour barons. Lasts [DICE] Turns.",
+    "Give a sour baron a gift it truly desires."
+   ]
+  ],
+  "formerMouse": [
+   "Ancient Sour Moon temple",
+   "Abandoned gingersnap watchtower",
+   "Baron's frosted country manor",
+   "Hidden winter sweet-store",
+   "Burial vault of ancient confectioners",
+   "Giant candy cane, hollowed out by candyfolk",
+   "Pulled-taffy wizard's tower",
+   "Settlement's sugar mill",
+   "Candy witches' academy",
+   "Deep rock-candy mine",
+   "Abandoned candyfolk village"
+  ],
+  "magical": [
+   "Pulled-taffy wizard's tower",
+   "Candy witches' academy",
+   "Gatehouse to the fairy realm",
+   "Ancient Sour Moon temple",
+   "Magical mishap",
+   "Shifted between realms",
+   "Haunting spirits",
+   "Sugar monolith humming with arcane energy",
+   "Portal to the fairy realm"
+  ]
+ },
+ "creatures": [
+  {
+   "key": "sour_baron",
+   "name": "Sour baron",
+   "plural": "Sour barons",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "Warband scale. 15hp, STR 15, DEX 15, WIL 10, Armour 1",
+   "attacks": "d6 swipe, d8 bite",
+   "notes": "A great cat glazed in sour sugar",
+   "wants": "to be served. If candyfolk pledge fealty and pay sweet tithes, they may be allowed to live",
+   "vt": "Sour barons",
+   "variants": [
+    [
+     "Baron Tartaric",
+     "Loves to eat the finest delicacies"
+    ],
+    [
+     "Duchess Citric",
+     "Loves gold, jewels and wealth"
+    ],
+    [
+     "Count Malic",
+     "Plays cruel games with captives"
+    ],
+    [
+     "Lord Acetic",
+     "Rules with harsh, unbending logic"
+    ],
+    [
+     "Lady Sherbet",
+     "Loves art, poetry and beautiful things"
+    ],
+    [
+     "Empress Vinegar",
+     "Forming an army of conquest, wants to rule"
+    ]
+   ]
+  },
+  {
+   "key": "gummy_worm",
+   "name": "Gummy worm",
+   "plural": "Gummy worms",
+   "counts": [
+    "1",
+    "1",
+    "d3"
+   ],
+   "stats": "8hp, STR 10, DEX 12, WIL 8, Armour 1",
+   "attacks": "d6 sticky bite (damages DEX instead of STR)",
+   "crit": "Coils and squeezes, d12 damage to STR",
+   "wants": "to wander and devour",
+   "vt": "Gummy worms",
+   "variants": [
+    [
+     "Giant",
+     "As long as a candy cane. 12hp, STR 15, Armour 2"
+    ],
+    [
+     "Swimming",
+     "Drags prey under the syrup"
+    ],
+    [
+     "Sour",
+     "Sour-sugar coating, d8 damage bite"
+    ],
+    [
+     "Glutton",
+     "Always hungry, never stops growing"
+    ],
+    [
+     "Rainbow",
+     "A delicacy, if you can catch one"
+    ],
+    [
+     "Fizzing",
+     "Burrows straight through hard candy"
+    ]
+   ]
+  },
+  {
+   "key": "toffee_crow",
+   "name": "Toffee crow",
+   "plural": "Toffee crows",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "12hp, STR 12, DEX 15, WIL 15, Armour 1",
+   "attacks": "d8 peck",
+   "notes": "Flies 3x normal speed, knows two songs",
+   "wants": "to protect the secret hallowed places from those that would do them harm",
+   "vt": "Toffee crow songs",
+   "variants": [
+    [
+     "Dawn",
+     "Create a blindingly bright light"
+    ],
+    [
+     "Sorrow",
+     "All who hear: make WIL save or take Frightened"
+    ],
+    [
+     "Sight",
+     "Vaguely foretell a future event"
+    ],
+    [
+     "Wind",
+     "Powerful gust. Make STR save or be knocked down"
+    ],
+    [
+     "Past",
+     "See a past event concerning those present"
+    ],
+    [
+     "Truth",
+     "All who hear: cannot lie while the song lasts"
+    ]
+   ]
+  },
+  {
+   "key": "sprinkle_fairy",
+   "name": "Sprinkle fairy",
+   "plural": "Sprinkle fairies",
+   "counts": [
+    "1",
+    "d3",
+    "d3"
+   ],
+   "stats": "6hp, STR 10, DEX 15, WIL 15",
+   "attacks": "d8 sugar-glass rapier",
+   "notes": "Knows one spell",
+   "wants": "to further the Fairy Queen's sugary agenda",
+   "vt": "Sprinkle fairy agendas",
+   "variants": [
+    [
+     "Kidnapping",
+     "fresh-baked young, to raise as their own"
+    ],
+    [
+     "Giving gifts",
+     "that cause violent jealousy"
+    ],
+    [
+     "Playing music",
+     "that bewitches candyfolk into their service"
+    ],
+    [
+     "Using a glamour",
+     "to appear as candyfolk in distress"
+    ],
+    [
+     "Spoiling",
+     "the sweets in winter storehouses"
+    ],
+    [
+     "Tricking",
+     "a settlement out of their legal standing"
+    ]
+   ]
+  },
+  {
+   "key": "marshmallow_frog",
+   "name": "Marshmallow frog",
+   "plural": "Marshmallow frogs",
+   "counts": [
+    "1",
+    "1",
+    "d3"
+   ],
+   "stats": "6hp, STR 12, DEX 15, WIL 8, Armour 1",
+   "attacks": "d10 lance or d6 tongue",
+   "crit": "Bounce out of reach",
+   "notes": "Always goes first unless surprised, leaps 2x normal speed",
+   "wants": "to gallantly complete their quest",
+   "vt": "Marshmallow knights-errant",
+   "variants": [
+    [
+     "Sir Puff",
+     "Strong, kind of heart and simple of mind"
+    ],
+    [
+     "Sir Fluff",
+     "Cursed Baker, searching for a cure"
+    ],
+    [
+     "Dame Toast",
+     "Unsound sense of honor, rash when singed"
+    ],
+    [
+     "Sir Squish",
+     "Set on slaying a great jam-drake, no matter the cost"
+    ],
+    [
+     "Dame Bounce",
+     "Desperate to prove her strength at jousting"
+    ],
+    [
+     "Sir Gooey",
+     "Searching for the legendary Golden Spoon"
+    ]
+   ]
+  },
+  {
+   "key": "biscuit_ghost",
+   "name": "Biscuit ghost",
+   "plural": "Biscuit ghosts",
+   "counts": [
+    "1",
+    "1",
+    "d3"
+   ],
+   "stats": "9hp, STR 5, DEX 10, WIL 10",
+   "attacks": "ghostly power, d8 chilling touch (damages WIL)",
+   "crit": "Possess the creature",
+   "notes": "Only harmed by silver or magic weapons",
+   "wants": "freedom from the stale ache that binds them to the world",
+   "vt": "Ghostly powers",
+   "variants": [
+    [
+     "Shimmer",
+     "Create d3 illusions of itself"
+    ],
+    [
+     "Poltergeist",
+     "Throws a creature or object d6 x 6\""
+    ],
+    [
+     "Entrap",
+     "Pull a creature into the spirit realm for a Round"
+    ],
+    [
+     "Doom",
+     "Give Frightened Condition to a creature"
+    ],
+    [
+     "Stale",
+     "Turns all rations carried by a creature stale and useless"
+    ],
+    [
+     "Incorporeal",
+     "Float into wall or floor, reappear elsewhere"
+    ]
+   ]
+  },
+  {
+   "key": "candyfolk",
+   "name": "Candyfolk",
+   "plural": "Candyfolk",
+   "counts": [
+    "d3",
+    "d6",
+    "d6"
+   ],
+   "stats": "3hp, STR 9, DEX 9, WIL 9",
+   "attacks": "d6 cane-sword or d6 sling",
+   "wants": "to feel safe and stay fresh",
+   "vt": "Rival candyfolk adventurers",
+   "variants": [
+    [
+     "Brittle",
+     "Disgraced knight, still haughty"
+    ],
+    [
+     "Fondant",
+     "Off-kilter wizard, looking for spells"
+    ],
+    [
+     "Crumb",
+     "Trying to steal enough to buy back the family bakery"
+    ],
+    [
+     "Gloss",
+     "Con artist. Appears sweet and harmless"
+    ],
+    [
+     "Ember",
+     "Loves caramelising things. Fears the cold"
+    ],
+    [
+     "Big Nougat",
+     "Massive candyfolk exiled from a far-off kitchen"
+    ]
+   ]
+  },
+  {
+   "key": "marzipan_owl",
+   "name": "Marzipan owl",
+   "plural": "Marzipan owls",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "15hp, STR 15, DEX 15, WIL 15, Armour 1",
+   "attacks": "d10 bite",
+   "notes": "Flies 3x normal speed. Knows two spells",
+   "wants": "to collect rare recipes and spells",
+   "vt": "Marzipan sorcerers",
+   "variants": [
+    [
+     "Almondine",
+     "Builds clockwork confection servants"
+    ],
+    [
+     "Morsel",
+     "In league with the fairy court"
+    ],
+    [
+     "Praline",
+     "Creates chimeric pastry servants"
+    ],
+    [
+     "Nonpareil",
+     "Can shape-shift into any other bird"
+    ],
+    [
+     "Pastillage",
+     "Binds biscuit ghosts into spells"
+    ],
+    [
+     "Gianduja",
+     "A Baker trapped in owl form"
+    ]
+   ]
+  },
+  {
+   "key": "crumb_bandit",
+   "name": "Crumb bandit",
+   "plural": "Crumb bandits",
+   "counts": [
+    "d3",
+    "d6",
+    "d6",
+    "2d6"
+   ],
+   "stats": "3hp, STR 12, DEX 8, WIL 8",
+   "attacks": "d6 cleaver",
+   "notes": "Licorice-tailed rats who live off stolen sweets",
+   "wants": "easy sweets, to take from the weak",
+   "vt": "Crumb-bandit gangs",
+   "variants": [
+    [
+     "The Stale Crumbs",
+     "Construct elaborate scavenged traps"
+    ],
+    [
+     "Syrup Runners",
+     "Expert chocolate-river smugglers"
+    ],
+    [
+     "The Burnt Batch",
+     "Scorched looks, strange innate magic"
+    ],
+    [
+     "Tin Knights",
+     "1 armour cookie-tin breastplates and helms"
+    ],
+    [
+     "Doily Dandies",
+     "Top hats and lace collars"
+    ],
+    [
+     "The Tangle",
+     "Tails knotted together in licorice"
+    ]
+   ]
+  },
+  {
+   "key": "jam_drake",
+   "name": "Jam-drake",
+   "plural": "Jam-drakes",
+   "big": true,
+   "counts": [
+    "1"
+   ],
+   "stats": "12hp, STR 12, DEX 10, WIL 10, Armour 2",
+   "attacks": "d8 bite",
+   "crit": "Swallow whole, d4 STR damage per Round until rescued or escape",
+   "wants": "to sleep undisturbed on its hoard",
+   "vt": "Jam-drakes",
+   "variants": [
+    [
+     "Strawberry",
+     "Bright red, sticky breath glues feet to the floor"
+    ],
+    [
+     "Blackcurrant",
+     "Slithers always just out of sight"
+    ],
+    [
+     "Marmalade",
+     "Bitter-tempered, spits shards of peel"
+    ],
+    [
+     "Crab-apple",
+     "Lives in syrup pools. Raises stolen eggs"
+    ],
+    [
+     "Spellglaze",
+     "Born with a spell etched into its glaze"
+    ],
+    [
+     "Flambé",
+     "Has wings, breathes small gouts of caramel flame"
+    ]
+   ]
+  },
+  {
+   "key": "sugar_ant",
+   "name": "Sugar ant",
+   "plural": "Sugar ants",
+   "counts": [
+    "d3",
+    "d6",
+    "d6"
+   ],
+   "stats": "4hp, STR 8, DEX 12, WIL 6, Armour 1",
+   "attacks": "d6 mandibles",
+   "crit": "Snatches a random item from the target's inventory and runs",
+   "wants": "to haul every sweet thing back to the queen",
+   "vt": "Sugar ant castes",
+   "variants": [
+    [
+     "Soldier",
+     "Armour 2, d8 mandibles"
+    ],
+    [
+     "Honeypot",
+     "Swollen with syrup, a delicacy"
+    ],
+    [
+     "Fire",
+     "Burning bite damages DEX instead of STR"
+    ],
+    [
+     "Scout",
+     "Always first to arrive, always leaves a trail"
+    ],
+    [
+     "Weaver",
+     "Glues tunnels shut with sugar paste"
+    ],
+    [
+     "Queen's guard",
+     "12hp, STR 14, never retreats"
+    ]
+   ]
+  },
+  {
+   "key": "sugar_spider",
+   "name": "Sugar spider",
+   "plural": "Sugar spiders",
+   "counts": [
+    "1",
+    "1",
+    "d3"
+   ],
+   "stats": "6hp, STR 8, DEX 15, WIL 10, Armour 1",
+   "attacks": "d6 poison bite (damages DEX instead of STR)",
+   "crit": "Carry away in a spun-sugar web",
+   "wants": "to feed its babies",
+   "vt": "Sugar spider species",
+   "variants": [
+    [
+     "Licorice widow",
+     "Black with red markings, d10 damage bite"
+    ],
+    [
+     "Fuzzy peach",
+     "Furry, hunts in packs of d6 spiders"
+    ],
+    [
+     "Longlegs",
+     "Mostly peaceful, can walk on syrup"
+    ],
+    [
+     "Architect",
+     "Weaves confusing tunnels of spun sugar"
+    ],
+    [
+     "Pop-rock",
+     "As an action, teleports d6 x 10\" with a crackle"
+    ],
+    [
+     "Ghost-sugar",
+     "Can only be harmed by silver or magic weapons"
+    ]
+   ]
+  }
+ ],
+ "npc": {
+  "social": [
+   [
+    "Crumb-beggar",
+    "d6p"
+   ],
+   [
+    "Common candyfolk",
+    "d6 x 10p"
+   ],
+   [
+    "Common candyfolk",
+    "d6 x 10p"
+   ],
+   [
+    "Master baker",
+    "d6 x 50p"
+   ],
+   [
+    "Guild confectioner",
+    "d4 x 100p"
+   ],
+   [
+    "Frosted noble",
+    "d4 x 1000p"
+   ]
+  ],
+  "birthsign": [
+   [
+    "Sugar Star",
+    "Brave / Reckless"
+   ],
+   [
+    "Rolling Pin",
+    "Industrious / Unimaginative"
+   ],
+   [
+    "Cocoa Bean",
+    "Inquisitive / Stubborn"
+   ],
+   [
+    "Sour Storm",
+    "Generous / Wrathful"
+   ],
+   [
+    "Sugar Moon",
+    "Wise / Mysterious"
+   ],
+   [
+    "Oven Mother",
+    "Nurturing / Worrying"
+   ]
+  ],
+  "appearance": [
+   "Glossy candy-glass eyes",
+   "Bright, patched frosting",
+   "Wreath of sugar flowers",
+   "Crumbly, chipped edges",
+   "Large floppy wafer hat",
+   "Pockets full of sprinkles",
+   "Bent candy-cane walking stick",
+   "Carries a rusted cake fork",
+   "Wild spun-sugar hair",
+   "Very, very stale",
+   "Bandaged with a ribbon of fondant",
+   "Licorice braids tied with a bow",
+   "Bite taken out of one ear",
+   "Long licorice whiskers",
+   "Twinkling sprinkle eyes",
+   "Huge, heavy chocolate cloak",
+   "Old fork-tine scars",
+   "Fresh from the oven",
+   "Sugar-dusted all over",
+   "Piped icing tattoos"
+  ],
+  "quirk": [
+   "Constantly re-frosting themselves",
+   "Obsessed with the weather",
+   "Very high energy",
+   "Travelled, knowledgeable",
+   "Cursed by a taffy wizard",
+   "Scares easily",
+   "Ashamed of past crimes",
+   "Very competitive",
+   "Flamboyant cider drunkard",
+   "Extremely polite",
+   "Unreservedly honest",
+   "Slow, sticky speech",
+   "Quick, fizzy speech",
+   "Secret servant of a sour baron",
+   "Raised by crumb bandits",
+   "Outcast from home",
+   "Many pet gummy worms",
+   "Terrified of water",
+   "Local hero",
+   "Crumbles when nervous"
+  ],
+  "wants": [
+   "Freedom",
+   "Safety",
+   "Escape",
+   "Excitement",
+   "Power",
+   "Meaning",
+   "To stay fresh",
+   "Wealth",
+   "Protection",
+   "Love",
+   "To protect",
+   "Sweets",
+   "Friendship",
+   "Rest",
+   "Knowledge",
+   "Savagery",
+   "Beauty",
+   "Revenge",
+   "To serve",
+   "Fun"
+  ],
+  "relationship": [
+   "Parent",
+   "Sibling",
+   "Cousin",
+   "Second cousin",
+   "Grandparent",
+   "Related, but don't know it",
+   "Married",
+   "Former sweethearts",
+   "In love, unrequited",
+   "Drinking buddies",
+   "Debt owed",
+   "Long and tumultuous",
+   "Sworn enemies",
+   "Guild siblings",
+   "Childhood friends",
+   "One stole from the other",
+   "Worked together",
+   "Baked in the same batch",
+   "Serve the same baron",
+   "Never met before"
+  ],
+  "birthnames": [
+   "Amaretto",
+   "Angelica",
+   "Anise",
+   "Apricot",
+   "Biscotti",
+   "Bonbon",
+   "Brandysnap",
+   "Brittle",
+   "Brownie",
+   "Butterscotch",
+   "Candy",
+   "Caramel",
+   "Cherry",
+   "Chiffon",
+   "Cinnamon",
+   "Clove",
+   "Cocoa",
+   "Coconut",
+   "Cookie",
+   "Cracker",
+   "Cream",
+   "Crumble",
+   "Cupcake",
+   "Custard",
+   "Dainty",
+   "Dolly",
+   "Dumpling",
+   "Eclair",
+   "Fig",
+   "Fizz",
+   "Flan",
+   "Fondant",
+   "Fudge",
+   "Ganache",
+   "Ginger",
+   "Glacé",
+   "Gobstopper",
+   "Gumdrop",
+   "Hazel",
+   "Honey",
+   "Humbug",
+   "Jam",
+   "Jelly",
+   "Jujube",
+   "Kipferl",
+   "Lemon",
+   "Licorice",
+   "Lolly",
+   "Macaron",
+   "Mallow",
+   "Maple",
+   "Marzipan",
+   "Meringue",
+   "Mint",
+   "Mocha",
+   "Molasses",
+   "Muffin",
+   "Nectar",
+   "Nougat",
+   "Nutmeg",
+   "Panna",
+   "Parfait",
+   "Pastille",
+   "Peaches",
+   "Pecan",
+   "Penny",
+   "Peppermint",
+   "Pinwheel",
+   "Pistachio",
+   "Plum",
+   "Popover",
+   "Praline",
+   "Pretzel",
+   "Pudding",
+   "Quince",
+   "Raisin",
+   "Ripple",
+   "Saffron",
+   "Scone",
+   "Sherbet",
+   "Shortbread",
+   "Snickerdoodle",
+   "Sorbet",
+   "Sprinkle",
+   "Strudel",
+   "Sugar",
+   "Sundae",
+   "Swirl",
+   "Taffy",
+   "Tart",
+   "Toffee",
+   "Treacle",
+   "Truffle",
+   "Vanilla",
+   "Wafer",
+   "Waffle",
+   "Whip",
+   "Butterbean",
+   "Cinder",
+   "Rhubarb"
+  ],
+  "matrinames": [
+   "Bakewell",
+   "Brightfrost",
+   "Butterfield",
+   "Candlewick",
+   "Caneworth",
+   "Crumbsby",
+   "Drizzlewood",
+   "Frostington",
+   "Gingersnap",
+   "Glazebrook",
+   "Honeydew",
+   "Icingham",
+   "Jellicoe",
+   "Meltwater",
+   "Ovenfield",
+   "Rollpin",
+   "Sprinklethorpe",
+   "Sugarbridge",
+   "Swirlbottom",
+   "Toffeeham"
+  ]
+ },
+ "seeds": [
+  [
+   "Syrup fisher",
+   "Have been accused of a crime",
+   "A player's hireling is responsible"
+  ],
+  [
+   "Unruly family",
+   "Looking for a new home",
+   "Need to cross the chocolate river"
+  ],
+  [
+   "Taffy wizard",
+   "Is being followed",
+   "Antagonist is their own shadow"
+  ],
+  [
+   "Gummy-bear wrangler",
+   "Discovered a strange artifact",
+   "They have amnesia"
+  ],
+  [
+   "Sugarcane farmer",
+   "Experienced an unsettling omen",
+   "The antagonist is in disguise"
+  ],
+  [
+   "Master confectioner",
+   "Want to ruin a rival",
+   "Player's home is involved"
+  ],
+  [
+   "Crumb forager",
+   "Want to retrieve lost treasure",
+   "It is protected by strange beasts"
+  ],
+  [
+   "Sweet-shop keeper",
+   "Shop has melted",
+   "Antagonist is their closest friend"
+  ],
+  [
+   "Traveling merchant",
+   "Most valued possession was stolen",
+   "They are the true antagonist"
+  ],
+  [
+   "Gumdrop-glider pilot",
+   "Has been kidnapped",
+   "Player's friend is involved"
+  ],
+  [
+   "Cider brewer",
+   "Has been exiled from the settlement",
+   "They've been framed"
+  ],
+  [
+   "Herbalist",
+   "Searching for a cure for going stale",
+   "It's very urgent"
+  ],
+  [
+   "Message runner",
+   "Have lost their way",
+   "They have vital information"
+  ],
+  [
+   "Vagrant",
+   "Have had all their sweets stolen",
+   "The antagonist had a good reason"
+  ],
+  [
+   "Display-case escapee",
+   "Are on the run from the Bakers",
+   "They're marked with a Baker's price tag"
+  ],
+  [
+   "Rock-candy miner",
+   "Have been waylaid by crumb bandits",
+   "The antagonist is very drunk"
+  ],
+  [
+   "Baker",
+   "Ate a sour, poisoned berry",
+   "Antagonist is a family member"
+  ],
+  [
+   "Knight-errant",
+   "Family member is missing",
+   "They're going stale fast"
+  ],
+  [
+   "Tax collector",
+   "Have lost a lot of pips",
+   "They're very drunk"
+  ],
+  [
+   "Matriarch",
+   "Has been accused of murder",
+   "Antagonist is a shape-shifter"
+  ],
+  [
+   "Prospector",
+   "Pack snail is stuck in caramel",
+   "They're much richer than they look"
+  ],
+  [
+   "Rock-candy guild boss",
+   "Has been murdered",
+   "Player's rival is involved"
+  ],
+  [
+   "Frosted noble",
+   "Their home is under attack",
+   "Antagonist wants retribution"
+  ],
+  [
+   "Crumb bandit",
+   "Want to steal from a rival gang",
+   "A ghost is haunting the location"
+  ],
+  [
+   "Queen bee",
+   "Traveling to a new home",
+   "Their followers disagree"
+  ],
+  [
+   "Sugar-ant officer",
+   "Is hunted by enemies",
+   "They are badly injured"
+  ],
+  [
+   "Marzipan owl",
+   "Want to retrieve a rare recipe",
+   "It is deep in a honeycomb cave"
+  ],
+  [
+   "Sour baron",
+   "Want to be entertained",
+   "They've trapped the players"
+  ],
+  [
+   "Marshmallow duckling",
+   "Has lost their mother",
+   "Need to get to a truffle island"
+  ],
+  [
+   "Giant gummy worm",
+   "Want somewhere warm to sleep",
+   "Need item carried by a player"
+  ],
+  [
+   "Lilliputian ambassador",
+   "Want to reach the Candy Queen",
+   "They don't understand local customs"
+  ],
+  [
+   "Trapped biscuit ghost",
+   "Want to find their true love",
+   "They can't leave their current location"
+  ],
+  [
+   "Sprinkle-fairy envoy",
+   "Want to kidnap a candyfolk",
+   "A player is their target"
+  ],
+  [
+   "Swarm of sugar gnats",
+   "Want to steal from a player",
+   "Antagonist is unusually skilled"
+  ],
+  [
+   "Grandmother sugar spider",
+   "Has lost an ancient treasure",
+   "She's eaten it"
+  ],
+  [
+   "Baby toffee crow",
+   "Cannot get home",
+   "Need to climb a giant lollipop"
+  ]
+ ]
 }
