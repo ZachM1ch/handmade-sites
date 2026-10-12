@@ -8,6 +8,7 @@
         <li><a href="/gallery/">Browse my art</a></li>
         <li><a href="/stories/">Read my stories</a></li>
 		<li><a href="/wedding/">Wedding information</a></li>
+		<li><a href="/maus-tools/">Mausritter generators</a></li>
     </ul>
 </section>
 
