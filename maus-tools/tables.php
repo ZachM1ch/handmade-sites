@@ -1,14 +1,15 @@
 <?php
 /**
- * tables.php - saves and serves tables JSON files for hexcrawl-generator.html
- * and site-generator.html.
+ * tables.php - saves and serves tables JSON files for the Mausritter tools
+ * (hexcrawl-generator.html, site-generator.html, mouse-generator.html).
  *
  * Put this file in the same folder as the generators. Uploaded tables are
  * saved in that folder as "<name>-tables.json", and the generators list the
  * "*-tables.json" files they can use:
  *  - hexcrawl-generator.html (no "for" parameter) lists hexcrawl tables only.
- *  - site-generator.html (?for=sites) also lists files that only hold site
- *    tables (site, treasure, creatures, npc, seeds), and may upload them.
+ *  - the other tools (?for=all) also list files that only hold their own
+ *    sections (site, treasure, creatures, npc, seeds, mouse, hirelings), and
+ *    may upload them. (?for=sites is the older name for the same thing.)
  *
  * Setup: the PHP user (often www-data) must be able to write to this folder.
  * If your site is public, set UPLOAD_KEY below so only people with the
@@ -76,13 +77,13 @@ function looks_like_tables($d)
     return true;
 }
 
-// Site tables: a file holding at least one of the sections the site generator adds.
+// Extra tables: a file holding at least one of the sections the site and mouse generators add.
 function looks_like_sites($d)
 {
     if (!is_array($d)) {
         return false;
     }
-    foreach (array('site', 'treasure', 'npc') as $k) {
+    foreach (array('site', 'treasure', 'npc', 'mouse', 'hirelings') as $k) {
         if (isset($d[$k]) && is_array($d[$k]) && count($d[$k]) > 0) {
             return true;
         }
@@ -126,7 +127,7 @@ function require_key()
 $method = isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : 'GET';
 $name = isset($_GET['name']) ? $_GET['name'] : null;
 $action = isset($_GET['action']) ? $_GET['action'] : '';
-$forSites = isset($_GET['for']) && $_GET['for'] === 'sites';
+$forSites = isset($_GET['for']) && ($_GET['for'] === 'sites' || $_GET['for'] === 'all');
 
 if ($method === 'GET') {
     // Return one file.

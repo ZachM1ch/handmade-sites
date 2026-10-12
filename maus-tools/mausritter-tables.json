@@ -461,5 +461,120 @@
     ["Swarm of midges","Want to steal from a player mouse","Antagonist is unusually skilled"],
     ["Grandmother spider","Has lost an ancient treasure","They've eaten it"],
     ["Baby bird","Cannot get home","Need to climb a tree"]
-  ]
+  ],
+  "mouse": {
+    "noun": "mouse",
+    "nounPlural": "mice",
+    "backgrounds": [
+      [1,1,"Test subject","Spell: Magic missile","Lead coat (Heavy armour)"],
+      [1,2,"Kitchen forager","Shield & jerkin (Light armour)","Cookpots"],
+      [1,3,"Cage dweller","Spell: Be understood","Bottle of milk"],
+      [1,4,"Hedge witch","Spell: Heal","Incense stick"],
+      [1,5,"Leatherworker","Shield & jerkin (Light armour)","Shears"],
+      [1,6,"Street tough","Dagger (Light, d6)","Flask of coffee"],
+      [2,1,"Mendicant priest","Spell: Restore","Holy symbol"],
+      [2,2,"Beetleherd","Hireling: Loyal beetle","Pole, 6\""],
+      [2,3,"Ale brewer","Hireling: Drunken torchbearer","Small barrel of ale"],
+      [2,4,"Fishermouse","Net","Needle (Light, d6)"],
+      [2,5,"Blacksmith","Hammer (Medium, d6/d8)","Metal file"],
+      [2,6,"Wireworker","Wire, spool","Electric lantern"],
+      [3,1,"Woodcutter","Axe (Medium, d6/d8)","Twine, roll"],
+      [3,2,"Bat cultist","Spell: Darkness","Bag of bat teeth"],
+      [3,3,"Tin miner","Pickaxe (Medium, d6/d8)","Lantern"],
+      [3,4,"Trash collector","Trashhook (Heavy, d10)","Mirror"],
+      [3,5,"Wall rover","Fishhook","Thread, spool"],
+      [3,6,"Merchant","Hireling: Pack rat","20p IOU from a noblemouse"],
+      [4,1,"Raft crew","Hammer (Medium, d6/d8)","Wooden spikes"],
+      [4,2,"Worm wrangler","Pole, 6\"","Soap"],
+      [4,3,"Sparrow rider","Fishhook","Goggles"],
+      [4,4,"Sewer guide","Metal file","Thread, spool"],
+      [4,5,"Prison guard","Chain, 6\"","Spear (Heavy, d10)"],
+      [4,6,"Fungus farmer","Dried mushroom (as rations)","Spore mask"],
+      [5,1,"Dam builder","Shovel","Wooden spikes"],
+      [5,2,"Cartographer","Quill & ink","Compass"],
+      [5,3,"Trap thief","Block of cheese","Glue"],
+      [5,4,"Vagabond","Tent","Treasure map, dubious"],
+      [5,5,"Grain farmer","Spear (Heavy, d10)","Whistle"],
+      [5,6,"Message runner","Bedroll","Documents, sealed"],
+      [6,1,"Troubadour","Musical instrument","Disguise kit"],
+      [6,2,"Gambler","Set of loaded dice","Mirror"],
+      [6,3,"Sap tapper","Bucket","Wooden spikes"],
+      [6,4,"Bee keeper","Jar of honey","Net"],
+      [6,5,"Librarian","Scrap of obscure book","Quill & ink"],
+      [6,6,"Pauper noblemouse","Felt hat","Perfume"]
+    ],
+    "coatLabel": ["Coat colour","Coat pattern"],
+    "coat": [
+      ["Chocolate","Black","White","Tan","Grey","Blue"],
+      ["Solid","Brindle","Patchy","Banded","Marbled","Flecked"]
+    ],
+    "detailLabel": "Physical detail",
+    "details": ["Scarred body","Corpulent body","Skeletal body","Willowy body","Tiny body","Massive body","War paint","Foreign clothes","Elegant clothes","Patched clothes","Fashionable clothes","Unwashed clothes","Missing ear","Lumpy face","Beautiful face","Round face","Delicate face","Elongated face","Groomed fur","Dreadlocks","Dyed fur","Shaved fur","Frizzy fur","Silky fur","Night black eyes","Eye patch","Blood red eyes","Wise eyes","Sharp eyes","Luminous eyes","Cropped tail","Whip-like tail","Tufted tail","Stubby tail","Prehensile tail","Curly tail"],
+    "starting": ["Torches","Rations"],
+    "weapons": [
+      {"class":"Improvised","damage":"d6","hands":"Main paw or both paws","slots":1,"cost":"1p","examples":["Twig","Rock"],"note":"Always mark usage after a fight"},
+      {"class":"Light","damage":"d6","hands":"Main paw or off paw","slots":1,"cost":"10p","examples":["Dagger","Needle"],"note":"If attacking with two weapons, roll both dice and use the best result"},
+      {"class":"Medium","damage":"d6/d8","hands":"Main paw or both paws","slots":1,"cost":"20p","examples":["Sword","Axe"],"note":"d6 in one paw, d8 wielded in both"},
+      {"class":"Heavy","damage":"d10","hands":"Both paws","slots":2,"cost":"40p","examples":["Spear","Hooklance"],"note":""},
+      {"class":"Light ranged","damage":"d6","hands":"Main paw","slots":1,"cost":"10p","examples":["Sling","Hand crossbow"],"note":"Needs a pouch of stones (body slot)"},
+      {"class":"Heavy ranged","damage":"d8","hands":"Both paws","slots":2,"cost":"40p","examples":["Bow","Crossbow"],"note":"Needs a quiver of arrows (body slot)"}
+    ],
+    "armour": [
+      {"class":"Light armour","def":1,"where":"Off paw and one body slot","cost":"150p","examples":["Shield & jerkin"]},
+      {"class":"Heavy armour","def":1,"where":"Two body slots","cost":"500p","examples":["Heavy plate"]}
+    ],
+    "conditions": [
+      {"name":"Exhausted","effect":"","clear":"After long rest"},
+      {"name":"Frightened","effect":"Disadvantage on WIL saves. Can't move closer to the source of fear","clear":"After short rest"},
+      {"name":"Hungry","effect":"","clear":"After meal"},
+      {"name":"Injured","effect":"Disadvantage on STR and DEX saves","clear":"After full rest"},
+      {"name":"Drained","effect":"Disadvantage on WIL saves","clear":"After long rest"}
+    ],
+    "levels": [
+      {"level":1,"hd":"1d6","grit":0,"xp":0},
+      {"level":2,"hd":"2d6","grit":1,"xp":1000},
+      {"level":3,"hd":"3d6","grit":2,"xp":3000},
+      {"level":4,"hd":"4d6","grit":2,"xp":6000},
+      {"level":5,"hd":"4d6","grit":3,"xp":11000}
+    ],
+    "levelNote": "After level 5, each level needs 5000 more XP (4d6 Hit Dice, 3 Grit).",
+    "gear": [
+      {"group":"Tools, mouse made","note":"Available in most mouse settlements. These items are mouse-sized.","carry":true,"items":[["Bedroll","10p"],["Bellows","10p"],["Book, blank","300p"],["Book, reading","600p"],["Bottle","1p"],["Bucket","5p"],["Caltrops, bag","10p"],["Chalk","1p"],["Chisel","5p"],["Cookpots","10p"],["Crowbar","10p"],["Drill","10p"],["Glue","5p"],["Grease","5p"],["Hammer","10p"],["Horn","10p"],["Hourglass","300p"],["Lockpicks","100p"],["Metal file","5p"],["Mirror","200p"],["Musical instrument","200p"],["Net","10p"],["Padlock and key, small","20p"],["Perfume","50p"],["Pick","10p"],["Set of loaded dice","5p"],["Shovel","10p"],["Tent","80p"],["Waterskin","5p"],["Whistle","5p"],["Wooden pole, 6\"","1p"],["Wooden spikes","1p"]]},
+      {"group":"Tools, human made","note":"Available in mouse settlements near human populations.","carry":true,"items":[["Fishing hook","20p"],["Incense stick","20p"],["Lens","200p"],["Necklace chain","40p"],["Needle","20p"],["Matches, packet","80p"],["Padlock and key, large","100p"],["Twine, roll","40p"],["Soap, small block","10p"],["Thread, spool","20p"],["Mouse trap","100p"],["Poison","100p"]]},
+      {"group":"Weapons and armour","note":"","carry":true,"items":[["Improvised weapon (twig, rock, etc.)","1p"],["Light weapon (dagger, needle, etc.)","10p"],["Medium weapon (sword, axe, etc.)","20p"],["Heavy weapon (spear, hooklance, etc.)","40p"],["Light ranged weapon (sling, hand crossbow, etc.)","10p"],["Heavy ranged weapon (bow, crossbow, etc.)","40p"],["Arrows, quiver","5p"],["Stones, pouch","1p"],["Light armour","150p"],["Heavy armour","500p"],["Silvered weapon (always mark usage after fight)","x10"],["Repairs, per dot","10%"]]},
+      {"group":"Light sources","note":"","carry":true,"items":[["Torches","10p"],["Lantern","50p"],["Oil, for lantern","10p"],["Electric lantern (6 usage dots)","200p"],["Batteries, for electric lantern","50p"]]},
+      {"group":"Clothing","note":"","carry":true,"items":[["Clothing, poor","10p"],["Clothing, standard","50p"],["Clothing, noble","1000p"],["Winter cloak","150p"],["Waterproof cloak","100p"]]},
+      {"group":"Lodging and food","note":"","carry":false,"items":[["Bunkhouse bed (per night)","1p"],["Private room (per night)","5p"],["Hot bath","2p"],["Travel rations","5p"],["Meal","2p"],["Grand meal","50p"],["Night out on the town","100p"]]},
+      {"group":"Transport hire","note":"Prices are per mouse, per hex.","carry":false,"items":[["Rabbit wagon","5p"],["River raft","10p"],["Pigeon flight","200p"]]}
+    ],
+    "bricabrac": [
+      ["d8 pips"],
+      ["Dried five-leaf clover, carefully folded","Stone pendant of the Mother","Stub of a pencil","Dried herbs in waterproof bag","Wire bent into the shape of a moth","Letter of writ from a noblemouse","Smooth piece of coloured glass","Half-eaten piece of cheese, wrapped in paper"],
+      ["Smoke-blackened bat tooth","Metal cup etched with hunting scenes","Oddly shimmering opal in silver wire setting","Knife cut from a tin can","Clay jar of thick honey mead","Bee stinger wired to wooden handle","Piece of candied berry","Butterfly wings pressed between parchment"],
+      ["Map showing treasure hidden in a settlement","Note from a cat lord regarding a player mouse","Wooden idol of centipede eating its own tail","Tooth of a human child","Pot of bright paint","Angry ant queen in a glass jar","Rolled tapestry depicting ancient battle","Ball of wet clay that never dries out"],
+      ["Lock of a faerie's hair","Vial of red ink","Straw basket with leather carrying straps","Fragment of a spell tablet","Dried, poisonous mushroom","Pink plastic furbrush","Collection of dried leaves, bound with twine","Pipe carved of shell"],
+      ["Scrap of sheepskin","Quiver of silver-tipped arrows","Wreath of silver wire","Very strong magnet","Bouncy rubber ball","Fish leather satchel","Extremely spicy chilli pepper","Fly preserved in tree sap"]
+    ]
+  },
+  "hirelings": {
+    "stats": {
+      "hp": "d6",
+      "str": "2d6",
+      "dex": "2d6",
+      "wil": "2d6"
+    },
+    "slots": 6,
+    "note": "In a settlement, spend a day asking around. Make a WIL save or pay 20p, then roll the Number to see how many are looking for work.",
+    "types": [
+      ["Torchbearer","d6","1p"],
+      ["Labourer","d6","2p"],
+      ["Tunnel digger","d4","5p"],
+      ["Armourer/blacksmith","d2","8p"],
+      ["Local guide","d4","10p"],
+      ["Mouse-at-arms","d6","10p"],
+      ["Scholar","d2","20p"],
+      ["Knight","d3","25p"],
+      ["Interpreter","d2","30p"]
+    ]
+  }
 }

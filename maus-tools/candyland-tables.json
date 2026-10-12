@@ -2449,5 +2449,949 @@
    "Cannot get home",
    "Need to climb a giant lollipop"
   ]
- ]
+ ],
+ "mouse": {
+  "noun": "candyfolk",
+  "nounPlural": "candyfolk",
+  "backgrounds": [
+   [
+    1,
+    1,
+    "Display-case escapee",
+    "Spell: Magic missile",
+    "Tin-foil coat (Heavy armour)"
+   ],
+   [
+    1,
+    2,
+    "Pantry forager",
+    "Biscuit shield & jerkin (Light armour)",
+    "Cookpots"
+   ],
+   [
+    1,
+    3,
+    "Jar dweller",
+    "Spell: Be understood",
+    "Bottle of milk"
+   ],
+   [
+    1,
+    4,
+    "Hedge witch",
+    "Spell: Heal",
+    "Birthday-candle stub"
+   ],
+   [
+    1,
+    5,
+    "Wafer worker",
+    "Biscuit shield & jerkin (Light armour)",
+    "Sugar shears"
+   ],
+   [
+    1,
+    6,
+    "Street tough",
+    "Rock-candy shiv (Light, d6)",
+    "Flask of hot cocoa"
+   ],
+   [
+    2,
+    1,
+    "Mendicant of the Sugar Moon",
+    "Spell: Restore",
+    "Holy sugar symbol"
+   ],
+   [
+    2,
+    2,
+    "Gummy-bear herder",
+    "Hireling: Loyal gummy bear",
+    "Licorice pole, 6\""
+   ],
+   [
+    2,
+    3,
+    "Cider brewer",
+    "Hireling: Tipsy torchbearer",
+    "Small barrel of cider"
+   ],
+   [
+    2,
+    4,
+    "Syrup fisher",
+    "Net",
+    "Needle (Light, d6)"
+   ],
+   [
+    2,
+    5,
+    "Candy smith",
+    "Candy hammer (Medium, d6/d8)",
+    "Metal file"
+   ],
+   [
+    2,
+    6,
+    "Sugar spinner",
+    "Spun-sugar thread, spool",
+    "Electric lantern"
+   ],
+   [
+    3,
+    1,
+    "Cane cutter",
+    "Axe (Medium, d6/d8)",
+    "Licorice twine, roll"
+   ],
+   [
+    3,
+    2,
+    "Sour Moon cultist",
+    "Spell: Darkness",
+    "Bag of jawbreaker teeth"
+   ],
+   [
+    3,
+    3,
+    "Rock-candy miner",
+    "Pickaxe (Medium, d6/d8)",
+    "Lantern"
+   ],
+   [
+    3,
+    4,
+    "Crumb collector",
+    "Crumb hook (Heavy, d10)",
+    "Mirror"
+   ],
+   [
+    3,
+    5,
+    "Cupboard rover",
+    "Fishhook",
+    "Thread, spool"
+   ],
+   [
+    3,
+    6,
+    "Sweet merchant",
+    "Hireling: Pack snail",
+    "20p IOU from a frosted noble"
+   ],
+   [
+    4,
+    1,
+    "Marshmallow-raft crew",
+    "Hammer (Medium, d6/d8)",
+    "Wooden spikes"
+   ],
+   [
+    4,
+    2,
+    "Gummy-worm wrangler",
+    "Pole, 6\"",
+    "Soap"
+   ],
+   [
+    4,
+    3,
+    "Gumdrop-glider pilot",
+    "Fishhook",
+    "Goggles"
+   ],
+   [
+    4,
+    4,
+    "Drainpipe guide",
+    "Metal file",
+    "Thread, spool"
+   ],
+   [
+    4,
+    5,
+    "Jail guard",
+    "Chain, 6\"",
+    "Candy-cane spear (Heavy, d10)"
+   ],
+   [
+    4,
+    6,
+    "Cocoa-mushroom farmer",
+    "Candied mushroom (as rations)",
+    "Spore mask"
+   ],
+   [
+    5,
+    1,
+    "Fudge-dam builder",
+    "Shovel",
+    "Wooden spikes"
+   ],
+   [
+    5,
+    2,
+    "Cartographer",
+    "Icing pen & ink",
+    "Compass"
+   ],
+   [
+    5,
+    3,
+    "Trap thief",
+    "Block of cheese",
+    "Glue"
+   ],
+   [
+    5,
+    4,
+    "Vagabond",
+    "Tent",
+    "Recipe map, dubious"
+   ],
+   [
+    5,
+    5,
+    "Sugarcane farmer",
+    "Spear (Heavy, d10)",
+    "Whistle"
+   ],
+   [
+    5,
+    6,
+    "Message runner",
+    "Bedroll",
+    "Documents, sealed in wax"
+   ],
+   [
+    6,
+    1,
+    "Troubadour",
+    "Musical instrument",
+    "Disguise kit"
+   ],
+   [
+    6,
+    2,
+    "Gambler",
+    "Set of loaded jellybean dice",
+    "Mirror"
+   ],
+   [
+    6,
+    3,
+    "Syrup tapper",
+    "Bucket",
+    "Wooden spikes"
+   ],
+   [
+    6,
+    4,
+    "Bee keeper",
+    "Jar of honey",
+    "Net"
+   ],
+   [
+    6,
+    5,
+    "Recipe librarian",
+    "Scrap of an obscure recipe",
+    "Quill & ink"
+   ],
+   [
+    6,
+    6,
+    "Pauper noble",
+    "Felt hat",
+    "Perfume"
+   ]
+  ],
+  "coatLabel": [
+   "Flavour",
+   "Decoration"
+  ],
+  "coat": [
+   [
+    "Chocolate",
+    "Strawberry",
+    "Vanilla",
+    "Peppermint",
+    "Caramel",
+    "Blueberry"
+   ],
+   [
+    "Plain glaze",
+    "Sprinkles",
+    "Swirls",
+    "Stripes",
+    "Marbled",
+    "Sugar-dusted"
+   ]
+  ],
+  "detailLabel": "Physical detail",
+  "details": [
+   "Chipped body",
+   "Plump body",
+   "Thin wafer body",
+   "Tall, twisted body",
+   "Tiny bonbon body",
+   "Massive cake body",
+   "Icing war paint",
+   "Foreign wrapper",
+   "Gold-foil clothes",
+   "Patched wrapper",
+   "Fashionable doily",
+   "Sticky clothes",
+   "Bitten-off ear",
+   "Lumpy face",
+   "Beautifully piped face",
+   "Round gumdrop face",
+   "Delicate meringue face",
+   "Elongated face",
+   "Neat frosting",
+   "Licorice dreadlocks",
+   "Dyed frosting",
+   "Scraped-bare top",
+   "Frizzy spun sugar",
+   "Silky ganache",
+   "Chocolate-chip eyes",
+   "Eye patch",
+   "Cherry-red eyes",
+   "Wise caramel eyes",
+   "Sharp candy eyes",
+   "Glowing sugar-glass eyes",
+   "Cropped tail",
+   "Licorice tail",
+   "Cotton-candy tuft",
+   "Stubby tail",
+   "Prehensile taffy tail",
+   "Curly ribbon tail"
+  ],
+  "starting": [
+   "Torches",
+   "Rations"
+  ],
+  "weapons": [
+   {
+    "class": "Improvised",
+    "damage": "d6",
+    "hands": "Main paw or both paws",
+    "slots": 1,
+    "cost": "1p",
+    "examples": [
+     "Pretzel stick",
+     "Pebble"
+    ],
+    "note": "Always mark usage after a fight"
+   },
+   {
+    "class": "Light",
+    "damage": "d6",
+    "hands": "Main paw or off paw",
+    "slots": 1,
+    "cost": "10p",
+    "examples": [
+     "Cake fork",
+     "Needle"
+    ],
+    "note": "If attacking with two weapons, roll both dice and use the best result"
+   },
+   {
+    "class": "Medium",
+    "damage": "d6/d8",
+    "hands": "Main paw or both paws",
+    "slots": 1,
+    "cost": "20p",
+    "examples": [
+     "Candy-cane sabre",
+     "Axe"
+    ],
+    "note": "d6 in one paw, d8 wielded in both"
+   },
+   {
+    "class": "Heavy",
+    "damage": "d10",
+    "hands": "Both paws",
+    "slots": 2,
+    "cost": "40p",
+    "examples": [
+     "Candy-cane spear",
+     "Crumb hook"
+    ],
+    "note": ""
+   },
+   {
+    "class": "Light ranged",
+    "damage": "d6",
+    "hands": "Main paw",
+    "slots": 1,
+    "cost": "10p",
+    "examples": [
+     "Sling",
+     "Gumdrop launcher"
+    ],
+    "note": "Needs a pouch of stones (body slot)"
+   },
+   {
+    "class": "Heavy ranged",
+    "damage": "d8",
+    "hands": "Both paws",
+    "slots": 2,
+    "cost": "40p",
+    "examples": [
+     "Licorice bow",
+     "Crossbow"
+    ],
+    "note": "Needs a quiver of arrows (body slot)"
+   }
+  ],
+  "armour": [
+   {
+    "class": "Light armour",
+    "def": 1,
+    "where": "Off paw and one body slot",
+    "cost": "150p",
+    "examples": [
+     "Biscuit shield & jerkin"
+    ]
+   },
+   {
+    "class": "Heavy armour",
+    "def": 1,
+    "where": "Two body slots",
+    "cost": "500p",
+    "examples": [
+     "Tin-foil plate"
+    ]
+   }
+  ],
+  "conditions": [
+   {
+    "name": "Exhausted",
+    "effect": "",
+    "clear": "After long rest"
+   },
+   {
+    "name": "Frightened",
+    "effect": "Disadvantage on WIL saves. Can't move closer to the source of fear",
+    "clear": "After short rest"
+   },
+   {
+    "name": "Hungry",
+    "effect": "",
+    "clear": "After meal"
+   },
+   {
+    "name": "Injured",
+    "effect": "Disadvantage on STR and DEX saves",
+    "clear": "After full rest"
+   },
+   {
+    "name": "Drained",
+    "effect": "Disadvantage on WIL saves",
+    "clear": "After long rest"
+   }
+  ],
+  "levels": [
+   {
+    "level": 1,
+    "hd": "1d6",
+    "grit": 0,
+    "xp": 0
+   },
+   {
+    "level": 2,
+    "hd": "2d6",
+    "grit": 1,
+    "xp": 1000
+   },
+   {
+    "level": 3,
+    "hd": "3d6",
+    "grit": 2,
+    "xp": 3000
+   },
+   {
+    "level": 4,
+    "hd": "4d6",
+    "grit": 2,
+    "xp": 6000
+   },
+   {
+    "level": 5,
+    "hd": "4d6",
+    "grit": 3,
+    "xp": 11000
+   }
+  ],
+  "levelNote": "After level 5, each level needs 5000 more XP (4d6 Hit Dice, 3 Grit).",
+  "gear": [
+   {
+    "group": "Tools, candyfolk made",
+    "note": "Available in most settlements. These items are candyfolk-sized.",
+    "carry": true,
+    "items": [
+     [
+      "Bedroll",
+      "10p"
+     ],
+     [
+      "Bellows",
+      "10p"
+     ],
+     [
+      "Book, blank",
+      "300p"
+     ],
+     [
+      "Book, reading",
+      "600p"
+     ],
+     [
+      "Bottle",
+      "1p"
+     ],
+     [
+      "Bucket",
+      "5p"
+     ],
+     [
+      "Caltrops, bag",
+      "10p"
+     ],
+     [
+      "Chalk",
+      "1p"
+     ],
+     [
+      "Chisel",
+      "5p"
+     ],
+     [
+      "Cookpots",
+      "10p"
+     ],
+     [
+      "Crowbar",
+      "10p"
+     ],
+     [
+      "Drill",
+      "10p"
+     ],
+     [
+      "Glue",
+      "5p"
+     ],
+     [
+      "Grease",
+      "5p"
+     ],
+     [
+      "Hammer",
+      "10p"
+     ],
+     [
+      "Horn",
+      "10p"
+     ],
+     [
+      "Hourglass",
+      "300p"
+     ],
+     [
+      "Lockpicks",
+      "100p"
+     ],
+     [
+      "Metal file",
+      "5p"
+     ],
+     [
+      "Mirror",
+      "200p"
+     ],
+     [
+      "Musical instrument",
+      "200p"
+     ],
+     [
+      "Net",
+      "10p"
+     ],
+     [
+      "Padlock and key, small",
+      "20p"
+     ],
+     [
+      "Perfume",
+      "50p"
+     ],
+     [
+      "Pick",
+      "10p"
+     ],
+     [
+      "Set of loaded jellybean dice",
+      "5p"
+     ],
+     [
+      "Shovel",
+      "10p"
+     ],
+     [
+      "Tent",
+      "80p"
+     ],
+     [
+      "Waterskin",
+      "5p"
+     ],
+     [
+      "Whistle",
+      "5p"
+     ],
+     [
+      "Licorice pole, 6\"",
+      "1p"
+     ],
+     [
+      "Wooden spikes",
+      "1p"
+     ]
+    ]
+   },
+   {
+    "group": "Tools, Baker made",
+    "note": "Available in settlements near the Bakers' kitchens.",
+    "carry": true,
+    "items": [
+     [
+      "Fishing hook",
+      "20p"
+     ],
+     [
+      "Birthday candle",
+      "20p"
+     ],
+     [
+      "Lens",
+      "200p"
+     ],
+     [
+      "Necklace chain",
+      "40p"
+     ],
+     [
+      "Needle",
+      "20p"
+     ],
+     [
+      "Matches, packet",
+      "80p"
+     ],
+     [
+      "Padlock and key, large",
+      "100p"
+     ],
+     [
+      "Twine, roll",
+      "40p"
+     ],
+     [
+      "Soap, small block",
+      "10p"
+     ],
+     [
+      "Thread, spool",
+      "20p"
+     ],
+     [
+      "Mouse trap",
+      "100p"
+     ],
+     [
+      "Sour poison",
+      "100p"
+     ]
+    ]
+   },
+   {
+    "group": "Weapons and armour",
+    "note": "",
+    "carry": true,
+    "items": [
+     [
+      "Improvised weapon (pretzel stick, pebble, etc.)",
+      "1p"
+     ],
+     [
+      "Light weapon (cake fork, needle, etc.)",
+      "10p"
+     ],
+     [
+      "Medium weapon (candy-cane sabre, axe, etc.)",
+      "20p"
+     ],
+     [
+      "Heavy weapon (candy-cane spear, crumb hook, etc.)",
+      "40p"
+     ],
+     [
+      "Light ranged weapon (sling, gumdrop launcher, etc.)",
+      "10p"
+     ],
+     [
+      "Heavy ranged weapon (licorice bow, crossbow, etc.)",
+      "40p"
+     ],
+     [
+      "Arrows, quiver",
+      "5p"
+     ],
+     [
+      "Stones, pouch",
+      "1p"
+     ],
+     [
+      "Light armour",
+      "150p"
+     ],
+     [
+      "Heavy armour",
+      "500p"
+     ],
+     [
+      "Silvered weapon (always mark usage after fight)",
+      "x10"
+     ],
+     [
+      "Repairs, per dot",
+      "10%"
+     ]
+    ]
+   },
+   {
+    "group": "Light sources",
+    "note": "",
+    "carry": true,
+    "items": [
+     [
+      "Torches",
+      "10p"
+     ],
+     [
+      "Lantern",
+      "50p"
+     ],
+     [
+      "Oil, for lantern",
+      "10p"
+     ],
+     [
+      "Electric lantern (6 usage dots)",
+      "200p"
+     ],
+     [
+      "Batteries, for electric lantern",
+      "50p"
+     ]
+    ]
+   },
+   {
+    "group": "Clothing",
+    "note": "",
+    "carry": true,
+    "items": [
+     [
+      "Wrapper, poor",
+      "10p"
+     ],
+     [
+      "Wrapper, standard",
+      "50p"
+     ],
+     [
+      "Wrapper, gold foil",
+      "1000p"
+     ],
+     [
+      "Winter cloak",
+      "150p"
+     ],
+     [
+      "Waxed cloak",
+      "100p"
+     ]
+    ]
+   },
+   {
+    "group": "Lodging and food",
+    "note": "",
+    "carry": false,
+    "items": [
+     [
+      "Bunkhouse bed (per night)",
+      "1p"
+     ],
+     [
+      "Private room (per night)",
+      "5p"
+     ],
+     [
+      "Warm syrup bath",
+      "2p"
+     ],
+     [
+      "Travel rations",
+      "5p"
+     ],
+     [
+      "Meal",
+      "2p"
+     ],
+     [
+      "Grand feast",
+      "50p"
+     ],
+     [
+      "Night out on the town",
+      "100p"
+     ]
+    ]
+   },
+   {
+    "group": "Transport hire",
+    "note": "Prices are per traveler, per hex.",
+    "carry": false,
+    "items": [
+     [
+      "Gummy-bear wagon",
+      "5p"
+     ],
+     [
+      "Marshmallow raft",
+      "10p"
+     ],
+     [
+      "Gumdrop-glider flight",
+      "200p"
+     ]
+    ]
+   }
+  ],
+  "bricabrac": [
+   [
+    "d8 pips"
+   ],
+   [
+    "Dried four-leaf mint, carefully folded",
+    "Stone pendant of the Oven Mother",
+    "Stub of a crayon",
+    "Dried mint in a waterproof wrapper",
+    "Wire bent into the shape of a moth",
+    "Letter of writ from a frosted noble",
+    "Smooth piece of coloured sugar-glass",
+    "Half-eaten piece of cheese, wrapped in paper"
+   ],
+   [
+    "Smoke-blackened jawbreaker tooth",
+    "Tin cup etched with hunting scenes",
+    "Shimmering rock-sugar opal in silver wire",
+    "Knife cut from a cookie tin",
+    "Clay jar of cherry cordial",
+    "Bee stinger wired to a wooden handle",
+    "Piece of candied berry",
+    "Butterfly wings pressed between wax paper"
+   ],
+   [
+    "Map showing treasure hidden in a settlement",
+    "Note from a sour baron regarding a player",
+    "Marzipan idol of a gummy worm eating its own tail",
+    "Tooth of a Baker's child",
+    "Pot of bright food colouring",
+    "Angry ant queen in a glass jar",
+    "Rolled tapestry of the Great Melt",
+    "Ball of dough that never bakes"
+   ],
+   [
+    "Lock of a sprinkle fairy's hair",
+    "Vial of red food dye",
+    "Straw basket with licorice straps",
+    "Fragment of a spell tablet",
+    "Dried, poisonous mushroom",
+    "Pink plastic cake topper",
+    "Collection of dried mint leaves, bound with twine",
+    "Pipe carved of shortbread"
+   ],
+   [
+    "Scrap of doily lace",
+    "Quiver of silver-tipped arrows",
+    "Wreath of silver wire",
+    "Fridge magnet",
+    "Bouncy rubber ball",
+    "Candy-wrapper satchel",
+    "Extremely spicy cinnamon drop",
+    "Fly preserved in hard candy"
+   ]
+  ]
+ },
+ "hirelings": {
+  "stats": {
+   "hp": "d6",
+   "str": "2d6",
+   "dex": "2d6",
+   "wil": "2d6"
+  },
+  "slots": 6,
+  "note": "In a settlement, spend a day asking around. Make a WIL save or pay 20p, then roll the Number to see how many are looking for work.",
+  "types": [
+   [
+    "Torchbearer",
+    "d6",
+    "1p"
+   ],
+   [
+    "Labourer",
+    "d6",
+    "2p"
+   ],
+   [
+    "Tunnel digger",
+    "d4",
+    "5p"
+   ],
+   [
+    "Candy smith",
+    "d2",
+    "8p"
+   ],
+   [
+    "Local guide",
+    "d4",
+    "10p"
+   ],
+   [
+    "Candy guard",
+    "d6",
+    "10p"
+   ],
+   [
+    "Recipe scholar",
+    "d2",
+    "20p"
+   ],
+   [
+    "Knight",
+    "d3",
+    "25p"
+   ],
+   [
+    "Interpreter",
+    "d2",
+    "30p"
+   ]
+  ]
+ }
 }

@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mice &amp; NPCs</title>
+<link rel="icon" href="data:,">
+<style>
+:root{--ink:#1c1e1b;--paper:#e9ebe6;--card:#f6f7f3;--line:#b9bdb2;--mute:#5d6258;--pc:#4a6fb0;--npc:#d9985a;--cond:#c45a6a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 "Helvetica Neue",Arial,sans-serif}
+header.top{padding:20px 16px 12px;border-bottom:2px solid var(--ink);background:var(--card)}
+.toprow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font:700 30px/1.1 Georgia,"Palatino Linotype",serif;margin:0 0 4px;letter-spacing:.5px}
+.home{font-size:14px;color:var(--ink)}
+#src{color:var(--mute);font-size:13px;margin:0 0 10px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bar+.bar{margin-top:8px}
+button,.btn{font:inherit;padding:7px 12px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:3px;cursor:pointer;text-decoration:none}
+button.alt,.btn{background:transparent;color:var(--ink)}
+button:disabled{opacity:.45;cursor:default}
+button:focus-visible,.btn:focus-within,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid #2f6fb3;outline-offset:2px}
+.bar label{font-size:14px}select{font:inherit;padding:5px}
+.seed{font:inherit;padding:5px;border:1.5px solid var(--ink);background:#fff;width:11em}
+.tabs{display:flex;gap:4px;margin:0 0 10px;flex-wrap:wrap}
+.tabs button{background:transparent;color:var(--ink);padding:5px 18px;border-bottom-width:3px}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff}
+body.tab-tables .charctl{display:none!important}
+#tbbar{margin-bottom:8px}#tbsel{max-width:70vw}#tbmsg{font-size:13px;color:var(--mute)}
+main{max-width:1240px;margin:0 auto;padding:16px}
+#work{display:grid;grid-template-columns:minmax(220px,280px) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:840px){#work{grid-template-columns:1fr}}
+#roster{position:sticky;top:10px;max-height:calc(100vh - 20px);overflow:auto;background:var(--card);border:1.5px solid var(--ink);padding:8px 10px}
+@media (max-width:840px){#roster{position:static;max-height:none}}
+#roster h2{font:700 17px Georgia,serif;margin:0 0 6px;display:flex;justify-content:space-between;align-items:center}
+.rost{display:flex;gap:6px;align-items:stretch;margin:4px 0}
+.rost button.pick{flex:1;text-align:left;background:#fff;color:var(--ink);border:1px solid var(--line);border-left:6px solid var(--c);padding:5px 8px;min-width:0}
+.rost button.pick[aria-current=true]{outline:2px solid var(--ink);background:#fff8dc}
+.rost b{display:block;font-family:Georgia,serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rost small{color:var(--mute);display:block;font-size:12.5px}
+.ri{background:transparent;color:var(--ink);border:1.5px solid var(--ink);border-radius:50%;width:28px;height:28px;padding:0;font-size:15px;line-height:1;flex:none}
+.ri:hover{background:var(--ink);color:#fff}
+.card{background:var(--card);border:1px solid var(--line);border-left:8px solid var(--c,#999);padding:10px 12px;margin-bottom:14px}
+.row{display:flex;gap:6px;align-items:center}.row>input{flex:1;min-width:0}
+.ti{width:100%;font:700 24px Georgia,serif;border:0;border-bottom:1.5px dotted var(--mute);background:transparent;padding:2px 0}
+.lm{color:var(--mute);font-size:14px}
+h2.sec{font:700 20px Georgia,serif;margin:18px 0 8px;padding-bottom:3px;border-bottom:2px solid var(--ink);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+h2.sec small{font:400 13px Arial,sans-serif;color:var(--mute)}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.stat{background:#fff;border:1.5px solid var(--ink);padding:4px 8px}
+.stat label{display:block;font:700 13px Georgia,serif}
+.stat .pair{display:flex;align-items:center;gap:4px}
+.stat input{width:100%;min-width:0;font:700 18px Georgia,serif;border:0;border-bottom:1px dotted var(--mute);background:transparent;text-align:center;padding:0}
+.stat .pair span{color:var(--mute);font-size:12px}
+.stat small{display:block;color:var(--mute);font-size:11.5px;text-align:center}
+.det{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;margin:4px 0}
+.det dt{font-weight:700;font-size:14px}.det dd{margin:0}
+.det input,.det select{width:100%;font:inherit;font-size:14.5px;border:0;border-bottom:1px dotted var(--mute);background:transparent;padding:2px 0}
+.inv{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+@media (max-width:640px){.inv{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.slot{background:#fff;border:1.5px dashed var(--line);min-height:112px;padding:4px 6px;display:flex;flex-direction:column;gap:3px;position:relative}
+.slot.full{border:1.5px solid var(--ink)}
+.slot.cond{border-color:var(--cond);background:#fbeef0}
+.slot.cont{background:repeating-linear-gradient(135deg,#fff,#fff 6px,#f0f0ec 6px,#f0f0ec 12px)}
+.slot .sl{font:700 12px Georgia,serif;color:var(--mute);display:flex;justify-content:space-between;gap:4px}
+.slot textarea{flex:1;width:100%;min-height:44px;font:inherit;font-size:13.5px;line-height:1.3;border:0;background:transparent;resize:none;padding:0}
+.slot .ctl{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.slot .ctl select{font-size:12px;padding:1px;max-width:7.5em}
+.slot .x{border:0;background:transparent;color:var(--mute);padding:0 3px;font-size:15px}
+.slot .x:hover{color:var(--ink)}
+.slot .clr{font-size:11.5px;color:#8a2d3b}
+.dots{display:flex;gap:3px}
+.dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--ink);background:#fff;padding:0;min-height:0}
+.dot.on{background:var(--ink)}
+.addrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.addrow select,.addrow input{font:inherit;font-size:14px;padding:5px;border:1.5px solid var(--ink);background:#fff}
+.addrow input{min-width:12em;flex:1}
+.grit{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}
+.grit .slot{min-height:70px;width:150px}
+.warn{background:#fff0b8;border:1px solid #d4a017;padding:5px 10px;font-size:14px}
+textarea.big{display:block;width:100%;font:inherit;font-size:14px;line-height:1.4;min-height:80px;resize:vertical;border:1px solid var(--line);padding:6px 8px;background:#fff}
+.cr{background:#fff;border:1px solid var(--line);padding:6px 10px;font-size:14px}
+.cr label{display:block;font-weight:700;font-size:13px;margin-top:4px}
+.cr input{width:100%;font:inherit;font-size:14px;border:0;border-bottom:1px dotted var(--mute);background:transparent}
+.empty{padding:30px;text-align:center;color:var(--mute);border:2px dashed var(--line)}
+.note{color:var(--mute);font-size:14px}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:30;background:var(--ink);color:#fff;padding:10px 16px;max-width:90vw}
+/* tables view */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px;align-items:start}
+.tbl{background:var(--card);border:1px solid var(--line);border-left:8px solid var(--c,var(--ink));padding:8px 10px;overflow-x:auto}
+.tbl.wide{grid-column:1/-1}
+.tbl h3{margin:0;font:700 16px Georgia,serif;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.tbl h3 .hr{display:flex;gap:8px;align-items:center;font:700 13px Arial,sans-serif;color:var(--mute);white-space:nowrap}
+.tbl .note{margin:2px 0 6px;font-size:13px}
+.tbl table{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:left;border-bottom:2px solid var(--ink);padding:3px 10px 3px 4px;white-space:nowrap}
+.tbl td{padding:3px 10px 3px 4px;vertical-align:top}
+.tbl tbody tr:nth-child(even) td{background:rgba(0,0,0,.05)}
+.tbl td:first-child,.tbl td.nw{width:1%;white-space:nowrap;font-weight:700}
+.rollbtn{padding:2px 12px;font-size:13px}
+.tbl .res{margin:2px 0 6px;font-size:14px;padding:4px 8px;background:#fff3c4;border-left:4px solid #d4a017}.tbl .res:empty{display:none}
+.tbl tr.hit td,.tbl td.hit{background:#ffe08a!important;font-weight:700}
+.hist{position:sticky;top:0;z-index:5;background:var(--card);border:1.5px solid var(--ink);padding:6px 12px;margin:0 0 14px;box-shadow:0 3px 8px rgba(0,0,0,.12)}
+.hist header{display:flex;justify-content:space-between;align-items:center}
+.hist ol{margin:4px 0 0;padding-left:20px;font-size:13.5px;max-height:7.5em;overflow:auto}.hist li span{color:var(--mute)}
+#tablesview h2{font:700 22px Georgia,serif;margin:22px 0 8px;padding-bottom:4px;border-bottom:2px solid var(--ink)}
+.sm{padding:2px 9px;font-size:13px}
+[hidden]{display:none!important}
+@media print{.bar,.tabs,#src,#roster,.ri,.addrow,.slot .ctl,.home{display:none!important}body{background:#fff}header.top{background:#fff}#work{display:block}textarea{border:0;resize:none}}
+</style>
+</head>
+<body class="tab-chars">
+<header class="top">
+  <div class="toprow"><h1 id="title">Mice &amp; NPCs</h1><a class="home" href="index.html">All tools</a></div>
+  <p id="src"></p>
+  <nav class="tabs" role="tablist" aria-label="View">
+    <button role="tab" id="tab-chars" aria-selected="true">Characters</button>
+    <button role="tab" id="tab-tables" aria-selected="false">Tables</button>
+  </nav>
+  <div class="bar" id="tbbar">
+    <label>Tables <select id="tbsel" aria-label="Active tables"></select></label>
+    <button class="alt" id="tbdel" hidden>Remove</button>
+    <label class="btn">Add tables JSON<input id="file" type="file" accept=".json,application/json" multiple hidden></label>
+    <span id="tbmsg" role="status"></span>
+  </div>
+  <div class="bar charctl">
+    <button id="newpc">New player mouse</button>
+    <button id="newnpc">New NPC</button>
+    <select id="npctype" aria-label="NPC type"><option value="notable">Notable mouse</option><option value="hireling">Hireling</option><option value="creature">Creature</option></select>
+    <label>Seed <input id="seed" class="seed" type="text" placeholder="seed code" aria-label="Seed code"></label>
+  </div>
+  <div class="bar charctl">
+    <label class="btn" title="Open a .mausmouse file">Open .mausmouse<input id="openfile" type="file" accept=".mausmouse,application/json" multiple hidden></label>
+    <button class="alt" id="save">Save .mausmouse</button>
+    <button class="alt" id="saveplayer" title="An NPC file without the GM secret, safe to hand to players">Save player copy</button>
+    <button class="alt" id="pdf">Download PDF</button>
+    <button class="alt" id="formpdf" title="A PDF with fields you can fill in and tick in any PDF reader">Download fillable PDF</button>
+    <button class="alt" id="txt">Download text</button>
+  </div>
+</header>
+<main>
+  <div id="work">
+    <aside id="roster" aria-label="Characters"></aside>
+    <section id="sheet"></section>
+  </div>
+  <div id="tablesview" hidden></div>
+</main>
+<div id="toast" role="status" hidden></div>
+<script src="tables-lib.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+let rng=Math.random;
+const mulberry=a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+const seedRng=tok=>{rng=mulberry(tok.split('').reduce((a,c)=>(a*31+c.charCodeAt(0))|0,7))};
+const r=n=>1+Math.floor(rng()*n),rr=n=>1+Math.floor(Math.random()*n);
+const pick=a=>a[Math.floor(rng()*a.length)];
+const ranged=(t,n)=>t.find(e=>n>=e.min&&n<=e.max)||t[t.length-1];
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cap=s=>s?s[0].toUpperCase()+s.slice(1):s;
+const lc1=s=>s?s[0].toLowerCase()+s.slice(1):s;
+const dn=n=>'d'+n,rl=(a,b)=>a===b?String(a):`${a}-${b}`;
+const clone=o=>JSON.parse(JSON.stringify(o));
+const newTok=()=>Math.random().toString(36).slice(2,8);
+const slug=t=>String(t||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'mouse';
+const isObj=v=>!!v&&typeof v==='object'&&!Array.isArray(v);
+const roll=expr=>{const m=/^(\d*)d(\d+)$/.exec(String(expr).trim());if(!m)return +expr||0;let s=0;for(let i=0;i<(+m[1]||1);i++)s+=r(+m[2]);return s};
+function toast(m){const e=$('#toast');e.textContent=m;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>{e.hidden=true},5000)}
+function download(name,data,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:type||'text/plain'}));a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+
+// ---------- tables ----------
+const BASE=TablesLib.BUILTIN;
+let T=null,srcName='built-in copy',usingBuiltinChars=false;
+function mergeTables(f){
+  if(!isObj(f))throw new Error('the file is not a JSON object');
+  const o=clone(BASE);
+  if(typeof f.title==='string')o.title=f.title;
+  ['mouse','hirelings','npc'].forEach(k=>{if(f[k]!==undefined){if(!isObj(f[k]))throw new Error(`"${k}" must be an object`);Object.assign(o[k],clone(f[k]))}});
+  if(f.creatures!==undefined)o.creatures=clone(f.creatures);
+  o._ownChars=isObj(f.mouse);
+  return o;
+}
+function validate(t){
+  const need=(c,m)=>{if(!c)throw new Error(m)},arr=(a,m)=>need(Array.isArray(a)&&a.length,m+' must be a non-empty list');
+  const M=t.mouse;need(isObj(M),'"mouse" must be an object');
+  arr(M.backgrounds,'"mouse.backgrounds"');
+  M.backgrounds.forEach((b,i)=>need(Array.isArray(b)&&b.length===5&&b[0]>=1&&b[0]<=6&&b[1]>=1&&b[1]<=6,`mouse.backgrounds[${i}] must be [HP 1-6, pips 1-6, name, item A, item B]`));
+  for(let h=1;h<=6;h++)for(let p=1;p<=6;p++)need(M.backgrounds.some(b=>b[0]===h&&b[1]===p),`mouse.backgrounds has no entry for HP ${h}, pips ${p}`);
+  need(Array.isArray(M.coat)&&M.coat.length===2,'"mouse.coat" must be two lists (colour and pattern)');M.coat.forEach((c,i)=>arr(c,`"mouse.coat[${i}]"`));
+  arr(M.details,'"mouse.details"');arr(M.starting,'"mouse.starting"');
+  arr(M.weapons,'"mouse.weapons"');M.weapons.forEach((w,i)=>need(w&&w.class&&w.damage&&Array.isArray(w.examples)&&w.examples.length,`mouse.weapons[${i}] needs class, damage and examples`));
+  arr(M.armour,'"mouse.armour"');arr(M.conditions,'"mouse.conditions"');M.conditions.forEach((c,i)=>need(c&&c.name&&typeof c.clear==='string',`mouse.conditions[${i}] needs name and clear`));
+  arr(M.levels,'"mouse.levels"');M.levels.forEach((l,i)=>need(l&&l.level>=1&&typeof l.hd==='string'&&l.grit>=0&&l.xp>=0,`mouse.levels[${i}] needs level, hd, grit and xp`));
+  arr(M.gear,'"mouse.gear"');M.gear.forEach((g,i)=>{need(g&&g.group&&Array.isArray(g.items),`mouse.gear[${i}] needs group and items`)});
+  need(Array.isArray(M.bricabrac)&&M.bricabrac.length>=2&&M.bricabrac.every(g=>Array.isArray(g)&&g.length),'"mouse.bricabrac" must be a list of non-empty lists');
+  const H=t.hirelings;need(isObj(H)&&isObj(H.stats),'"hirelings" needs "stats"');arr(H.types,'"hirelings.types"');
+  const N=t.npc;need(isObj(N),'"npc" must be an object');['social','birthsign','appearance','quirk','wants','relationship','birthnames','matrinames'].forEach(k=>arr(N[k],`"npc.${k}"`));
+  arr(t.creatures,'"creatures"');t.creatures.forEach((c,i)=>need(c&&c.key&&c.name&&typeof c.stats==='string',`creatures[${i}] needs key, name and stats`));
+  return t;
+}
+const parseTables=json=>validate(mergeTables(JSON.parse(json)));
+const noun=()=>T.mouse.noun||'mouse';
+// "Coat colour" + "Coat pattern" -> "Coat"; "Flavour" + "Decoration" -> "Flavour & Decoration"
+const coatLabel=()=>{const l=T.mouse.coatLabel||['Coat'];if(l.length>1){const a=l[0].split(' ')[0];if(l.every(x=>x.split(' ')[0]===a))return a}return l.join(' & ')};
+
+// ---------- characters ----------
+const SLOTS={pc:['main','off','body1','body2','pack1','pack2','pack3','pack4','pack5','pack6'],notable:['main','off','body1','body2','pack1','pack2','pack3','pack4','pack5','pack6'],hireling:['main','off','body1','body2','pack1','pack2'],creature:[]};
+const SLOTLABEL={main:'Main paw',off:'Off paw',body1:'Body',body2:'Body',pack1:'Pack 1',pack2:'Pack 2',pack3:'Pack 3',pack4:'Pack 4',pack5:'Pack 5',pack6:'Pack 6'};
+const ROLE={pc:'Player',notable:'Notable',hireling:'Hireling',creature:'Creature'};
+let ROSTER=[],curIdx=-1,view='chars';
+const cur=()=>ROSTER[curIdx]||null;
+const rollAttr=()=>{const d=[r(6),r(6),r(6)].sort((a,b)=>b-a);return d[0]+d[1]};
+const mkName=()=>`${pick(T.npc.birthnames)} ${pick(T.npc.matrinames)}`;
+function blank(role){
+  const c={id:newTok()+newTok(),kind:role==='pc'?'pc':'npc',role,seed:'',noun:'',name:'',level:1,xp:0,grit:0,pips:0,str:[0,0],dex:[0,0],wil:[0,0],hp:[0,0],armour:0,
+    background:'',birthsign:'',disposition:'',coat:'',detail:'',social:'',pay:'',appearance:'',quirk:'',wants:'',relationship:'',hireType:'',wage:'',
+    creature:null,slots:{},gritSlots:[],extra:[],followers:'',notes:'',secret:''};
+  SLOTS[role].forEach(k=>c.slots[k]=null);
+  return c;
+}
+// Turn a gear text into an inventory item, working out its usage dots and where it is carried.
+function mkItem(name){
+  name=String(name).trim();
+  const it={name,dots:/6 usage dots|electric lantern/i.test(name)?6:3,used:0};
+  if(/heavy armour/i.test(name))it.place='armourH';
+  else if(/light armour/i.test(name))it.place='armourL';
+  else if(/\((improvised|light|medium|heavy)[^)]*d\d/i.test(name)||/(weapon|ranged)\b/i.test(name))it.place=/\(heavy|heavy (ranged )?weapon|heavy ranged/i.test(name)?'weapon2':'weapon';
+  return it;
+}
+function condItem(c){return {name:c.name,cond:true,clear:c.clear||'',effect:c.effect||'',dots:0,used:0}}
+const cont=it=>({name:it.name,cont:true,dots:0,used:0});
+// Place items like a player would: weapon in the paws, armour on the body, everything else in the pack.
+function placeItems(c,items){
+  const S=c.slots,free=k=>k in S&&!S[k];
+  const order=['pack1','pack2','pack3','pack4','pack5','pack6','body1','body2','off','main'];
+  const put=it=>{const k=order.find(free);if(k)S[k]=it;else c.extra.push(it)};
+  items.forEach(it=>{
+    if(it.place==='weapon'&&free('main')){S.main=it;return}
+    if(it.place==='weapon2'&&free('main')&&free('off')){S.main=it;S.off=cont(it);return}
+    if(it.place==='armourL'&&free('off')&&free('body1')){S.off=it;S.body1=cont(it);return}
+    if(it.place==='armourH'&&free('body1')&&free('body2')){S.body1=it;S.body2=cont(it);return}
+    put(it);
+  });
+}
+function addArmourFrom(c){let a=0;Object.values(c.slots).forEach(it=>{if(it&&!it.cont&&/armour/i.test(it.name))a+=1});c.armour=Math.min(a,1)}
+function weaponPick(){const w=pick(T.mouse.weapons.filter(x=>!/improvised/i.test(x.class)));return `${pick(w.examples)} (${w.class}, ${w.damage})`}
+function genPC(){
+  const M=T.mouse,c=blank('pc');
+  const s=rollAttr(),d=rollAttr(),w=rollAttr();c.str=[s,s];c.dex=[d,d];c.wil=[w,w];
+  const hp=r(6),pp=r(6);c.hp=[hp,hp];c.pips=pp;
+  const bg=M.backgrounds.find(b=>b[0]===hp&&b[1]===pp);c.background=bg[2];
+  const items=[...M.starting.map(mkItem)],follow=[];
+  const addBg=x=>{if(/^hireling:/i.test(x))follow.push(x.replace(/^hireling:\s*/i,''));else items.push(mkItem(x))};
+  addBg(bg[3]);addBg(bg[4]);
+  const hi=Math.max(s,d,w);
+  if(hi<=9){const b2=pick(M.backgrounds);if(hi<=7){addBg(b2[3]);addBg(b2[4])}else addBg(rng()<.5?b2[3]:b2[4])}
+  items.unshift(mkItem(weaponPick()));
+  placeItems(c,items);addArmourFrom(c);
+  c.followers=follow.join('\n');
+  const bs=pick(T.npc.birthsign);c.birthsign=bs[0];c.disposition=bs[1];
+  c.coat=`${pick(M.coat[0])}, ${lc1(pick(M.coat[1]))}`;c.detail=pick(M.details);
+  c.name=mkName();
+  return c;
+}
+function bricabrac(){const B=T.mouse.bricabrac,g=r(B.length)-1,grp=B[g];return grp.length===1&&/^d\d+ pips$/i.test(grp[0])?{pips:roll(grp[0].split(' ')[0])}:{item:pick(grp)}}
+function lookFields(c){const N=T.npc,so=pick(N.social),bs=pick(N.birthsign);c.social=so[0];c.pay=so[1];c.birthsign=bs[0];c.disposition=bs[1];c.appearance=pick(N.appearance);c.quirk=pick(N.quirk);c.wants=pick(N.wants);c.relationship=pick(N.relationship)}
+function npcStats(c){const H=T.hirelings.stats,h=roll(H.hp||'d6'),s=roll(H.str||'2d6'),d=roll(H.dex||'2d6'),w=roll(H.wil||'2d6');c.hp=[h,h];c.str=[s,s];c.dex=[d,d];c.wil=[w,w]}
+function genNotable(){
+  const c=blank('notable');npcStats(c);lookFields(c);c.name=mkName();
+  const items=[];const b=bricabrac();if(b.pips)c.pips+=b.pips;else items.push(mkItem(b.item));
+  if(rng()<.5)items.unshift(mkItem(weaponPick()));
+  c.pips+=r(6);placeItems(c,items);addArmourFrom(c);
+  c.coat=`${pick(T.mouse.coat[0])}, ${lc1(pick(T.mouse.coat[1]))}`;c.detail=pick(T.mouse.details);
+  return c;
+}
+function genHireling(type){
+  const c=blank('hireling');npcStats(c);lookFields(c);c.name=mkName();
+  const ty=type||pick(T.hirelings.types);c.hireType=ty[0];c.wage=ty[2];c.social='';c.pay='';
+  const items=[];
+  if(/torch/i.test(ty[0]))items.push(mkItem('Torches'));
+  if(/arms|guard|deputy|knight|lawmouse/i.test(ty[0])){items.push(mkItem(weaponPick()));items.push(mkItem('Light armour'))}
+  const b=bricabrac();if(b.pips)c.pips+=b.pips;else items.push(mkItem(b.item));
+  placeItems(c,items);addArmourFrom(c);
+  c.coat=`${pick(T.mouse.coat[0])}, ${lc1(pick(T.mouse.coat[1]))}`;c.detail=pick(T.mouse.details);
+  return c;
+}
+function parseStats(s){const n=k=>{const m=new RegExp(k+'\\s*(\\d+)','i').exec(s);return m?+m[1]:0};const hp=(/(\d+)\s*hp/i.exec(s)||[])[1];return {hp:+hp||0,str:n('STR'),dex:n('DEX'),wil:n('WIL'),armour:n('Armour')}}
+function genCreature(key){
+  const c=blank('creature'),cr=key?T.creatures.find(x=>x.key===key):pick(T.creatures),v=cr.variants&&cr.variants.length?pick(cr.variants):null;
+  const st=parseStats(cr.stats);c.hp=[st.hp,st.hp];c.str=[st.str,st.str];c.dex=[st.dex,st.dex];c.wil=[st.wil,st.wil];c.armour=st.armour;
+  c.creature={key:cr.key,kind:cr.name,stats:cr.stats,attacks:cr.attacks||'',crit:cr.crit||'',notes:cr.notes||'',wants:cr.wants||'',variant:v?`${v[0]}: ${v[1]}`:''};
+  c.name=`${cr.name}${v?' ('+v[0]+')':''}`;
+  return c;
+}
+function generate(role){
+  const sv=$('#seed').value.trim(),m=/^M\.(pc|notable|hireling|creature)\.(\w+)$/.exec(sv);
+  if(sv&&!m){alert('Seed codes look like M.pc.k3j9x1');return}
+  if(m)role=m[1];
+  const tok=m?m[2]:newTok();seedRng(tok);
+  const c=role==='pc'?genPC():role==='notable'?genNotable():role==='hireling'?genHireling():genCreature();
+  c.seed=`M.${role}.${tok}`;c.tables=srcName;c.noun=noun();
+  ROSTER.push(c);curIdx=ROSTER.length-1;$('#seed').value='';
+  saveRoster();renderAll();
+  toast(`${c.kind==='pc'?'Player '+noun():ROLE[c.role]} ${c.name} added. Seed ${c.seed}`);
+}
+function nextXP(c){const L=T.mouse.levels,n=L.find(l=>l.level===c.level+1);if(n)return n.xp;const last=L[L.length-1];return last.xp+5000*(c.level+1-last.level)}
+function levelRow(lv){const L=T.mouse.levels;return L.find(l=>l.level===lv)||Object.assign({},L[L.length-1],{level:lv})}
+function levelUp(){
+  const c=cur();if(!c)return;
+  const need=nextXP(c);
+  if((+c.xp||0)<need&&!confirm(`${c.name} has ${c.xp||0} XP; level ${c.level+1} needs ${need}. Level up anyway?`))return;
+  rng=Math.random;const L=levelRow(c.level+1),log=[];
+  ['str','dex','wil'].forEach(k=>{const d=r(20);if(d>c[k][0]){c[k][0]++;c[k][1]++;log.push(`${k.toUpperCase()} d20 ${d}: +1`)}else log.push(`${k.toUpperCase()} d20 ${d}: no change`)});
+  const hd=roll(L.hd);if(hd>c.hp[0]){log.push(`HP ${L.hd} ${hd}: new max ${hd}`);c.hp[0]=hd}else{c.hp[0]++;log.push(`HP ${L.hd} ${hd}: +1`)}
+  c.hp[1]=c.hp[0];c.level=L.level;c.grit=L.grit;
+  saveRoster();renderAll();toast(`Level ${c.level}. ${log.join('; ')}.`);
+}
+function rerollField(f){
+  const c=cur();if(!c)return;rng=Math.random;
+  if(f==='name')c.name=mkName();
+  else if(f==='birthsign'){const b=pick(T.npc.birthsign);c.birthsign=b[0];c.disposition=b[1]}
+  else if(f==='coat')c.coat=`${pick(T.mouse.coat[0])}, ${lc1(pick(T.mouse.coat[1]))}`;
+  else if(f==='detail')c.detail=pick(T.mouse.details);
+  else if(f==='social'){const s=pick(T.npc.social);c.social=s[0];c.pay=s[1]}
+  else if(['appearance','quirk','wants','relationship'].includes(f))c[f]=pick(T.npc[f]);
+  else if(f==='hireType'){const t=pick(T.hirelings.types);c.hireType=t[0];c.wage=t[2]}
+  else if(f==='variant'&&c.creature){const cr=T.creatures.find(x=>x.key===c.creature.key);if(cr&&cr.variants){const v=pick(cr.variants);c.creature.variant=`${v[0]}: ${v[1]}`}}
+  c.seed='';saveRoster();renderSheet();renderRoster();
+}
+
+// ---------- inventory actions ----------
+function firstFree(c,pref){const keys=pref||['pack1','pack2','pack3','pack4','pack5','pack6','body1','body2','off','main'];return keys.find(k=>k in c.slots&&!c.slots[k])}
+function addToInv(it){const c=cur();const k=firstFree(c);if(k)c.slots[k]=it;else{c.extra.push(it);toast(`No free slot, so ${it.name} is carried beyond the slots: the ${c.kind==='pc'?noun():'character'} is encumbered.`)}saveRoster();renderSheet()}
+function addItem(){const sel=$('#additem'),txt=$('#addtext'),v=(txt.value.trim()||sel.value);if(!v)return;txt.value='';addToInv(mkItem(v))}
+function addCond(){const n=$('#addcond').value,cd=T.mouse.conditions.find(x=>x.name===n);if(cd)addToInv(condItem(cd))}
+function clearSlot(k){const c=cur(),it=c.slots[k];if(!it)return;c.slots[k]=null;
+  // two-slot items: clear the other half too
+  Object.keys(c.slots).forEach(o=>{const x=c.slots[o];if(x&&o!==k&&x.name===it.name&&(x.cont||it.cont))c.slots[o]=null});
+  if(c.extra.length){const k2=firstFree(c);if(k2)c.slots[k2]=c.extra.shift()}
+  saveRoster();renderSheet()}
+function moveSlot(k,to){const c=cur();if(!to||to===k)return;if(to==='grit'){if(c.gritSlots.length>=(+c.grit||0)){alert('No free Grit space. Grit comes with level 2.');renderSheet();return}c.gritSlots.push(c.slots[k]);c.slots[k]=null}else{const a=c.slots[k];c.slots[k]=c.slots[to];c.slots[to]=a}saveRoster();renderSheet()}
+function clearGrit(i){const c=cur();c.gritSlots.splice(i,1);saveRoster();renderSheet()}
+function dropExtra(i){const c=cur();c.extra.splice(i,1);saveRoster();renderSheet()}
+function setDot(k,i){const c=cur(),it=k.startsWith('g')?c.gritSlots[+k.slice(1)]:c.slots[k];if(!it)return;it.used=it.used===i+1?i:i+1;saveRoster();renderSheet()}
+function setDots(k,n){const c=cur(),it=c.slots[k];if(!it)return;it.dots=+n;it.used=Math.min(it.used,it.dots);saveRoster();renderSheet()}
+
+// ---------- rendering ----------
+function chipColor(c){return c.kind==='pc'?'var(--pc)':c.role==='creature'?'#9a86b8':'var(--npc)'}
+function subtitle(c){
+  const nn=c.noun||noun();
+  if(c.kind==='pc')return `Player ${nn}, level ${c.level}${c.background?' · '+c.background:''}`;
+  if(c.role==='hireling')return `Hireling${c.hireType?': '+c.hireType:''}${c.wage?` (${c.wage}/day)`:''}`;
+  if(c.role==='creature')return `Creature${c.creature?': '+c.creature.kind:''}`;
+  return `Notable ${nn}${c.social?': '+c.social:''}`;
+}
+function renderRoster(){
+  $('#roster').innerHTML=`<h2>Characters (${ROSTER.length}) ${ROSTER.length?'<button class="alt sm" onclick="clearRoster()">Clear</button>':''}</h2>
+${ROSTER.length?ROSTER.map((c,i)=>`<div class="rost"><button class="pick" style="--c:${chipColor(c)}" ${i===curIdx?'aria-current="true"':''} onclick="pickChar(${i})"><b>${esc(c.name||'Unnamed')}</b><small>${esc(subtitle(c))}</small></button><button class="ri" title="Remove" aria-label="Remove ${esc(c.name)}" onclick="removeChar(${i})">&times;</button></div>`).join(''):'<p class="note">None yet. Use New player mouse or New NPC, or open a .mausmouse file.</p>'}
+<p class="note">Kept in this browser. Save a .mausmouse to keep one for good or hand it on.</p>`;
+}
+function pickChar(i){curIdx=i;renderAll()}
+function removeChar(i){const c=ROSTER[i];if(!confirm(`Remove ${c.name||'this character'} from the list? (Save a .mausmouse first if you want to keep it.)`))return;ROSTER.splice(i,1);if(curIdx>=ROSTER.length)curIdx=ROSTER.length-1;saveRoster();renderAll()}
+function clearRoster(){if(!confirm('Remove every character from this list?'))return;ROSTER=[];curIdx=-1;saveRoster();renderAll()}
+const inp=(f,v,lab,opt)=>`<input data-f="${f}" value="${esc(v)}" aria-label="${esc(lab)}"${opt&&opt.num?' inputmode="numeric"':''}>`;
+const rb=f=>`<button class="ri" title="Reroll" aria-label="Reroll ${f}" onclick="rerollField('${f}')">&#x21bb;</button>`;
+const nob='<span></span>';
+function statBox(lab,f,hint){const c=cur(),v=c[f];return `<div class="stat"><label>${lab}</label><div class="pair">${inp(f+'.0',v[0],lab+' max',{num:1})}<span>/</span>${inp(f+'.1',v[1],lab+' current',{num:1})}</div><small>${hint||'max / current'}</small></div>`}
+function oneBox(lab,f,hint){const c=cur();return `<div class="stat"><label>${lab}</label><div class="pair">${inp(f,c[f],lab,{num:1})}</div>${hint?`<small>${hint}</small>`:''}</div>`}
+function slotHTML(c,k,it){
+  const moveOpts=Object.keys(c.slots).filter(o=>o!==k).map(o=>`<option value="${o}">${SLOTLABEL[o]}${/body/.test(o)?' '+o.slice(-1):''}</option>`).join('')+(it&&it.cond&&+c.grit>0?'<option value="grit">Grit</option>':'');
+  if(!it)return `<div class="slot"><div class="sl"><span>${SLOTLABEL[k]}</span></div><textarea data-slot="${k}" rows="3" placeholder="Empty" aria-label="${SLOTLABEL[k]}"></textarea></div>`;
+  if(it.cont)return `<div class="slot full cont"><div class="sl"><span>${SLOTLABEL[k]}</span><button class="x" title="Empty both slots" aria-label="Empty ${SLOTLABEL[k]}" onclick="clearSlot('${k}')">&times;</button></div><textarea rows="3" disabled aria-label="${SLOTLABEL[k]}">(${esc(it.name)})</textarea></div>`;
+  const dots=Array.from({length:it.dots},(_,i)=>`<button class="dot${i<it.used?' on':''}" title="Usage ${i+1}" aria-label="Usage dot ${i+1}${i<it.used?', marked':''}" onclick="setDot('${k}',${i})"></button>`).join('');
+  return `<div class="slot full${it.cond?' cond':''}"><div class="sl"><span>${SLOTLABEL[k]}</span><button class="x" title="Empty this slot" aria-label="Empty ${SLOTLABEL[k]}" onclick="clearSlot('${k}')">&times;</button></div>
+<textarea data-slot="${k}" rows="3" aria-label="${SLOTLABEL[k]}">${esc(it.name)}</textarea>
+${it.cond?`<div class="clr">${it.effect?esc(it.effect)+'. ':''}Clear: ${esc(it.clear)}</div>`:''}
+<div class="ctl">${it.cond?'':`<span class="dots">${dots}</span><select title="Usage dots" aria-label="Usage dots for ${SLOTLABEL[k]}" onchange="setDots('${k}',this.value)">${[0,1,2,3,4,5,6].map(n=>`<option${n===it.dots?' selected':''}>${n}</option>`).join('')}</select>`}<select aria-label="Move ${SLOTLABEL[k]}" onchange="moveSlot('${k}',this.value)"><option value="">Move…</option>${moveOpts}</select></div></div>`;
+}
+function renderSheet(){
+  const c=cur(),el=$('#sheet');
+  $('#saveplayer').disabled=!c||c.kind!=='npc';['save','pdf','formpdf','txt'].forEach(id=>$('#'+id).disabled=!c);
+  if(!c){el.innerHTML=`<div class="empty">Press <b>New player mouse</b> or <b>New NPC</b>, or open a .mausmouse file.</div>`;return}
+  const M=T.mouse,pc=c.kind==='pc',cr=c.role==='creature';
+  let o=`<article class="card" style="--c:${chipColor(c)}"><div class="row"><input class="ti" data-f="name" value="${esc(c.name)}" aria-label="Name">${cr?'':rb('name')}</div>
+<p class="lm">${esc(subtitle(c))}${c.seed?` · seed ${esc(c.seed)}`:''}${c.tables&&c.tables!==srcName?` · made with ${esc(c.tables)}`:''}</p>
+${usingBuiltinChars?`<p class="warn">${esc(srcName)} has no character tables yet, so the built-in Mausritter ones are used.</p>`:''}
+<div class="stats">${statBox('STR','str')}${statBox('DEX','dex')}${statBox('WIL','wil')}${statBox('HP','hp')}${oneBox('Pips','pips')}${pc?oneBox('Level','level')+oneBox('XP','xp',`next: ${nextXP(c)}`)+oneBox('Grit','grit'):''}${cr||c.armour?oneBox('Armour','armour'):''}</div>
+${pc?`<div class="addrow"><button class="alt sm" onclick="levelUp()">Level up</button><span class="note">Rolls d20 for each attribute and the new Hit Dice, as the rules describe.</span></div>`:''}</article>`;
+  // details
+  const rows=[];
+  if(c.role==='hireling')rows.push(['Hireling',`<select data-f="hireTypeSel" aria-label="Hireling type">${T.hirelings.types.map(t=>`<option${t[0]===c.hireType?' selected':''}>${esc(t[0])}</option>`).join('')}${T.hirelings.types.some(t=>t[0]===c.hireType)?'':`<option selected>${esc(c.hireType)}</option>`}</select>`,'hireType'],['Wage per day',inp('wage',c.wage,'Wage'),'']);
+  if(pc)rows.push(['Background',inp('background',c.background,'Background'),'']);
+  if(!pc&&!cr)rows.push(['Social position',inp('social',c.social,'Social position'),'social'],['Pays for a service',inp('pay',c.pay,'Payment'),'']);
+  if(!cr)rows.push(['Birthsign',inp('birthsign',c.birthsign,'Birthsign'),'birthsign'],['Disposition',inp('disposition',c.disposition,'Disposition'),''],[coatLabel(),inp('coat',c.coat,'Coat'),'coat'],[M.detailLabel||'Physical detail',inp('detail',c.detail,'Physical detail'),'detail']);
+  if(!pc&&!cr)rows.push(['Appearance',inp('appearance',c.appearance,'Appearance'),'appearance'],['Quirk',inp('quirk',c.quirk,'Quirk'),'quirk'],['Wants',inp('wants',c.wants,'Wants'),'wants'],['Relationship',inp('relationship',c.relationship,'Relationship'),'relationship']);
+  if(rows.length)o+=`<h2 class="sec">Details</h2><dl class="det">${rows.map(([l,h,f])=>`<dt>${l}</dt><dd>${h}</dd>${f?rb(f):nob}`).join('')}</dl>`;
+  if(cr){const k=c.creature;o+=`<h2 class="sec">Creature</h2><div class="cr">${[['Kind','kind'],['Variant','variant'],['Stats','stats'],['Attacks','attacks'],['Critical damage','crit'],['Special','notes'],['Wants','wants']].map(([l,f])=>`<label>${l}${f==='variant'?' '+rb('variant'):''}</label>${inp('creature.'+f,k[f],l)}`).join('')}</div>`}
+  else{
+    const ks=Object.keys(c.slots),grid=c.role==='hireling'?['main','body1','pack1','off','body2','pack2']:['main','body1','pack1','pack2','pack3','off','body2','pack4','pack5','pack6'];
+    const used=ks.filter(k=>c.slots[k]).length,cap=ks.length;
+    o+=`<h2 class="sec">Inventory <small>${used} of ${cap} slots${c.extra.length?`, ${c.extra.length} more carried: encumbered`:''}</small></h2>
+<div class="inv"${c.role==='hireling'?' style="grid-template-columns:repeat(3,minmax(0,1fr))"':''}>${grid.map(k=>slotHTML(c,k,c.slots[k])).join('')}</div>
+${c.extra.length?`<p class="warn">Encumbered: can't run, and every save is made with Disadvantage. Carried beyond the slots: ${c.extra.map((x,i)=>`${esc(x.name)} <button class="alt sm" onclick="dropExtra(${i})">Drop</button>`).join(' ')}</p>`:''}
+<div class="addrow"><select id="additem" aria-label="Item to add">${M.gear.filter(g=>g.carry!==false).map(g=>`<optgroup label="${esc(g.group)}">${g.items.map(x=>`<option value="${esc(x[0])}">${esc(x[0])} (${esc(x[1])})</option>`).join('')}</optgroup>`).join('')}</select><input id="addtext" placeholder="…or type any item" aria-label="Custom item"><button class="alt sm" onclick="addItem()">Add item</button>
+<select id="addcond" aria-label="Condition">${M.conditions.map(x=>`<option>${esc(x.name)}</option>`).join('')}</select><button class="alt sm" onclick="addCond()">Add condition</button></div>`;
+    if(pc||+c.grit>0)o+=`<h2 class="sec">Grit <small>${c.gritSlots.length} of ${+c.grit||0}: a condition placed here is ignored until cleared</small></h2><div class="grit">${c.gritSlots.length?c.gritSlots.map((it,i)=>`<div class="slot full cond"><div class="sl"><span>Grit</span><button class="x" aria-label="Clear" onclick="clearGrit(${i})">&times;</button></div><b>${esc(it.name)}</b><div class="clr">Clear: ${esc(it.clear||'')}</div></div>`).join(''):'<p class="note">Empty. Use a condition\'s Move menu to place it here.</p>'}</div>`;
+  }
+  o+=`<h2 class="sec">${pc?'Hirelings and followers':'Followers'}</h2><textarea class="big" data-f="followers" rows="2" placeholder="Hirelings, pets, mounts" aria-label="Followers">${esc(c.followers)}</textarea>
+<h2 class="sec">Notes</h2><textarea class="big" data-f="notes" rows="4" aria-label="Notes">${esc(c.notes)}</textarea>`;
+  if(c.kind==='npc')o+=`<h2 class="sec">GM secret <small>left out of player copies</small></h2><textarea class="big" data-f="secret" rows="3" placeholder="What the players don't know" aria-label="GM secret">${esc(c.secret)}</textarea>`;
+  el.innerHTML=o;
+}
+function renderAll(){renderRoster();renderSheet();setHead()}
+function setHead(){const c=cur();$('#src').textContent=`Tables: ${srcName}.`+(c?` ${c.name||'Unnamed'}: ${subtitle(c)}.`:'');document.title=(c?(c.name||'Unnamed')+' - ':'')+'Mice & NPCs'}
+// field edits
+$('#sheet').addEventListener('input',e=>{
+  const c=cur();if(!c)return;const t=e.target;
+  if(t.dataset.slot){const k=t.dataset.slot,v=t.value;if(c.slots[k])c.slots[k].name=v;else if(v.trim()){c.slots[k]=mkItem(v);c.slots[k].name=v;saveRoster();const pos=t.selectionStart;renderSheet();const n=document.querySelector(`textarea[data-slot="${k}"]`);if(n){n.focus();n.setSelectionRange(pos,pos)}return}saveRoster();return}
+  const f=t.dataset.f;if(!f)return;
+  if(f==='hireTypeSel'){const ty=T.hirelings.types.find(x=>x[0]===t.value);c.hireType=t.value;if(ty)c.wage=ty[2];saveRoster();renderSheet();renderRoster();return}
+  const p=f.split('.'),numeric=['level','xp','grit','pips','armour'].includes(p[0])||['str','dex','wil','hp'].includes(p[0]);
+  const val=numeric?(t.value.trim()===''?0:parseInt(t.value,10)||0):t.value;
+  if(p.length===1)c[p[0]]=val;else c[p[0]][p[1]]=val;
+  if(['name','level','background','social','hireType','wage'].includes(p[0])){renderRoster();setHead()}
+  saveRoster();
+});
+$('#sheet').addEventListener('change',e=>{const f=e.target.dataset.f;if(f==='level'||f==='grit'||f==='xp')renderSheet()});
+
+// ---------- files: .mausmouse ----------
+function charFile(c,player){
+  const ch=clone(c);delete ch.id;if(player)delete ch.secret;
+  return {format:'mausmouse',version:1,kind:c.kind,player:!!player,exported:new Date().toISOString(),generator:'mausritter-mice',tables:c.tables||srcName,tablesTitle:T.title||'',character:ch};
+}
+function normChar(x){
+  const S=(v,m)=>typeof v==='string'?v.slice(0,m):'',N=v=>Number.isFinite(+v)?Math.max(-99,Math.min(99999,Math.round(+v))):0;
+  const role=['pc','notable','hireling','creature'].includes(x.role)?x.role:(x.kind==='pc'?'pc':'notable');
+  const c=blank(role);
+  ['name','background','birthsign','disposition','coat','detail','social','pay','appearance','quirk','wants','relationship','hireType','wage','seed','tables','noun'].forEach(k=>c[k]=S(x[k],200));
+  ['followers','notes','secret'].forEach(k=>c[k]=S(x[k],8000));
+  ['level','xp','grit','pips','armour'].forEach(k=>c[k]=N(x[k]));if(c.level<1)c.level=1;
+  ['str','dex','wil','hp'].forEach(k=>{const v=Array.isArray(x[k])?x[k]:[0,0];c[k]=[N(v[0]),N(v[1])]});
+  const item=it=>it&&typeof it==='object'&&typeof it.name==='string'?{name:S(it.name,200),dots:Math.max(0,Math.min(6,N(it.dots))),used:Math.max(0,Math.min(6,N(it.used))),cond:!!it.cond,cont:!!it.cont,clear:S(it.clear,120),effect:S(it.effect,200)}:null;
+  if(isObj(x.slots))Object.keys(c.slots).forEach(k=>{c.slots[k]=item(x.slots[k])});
+  c.gritSlots=(Array.isArray(x.gritSlots)?x.gritSlots:[]).map(item).filter(Boolean).slice(0,10);
+  c.extra=(Array.isArray(x.extra)?x.extra:[]).map(item).filter(Boolean).slice(0,50);
+  if(role==='creature'&&isObj(x.creature)){const k=x.creature;c.creature={key:S(k.key,40),kind:S(k.kind,80),stats:S(k.stats,300),attacks:S(k.attacks,300),crit:S(k.crit,300),notes:S(k.notes,300),wants:S(k.wants,300),variant:S(k.variant,300)}}
+  else if(role==='creature')c.creature={key:'',kind:'',stats:'',attacks:'',crit:'',notes:'',wants:'',variant:''};
+  if(c.kind!=='npc')c.secret='';
+  return c;
+}
+function loadCharFile(text,name){
+  const m=JSON.parse(text);
+  if(!m||m.format!=='mausmouse')throw new Error('this is not a .mausmouse file');
+  if(typeof m.version!=='number'||m.version<1)throw new Error('the file has no valid version number');
+  if(!['pc','npc'].includes(m.kind)||!isObj(m.character))throw new Error('the character data is missing');
+  const c=normChar(Object.assign({},m.character,{kind:m.kind}));
+  if(m.kind==='pc'&&c.role!=='pc')c.role='pc';
+  if(m.kind==='npc'&&c.role==='pc')c.role='notable';
+  c.kind=m.kind;if(!c.tables)c.tables=m.tables||'';
+  return {c,m};
+}
+$('#openfile').onchange=async e=>{
+  const files=[...e.target.files];e.target.value='';const bad=[],ok=[];
+  for(const f of files){
+    if(f.size>1048576){bad.push(`${f.name} is too large to be a .mausmouse file.`);continue}
+    try{const {c,m}=loadCharFile(await f.text(),f.name);ROSTER.push(c);ok.push(c.name+(m.player&&c.kind==='npc'?' (player copy)':''))}
+    catch(err){bad.push(`Could not open ${f.name}: ${err instanceof SyntaxError?'it is not valid JSON':err.message}`)}
+  }
+  if(ok.length){curIdx=ROSTER.length-1;saveRoster();renderAll();toast('Opened '+ok.join(', ')+'.')}
+  if(bad.length)alert(bad.join('\n'));
+};
+const fileBase=c=>slug(c.name||(c.kind==='pc'?noun():'npc'));
+$('#save').onclick=()=>{const c=cur();if(c)download(`${fileBase(c)}.mausmouse`,JSON.stringify(charFile(c,false),null,1),'application/json')};
+$('#saveplayer').onclick=()=>{const c=cur();if(c&&c.kind==='npc')download(`${fileBase(c)}-player.mausmouse`,JSON.stringify(charFile(c,true),null,1),'application/json')};
+
+// ---------- text ----------
+function itemText(it){if(!it)return '(empty)';if(it.cont)return `(${it.name})`;if(it.cond)return `${it.name} [condition${it.effect?': '+it.effect:''}; clear: ${it.clear}]`;return it.name+(it.dots?` [usage ${it.used}/${it.dots}]`:'')}
+function charText(c,player){
+  const L=[(c.name||'Unnamed').toUpperCase(),subtitle(c),'',`STR ${c.str[0]}/${c.str[1]}   DEX ${c.dex[0]}/${c.dex[1]}   WIL ${c.wil[0]}/${c.wil[1]}   HP ${c.hp[0]}/${c.hp[1]}   Pips ${c.pips}${c.armour?'   Armour '+c.armour:''}`];
+  if(c.kind==='pc')L.push(`Level ${c.level}   XP ${c.xp} (next ${nextXP(c)})   Grit ${c.grit}`);
+  L.push('');
+  const add=(l,v)=>{if(String(v||'').trim())L.push(`${l}: ${v}`)};
+  if(c.role==='hireling'){add('Hireling',c.hireType);add('Wage per day',c.wage)}
+  add('Background',c.background);add('Social position',c.social);add('Pays for a service',c.pay);add('Birthsign',c.birthsign+(c.disposition?' ('+c.disposition+')':''));add(coatLabel(),c.coat);add(T.mouse.detailLabel||'Physical detail',c.detail);
+  ['appearance','quirk','wants','relationship'].forEach(k=>add(cap(k),c[k]));
+  if(c.creature){const k=c.creature;add('Kind',k.kind);add('Variant',k.variant);add('Stats',k.stats);add('Attacks',k.attacks);add('Critical damage',k.crit);add('Special',k.notes);add('Wants',k.wants)}
+  const ks=Object.keys(c.slots);
+  if(ks.length){L.push('','INVENTORY');ks.forEach(k=>L.push(`${(SLOTLABEL[k]+(/body/.test(k)?' '+k.slice(-1):'')).padEnd(9)} ${itemText(c.slots[k])}`));c.extra.forEach(x=>L.push(`Extra     ${itemText(x)} (encumbered)`))}
+  if(c.gritSlots.length){L.push('','GRIT');c.gritSlots.forEach(x=>L.push('- '+itemText(x)))}
+  if(c.followers.trim())L.push('','FOLLOWERS',...c.followers.trim().split('\n'));
+  if(c.notes.trim())L.push('','NOTES',...c.notes.trim().split('\n'));
+  if(!player&&c.kind==='npc'&&c.secret.trim())L.push('','GM SECRET',...c.secret.trim().split('\n'));
+  return L.join('\n');
+}
+$('#txt').onclick=()=>{if(view==='tables')return download(slug(T.title)+'-character-tables.txt',tablesText());const c=cur();if(c)download(`${fileBase(c)}.txt`,charText(c))};
+
+// ---------- PDF (styled sheet and fillable form) ----------
+const lat=s=>String(s).replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,'-').replace(/…/g,'...').replace(/[^\x20-\x7E\xA0-\xFF\n]/g,'?');
+const pe=s=>lat(s).replace(/([\\()])/g,'\\$1');
+const MCV=document.createElement('canvas').getContext('2d');
+const wd=(s,z,b)=>{MCV.font=`${b?'bold ':''}${z}px Helvetica,Arial,sans-serif`;return MCV.measureText(lat(s)).width};
+const wrapT=(s,z,b,mw)=>String(s).split('\n').flatMap(p=>{const o=[];let l='';for(const w of p.split(' ')){const t=l?l+' '+w:w;if(l&&wd(t,z,b)>mw){o.push(l);l=w}else l=t}return o.concat(l)});
+const rgb=h=>[1,3,5].map(i=>(parseInt(h.substr(i,2),16)/255).toFixed(3)).join(' ');
+const f1=n=>(+n).toFixed(1);
+function circlePath(cx,cy,rad){const k=0.5523*rad;return `${f1(cx+rad)} ${f1(cy)} m ${f1(cx+rad)} ${f1(cy+k)} ${f1(cx+k)} ${f1(cy+rad)} ${f1(cx)} ${f1(cy+rad)} c ${f1(cx-k)} ${f1(cy+rad)} ${f1(cx-rad)} ${f1(cy+k)} ${f1(cx-rad)} ${f1(cy)} c ${f1(cx-rad)} ${f1(cy-k)} ${f1(cx-k)} ${f1(cy-rad)} ${f1(cx)} ${f1(cy-rad)} c ${f1(cx+k)} ${f1(cy-rad)} ${f1(cx+rad)} ${f1(cy-k)} ${f1(cx+rad)} ${f1(cy)} c`}
+// A small PDF writer: pages with drawing, plus optional AcroForm text fields and check boxes.
+function PdfDoc(W,H){
+  const objs=[],add=s=>{objs.push(s);return objs.length},reserve=()=>{objs.push(null);return objs.length},set=(id,s)=>{objs[id-1]=s};
+  const CAT=reserve(),PAGES=reserve(),F1=add('<</Type/Font/Subtype/Type1/BaseFont/Helvetica/Encoding/WinAnsiEncoding>>'),F2=add('<</Type/Font/Subtype/Type1/BaseFont/Helvetica-Bold/Encoding/WinAnsiEncoding>>'),ZD=add('<</Type/Font/Subtype/Type1/BaseFont/ZapfDingbats>>');
+  const pages=[],fields=[],names=new Set();let cur=null;
+  const stream=(dict,s)=>add(`<<${dict}/Length ${s.length}>>\nstream\n${s}\nendstream`);
+  const yes={},off={};
+  const boxAP=(w,h,on)=>{const key=w+'x'+h,m=on?yes:off;if(!m[key]){const rad=Math.min(w,h)/2-1;m[key]=stream(`/Type/XObject/Subtype/Form/BBox[0 0 ${f1(w)} ${f1(h)}]`,on?`q 0 g 0 G 1 w ${circlePath(w/2,h/2,rad)} B Q`:`q 0 G 1 w ${circlePath(w/2,h/2,rad)} S Q`)}return m[key]};
+  const D={
+    W,H,
+    page(){cur={ops:[],annots:[],id:reserve()};pages.push(cur)},
+    op(s){cur.ops.push(s)},
+    text(x,y,s,z,b,col){cur.ops.push(`BT /F${b?2:1} ${z} Tf ${col||'0 0 0'} rg ${f1(x)} ${f1(H-y)} Td (${pe(s)}) Tj ET`)},
+    rect(x,y,w,h,fill,stroke,lw){cur.ops.push(`${fill?fill+' rg ':''}${stroke?stroke+' RG '+(lw||0.8)+' w ':''}${f1(x)} ${f1(H-y-h)} ${f1(w)} ${f1(h)} re ${fill&&stroke?'B':fill?'f':'S'}`)},
+    line(x1,y1,x2,y2,stroke,lw){cur.ops.push(`${stroke||'0 0 0'} RG ${lw||0.8} w ${f1(x1)} ${f1(H-y1)} m ${f1(x2)} ${f1(H-y2)} l S`)},
+    dot(cx,cy,rad,on){cur.ops.push(`0 0 0 RG 0.9 w ${on?'0 0 0 rg ':''}${circlePath(cx,H-cy,rad)} ${on?'B':'S'}`)},
+    uniq(n){let k=n.replace(/[^A-Za-z0-9_.]/g,'_')||'field',i=2,b=k;while(names.has(k))k=b+'_'+i++;names.add(k);return k},
+    field(name,x,y,w,h,value,o){
+      o=o||{};const z=o.size||9,multi=!!o.multi,nm=D.uniq(name);
+      const lines=multi?wrapT(value||'',z,0,w-4):[String(value||'')];
+      let ap=`/Tx BMC q 1 1 ${f1(w-2)} ${f1(h-2)} re W n BT /Helv ${z} Tf 0 g ${z+1} TL `;
+      ap+=multi?`2 ${f1(h-z-1)} Td `+lines.map(l=>`(${pe(l)}) Tj T*`).join(' '):`2 ${f1((h-z)/2+1.5)} Td (${pe(lines[0])}) Tj`;
+      ap+=' ET Q EMC';
+      const apId=stream(`/Type/XObject/Subtype/Form/BBox[0 0 ${f1(w)} ${f1(h)}]/Resources<</Font<</Helv ${F1} 0 R>>>>`,ap);
+      const id=add(`<</Type/Annot/Subtype/Widget/FT/Tx/T(${pe(nm)})/TU(${pe(o.label||name)})/V(${pe(value||'')})/DV()/Rect[${f1(x)} ${f1(H-y-h)} ${f1(x+w)} ${f1(H-y)}]/F 4/Ff ${multi?4096:0}/DA(/Helv ${z} Tf 0 g)/MK<</BG[1 1 1]/BC[0.62 0.64 0.6]>>/P ${cur.id} 0 R/AP<</N ${apId} 0 R>>>>`);
+      cur.annots.push(id);fields.push(id);
+    },
+    check(name,cx,cy,rad,on,label){
+      const w=rad*2+2,nm=D.uniq(name),st=on?'/Yes':'/Off';
+      const id=add(`<</Type/Annot/Subtype/Widget/FT/Btn/T(${pe(nm)})/TU(${pe(label||name)})/V${st}/AS${st}/Rect[${f1(cx-w/2)} ${f1(H-cy-w/2)} ${f1(cx+w/2)} ${f1(H-cy+w/2)}]/F 4/DA(/ZaDb 0 Tf 0 g)/MK<</CA(l)>>/P ${cur.id} 0 R/AP<</N<</Yes ${boxAP(w,w,true)} 0 R/Off ${boxAP(w,w,false)} 0 R>>>>>>`);
+      cur.annots.push(id);fields.push(id);
+    },
+    build(){
+      pages.forEach(p=>{const c=p.ops.join('\n'),cid=stream('',c);set(p.id,`<</Type/Page/Parent ${PAGES} 0 R/MediaBox[0 0 ${W} ${H}]/Resources<</Font<</F1 ${F1} 0 R/F2 ${F2} 0 R>>>>/Contents ${cid} 0 R${p.annots.length?`/Annots[${p.annots.map(a=>a+' 0 R').join(' ')}]`:''}>>`)});
+      set(PAGES,`<</Type/Pages/Kids[${pages.map(p=>p.id+' 0 R').join(' ')}]/Count ${pages.length}>>`);
+      set(CAT,`<</Type/Catalog/Pages ${PAGES} 0 R${fields.length?`/AcroForm<</Fields[${fields.map(f=>f+' 0 R').join(' ')}]/DA(/Helv 0 Tf 0 g)/DR<</Font<</Helv ${F1} 0 R/ZaDb ${ZD} 0 R>>>>>>`:''}>>`);
+      let out='%PDF-1.4\n';const off=[];
+      objs.forEach((o,i)=>{off.push(out.length);out+=`${i+1} 0 obj\n${o}\nendobj\n`});
+      const xr=out.length;
+      out+=`xref\n0 ${objs.length+1}\n0000000000 65535 f \n`+off.map(o=>String(o).padStart(10,'0')+' 00000 n \n').join('')+`trailer\n<</Size ${objs.length+1}/Root ${CAT} 0 R>>\nstartxref\n${xr}\n%%EOF`;
+      const u=new Uint8Array(out.length);for(let i=0;i<out.length;i++)u[i]=out.charCodeAt(i)&255;return u;
+    }
+  };
+  return D;
+}
+// One layout drawn two ways: values as text (styled sheet) or as form fields (fillable).
+function sheetPDF(c,form){
+  const W=612,H=792,M=36,CW=W-2*M,D=PdfDoc(W,H),GREY='0.36 0.38 0.35',LINE='0.72 0.74 0.70',accent=c.kind==='pc'?'#4a6fb0':c.role==='creature'?'#9a86b8':'#d9985a';
+  let y;
+  const newPage=()=>{D.page();y=M;D.rect(0,0,8,H,rgb(accent))};
+  const ensure=h=>{if(y+h>H-M){newPage()}};
+  const val=(name,x,yy,w,h,v,o)=>{o=o||{};if(form)D.field(name,x,yy,w,h,String(v==null?'':v),o);else{const z=o.size||10;if(o.multi){wrapT(v||'',z,0,w-4).forEach((l,i)=>{if(yy+z+2+i*(z+2)<=yy+h)D.text(x+2,yy+z+1+i*(z+2),l,z,o.bold)})}else{let s=String(v==null?'':v);while(s.length>1&&wd(s,z,o.bold)>w-4)s=s.slice(0,-1);D.text(x+(o.center?(w-wd(s,z,o.bold))/2:2),yy+(h+z*0.7)/2,s,z,o.bold)}}};
+  const heading=t=>{ensure(40);y+=8;D.text(M,y+12,t,13,1);D.line(M,y+16,M+CW,y+16,'0 0 0',1.2);y+=24};
+  newPage();
+  // title
+  D.text(M,y+6,c.kind==='pc'?`Player ${c.noun||noun()}`:'Non-player character',9,0,GREY);
+  val('name',M,y+10,CW*0.66,26,c.name,{size:form?16:20,bold:1,label:'Name'});
+  D.text(M+CW*0.68,y+22,`Tables: ${T.title||srcName}`,8.5,0,GREY);
+  y+=40;D.text(M,y+4,subtitle(c),10.5,0,GREY);y+=14;
+  // stat boxes
+  const boxes=[['STR','str'],['DEX','dex'],['WIL','wil'],['HP','hp'],['Pips','pips']];
+  if(c.kind==='pc')boxes.push(['Level','level'],['XP','xp'],['Grit','grit']);
+  if(c.armour||c.role==='creature')boxes.push(['Armour','armour']);
+  const gap=6,bw=(CW-gap*(boxes.length-1))/boxes.length,bh=48;
+  boxes.forEach(([l,f],i)=>{
+    const x=M+i*(bw+gap);D.rect(x,y,bw,bh,null,'0 0 0',1.2);D.text(x+5,y+11,l,9.5,1);
+    if(Array.isArray(c[f])){const hw=(bw-14)/2;val(f+'_max',x+4,y+16,hw,22,c[f][0],{size:14,bold:1,center:1,label:l+' max'});D.text(x+4+hw+1.5,y+31,'/',12,0,GREY);val(f+'_current',x+10+hw,y+16,hw,22,c[f][1],{size:14,bold:1,center:1,label:l+' current'});D.text(x+5,y+bh-3,'max / current',6.5,0,GREY)}
+    else val(f,x+4,y+16,bw-8,22,c[f],{size:14,bold:1,center:1,label:l});
+  });
+  y+=bh+8;
+  // details
+  const det=[];
+  if(c.role==='hireling')det.push(['Hireling',c.hireType],['Wage per day',c.wage]);
+  if(c.kind==='pc')det.push(['Background',c.background]);
+  if(c.kind==='npc'&&c.role!=='creature'&&c.role!=='hireling')det.push(['Social position',c.social],['Pays for a service',c.pay]);
+  if(c.role!=='creature')det.push(['Birthsign',c.birthsign+(c.disposition?' ('+c.disposition+')':'')],[coatLabel(),c.coat],[T.mouse.detailLabel||'Physical detail',c.detail]);
+  if(c.kind==='npc'&&c.role!=='creature')det.push(['Appearance',c.appearance],['Quirk',c.quirk],['Wants',c.wants],['Relationship',c.relationship]);
+  if(c.creature){const k=c.creature;det.push(['Kind',k.kind],['Variant',k.variant],['Stats',k.stats],['Attacks',k.attacks],['Critical damage',k.crit],['Special',k.notes],['Wants',k.wants])}
+  if(det.length){
+    heading('Details');
+    const colW=CW/2-8,lw=Math.min(130,Math.max(...det.map(d=>wd(d[0],9,1)))+10);let col=0;
+    det.forEach(([l,v])=>{
+      const long=!!c.creature||wd(String(v||''),9.5)>colW-lw-6;
+      if(long&&col===1){y+=20;col=0}
+      const x=long?M:M+col*(colW+16),w=long?CW:colW;
+      ensure(20);D.text(x,y+12,l,9,1);val('detail_'+l,x+lw,y,w-lw,16,v,{size:9.5,label:l});D.line(x+lw,y+16,x+w,y+16,LINE,0.6);
+      if(long||col===1){y+=20;col=0}else col=1;
+    });
+    if(col===1)y+=20;
+  }
+  // inventory
+  const ks=Object.keys(c.slots);
+  if(ks.length){
+    heading('Inventory');
+    const hir=c.role==='hireling',cols=hir?['main','body1','pack1']:['main','body1','pack1','pack2','pack3'],cols2=hir?['off','body2','pack2']:['off','body2','pack4','pack5','pack6'];
+    const n=cols.length,sg=6,sw=(CW-sg*(n-1))/n,sh=84;
+    [cols,cols2].forEach((row,ri)=>{ensure(sh+8);row.forEach((k,ci)=>{
+      const x=M+ci*(sw+sg),it=c.slots[k],lab=SLOTLABEL[k];
+      D.rect(x,y,sw,sh,it&&it.cond?rgb('#fbeef0'):it&&it.cont?'0.94 0.94 0.92':null,ci<2?'0 0 0':'0.45 0.47 0.44',ci<2?1.2:0.8);
+      D.text(x+4,y+10,lab,7.5,1,GREY);
+      const nm=it?(it.cont?`(${it.name})`:it.name):'';
+      val('slot_'+k,x+3,y+13,sw-6,40,nm,{multi:1,size:8.5,label:lab+' item'});
+      if(it&&it.cond){wrapT((it.effect?it.effect+'. ':'')+'Clear: '+it.clear,6.5,0,sw-8).slice(0,3).forEach((l,j)=>D.text(x+4,y+60+j*7.5,l,6.5,0,'0.55 0.18 0.23'))}
+      else if(!(it&&it.cont)){const nd=it?it.dots:3;for(let d=0;d<nd;d++){const cx=x+10+d*13,cy=y+sh-10,on=!!it&&d<it.used;if(form)D.check(`usage_${k}_${d+1}`,cx,cy,4.5,on,`${lab} usage ${d+1}`);else D.dot(cx,cy,4.5,on)}}
+    });y+=sh+6});
+    if(c.extra.length){ensure(16);D.text(M,y+10,'Encumbered, also carrying: '+c.extra.map(x=>x.name).join(', '),9,1,'0.55 0.18 0.23');y+=16}
+    if(c.kind==='pc'||+c.grit>0){
+      ensure(50);y+=4;D.text(M,y+10,`Grit (${+c.grit||0}): conditions placed here are ignored until cleared`,9,1);y+=14;
+      const g=Math.max(+c.grit||0,c.gritSlots.length,1),gw=Math.min(130,(CW-6*(g-1))/g);
+      for(let i=0;i<g;i++){const x=M+i*(gw+6),it=c.gritSlots[i];D.rect(x,y,gw,30,i<(+c.grit||0)?null:'0.92 0.92 0.9','0.45 0.47 0.44',0.8);val('grit_'+(i+1),x+2,y+2,gw-4,26,it?`${it.name} (clear: ${it.clear})`:'',{multi:1,size:8,label:'Grit '+(i+1)})}
+      y+=36;
+    }
+  }
+  // free text
+  const block=(title,name,v,lines)=>{heading(title);const h=Math.max(lines*13,form?lines*13:wrapT(v||'',9.5,0,CW-4).length*12+6);ensure(h);if(form)D.rect(M,y,CW,h,null,LINE,0.6);val(name,M,y,CW,h,v,{multi:1,size:9.5,label:title});y+=h+4};
+  block(c.kind==='pc'?'Hirelings and followers':'Followers','followers',c.followers,3);
+  block('Notes','notes',c.notes,form?8:3);
+  if(c.kind==='npc'&&!form&&c.secret.trim())block('GM secret','secret',c.secret,3);
+  if(c.kind==='npc'&&form)block('GM secret','secret',c.secret,3);
+  return D.build();
+}
+$('#pdf').onclick=()=>{const c=cur();if(c)download(`${fileBase(c)}.pdf`,sheetPDF(c,false),'application/pdf')};
+$('#formpdf').onclick=()=>{const c=cur();if(c)download(`${fileBase(c)}-fillable.pdf`,sheetPDF(c,true),'application/pdf')};
+
+// ---------- tables view ----------
+let TB=[],ROLLS=[];
+function L1(title,arr,opt){const n=arr.length;return Object.assign({title,dice:dn(n),head:[dn(n),(opt&&opt.col)||'Result'],rows:arr.map((v,i)=>[String(i+1),v]),roll(){const k=rr(n);return {label:`${dn(n)}: ${k}`,hits:[[k-1]],text:arr[k-1]}}},opt||{})}
+function RW(title,rows,head,opt){const n=rows.length;return Object.assign({title,dice:dn(n),head:[dn(n),...head],rows:rows.map((v,i)=>[String(i+1),...v]),roll(){const k=rr(n);return {label:`${dn(n)}: ${k}`,hits:[[k-1]],text:rows[k-1].join(', ')}}},opt||{})}
+function MC(title,cols,head,opt){const n=Math.max(...cols.map(c=>c.length));return Object.assign({title,dice:dn(n),wide:true,head:[dn(n),...head],rows:Array.from({length:n},(_,i)=>[String(i+1),...cols.map(c=>c[i]||'')]),roll(){const ks=cols.map(c=>rr(c.length));return {label:`${dn(n)}: ${ks.join(', ')}`,hits:ks.map((k,ci)=>[k-1,ci+1]),text:ks.map((k,ci)=>cols[ci][k-1]).join(' / ')}}},opt||{})}
+function buildTables(){
+  const M=T.mouse,N=T.npc,Hh=T.hirelings,bgs=[...M.backgrounds].sort((a,b)=>a[0]-b[0]||a[1]-b[1]);
+  const d66=i=>`${Math.floor(i/6)+1}${i%6+1}`;
+  const make=[
+    {title:'Attributes',dice:'3d6',note:'For STR, DEX and WIL in order, roll 3d6 and keep the two highest dice. You may then swap any two attributes.',head:['Attribute','Tests'],rows:[['STR','Physical strength and resilience'],['DEX','Speed and agility'],['WIL','Strength of will and charisma']],roll(){const o=['STR','DEX','WIL'].map(a=>{const d=[rr(6),rr(6),rr(6)],s=[...d].sort((x,y)=>y-x);return `${a} ${d.join(',')} = ${s[0]+s[1]}`});return {label:'3d6 keep 2, three times',hits:[],text:o.join('; ')}}},
+    {title:'Backgrounds',dice:'d6 HP x d6 pips',wide:true,note:'Roll d6 for Hit Protection and d6 for starting pips, then read across. If your highest attribute is 9 or less, roll again and take item A or B; if 7 or less, take both.',head:['HP','Pips','Background','Item A','Item B'],rows:bgs.map(b=>[String(b[0]),String(b[1]),b[2],b[3],b[4]]),roll(){const h=rr(6),p=rr(6),i=bgs.findIndex(b=>b[0]===h&&b[1]===p);return {label:`HP d6: ${h}, pips d6: ${p}`,hits:[[i]],text:`${bgs[i][2]} (${bgs[i][3]}; ${bgs[i][4]})`}}},
+    RW('Birthsign',N.birthsign,['Sign','Disposition']),
+    MC((M.coatLabel||['Coat colour','Coat pattern']).join(' and '),M.coat,M.coatLabel||['Colour','Pattern'],{wide:false}),
+    {title:M.detailLabel||'Physical detail',dice:'d66',wide:true,nw:[2,4],head:['d66','Detail','d66','Detail'],rows:Array.from({length:18},(_,i)=>[d66(i),M.details[i]||'',d66(i+18),M.details[i+18]||'']),roll(){const a=rr(6),b=rr(6),i=(a-1)*6+b-1;return {label:`d66: ${a}${b}`,hits:[[i%18,i<18?1:3]],text:M.details[i]||''}}},
+    {title:'Starting equipment',dice:'',head:['Item'],rows:[...M.starting.map(x=>[x]),['Two items from the background'],['A weapon of your choice']],roll:null}
+  ];
+  const kit=[
+    {title:'Weapons',dice:'',wide:true,head:['Class','Damage','Wielded','Cost','Examples','Notes'],rows:M.weapons.map(w=>[w.class,w.damage,w.hands||'',w.cost||'',w.examples.join(', '),w.note||'']),roll(){const w=pick(M.weapons);return {label:'random weapon',hits:[[M.weapons.indexOf(w)]],text:`${pick(w.examples)} (${w.class}, ${w.damage})`}}},
+    {title:'Armour',dice:'',head:['Armour','Defence','Slots','Cost'],rows:M.armour.map(a=>[a.class,String(a.def),a.where||'',a.cost||'']),roll:null},
+    {title:'Conditions',dice:'',head:['Condition','Effect','Clear'],rows:M.conditions.map(x=>[x.name,x.effect||'-',x.clear]),roll:null},
+    {title:'Advancement',dice:'',note:M.levelNote||'',head:['Level','Hit Dice','Grit','XP'],rows:M.levels.map(l=>[String(l.level),l.hd,String(l.grit),String(l.xp)]),roll:null},
+    ...M.gear.map(g=>({title:g.group,dice:'',note:g.note||'',head:['Item','Cost'],rows:g.items.map(x=>[x[0],x[1]]),roll:null})),
+    {title:'Carried bric-a-brac',dice:`d${M.bricabrac.length} x d8`,wide:true,head:[dn(M.bricabrac.length),'d8','Item'],rows:M.bricabrac.flatMap((g,gi)=>g.map((x,xi)=>[xi?'':String(gi+1),g.length===1?'-':String(xi+1),x])),
+      roll(){const gi=rr(M.bricabrac.length)-1,g=M.bricabrac[gi],xi=g.length===1?0:rr(g.length)-1;let row=0;for(let k=0;k<gi;k++)row+=M.bricabrac[k].length;return {label:`d${M.bricabrac.length}: ${gi+1}${g.length>1?`, d8: ${xi+1}`:''}`,hits:[[row+xi]],text:g[xi]}}}
+  ];
+  const bn=N.birthnames,half=Math.ceil(bn.length/2);
+  const npc=[
+    RW('Social position',N.social,['Position','Payment for service']),
+    MC('Non-player mice',[N.appearance,N.quirk,N.wants,N.relationship],['Appearance','Quirk','Wants','Relationship'],{note:'Roll once per column.'}),
+    {title:'Birthnames',dice:'d100',wide:true,nw:[2],head:['d100','Birthname','d100','Birthname'],rows:Array.from({length:half},(_,i)=>[String(i+1),bn[i],bn[i+half]?String(i+half+1):'',bn[i+half]||'']),roll(){const k=rr(bn.length);return {label:`d100: ${k}`,hits:[[(k-1)%half,k<=half?1:3]],text:bn[k-1]}}},
+    L1('Matrinames',N.matrinames),
+    {title:'Hirelings',dice:dn(Hh.types.length),note:(Hh.note||'')+` Typical hirelings: ${Object.entries(Hh.stats).map(([k,v])=>`${v} ${k.toUpperCase()==='HP'?'hp':k.toUpperCase()}`).join(', ')}; ${Hh.slots||6} inventory slots.`,head:[dn(Hh.types.length),'Hireling','Number','Wages/day'],rows:Hh.types.map((t,i)=>[String(i+1),t[0],t[1],t[2]]),roll(){const k=rr(Hh.types.length);const t=Hh.types[k-1];return {label:`${dn(Hh.types.length)}: ${k}`,hits:[[k-1]],text:`${t[0]}: ${t[1]} looking for work, ${t[2]} a day`}}},
+    {title:'Creatures',dice:'',wide:true,head:['Creature','Stats','Attacks','Wants'],rows:T.creatures.map(c=>[c.name,c.stats,c.attacks||'',c.wants||'']),roll:null}
+  ];
+  return [{title:`Make a ${noun()}`,intro:'Attributes, Hit Protection, pips, background and details.',tables:make},{title:'Equipment',intro:'Weapons, armour, conditions, advancement, prices and what a mouse carries.',tables:kit},{title:'Non-player characters',intro:'Who they are, what they want, and who will work for pay.',tables:npc}];
+}
+function tblHTML(t,si,ti){const nw=t.nw||[];return `<section class="tbl${t.wide?' wide':''}" data-t="${si}-${ti}"><h3><b>${esc(t.title)}</b><span class="hr"><span>${esc(t.dice)}</span>${t.roll?`<button class="rollbtn" data-roll="${si}-${ti}" aria-label="Roll ${esc(t.title)}">Roll</button>`:''}</span></h3>${t.note?`<p class="note">${esc(t.note)}</p>`:''}<div class="res" role="status"></div><table><thead><tr>${t.head.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${t.rows.map(r=>`<tr>${r.map((c,i)=>`<td${nw.includes(i)?' class="nw"':''}>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></section>`}
+function renderTables(){TB=buildTables();ROLLS=[];$('#tablesview').innerHTML=`<aside class="hist" id="rollhist" hidden><header><b>Recent rolls</b><button class="alt sm" id="clearrolls">Clear</button></header><ol id="rolllist"></ol></aside>`+TB.map((s,si)=>`<h2>${esc(s.title)}</h2><p class="note">${esc(s.intro)}</p><div class="tgrid">${s.tables.map((t,ti)=>tblHTML(t,si,ti)).join('')}</div>`).join('')}
+function showRolls(){$('#rollhist').hidden=!ROLLS.length;$('#rolllist').innerHTML=ROLLS.map(x=>`<li><b>${esc(x.t)}</b> <span>${esc(x.label)}</span> &rarr; ${esc(x.text)}</li>`).join('')}
+function doRoll(key){
+  const [si,ti]=key.split('-').map(Number),t=TB[si]&&TB[si].tables[ti];if(!t||!t.roll)return;rng=Math.random;
+  const res=t.roll(),el=document.querySelector(`.tbl[data-t="${key}"]`);
+  el.querySelectorAll('.hit').forEach(x=>x.classList.remove('hit'));const trs=el.querySelectorAll('tbody tr');
+  res.hits.forEach(([row,col])=>{const tr=trs[row];if(!tr)return;if(col===undefined)tr.classList.add('hit');else if(tr.children[col])tr.children[col].classList.add('hit')});
+  el.querySelector('.res').innerHTML=`<b>${esc(res.label)}</b> &rarr; ${esc(res.text)}`;
+  ROLLS.unshift({t:t.title,label:res.label,text:res.text});ROLLS=ROLLS.slice(0,10);showRolls();
+}
+$('#tablesview').addEventListener('click',e=>{const b=e.target.closest('[data-roll]');if(b){doRoll(b.dataset.roll);return}if(e.target.closest('#clearrolls')){ROLLS=[];showRolls()}});
+function tablesText(){
+  const L=[`${(T.title||'Mausritter').toUpperCase()} - CHARACTER TABLES`,'Tables: '+srcName,''];
+  TB.forEach(s=>{L.push(s.title.toUpperCase(),'='.repeat(s.title.length),s.intro,'');s.tables.forEach(t=>{const h=t.dice?`${t.title} (${t.dice})`:t.title;L.push(h,'-'.repeat(h.length));if(t.note)L.push(t.note);const rows=[t.head,...t.rows],w=t.head.map((_,i)=>Math.max(...rows.map(r=>String(r[i]).length)));rows.forEach((r,ri)=>{L.push(r.map((c,i)=>i===r.length-1?String(c):String(c).padEnd(w[i])).join('  ').trimEnd());if(ri===0)L.push(w.map(k=>'-'.repeat(k)).join('  '))});L.push('')})});
+  return L.join('\n');
+}
+
+// ---------- view, storage, start ----------
+function setView(v){view=v;document.body.classList.toggle('tab-tables',v==='tables');$('#tab-chars').setAttribute('aria-selected',String(v==='chars'));$('#tab-tables').setAttribute('aria-selected',String(v==='tables'));$('#work').hidden=v!=='chars';$('#tablesview').hidden=v!=='tables';$('#txt').textContent=v==='tables'?'Download tables text':'Download text';if(v==='tables'&&!TB.length)renderTables()}
+let sT=null;
+function saveRoster(){clearTimeout(sT);sT=setTimeout(()=>{try{localStorage.setItem('mousegen.roster',JSON.stringify({cur:curIdx,list:ROSTER}))}catch(e){}},400)}
+function loadRoster(){try{const d=JSON.parse(localStorage.getItem('mousegen.roster')||'null');if(d&&Array.isArray(d.list)){ROSTER=d.list.map(x=>{try{const c=normChar(x);c.kind=x.kind==='pc'?'pc':'npc';if(c.kind==='pc')c.role='pc';return c}catch(e){return null}}).filter(Boolean);curIdx=Math.min(ROSTER.length-1,Math.max(-1,+d.cur||0))}}catch(e){}}
+$('#tab-chars').onclick=()=>setView('chars');$('#tab-tables').onclick=()=>setView('tables');
+$('#newpc').onclick=()=>generate('pc');$('#newnpc').onclick=()=>generate($('#npctype').value);$('#seed').onchange=()=>{if($('#seed').value.trim())generate('pc')};
+const TL=TablesLib.create({
+  listAll:true,
+  defaults:['hosted:hexcrawl-tables.json','server:hexcrawl-tables.json','server:mausritter-tables.json'],
+  parse:parseTables,
+  onUse(t,e,regen){T=t;srcName=e.name;usingBuiltinChars=!t._ownChars;TB=[];if(view==='tables')renderTables();renderAll()},
+  guard:()=>true
+});
+(async()=>{loadRoster();await TL.load();if(!T){T=parseTables(TablesLib.builtinJson())}renderAll();setView('chars')})();
+</script>
+</body>
+</html>

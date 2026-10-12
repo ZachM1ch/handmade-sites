@@ -69,6 +69,7 @@ body.tab-tables .mapctl{display:none!important}
 .tbl tbody tr:nth-child(even) td{background:rgba(0,0,0,.05)}
 .tbl td:first-child,.tbl td.nw{width:1%;white-space:nowrap;font-weight:700}
 @media print{.tabs{display:none}}
+.toprow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}.home{font-size:14px;color:var(--ink)}body.viewer .home{display:none}
 #tbbar{margin-bottom:8px}#tbsel{max-width:70vw}#tbmsg{font-size:13px;color:var(--mute)}
 .hist{position:sticky;top:0;z-index:5;background:var(--card);border:1.5px solid var(--ink);padding:6px 12px;margin:0 0 14px;box-shadow:0 3px 8px rgba(0,0,0,.12)}
 .hist[hidden]{display:none}
@@ -83,7 +84,7 @@ body.tab-tables .mapctl{display:none!important}
 @media print{.hist,.rollbtn,.res{display:none}}
 body.tab-tables .genctl,body.tab-players .genctl{display:none!important}
 body.tab-players #txt{display:none}
-body.viewer .tabs,body.viewer #tbbar,body.viewer .genctl,body.viewer #save,body.viewer #saveplayer,body.viewer #txt,body.viewer #mapview,body.viewer #tablesview{display:none!important}
+body.viewer .tabs,body.viewer #tbbar,body.viewer .genctl,body.viewer #save,body.viewer #saveplayer,body.viewer #importhex,body.viewer #txt,body.viewer #mapview,body.viewer #tablesview{display:none!important}
 #playerview[hidden]{display:none}
 #pbar{margin-bottom:6px}#pcount{color:var(--mute);font-size:14px}
 #playerview .note{margin:0 0 12px;color:var(--mute);font-size:14px}
@@ -102,11 +103,17 @@ body.viewer .tabs,body.viewer #tbbar,body.viewer .genctl,body.viewer #save,body.
 #plearn{max-width:780px;margin:18px auto 0}#plearn h3{font:700 18px Georgia,serif;margin:0 0 4px}
 #plearn .pl{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c,#999);padding:8px 12px;margin:8px 0}#plearn .pl p{margin:4px 0 0;white-space:pre-wrap}
 @media print{#sbar,#draftbar,.bdg,.nt summary{display:none}.nt{border:0}.nt textarea{border:0;resize:none}}
+.mapname{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-weight:700}.mapname input{flex:1;max-width:460px;font:700 18px Georgia,serif;padding:6px 10px;border:1.5px solid var(--ink);background:#fff}
+@media print{.mapname input{border:0;padding:0}}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:30;background:var(--ink);color:#fff;padding:10px 16px;max-width:90vw}
+#hexdlg{border:2px solid var(--ink);background:var(--card);color:var(--ink);padding:16px 18px;max-width:min(520px,92vw)}#hexdlg::backdrop{background:rgba(0,0,0,.4)}
+#hexdlg h3{margin:0 0 8px;font:700 20px Georgia,serif}#hexdlg p{margin:6px 0}#hexdlg select{max-width:100%;font:inherit;padding:4px}
+#hd-why{color:#8a5a00}#hd-warn{color:#a02020;font-size:14px}
 </style>
 </head>
 <body>
 <header class="top">
-  <h1 id="title">Hexcrawl Generator</h1>
+  <div class="toprow"><h1 id="title">Hexcrawl Generator</h1><a class="home" href="index.html">All tools</a></div>
   <p id="src"></p>
   <nav class="tabs" role="tablist" aria-label="View">
     <button role="tab" id="tab-map" aria-selected="true">Map</button>
@@ -128,6 +135,7 @@ body.viewer .tabs,body.viewer #tbbar,body.viewer .genctl,body.viewer #save,body.
     <button class="alt mapctl" id="save">Save map</button>
     <button class="alt mapctl" id="saveplayer" title="A separate file with only what players may see">Save player map</button>
     <label class="btn mapctl">Load map<input id="mapfile" type="file" hidden></label>
+    <label class="btn mapctl" id="importhex" title="Bring a single hex from a .maushex file into this map">Import hex<input id="hexfile" type="file" accept=".maushex,application/json" hidden></label>
     <label class="mapctl genctl"><input id="centre" type="checkbox" checked> Friendly settlement in centre hex</label>
   </div>
   <div class="bar mapctl genctl" style="margin-top:8px">
@@ -140,10 +148,11 @@ body.viewer .tabs,body.viewer #tbbar,body.viewer .genctl,body.viewer #save,body.
 </header>
 <main>
   <div id="mapview">
+  <label class="mapname">Map name <input id="mapname" type="text" maxlength="80" placeholder="Name this hexcrawl" aria-label="Map name"></label>
   <div id="hook"></div>
   <svg id="map" role="img" aria-label="Hex map"></svg>
   <div id="legend"></div>
-  <p id="hint">Right-click or long-press a hex to pin, lock or reroll it. A pinned hex (star) is one the players know about. Each card has collapsible Description, Session notes and Players learned sections; the small icons in a card header show which ones have text.</p>
+  <p id="hint">Right-click or long-press a hex to pin, lock, reroll, or export it as a .maushex file. A pinned hex (star) is one the players know about. Each card has collapsible Description, Session notes and Players learned sections; the small icons in a card header show which ones have text.</p>
   <div class="bar" id="draftbar" hidden><span id="draftmsg"></span><button id="draftrestore">Restore</button><button class="alt" id="draftdrop">Discard</button></div>
   <div class="bar" id="sbar">
     <input id="search" type="search" placeholder="Search names, landmarks and notes (e.g. golden apple)" aria-label="Search hexes">
@@ -166,7 +175,15 @@ body.viewer .tabs,body.viewer #tbbar,body.viewer .genctl,body.viewer #save,body.
   <div id="tablesview" hidden></div>
 </main>
 <div id="ctx" role="menu" hidden></div>
-<script id="default-tables" type="application/json">{"title": "Mouse Hexcrawl", "map": {"radius": 2, "centre": 1}, "hexType": [{"min": 1, "max": 2, "name": "Countryside", "key": "countryside", "color": "#cfc27a", "settlementWeight": 1.4}, {"min": 3, "max": 4, "name": "Forest", "key": "forest", "color": "#76a06f", "settlementWeight": 1.0}, {"min": 5, "max": 5, "name": "River", "key": "river", "color": "#80aac6", "settlementWeight": 1.2}, {"min": 6, "max": 6, "name": "Human town", "key": "human_town", "color": "#ada4ac", "settlementWeight": 0.6}], "legend": {"centre": {"label": "Centre settlement", "color": "#d9985a"}, "settlement": "House icon: settlement"}, "generation": {"clusterStrength": 3, "settlementNear": {"river": 1.5}}, "landmarks": {"countryside": ["Anthill", "Beech, lightning split", "Bone-white tree", "Cow skeleton", "Field of flowers", "Field of wheat", "Hedge row", "Hollow tree stump", "Huge flat rock", "Lily-lined pond", "Massive fallen tree", "Old craggy oak", "Old farmhouse", "Quiet dirt road", "Rabbit warren", "Sparrow nest", "Stand of pine trees", "Steep hill", "Stone wall", "Tangle of fig roots"], "forest": ["Abandoned shack", "Bright clearing", "Cascading waterfalls", "Cliff face", "Cold, fresh spring", "Dense underbrush", "Face in ancient oak", "Fox hole", "Grove of ferns", "Hollow tree stump", "Huge pine tree", "Human walking track", "Human-made clearing", "Meandering brook", "Overgrown ruins", "Ring of stones", "Rocky outcropping", "Sunken hollow", "Tangle of roots", "Termite-riddled tree"], "river": ["Canal lock", "Converging tributaries", "Draping willow", "Eroded riverbank", "Fallen tree crossing", "High waterfall", "Huge boulder", "Huge concrete dam", "Isolated island", "Muddy flats", "Rocky rapids", "Row of dead trees", "Silty dam", "Stepping-stones", "Stone bridge", "Stony shallows", "Submerged trash", "Sunken barge", "Twisted roots", "Wooden bridge"], "human_town": ["Abandoned car", "Apartment balcony", "Blackberry hedge", "Busy road", "Drainpipe outlet", "Dumped furniture", "Greenhouse", "Mouse ruins", "Newly built house", "Overgrown garden bed", "Pigeon nest", "Pile of trash", "Rocky riverbed", "Shopping trolley", "Stagnant pond", "Steel bridge", "Trash-filled skip", "Tree-lined footpath", "Underground car park", "Woodshed"]}, "details": [{"settlement": true, "text": "Mouse settlement"}, {"entries": [["Small mouse farm", "What threatens their crops?"], ["Noblemouse's castle", "What does it defend against?"], ["Friendly mouse roadhouse", "What is in the basement?"], ["Mouse hunting lodge", "What is their quarry?"], ["Mining outpost", "What have they uncovered?"], ["Mouse hermit's hut", "Why do they shun society?"], ["Natural caves", "What is living here?"], ["Hedge-knight's tower", "What is their quest?"]]}, {"entries": [["Songbird's nest", "What sad tales do they sing of?"], ["Tribe of huge, peaceful beasts", "What do they fear?"], ["Rat bandit hideout", "Who do they prey on?"], ["Crow coven's spire", "What spells do they caw?"], ["Hive of insects", "What do they hunger for?"], ["Den of a great predator", "What treasure do they guard?"], ["Frog fortress", "What lies hidden in the dungeon?"], ["Mouse wizard's tower", "What spell is almost finished?"]]}, {"entries": [["Dangerous natural feature", "How can it be avoided?"], ["Lonely shrine", "Who maintains it? What do they worship?"], ["Noblemouse's manor", "Why was it abandoned?"], ["Abandoned settlement", "What clues did they leave?"], ["Ruined watchtower", "What did it guard from?"], ["Natural feature, peaceful and safe", "Who gathers here?"], ["Natural feature, out of place", "How did it form?"], ["Rickety bridge", "What does it cross over?"]]}, {"entries": [["Ancient bat cult temple", "What was summoned?"], ["Faerie ring", "What business do the faeries have here?"], ["Beetle graveyard", "What do the ghosts want?"], ["Mouse witch's hut", "What does she brew?"], ["Small, deep pond", "What is at the bottom?"], ["Out-of-season plantlife", "Why are they growing here?"], ["Owl sorcerer's nest", "What are they searching for?"], ["Strange magical anomaly", "Why is it spreading?"]]}, {"entries": [["Crashed Lilliputian airship", "How can it be repaired?"], ["Humming stone", "What happens when touched?"], ["Completely lifeless", "What disaster has occurred?"], ["Regularly used by humans", "What do they do here?"], ["Damaged by humans", "What have they done?"], ["Ancient ruins of a past civilisation", "Who built this?"], ["Cat lord's hunting ground", "What trophies remain?"], ["Repurposed human construction", "How is it used?"]]}], "hooks": ["Searching for a lost family member", "Investigating on orders of a noblemouse", "Mouse wizard requires a certain spell component", "Site is lair of a creature harassing a settlement", "Following an inherited treasure map", "Seeking shelter from a terrible storm"], "settlement": {"size": [{"name": "Farm/manor", "note": "1-3 families", "features": 1, "industry": 1, "tavern": false}, {"name": "Crossroads", "note": "3-5 families", "features": 1, "industry": 1, "tavern": false}, {"name": "Hamlet", "note": "50-150 mice", "features": 1, "industry": 1, "tavern": true}, {"name": "Village", "note": "150-300 mice", "features": 1, "industry": 1, "tavern": true}, {"name": "Town", "note": "300-1000 mice", "features": 1, "industry": 2, "tavern": true}, {"name": "City", "note": "1000+ mice", "features": 2, "industry": 2, "tavern": true}], "governance": [{"min": 2, "max": 3, "text": "Guided by village elders"}, {"min": 4, "max": 5, "text": "Administered by a knight or lower-caste lord"}, {"min": 6, "max": 7, "text": "Organised by a guild committee"}, {"min": 8, "max": 9, "text": "Free settlement, governed by council of burghermice"}, {"min": 10, "max": 11, "text": "House of an upper caste noblemouse"}, {"min": 12, "max": 12, "text": "Seat of baronial power"}], "inhabitants": ["Shave elaborate patterns in their fur", "Intoxicated by strange plants", "Wary of doing business with outsiders", "Curious for news from afar", "Believe grooming their fur is bad luck", "Wear finely embroidered clothes", "Brew honey-mead, flavoured with pungent herbs", "Cover their faces with long hoods", "Impoverished by a cat lord's tithes", "Ceremonially crop their tails", "Brave hunters of large beasts", "All descended from single matriarch", "Bake delicious berry pies", "Lab escapees, naive about the world", "Spend their days lazing by a stream", "Long-standing blood feud with another settlement", "Dig grand tunnels, overseen by the guild", "Wear large, wide-brimmed hats", "Have laws and customs confusing to outsiders", "On friendly terms with a predator"], "features": ["Maze of defensive, trap-filled tunnels", "Exceedingly comfortable, well-appointed inn", "Shrine carved of black wood", "Meditative mushroom garden", "Cow skull, repurposed as a guildhouse", "Mess of closely packed shanties", "Neat rows of hanging wooden houses", "Ornate gate, guarded by statues", "Secret bat cult temple", "Beetle racing rink", "Storehouse, stocked with preserves", "Hidden riverboat dock", "Crumbling marble palace, built by ancient mice", "Scavenged human machine, working", "Wooden bridge connects the settlement", "Unnervingly tall, twisting tower", "Beautiful flower garden", "Pigeon rider's roost", "Overgrown statue of an ancient hero", "Spiral stairwell, leading deep underground"], "industry": ["Farmers, tending to towering crops", "Woodcutters, with saws and harnesses", "Rough and scarred fishermice, with nets and rafts", "Dark and musty mushroom farm", "Grains drying on every flat surface", "Pungent cheese, cured for years", "Gardens of rare herbs. Drying racks are guarded", "Hive of bees and their veiled keepers", "Merchants and traders, often in need of guards", "Stonemasons, working a nearby quarry", "Flour mill, driven by a large water-wheel", "Deep mine for iron, silver or tin", "Keep silkworms and weave fine cloth", "Expert explorers of caves and tunnels", "Kiln-fired pottery, glazed in cheerful colours", "Wool mill, draped in bright cloth", "Excellent school, rowdy pupils", "Bustling, well-stocked market", "Smelly scavenged trash pile, carefully picked over", "Beautiful furniture of carved and polished wood"], "events": ["Disaster, everyone packing to leave", "Wedding, streets bedecked in flowers", "Preparing for grand seasonal feast", "An illness has struck", "Storehouse has been plundered by insects", "Market day, farmers flock to the settlement", "Mice are at each other's throats", "Warband forming to defeat a beast", "Several children have gone missing", "Noblemouse makes a frivolous demand", "Traveling theatre troupe arrives", "Funeral, streets thick with smoke", "Conman whips up an irrational scheme", "Pet beetle gone mad, attacking mice", "Faerie emissary with an impossible request", "Strangely quick-growing plant nearby", "Valuable heirloom has been stolen", "Cat lord demands a heavy tithe", "Coming of age ceremony for the young mice", "Wizard tower arrives on tortoise-back"], "nameStart": [["Oaks", "Berry", "Willow", "Stump", "Pine", "Moon", "Green", "Black", "Stone", "Hill", "Fig", "Apple"], ["Swamp", "Owl", "Fox", "Acorn", "Copper", "Robber", "Colby", "Drain", "Rose", "Thistle", "Friend", "Trunk"]], "nameEnd": [["thorpe", "ville", "mill", "dale", "grove", "town", "vale", "seed", "ashe", "bush", "stitch", "shine"], ["stand", "hill", "tower", "farm", "bridge", "gate", "creek", "pond", "nest", "ford", "grave", "burn"]], "tavernA": ["White", "Green", "Black", "Red", "Silver", "Crooked", "Friendly", "Hidden", "Wiley", "Glass", "Thorny", "Broken"], "tavernB": ["Beetle", "Fox", "Wedge", "Kernel", "Rat", "Cheese", "Eagle", "Worm", "Bee", "Lantern", "Rose", "Knight"], "meals": ["Spiced baked carrot", "Boiled worm broth", "Blackberry pie", "Pungent aged cheese", "Barley porridge", "Thick river-fish steak", "Baked apple", "Fried, crumbed insect legs", "Fresh buttered bread", "Scavenged candy", "Honey-roasted seeds", "Mushroom stew"]}}</script>
+<div id="toast" role="status" hidden></div>
+<dialog id="hexdlg"><form method="dialog">
+  <h3>Import hex</h3>
+  <p id="hd-info"></p><p id="hd-why"></p>
+  <label>Import into hex <select id="hd-target"></select></label>
+  <p id="hd-warn"></p>
+  <div class="act"><button value="ok" id="hd-ok">Import</button><button value="cancel" class="alt">Cancel</button></div>
+</form></dialog>
+<script src="tables-lib.js"></script>
 <script>
 const $=s=>document.querySelector(s);
 let rng=Math.random;
@@ -269,7 +286,7 @@ function generate(){
   }else sett=new Set(pickN(cand,need));
   state={grid,hook:pick(T.hooks),hexes:grid.map(g=>keep.get(g.n)||genHex(g.n,cenFree&&g.n===c,sett.has(g.n),types&&types.get(g.n)))};
   $('#seed').value=keep.size?'':`${R}.${lo}.${hi}.${cen?1:0}.${cl?1:0}${te?1:0}.${tok}`;
-  $('#title').textContent=T.title||'Hexcrawl Generator';
+  setHead();
   $('#src').textContent='Tables: '+srcName;
   render();
 }
@@ -395,7 +412,7 @@ function exportSVG(){
     if(k.known)o+=starSVG(x-16,y-22);
   });
   const items=[...legendItems().map(([n,k])=>({n,c:COL[k]||'#dddddd'})),{n:legendNote(),c:null},{n:'Star: pinned, players know this place',c:null}];
-  return composeSVG(g,o,items,$('#seed').value.trim(),T.title||'Hexcrawl');
+  return composeSVG(g,o,items,$('#seed').value.trim(),mapTitle());
 }
 function svgToPNG(parts,name){
   const {svg,W,H}=parts,sc=Math.max(2,Math.min(5,2200/W)),img=new Image();
@@ -407,10 +424,11 @@ function svgToPNG(parts,name){
   img.onerror=()=>alert('The browser could not draw the map image.');
   img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
-const exportPNG=()=>svgToPNG(exportSVG(),slug()+'-map.png');
+const exportPNG=()=>svgToPNG(exportSVG(),mapSlug()+'-map.png');
 function render(){
   closeMenu();
   $('#hook').innerHTML=`<b>Starting adventure hook:</b> ${esc(state.hook)}`;
+  $('#mapname').placeholder=T.title||'Name this hexcrawl';setHead();
   computeFilt();drawMap();legend();$('#cards').innerHTML=state.hexes.map(card).join('');markCards();if(view==='players')renderPlayer();
 }
 function hexInfo(h){
@@ -424,7 +442,7 @@ function hexInfo(h){
   return {title:s?s.name.main:h.landmark,sub:s?`${s.size.name}, ${s.size.note}`:h.type,lines:L};
 }
 function toText(){
-  const L=[(T.title||'Hexcrawl').toUpperCase(),'Generated '+new Date().toLocaleString(),'',`STARTING HOOK: ${state.hook}`,'',''];
+  const L=[mapTitle().toUpperCase(),'Generated '+new Date().toLocaleString(),'',`STARTING HOOK: ${state.hook}`,'',''];
   state.hexes.forEach(h=>{const i=hexInfo(h);L.push(`HEX ${h.n}: ${i.title}`,i.sub,'-'.repeat(40),...i.lines,'','')});
   return L.join('\n');
 }
@@ -441,7 +459,7 @@ function makePDF(){
   const wrap=(s,z,b,mw)=>{const o=[];let l='';for(const w of String(s).split(' ')){const t=l?l+' '+w:w;if(l&&wd(t,z,b)>mw){o.push(l);l=w}else l=t}return o.concat(l)};
   const col=k=>rgb(COL[k]||'#dddddd'),grey='0.35 0.35 0.35';
   page();
-  txt(M,y+18,T.title||'Hexcrawl',20,1);y+=32;
+  txt(M,y+18,mapTitle(),20,1);y+=32;
   txt(M,y,'Generated '+new Date().toLocaleDateString(),9,0,grey);y+=18;
   wrap('Starting hook: '+state.hook,11,0,W-2*M).forEach(l=>{txt(M,y,l,11);y+=14});y+=8;
   const s=40,hh=Math.sqrt(3)*s,cells=state.grid.map(({n,q,r})=>({n,x:1.5*q*s,y:hh*(r+q/2)}));
@@ -493,11 +511,12 @@ async function loadMap(t,name){
   const R=m.settings.radius;
   if(!(R>=1&&R<=6)||m.hexes.length!==hexCount(R))throw new Error('the hex count does not match the grid size');
   if(m.tables&&m.tables!==srcName){
-    const e=LIB.find(x=>x.name===m.tables);
+    const e=TL.find(m.tables);
     if(!e)throw new Error(`it was made with the tables file "${m.tables}", which isn't in your library. Add that file first`);
-    await ensureJson(e);useEntry(e,false);
+    await TL.use(e,false);
   }
   $('#grid').value=R;setRanges(R,false);$('#smin').value=m.settings.min;$('#smax').value=m.settings.max;showRanges();$('#centre').checked=!!m.settings.centre;$('#cluster').checked=!!m.settings.cluster;$('#terrain').checked=!!m.settings.terrain;
+  $('#mapname').value=typeof m.name==='string'?m.name.slice(0,80):'';
   $('#seed').value=m.seed||'';state={grid:buildGrid(R),hook:m.hook,hexes:m.hexes};
   $('#src').textContent='Map: '+name;render();
 }
@@ -508,6 +527,9 @@ function download(name,data,type){
 const slug=t0=>(t0||T.title||'hexcrawl').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'hexcrawl';
 const dn=n=>'d'+n,rl=(a,b)=>a===b?String(a):`${a}-${b}`,alpha=i=>String.fromCharCode(65+i);
 let TB=[],view='map',PM=null;
+const mapTitle=()=>{const e=document.getElementById('mapname');return (e&&e.value.trim())||T.title||'Hexcrawl'};
+const mapSlug=()=>slug(mapTitle());
+function setHead(){$('#title').textContent=mapTitle();document.title=mapTitle()+' - Hexcrawl'}
 // ---------- notes ----------
 const FIELDS=[{k:'long',i:'\u2630',l:'Description',ph:'A longer description of this place'},{k:'notes',i:'\u270E',l:'Session notes',ph:'What happened here, what you want to remember'},{k:'learned',i:'\u2709',l:'Players learned',ph:'What the players know about this place. Goes in the player map file'}];
 const OPEN=new Set();let FILT=null,TERMS=[];
@@ -557,9 +579,9 @@ function markCards(){
 function applySearch(){computeFilt();drawMap();markCards()}
 function searchSoft(){const was=FILT?[...FILT].join():'';computeFilt();if((FILT?[...FILT].join():'')!==was){drawMap();state.hexes.forEach(h=>{const c=$('#h'+h.n);if(c)c.hidden=!!FILT&&!FILT.has(h.n)})}}
 // drafts
-const mapObj=()=>({format:'mausmap',version:1,title:T.title,tables:srcName,seed:$('#seed').value,settings:{radius:+$('#grid').value,min:+$('#smin').value,max:+$('#smax').value,centre:$('#centre').checked,cluster:$('#cluster').checked,terrain:$('#terrain').checked},hook:state.hook,hexes:state.hexes});
+const mapObj=()=>({format:'mausmap',version:1,name:$('#mapname').value.trim(),title:T.title,tables:srcName,seed:$('#seed').value,settings:{radius:+$('#grid').value,min:+$('#smin').value,max:+$('#smax').value,centre:$('#centre').checked,cluster:$('#cluster').checked,terrain:$('#terrain').checked},hook:state.hook,hexes:state.hexes});
 let dT=null;
-function saveDraft(){clearTimeout(dT);dT=setTimeout(()=>{try{if(!state||VIEWER_ONLY||PM)return;if(state.hexes.some(anyText))localStorage.setItem('hexcrawl.draft',JSON.stringify({t:Date.now(),map:mapObj()}))}catch(e){}},800)}
+function saveDraft(){clearTimeout(dT);dT=setTimeout(()=>{try{if(!state||VIEWER_ONLY||PM)return;if(state.hexes.some(anyText)||$('#mapname').value.trim())localStorage.setItem('hexcrawl.draft',JSON.stringify({t:Date.now(),map:mapObj()}))}catch(e){}},800)}
 function clearDraft(){clearTimeout(dT);try{localStorage.removeItem('hexcrawl.draft')}catch(e){}}
 function checkDraft(){
   try{
@@ -750,57 +772,14 @@ function setView(v){
   closeMenu();
 }
 
-const mem={};
-const store={
-  get(k){try{return localStorage.getItem(k)}catch(e){return k in mem?mem[k]:null}},
-  set(k,v){mem[k]=v;try{localStorage.setItem(k,v);return true}catch(e){return false}}
-};
-let LIB=[],curId='';
-const cur=()=>LIB.find(e=>e.id===curId);
-const say=m=>{$('#tbmsg').textContent=m||''};
-function libSave(){
-  const ok=store.set('hexcrawl.library',JSON.stringify(LIB.filter(e=>e.kind==='saved').map(e=>({name:e.name,json:e.json}))));
-  if(!ok)say("Couldn't save to this browser's storage (private mode or full). The file works until you close the page.");
-  return ok;
-}
-function renderLib(){
-  const lab=e=>`${e.title||e.name}${e.title&&e.title!==e.name?' - '+e.name:''}${e.kind==='builtin'?' (built in)':e.kind==='hosted'?' (hosted)':''}`;
-  const grp=(name,k)=>{const l=LIB.filter(e=>k.includes(e.kind));return l.length?`<optgroup label="${name}">${l.map(e=>`<option value="${esc(e.id)}"${e.id===curId?' selected':''}>${esc(lab(e))}</option>`).join('')}</optgroup>`:''};
-  $('#tbsel').innerHTML=grp('Included',['builtin','hosted'])+grp('Saved on the server',['server'])+grp('Saved in this browser',['saved']);
-  $('#tbsel').value=curId;
-  const c=cur();
-  $('#tbdel').hidden=!(c&&(c.kind==='saved'||(c.kind==='server'&&SERVER&&SERVER.canSave&&!SERVER.protected.includes(c.name))));
-}
-function useEntry(e,regen){
-  const tb=validate(JSON.parse(e.json));
-  T=tb;buildCOL();renderTables();srcName=e.name;curId=e.id;state=null;$('#seed').value='';
-  store.set('hexcrawl.current',e.id);
-  if(regen)generate();
-  renderLib();
-}
-let SERVER=null;
-const API='tables.php';
-const keyGet=()=>{try{return sessionStorage.getItem('hexcrawl.key')||''}catch(e){return ''}};
-const keySet=v=>{try{sessionStorage.setItem('hexcrawl.key',v)}catch(e){}};
-async function api(q,o,retry){
-  o=o||{};o.headers=Object.assign({'X-Requested-With':'hexcrawl'},o.headers||{});
-  if(o.method==='POST'&&SERVER&&SERVER.needsKey){
-    let k=keyGet();if(!k){k=prompt('Enter the upload password for this site:')||'';keySet(k)}
-    o.headers['X-Tables-Key']=k;
-  }
-  const r=await fetch(API+q,o);
-  if(r.status===401&&!retry){keySet('');return api(q,o,true)}
-  return r;
-}
-async function ensureJson(e){
-  if(typeof e.json==='string')return;
-  const r=await api('?name='+encodeURIComponent(e.name));
-  if(!r.ok)throw new Error(`the server could not return ${e.name} (${r.status})`);
-  e.json=await r.text();
-  if(!e.title){try{e.title=JSON.parse(e.json).title||''}catch(x){}}
-}
-async function useTables(e,regen){await ensureJson(e);useEntry(e,regen)}
-const defaultEntry=()=>LIB.find(e=>e.id==='hosted')||LIB.find(e=>e.id==='server:hexcrawl-tables.json')||LIB.find(e=>e.id==='builtin');
+// ---------- tables library (shared: tables-lib.js) ----------
+const TL=TablesLib.create({
+  listAll:false,
+  defaults:['hosted:hexcrawl-tables.json','server:hexcrawl-tables.json'],
+  parse:json=>validate(JSON.parse(json)),
+  guard:()=>guardPins(),
+  onUse(tb,e,regen){T=tb;buildCOL();renderTables();srcName=e.name;state=null;$('#seed').value='';if(regen)generate()}
+});
 
 // ---------- player view ----------
 function buildPlayerModel(){
@@ -809,7 +788,7 @@ function buildPlayerModel(){
   const legend=[],seen=new Set();
   cells.forEach(c=>{const k=c.type+'|'+c.color;if(!seen.has(k)){seen.add(k);legend.push({n:c.type,c:c.color})}});
   legend.sort((a,b)=>order.indexOf(a.n)-order.indexOf(b.n));
-  return {title:T.title||'Hexcrawl',radius:radiusOf(state.grid.length),numbers:$('#pnums').checked,legend,note:cells.some(c=>c.settlement)?legendNote():'',cells};
+  return {title:mapTitle(),radius:radiusOf(state.grid.length),numbers:$('#pnums').checked,legend,note:cells.some(c=>c.settlement)?legendNote():'',cells};
 }
 const playerModel=()=>PM||(state&&!VIEWER_ONLY?buildPlayerModel():null);
 function playerHexMarkup(m,g){
@@ -930,14 +909,104 @@ function loadPlayerMap(m,name){
 }
 function leaveViewer(){
   PM=null;document.body.classList.remove('viewer');
-  $('#title').textContent=T.title||'Hexcrawl Generator';$('#src').textContent='Tables: '+srcName;
+  setHead();$('#src').textContent='Tables: '+srcName;
   $('#pnote').textContent=GM_NOTE;setView('map');
 }
 const GM_NOTE='This is exactly what players see: pinned hexes only, with their biome and name. Pin hexes on the Map tab (right-click a hex, or use the Pin box on its card). The star is never shown to players. Text in a hex\'s "Players learned" box appears under the map and travels in the player map file.';
+
+// ---------- .maushex: one hex, portable ----------
+const hexName=h=>h.set?h.set.name.main:(h.landmark||h.type);
+function toast(m){const e=$('#toast');e.textContent=m;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>{e.hidden=true},4500)}
+function hexFile(n){
+  const h=hx(n),nb=nbMap(state.grid).get(n)||[];
+  return {format:'maushex',version:1,exported:new Date().toISOString(),generator:'mausritter-hexcrawl',
+    map:{name:$('#mapname').value.trim(),tables:srcName,tablesTitle:T.title||'',seed:$('#seed').value.trim(),radius:radiusOf(state.grid.length),hex:n},
+    hex:{n,type:h.type,key:h.key,color:COL[h.key]||null,landmark:h.landmark||'',detail:h.detail||null,set:h.set||null,known:!!h.known,desc:h.desc||'',long:h.long||'',notes:h.notes||'',learned:h.learned||''},
+    neighbours:nb.map(m=>{const x=hx(m);return {n:m,key:x.key,type:x.type,name:hexName(x)}}),
+    additions:[]};
+}
+const exportHex=n=>download(`${mapSlug()}-hex-${n}.maushex`,JSON.stringify(hexFile(n),null,1),'application/json');
+function cleanHex(m){
+  if(!m||m.format!=='maushex')throw new Error('this is not a .maushex file');
+  const x=m.hex;if(!x||typeof x!=='object')throw new Error('the hex data is missing');
+  const S=(v,max)=>typeof v==='string'?v.slice(0,max):'';
+  const h={n:0,type:S(x.type,80),key:S(x.key,40)};
+  if(!h.type||!h.key)throw new Error('the hex has no type');
+  if(x.landmark)h.landmark=S(x.landmark,160);
+  if(Array.isArray(x.detail))h.detail=[S(x.detail[0],240),S(x.detail[1],240)];else if(typeof x.detail==='string'&&x.detail)h.detail=S(x.detail,240);
+  if(x.set){
+    const s=x.set,ok=s&&typeof s==='object'&&s.name&&typeof s.name.main==='string'&&Array.isArray(s.name.alts)&&s.size&&typeof s.size.name==='string'&&typeof s.gov==='string'&&typeof s.inh==='string'&&Array.isArray(s.feat)&&Array.isArray(s.ind)&&typeof s.event==='string';
+    if(!ok)throw new Error('the settlement data is not valid');
+    h.set=JSON.parse(JSON.stringify(s));
+  }
+  if(x.known)h.known=true;
+  const T0={desc:240,long:20000,notes:20000,learned:4000};
+  for(const k in T0)if(typeof x[k]==='string'&&x[k])h[k]=x[k].slice(0,T0[k]);
+  const add=(Array.isArray(m.additions)?m.additions:[]).slice(0,50).map(a=>a&&typeof a==='object'?{tool:S(a.tool,60),title:S(a.title,120),text:S(a.text,20000)}:null).filter(a=>a&&a.text.trim());
+  if(add.length)h.long=((h.long||'').trim()+add.map(a=>`\n\n## ${a.title||a.tool||'Added by another tool'}\n${a.text.trim()}`).join('')).trim().slice(0,40000);
+  return {hex:h,src:m.map||{},added:add.length};
+}
+function askImport(info){
+  return new Promise(res=>{
+    const d=$('#hexdlg'),sel=$('#hd-target');
+    $('#hd-info').innerHTML=`<b>${esc(info.name)}</b> (${esc(info.hex.type)}) from hex ${esc(String(info.srcHex||'?'))} of &ldquo;${esc(info.srcName||'an unnamed map')}&rdquo;.`;
+    $('#hd-why').textContent=info.why;
+    sel.innerHTML=state.hexes.map(h=>`<option value="${h.n}">${h.n} - ${esc(hexName(h))} (${esc(h.type)})${h.locked?' [locked]':''}</option>`).join('');
+    sel.value=String(info.target);
+    const warn=()=>{
+      const c=hx(+sel.value),w=[];
+      w.push(`Hex ${c.n} (${hexName(c)}) will be replaced.`);
+      if(c.known)w.push('It is pinned for the players.');
+      if(anyText(c))w.push('Its notes and descriptions will be replaced too.');
+      if(c.key==='centre')w.push('This is the centre settlement.');
+      if(!info.keyOk)w.push('This biome is not in the current tables file, so it will show in grey.');
+      $('#hd-warn').textContent=w.join(' ');
+    };
+    sel.onchange=warn;warn();
+    d.onclose=()=>res(d.returnValue==='ok'?+sel.value:null);
+    d.returnValue='';d.showModal();
+  });
+}
+const sameGen=(a,b)=>JSON.stringify([a.type,a.key,a.landmark||'',a.detail||'',a.set||null])===JSON.stringify([b.type,b.key,b.landmark||'',b.detail||'',b.set||null]);
+async function importHex(text,preTarget){
+  let m;try{m=JSON.parse(text)}catch(e){throw new Error('that file is not valid JSON')}
+  const {hex,src,added}=cleanHex(m),count=state.hexes.length;
+  const keyOk=hex.key==='centre'||T.hexType.some(e=>e.key===hex.key);
+  const sameTables=!src.tables||src.tables===srcName,seed=$('#seed').value.trim();
+  const srcHex=Number.isInteger(src.hex)?src.hex:+(m.hex&&m.hex.n)||0;
+  const exact=sameTables&&!!src.seed&&src.seed===seed&&srcHex>=1&&srcHex<=count;
+  let target=preTarget||(srcHex>=1&&srcHex<=count?srcHex:1),why='';
+  if(!preTarget&&exact){
+    const cur=hx(target);
+    if(['desc','long','notes','learned'].some(k=>(cur[k]||'')!==(hex[k]||''))&&!confirm(`Hex ${target} has been edited since this file was exported. Replace it with the imported version?`))return;
+  }else{
+    const bits=[];
+    if(!sameTables)bits.push(`it was made with a different tables file (${src.tables})`);
+    if(!src.seed)bits.push('the file has no seed');else if(src.seed!==seed)bits.push('the seed does not match this map');
+    if(!(srcHex>=1&&srcHex<=count))bits.push('its hex number does not exist here');
+    why=exact?'Importing into the hex you selected.':'This hex does not clearly belong to this map: '+(bits.join(', ')||'it came from somewhere else')+'. Choose which hex to put it in.';
+    const t2=await askImport({hex,name:hexName(hex),srcName:src.name||src.tablesTitle,srcHex,why,target,keyOk});
+    if(t2===null)return;target=t2;
+  }
+  const old=hx(target),h=Object.assign({},hex,{n:target});
+  if(old.locked)h.locked=true;
+  const changed=!sameGen(old,h);
+  const i=state.hexes.findIndex(x=>x.n===target);state.hexes[i]=h;
+  if(changed)$('#seed').value='';
+  swapCard(h);drawMap();saveDraft();
+  if(!$('#h'+target).hidden)location.hash='h'+target;
+  toast(`Imported into hex ${target}${added?` (with ${added} addition${added===1?'':'s'} added to its long description)`:''}.`);
+}
+let importTarget=null;
+$('#hexfile').onchange=e=>{
+  const f=e.target.files[0],pre=importTarget;importTarget=null;e.target.value='';if(!f)return;
+  if(f.size>1048576){alert('That file is too large to be a .maushex file.');return}
+  f.text().then(async t=>{try{await importHex(t,pre)}catch(err){alert('Could not import '+f.name+': '+err.message)}});
+};
 let ctxN=null,openedAt=0,skipUntil=0,lp=null,lpFired=false;
 function openMenu(n,x,y){
   ctxN=n;openedAt=Date.now();const h=hx(n),m=$('#ctx');
-  m.innerHTML=`<div class="hd">Hex ${n}</div><button data-a="pin">${h.known?'Unpin':'Pin (players know it)'}</button><button data-a="lock">${h.locked?'Unlock':'Lock'}</button><button data-a="reroll">Reroll</button><button data-a="jump">Jump to card</button>`;
+  m.innerHTML=`<div class="hd">Hex ${n}</div><button data-a="pin">${h.known?'Unpin':'Pin (players know it)'}</button><button data-a="lock">${h.locked?'Unlock':'Lock'}</button><button data-a="reroll">Reroll</button><button data-a="export">Export hex (.maushex)</button><button data-a="import">Import .maushex here...</button><button data-a="jump">Jump to card</button>`;
   m.hidden=false;
   m.style.left=Math.max(4,Math.min(x+12,innerWidth-m.offsetWidth-4))+'px';
   m.style.top=Math.max(4,Math.min(y+12,innerHeight-m.offsetHeight-4))+'px';
@@ -962,6 +1031,8 @@ $('#ctx').addEventListener('click',e=>{
   if(a==='pin')setKnown(n,!hx(n).known);
   else if(a==='lock'){const h=hx(n);h.locked=!h.locked;swapCard(h);drawMap()}
   else if(a==='reroll')reroll(n);
+  else if(a==='export')exportHex(n);
+  else if(a==='import'){importTarget=n;$('#hexfile').click()}
   else $('#h'+n).scrollIntoView({behavior:'smooth',block:'center'});
 });
 $('#gen').onclick=()=>{if(!guardPins())return;$('#seed').value='';generate()};
@@ -969,13 +1040,14 @@ $('#seed').onchange=()=>{if(guardPins())generate()};
 $('#grid').onchange=()=>{if(!guardPins()){$('#grid').value=radiusOf(state.grid.length);return}$('#seed').value='';setRanges(+$('#grid').value,true);generate()};
 $('#smin').oninput=()=>{if(+$('#smin').value>+$('#smax').value)$('#smax').value=$('#smin').value;showRanges()};
 $('#smax').oninput=()=>{if(+$('#smax').value<+$('#smin').value)$('#smin').value=$('#smax').value;showRanges()};
-$('#txt').onclick=()=>view==='tables'?download(slug()+'-tables.txt',tablesText()):download('hexcrawl.txt',toText());
+$('#txt').onclick=()=>view==='tables'?download(slug()+'-tables.txt',tablesText()):download(mapSlug()+'.txt',toText());
 $('#tab-map').onclick=()=>setView('map');
 $('#tablesview').addEventListener('click',e=>{
   const b=e.target.closest('[data-roll]');if(b){doRoll(b.dataset.roll);return}
   if(e.target.closest('#clearrolls')){ROLLS=[];showRolls()}
 });
 $('#tab-tables').onclick=()=>setView('tables');
+$('#mapname').oninput=()=>{setHead();saveDraft();if(view==='players')renderPlayer()};
 $('#search').oninput=applySearch;$('#onlynotes').onchange=applySearch;
 $('#search').onkeydown=e=>{if(e.key==='Escape'){e.target.value='';applySearch()}};
 $('#png').onclick=()=>view==='players'?exportPlayerPNG():exportPNG();
@@ -983,101 +1055,15 @@ $('#saveplayer').onclick=savePlayerMap;
 $('#pnums').onchange=()=>{if(PM)PM.numbers=$('#pnums').checked;renderPlayer()};
 $('#closeviewer').onclick=leaveViewer;
 $('#tab-players').onclick=()=>setView('players');
-$('#pdf').onclick=()=>view==='tables'?download(slug()+'-tables.pdf',makeTablesPDF(),'application/pdf'):view==='players'?exportPlayerPDF():download('hexcrawl.pdf',makePDF(),'application/pdf');
-$('#save').onclick=()=>{download('hexcrawl.mausmap',JSON.stringify(mapObj(),null,1),'application/json');clearDraft()};
+$('#pdf').onclick=()=>view==='tables'?download(slug()+'-tables.pdf',makeTablesPDF(),'application/pdf'):view==='players'?exportPlayerPDF():download(mapSlug()+'.pdf',makePDF(),'application/pdf');
+$('#save').onclick=()=>{download(mapSlug()+'.mausmap',JSON.stringify(mapObj(),null,1),'application/json');clearDraft()};
 $('#mapfile').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(async t=>{try{await loadMap(t,f.name)}catch(err){alert('Could not load '+f.name+': '+err.message)}});e.target.value=''};
-async function addFile(f){
-  const text=await f.text(),tb=validate(JSON.parse(text)),title=tb.title||'';
-  let why='';
-  if(SERVER&&SERVER.canSave){
-    try{
-      const r=await api('?name='+encodeURIComponent(f.name),{method:'POST',body:text}),j=await r.json().catch(()=>({}));
-      if(r.ok&&j.name){
-        let e=LIB.find(x=>x.id==='server:'+j.name);const upd=!!e;
-        if(e){e.json=text;e.title=title}else{e={id:'server:'+j.name,kind:'server',name:j.name,title,json:text};LIB.push(e)}
-        return {e,where:'server',upd};
-      }
-      why=j.error||`the server answered ${r.status}`;
-    }catch(err){why='the server could not be reached'}
-  }else if(SERVER)why="the server folder isn't writable";
-  let e=LIB.find(x=>x.kind==='saved'&&x.name===f.name);const upd=!!e;
-  if(e){e.json=text;e.title=title}else{e={id:'saved:'+f.name,kind:'saved',name:f.name,json:text,title};LIB.push(e)}
-  return {e,where:'browser',upd,why};
-}
-$('#file').onchange=async e=>{
-  const files=[...e.target.files];e.target.value='';
-  if(!guardPins())return;
-  let last=null,srv=0,brw=0,upd=0;const bad=[],why=new Set();
-  for(const f of files){
-    try{const r=await addFile(f);last=r.e;if(r.where==='server')srv++;else brw++;if(r.upd)upd++;if(r.why)why.add(r.why)}
-    catch(err){bad.push(`Could not use ${f.name}: ${err.message}`)}
-  }
-  if(brw)libSave();
-  if(last){
-    try{
-      await useTables(last,true);
-      const parts=[];
-      if(srv)parts.push(`Saved ${srv} file${srv===1?'':'s'} on the server`);
-      if(brw)parts.push(`saved ${brw} in this browser${why.size?` (not saved on the server: ${[...why].join('; ')})`:''}`);
-      say(parts.join(', ').replace(/^./,c=>c.toUpperCase())+(upd?` (${upd} replaced)`:'')+'.');
-    }catch(err){bad.push(`Could not use ${last.name}: ${err.message}`)}
-  }
-  renderLib();
-  if(bad.length)alert(bad.join('\n'));
-};
-$('#tbsel').onchange=async()=>{
-  const e=LIB.find(x=>x.id===$('#tbsel').value);
-  if(!guardPins()){renderLib();return}
-  try{await useTables(e,true);say('')}catch(err){alert(`Could not use ${e.name}: ${err.message}`);renderLib()}
-};
-$('#tbdel').onclick=async()=>{
-  const e=cur();if(!e)return;
-  if(!guardPins())return;
-  if(e.kind==='server'){
-    if(!confirm(`Delete ${e.name} from the server? This removes it for everyone who uses this page.`))return;
-    try{
-      const r=await api(`?action=delete&name=${encodeURIComponent(e.name)}`,{method:'POST'});
-      if(!r.ok){const j=await r.json().catch(()=>({}));alert(j.error||`The server answered ${r.status}.`);return}
-    }catch(err){alert('The server could not be reached.');return}
-  }else if(e.kind==='saved'){
-    if(!confirm(`Remove ${e.name} from this browser?`))return;
-  }else return;
-  LIB=LIB.filter(x=>x!==e);if(e.kind==='saved')libSave();
-  await useTables(defaultEntry(),true);say(`Removed ${e.name}.`);
-};
 (async()=>{
-  LIB=[{id:'builtin',kind:'builtin',name:'built-in copy',json:$('#default-tables').textContent}];
-  let hostedErr='';
-  try{
-    const r=await fetch(API,{headers:{'X-Requested-With':'hexcrawl'}});
-    if(r.ok&&/json/.test(r.headers.get('content-type')||'')){
-      const j=await r.json();
-      if(j&&Array.isArray(j.tables)){
-        SERVER={canSave:!!j.canSave,needsKey:!!j.needsKey,protected:j.protected||[]};
-        j.tables.forEach(x=>LIB.push({id:'server:'+x.name,kind:'server',name:x.name,title:x.title||'',json:null}));
-      }
-    }
-  }catch(e){}
-  if(!SERVER){
-    try{
-      const res=await fetch('hexcrawl-tables.json');
-      if(res.ok){const txt=await res.text();try{validate(JSON.parse(txt));LIB.push({id:'hosted',kind:'hosted',name:'hexcrawl-tables.json',json:txt})}catch(e){hostedErr=e.message}}
-    }catch(e){}
-  }
-  try{
-    JSON.parse(store.get('hexcrawl.library')||'[]').forEach(s=>{
-      try{const tb=validate(JSON.parse(s.json));LIB.push({id:'saved:'+s.name,kind:'saved',name:s.name,json:s.json,title:tb.title||''})}catch(e){}
-    });
-  }catch(e){}
-  LIB.forEach(e=>{if(e.title===undefined){try{e.title=JSON.parse(e.json).title||''}catch(x){e.title=''}}});
-  const want=store.get('hexcrawl.current'),start=LIB.find(e=>e.id===want)||defaultEntry();
-  try{await useTables(start,false)}catch(e){await useTables(LIB[0],false)}
-  initControls();generate();renderLib();
+  await TL.load();
+  initControls();generate();
   $('#pnote').textContent=GM_NOTE;
   if(!VIEWER_ONLY)checkDraft();
   if(VIEWER_ONLY){document.body.classList.add('viewer');$('#title').textContent='Player map';$('#src').textContent='';$('#closeviewer').hidden=true;$('#pnote').textContent='Open the player map file your GM gave you.';setView('players')}
-  if(SERVER&&!SERVER.canSave)say("The server folder isn't writable, so uploads are saved in this browser.");
-  else if(hostedErr)say(`hexcrawl-tables.json was ignored: ${hostedErr}`);
 })();
 </script>
 </body>
