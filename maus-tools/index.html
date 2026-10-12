@@ -102,6 +102,8 @@ body.viewer .tabs,body.viewer #tbbar,body.viewer .genctl,body.viewer #save,body.
 #plearn{max-width:780px;margin:18px auto 0}#plearn h3{font:700 18px Georgia,serif;margin:0 0 4px}
 #plearn .pl{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c,#999);padding:8px 12px;margin:8px 0}#plearn .pl p{margin:4px 0 0;white-space:pre-wrap}
 @media print{#sbar,#draftbar,.bdg,.nt summary{display:none}.nt{border:0}.nt textarea{border:0;resize:none}}
+.mapname{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-weight:700}.mapname input{flex:1;max-width:460px;font:700 18px Georgia,serif;padding:6px 10px;border:1.5px solid var(--ink);background:#fff}
+@media print{.mapname input{border:0;padding:0}}
 </style>
 </head>
 <body>
@@ -140,6 +142,7 @@ body.viewer .tabs,body.viewer #tbbar,body.viewer .genctl,body.viewer #save,body.
 </header>
 <main>
   <div id="mapview">
+  <label class="mapname">Map name <input id="mapname" type="text" maxlength="80" placeholder="Name this hexcrawl" aria-label="Map name"></label>
   <div id="hook"></div>
   <svg id="map" role="img" aria-label="Hex map"></svg>
   <div id="legend"></div>
@@ -269,7 +272,7 @@ function generate(){
   }else sett=new Set(pickN(cand,need));
   state={grid,hook:pick(T.hooks),hexes:grid.map(g=>keep.get(g.n)||genHex(g.n,cenFree&&g.n===c,sett.has(g.n),types&&types.get(g.n)))};
   $('#seed').value=keep.size?'':`${R}.${lo}.${hi}.${cen?1:0}.${cl?1:0}${te?1:0}.${tok}`;
-  $('#title').textContent=T.title||'Hexcrawl Generator';
+  setHead();
   $('#src').textContent='Tables: '+srcName;
   render();
 }
@@ -395,7 +398,7 @@ function exportSVG(){
     if(k.known)o+=starSVG(x-16,y-22);
   });
   const items=[...legendItems().map(([n,k])=>({n,c:COL[k]||'#dddddd'})),{n:legendNote(),c:null},{n:'Star: pinned, players know this place',c:null}];
-  return composeSVG(g,o,items,$('#seed').value.trim(),T.title||'Hexcrawl');
+  return composeSVG(g,o,items,$('#seed').value.trim(),mapTitle());
 }
 function svgToPNG(parts,name){
   const {svg,W,H}=parts,sc=Math.max(2,Math.min(5,2200/W)),img=new Image();
@@ -407,10 +410,11 @@ function svgToPNG(parts,name){
   img.onerror=()=>alert('The browser could not draw the map image.');
   img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
 }
-const exportPNG=()=>svgToPNG(exportSVG(),slug()+'-map.png');
+const exportPNG=()=>svgToPNG(exportSVG(),mapSlug()+'-map.png');
 function render(){
   closeMenu();
   $('#hook').innerHTML=`<b>Starting adventure hook:</b> ${esc(state.hook)}`;
+  $('#mapname').placeholder=T.title||'Name this hexcrawl';setHead();
   computeFilt();drawMap();legend();$('#cards').innerHTML=state.hexes.map(card).join('');markCards();if(view==='players')renderPlayer();
 }
 function hexInfo(h){
@@ -424,7 +428,7 @@ function hexInfo(h){
   return {title:s?s.name.main:h.landmark,sub:s?`${s.size.name}, ${s.size.note}`:h.type,lines:L};
 }
 function toText(){
-  const L=[(T.title||'Hexcrawl').toUpperCase(),'Generated '+new Date().toLocaleString(),'',`STARTING HOOK: ${state.hook}`,'',''];
+  const L=[mapTitle().toUpperCase(),'Generated '+new Date().toLocaleString(),'',`STARTING HOOK: ${state.hook}`,'',''];
   state.hexes.forEach(h=>{const i=hexInfo(h);L.push(`HEX ${h.n}: ${i.title}`,i.sub,'-'.repeat(40),...i.lines,'','')});
   return L.join('\n');
 }
@@ -441,7 +445,7 @@ function makePDF(){
   const wrap=(s,z,b,mw)=>{const o=[];let l='';for(const w of String(s).split(' ')){const t=l?l+' '+w:w;if(l&&wd(t,z,b)>mw){o.push(l);l=w}else l=t}return o.concat(l)};
   const col=k=>rgb(COL[k]||'#dddddd'),grey='0.35 0.35 0.35';
   page();
-  txt(M,y+18,T.title||'Hexcrawl',20,1);y+=32;
+  txt(M,y+18,mapTitle(),20,1);y+=32;
   txt(M,y,'Generated '+new Date().toLocaleDateString(),9,0,grey);y+=18;
   wrap('Starting hook: '+state.hook,11,0,W-2*M).forEach(l=>{txt(M,y,l,11);y+=14});y+=8;
   const s=40,hh=Math.sqrt(3)*s,cells=state.grid.map(({n,q,r})=>({n,x:1.5*q*s,y:hh*(r+q/2)}));
@@ -498,6 +502,7 @@ async function loadMap(t,name){
     await ensureJson(e);useEntry(e,false);
   }
   $('#grid').value=R;setRanges(R,false);$('#smin').value=m.settings.min;$('#smax').value=m.settings.max;showRanges();$('#centre').checked=!!m.settings.centre;$('#cluster').checked=!!m.settings.cluster;$('#terrain').checked=!!m.settings.terrain;
+  $('#mapname').value=typeof m.name==='string'?m.name.slice(0,80):'';
   $('#seed').value=m.seed||'';state={grid:buildGrid(R),hook:m.hook,hexes:m.hexes};
   $('#src').textContent='Map: '+name;render();
 }
@@ -508,6 +513,9 @@ function download(name,data,type){
 const slug=t0=>(t0||T.title||'hexcrawl').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'hexcrawl';
 const dn=n=>'d'+n,rl=(a,b)=>a===b?String(a):`${a}-${b}`,alpha=i=>String.fromCharCode(65+i);
 let TB=[],view='map',PM=null;
+const mapTitle=()=>{const e=document.getElementById('mapname');return (e&&e.value.trim())||T.title||'Hexcrawl'};
+const mapSlug=()=>slug(mapTitle());
+function setHead(){$('#title').textContent=mapTitle();document.title=mapTitle()+' - Hexcrawl'}
 // ---------- notes ----------
 const FIELDS=[{k:'long',i:'\u2630',l:'Description',ph:'A longer description of this place'},{k:'notes',i:'\u270E',l:'Session notes',ph:'What happened here, what you want to remember'},{k:'learned',i:'\u2709',l:'Players learned',ph:'What the players know about this place. Goes in the player map file'}];
 const OPEN=new Set();let FILT=null,TERMS=[];
@@ -557,9 +565,9 @@ function markCards(){
 function applySearch(){computeFilt();drawMap();markCards()}
 function searchSoft(){const was=FILT?[...FILT].join():'';computeFilt();if((FILT?[...FILT].join():'')!==was){drawMap();state.hexes.forEach(h=>{const c=$('#h'+h.n);if(c)c.hidden=!!FILT&&!FILT.has(h.n)})}}
 // drafts
-const mapObj=()=>({format:'mausmap',version:1,title:T.title,tables:srcName,seed:$('#seed').value,settings:{radius:+$('#grid').value,min:+$('#smin').value,max:+$('#smax').value,centre:$('#centre').checked,cluster:$('#cluster').checked,terrain:$('#terrain').checked},hook:state.hook,hexes:state.hexes});
+const mapObj=()=>({format:'mausmap',version:1,name:$('#mapname').value.trim(),title:T.title,tables:srcName,seed:$('#seed').value,settings:{radius:+$('#grid').value,min:+$('#smin').value,max:+$('#smax').value,centre:$('#centre').checked,cluster:$('#cluster').checked,terrain:$('#terrain').checked},hook:state.hook,hexes:state.hexes});
 let dT=null;
-function saveDraft(){clearTimeout(dT);dT=setTimeout(()=>{try{if(!state||VIEWER_ONLY||PM)return;if(state.hexes.some(anyText))localStorage.setItem('hexcrawl.draft',JSON.stringify({t:Date.now(),map:mapObj()}))}catch(e){}},800)}
+function saveDraft(){clearTimeout(dT);dT=setTimeout(()=>{try{if(!state||VIEWER_ONLY||PM)return;if(state.hexes.some(anyText)||$('#mapname').value.trim())localStorage.setItem('hexcrawl.draft',JSON.stringify({t:Date.now(),map:mapObj()}))}catch(e){}},800)}
 function clearDraft(){clearTimeout(dT);try{localStorage.removeItem('hexcrawl.draft')}catch(e){}}
 function checkDraft(){
   try{
@@ -809,7 +817,7 @@ function buildPlayerModel(){
   const legend=[],seen=new Set();
   cells.forEach(c=>{const k=c.type+'|'+c.color;if(!seen.has(k)){seen.add(k);legend.push({n:c.type,c:c.color})}});
   legend.sort((a,b)=>order.indexOf(a.n)-order.indexOf(b.n));
-  return {title:T.title||'Hexcrawl',radius:radiusOf(state.grid.length),numbers:$('#pnums').checked,legend,note:cells.some(c=>c.settlement)?legendNote():'',cells};
+  return {title:mapTitle(),radius:radiusOf(state.grid.length),numbers:$('#pnums').checked,legend,note:cells.some(c=>c.settlement)?legendNote():'',cells};
 }
 const playerModel=()=>PM||(state&&!VIEWER_ONLY?buildPlayerModel():null);
 function playerHexMarkup(m,g){
@@ -930,7 +938,7 @@ function loadPlayerMap(m,name){
 }
 function leaveViewer(){
   PM=null;document.body.classList.remove('viewer');
-  $('#title').textContent=T.title||'Hexcrawl Generator';$('#src').textContent='Tables: '+srcName;
+  setHead();$('#src').textContent='Tables: '+srcName;
   $('#pnote').textContent=GM_NOTE;setView('map');
 }
 const GM_NOTE='This is exactly what players see: pinned hexes only, with their biome and name. Pin hexes on the Map tab (right-click a hex, or use the Pin box on its card). The star is never shown to players. Text in a hex\'s "Players learned" box appears under the map and travels in the player map file.';
@@ -969,13 +977,14 @@ $('#seed').onchange=()=>{if(guardPins())generate()};
 $('#grid').onchange=()=>{if(!guardPins()){$('#grid').value=radiusOf(state.grid.length);return}$('#seed').value='';setRanges(+$('#grid').value,true);generate()};
 $('#smin').oninput=()=>{if(+$('#smin').value>+$('#smax').value)$('#smax').value=$('#smin').value;showRanges()};
 $('#smax').oninput=()=>{if(+$('#smax').value<+$('#smin').value)$('#smin').value=$('#smax').value;showRanges()};
-$('#txt').onclick=()=>view==='tables'?download(slug()+'-tables.txt',tablesText()):download('hexcrawl.txt',toText());
+$('#txt').onclick=()=>view==='tables'?download(slug()+'-tables.txt',tablesText()):download(mapSlug()+'.txt',toText());
 $('#tab-map').onclick=()=>setView('map');
 $('#tablesview').addEventListener('click',e=>{
   const b=e.target.closest('[data-roll]');if(b){doRoll(b.dataset.roll);return}
   if(e.target.closest('#clearrolls')){ROLLS=[];showRolls()}
 });
 $('#tab-tables').onclick=()=>setView('tables');
+$('#mapname').oninput=()=>{setHead();saveDraft();if(view==='players')renderPlayer()};
 $('#search').oninput=applySearch;$('#onlynotes').onchange=applySearch;
 $('#search').onkeydown=e=>{if(e.key==='Escape'){e.target.value='';applySearch()}};
 $('#png').onclick=()=>view==='players'?exportPlayerPNG():exportPNG();
@@ -983,8 +992,8 @@ $('#saveplayer').onclick=savePlayerMap;
 $('#pnums').onchange=()=>{if(PM)PM.numbers=$('#pnums').checked;renderPlayer()};
 $('#closeviewer').onclick=leaveViewer;
 $('#tab-players').onclick=()=>setView('players');
-$('#pdf').onclick=()=>view==='tables'?download(slug()+'-tables.pdf',makeTablesPDF(),'application/pdf'):view==='players'?exportPlayerPDF():download('hexcrawl.pdf',makePDF(),'application/pdf');
-$('#save').onclick=()=>{download('hexcrawl.mausmap',JSON.stringify(mapObj(),null,1),'application/json');clearDraft()};
+$('#pdf').onclick=()=>view==='tables'?download(slug()+'-tables.pdf',makeTablesPDF(),'application/pdf'):view==='players'?exportPlayerPDF():download(mapSlug()+'.pdf',makePDF(),'application/pdf');
+$('#save').onclick=()=>{download(mapSlug()+'.mausmap',JSON.stringify(mapObj(),null,1),'application/json');clearDraft()};
 $('#mapfile').onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(async t=>{try{await loadMap(t,f.name)}catch(err){alert('Could not load '+f.name+': '+err.message)}});e.target.value=''};
 async function addFile(f){
   const text=await f.text(),tb=validate(JSON.parse(text)),title=tb.title||'';
