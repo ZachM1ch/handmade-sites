@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#12100e">
+<title>Trench Crusade — Turn Companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#110f0d;--bg2:#1a1714;--card:#201c18;--card2:#2a251f;--line:#3b342b;--line2:#4d4437;
+  --bone:#ebe1cb;--muted:#a99d87;--dim:#7a705f;
+  --blood:#9e231d;--blood2:#d64a3f;--brass:#c9a24a;--brass2:#e6c46a;--ok:#7aa55a;--crit:#f0cf62;--bless:#6fa6c9;
+  --r:12px;--fell:"IM Fell English SC","IM Fell English",Georgia,"Times New Roman",serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--bone);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background-image:radial-gradient(ellipse 120% 60% at 50% -10%,#3a1712 0%,transparent 60%),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 2px,transparent 2px 4px);background-attachment:fixed;min-height:100vh}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+h1,h2,h3,h4{font-family:var(--fell);font-weight:400;letter-spacing:.04em;margin:0}
+a{color:var(--brass2)}
+.muted{color:var(--muted)}.dim{color:var(--dim)}
+.small{font-size:13px}
+
+/* header */
+header.top{position:sticky;top:0;z-index:20;background:linear-gradient(#141110f2,#141110e6);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding:10px 16px;padding-top:max(10px,env(safe-area-inset-top))}
+.hwrap{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
+.cross{font-size:28px;color:var(--blood2);line-height:1;text-shadow:0 0 12px #d64a3f66}
+.brand h1{font-size:22px;line-height:1}
+.brand small{display:block;color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+.turnbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.turnno{font-family:var(--fell);font-size:18px;color:var(--brass2);padding:2px 10px;border:1px solid var(--line2);border-radius:999px}
+.phases{display:flex;border:1px solid var(--line2);border-radius:999px;overflow:hidden}
+.phases span{padding:4px 10px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.phases span.on{background:var(--blood);color:#fff}
+.wbchip{font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line2);display:inline-flex;gap:6px;align-items:center}
+.wbchip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.wbchip.shaken{border-color:var(--blood2);color:var(--blood2)}
+
+/* tabs */
+nav.tabs{display:flex;gap:4px;max-width:1280px;margin:10px auto 0;padding:0 16px}
+nav.tabs button{background:none;border:1px solid transparent;border-bottom:none;padding:9px 16px;border-radius:10px 10px 0 0;color:var(--muted);font-family:var(--fell);font-size:17px;letter-spacing:.04em;display:flex;align-items:center;gap:6px}
+nav.tabs button.on{color:var(--bone);background:var(--card);border-color:var(--line)}
+nav.tabs button .ic{font-size:16px}
+main{max-width:1280px;margin:0 auto;padding:0 16px 40px}
+.layout{display:block}
+.layout.has-side{display:grid;grid-template-columns:minmax(0,1fr) 370px;gap:16px;align-items:start}
+.side{position:sticky;top:84px;max-height:calc(100vh - 100px);overflow:auto;border-radius:var(--r)}
+.mainc{min-width:0}
+
+/* cards */
+.card{background:linear-gradient(180deg,var(--card),#1c1915);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-top:14px;box-shadow:0 8px 24px #0006}
+.card.first{border-top-left-radius:0}
+.card h2{font-size:22px;margin-bottom:6px}
+.card h3{font-size:18px;margin:2px 0 8px;color:var(--brass2)}
+.sec{border-top:1px dashed var(--line2);margin-top:14px;padding-top:12px}
+.sec:first-child{border-top:0;margin-top:0;padding-top:0}
+.stepno{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--blood);color:#fff;font-size:13px;font-weight:700;margin-right:8px;font-family:system-ui;vertical-align:2px}
+.hint{background:#2b231a;border-left:3px solid var(--brass);padding:9px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:14px}
+.hint b{color:var(--brass2)}
+.warn{background:#2e1715;border-left:3px solid var(--blood2);padding:9px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:14px}
+.good{background:#1c2617;border-left:3px solid var(--ok);padding:9px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:14px}
+
+/* buttons */
+.btn{background:var(--card2);border:1px solid var(--line2);border-radius:10px;padding:9px 14px;min-height:42px;transition:.15s}
+.btn:hover{border-color:var(--brass)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.pri{background:linear-gradient(#b02b23,#861c17);border-color:#c6392f;color:#fff;font-weight:600}
+.btn.pri:hover{filter:brightness(1.1)}
+.btn.gold{background:linear-gradient(#8f7230,#6d5520);border-color:var(--brass);color:#fff4d6;font-weight:600}
+.btn.ghost{background:none}
+.btn.sm{padding:5px 10px;min-height:32px;font-size:13px;border-radius:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.spacer{flex:1}
+
+/* timeline */
+.timeline{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+.tl{flex:0 0 auto;display:flex;align-items:center;gap:7px;padding:7px 11px;border:1px solid var(--line2);border-radius:999px;font-size:13px;color:var(--dim);background:var(--bg2);white-space:nowrap}
+.tl b{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--line);color:var(--muted);font-size:11px}
+.tl.done{color:var(--muted)} .tl.done b{background:#3a4a2c;color:#cfe6b8}
+.tl.now{color:#fff;border-color:var(--blood2);background:#3a1714;box-shadow:0 0 0 3px #d64a3f33}
+.tl.now b{background:var(--blood2);color:#fff;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px #d64a3f00}0%{box-shadow:0 0 0 0 #d64a3f99}}
+
+/* model pick */
+.picks{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-top:8px}
+.pick{text-align:left;background:var(--card2);border:1px solid var(--line2);border-radius:10px;padding:10px 12px}
+.pick:hover{border-color:var(--brass)}
+.pick .nm{font-weight:600}
+.pick .sub{font-size:12px;color:var(--muted)}
+.banner{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;margin:6px 0 4px;font-family:var(--fell);font-size:20px}
+
+/* actions */
+.acts{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px;margin:10px 0}
+.act{background:var(--card2);border:1px solid var(--line2);border-radius:10px;padding:10px;text-align:left;min-height:64px}
+.act .t{font-family:var(--fell);font-size:17px;display:block}
+.act .s{font-size:12px;color:var(--muted)}
+.act.used{opacity:.45;text-decoration:line-through}
+.act.cur{border-color:var(--blood2);background:#341815}
+.act:disabled{opacity:.35;cursor:not-allowed}
+
+/* dice */
+.rollbox{background:#16130f;border:1px solid var(--line2);border-radius:12px;padding:12px;margin-top:10px}
+.instr{font-size:16px;margin-bottom:8px}
+.instr b{color:var(--brass2);font-size:19px;font-family:var(--fell);letter-spacing:.03em}
+.dice{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.die{width:52px;height:52px;border-radius:10px;background:linear-gradient(145deg,#f3ead6,#cfc2a5);border:2px solid #8d7f66;display:grid;place-items:center;padding:0;color:#2a1d14;font-weight:700;font-size:20px;box-shadow:inset 0 -3px 0 #0003,0 2px 6px #0007}
+.die svg{width:40px;height:40px}
+.die.empty{background:#2a251f;border:2px dashed var(--line2);color:var(--dim)}
+.die.sel{outline:3px solid var(--brass2);outline-offset:2px}
+.die.kept{border-color:var(--brass2);box-shadow:0 0 0 3px #e6c46a55,inset 0 -3px 0 #0003}
+.die.drop{opacity:.35;filter:grayscale(1)}
+.die.anim{animation:tumble .45s ease-out}
+@keyframes tumble{0%{transform:rotate(-200deg) scale(.6)}70%{transform:rotate(15deg) scale(1.08)}100%{transform:none}}
+.keypad{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;max-width:360px;margin-top:6px}
+.keypad button{height:44px;border-radius:8px;background:var(--card2);border:1px solid var(--line2);font-size:18px;font-weight:600}
+.total{font-size:16px;margin-top:6px}
+.total b{font-size:26px;font-family:var(--fell);color:var(--bone)}
+.res{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;margin-top:10px;font-family:var(--fell);font-size:22px;letter-spacing:.04em}
+.res.fail{background:#2e1715;border:1px solid var(--blood2);color:#ffb3aa}
+.res.success{background:#1d2a17;border:1px solid var(--ok);color:#d2efbd}
+.res.crit{background:#3a2e10;border:1px solid var(--crit);color:var(--crit);text-shadow:0 0 12px #f0cf6266}
+.res small{font-family:system-ui;font-size:13px;letter-spacing:0;color:var(--bone);opacity:.85}
+
+/* modifiers */
+.mods{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.mod{font-size:13px;padding:4px 9px;border-radius:999px;border:1px solid var(--line2);background:var(--bg2)}
+.mod.p{border-color:#5c7a45;color:#cfe6b8}.mod.n{border-color:#8a3a33;color:#ffbdb5}.mod.z{color:var(--muted)}
+.net{font-size:15px;margin-top:6px}
+.net b{color:var(--brass2)}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:6px;margin:6px 0}
+.opt{display:flex;gap:9px;align-items:flex-start;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:var(--bg2);font-size:14px;cursor:pointer}
+.opt input{margin-top:3px;accent-color:var(--blood2);width:17px;height:17px;flex:none}
+.opt small{display:block;color:var(--muted);font-size:12px}
+.opt.dis{opacity:.45;cursor:not-allowed}
+.stepper{display:inline-flex;align-items:center;border:1px solid var(--line2);border-radius:9px;overflow:hidden;background:var(--bg2)}
+.stepper button{width:34px;height:34px;background:none;border:0;font-size:18px}
+.stepper button:disabled{opacity:.3}
+.stepper span{min-width:28px;text-align:center;font-weight:700}
+.spend{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:6px 0;font-size:14px}
+.odds{font-size:13px;color:var(--muted);margin-top:4px}
+.odds b{color:var(--bone)}
+.bar{height:8px;border-radius:4px;overflow:hidden;display:flex;margin-top:5px;background:var(--line)}
+.bar i{display:block;height:100%}
+
+select,input[type=text],input[type=number],textarea{background:var(--bg2);border:1px solid var(--line2);border-radius:9px;padding:8px 10px;min-height:40px;max-width:100%}
+select{padding-right:28px}
+label.fld{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+label.fld>*{text-transform:none;letter-spacing:0;color:var(--bone);font-size:15px}
+.sel2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* injury table */
+.itable{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+.itable td{padding:8px 10px;border-bottom:1px solid var(--line)}
+.itable td:first-child{font-family:var(--fell);font-size:17px;width:72px;color:var(--brass2)}
+.itable tr.hit td{background:#3a1714;color:#fff}
+.itable tr.hit td:first-child{color:var(--crit)}
+.itable tr.hit td:last-child::after{content:" ◀";color:var(--blood2)}
+
+/* roster */
+.wb{background:var(--card);border:1px solid var(--line);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
+.side .wb{margin-bottom:10px}
+.wbh{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--card2)}
+.wbh h3{font-size:18px;margin:0;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wbh .sw{width:12px;height:12px;border-radius:3px;flex:none}
+.mrow{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:9px 12px;border-bottom:1px solid #2e2923;align-items:center}
+.mrow:last-child{border-bottom:0}
+.mrow.done .mname{opacity:.6}
+.mrow.st-ooa{opacity:.45}
+.mrow.st-ooa .mname{text-decoration:line-through}
+.mrow.st-down{background:#2a1513}
+.mrow.cur{box-shadow:inset 3px 0 0 var(--blood2);background:#2c1916}
+.mname{font-weight:600;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.mstats{font-size:12px;color:var(--muted);grid-column:1/-1}
+.mctl{display:flex;gap:6px;align-items:center;flex-wrap:wrap;grid-column:1/-1}
+.tag{font-size:11px;padding:1px 7px;border-radius:999px;background:var(--line);color:var(--muted);font-weight:500}
+.tag.kw{background:#2f2a20;color:var(--brass2);border:1px solid #5a4a2a}
+.stp{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line2);background:var(--bg2);min-height:30px}
+.stp.up{color:#cfe6b8;border-color:#4b6338}.stp.down{color:#ffbdb5;border-color:#8a3a33;background:#3a1714}.stp.ooa{color:var(--dim)}
+.mk{display:inline-flex;align-items:center;border:1px solid var(--line2);border-radius:999px;overflow:hidden;font-size:13px;background:var(--bg2)}
+.mk button{background:none;border:0;width:28px;height:28px;font-size:15px}
+.mk span{padding:0 2px;min-width:38px;text-align:center}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:3px;vertical-align:-1px}
+.dot.b{background:var(--blood2);box-shadow:0 0 6px #d64a3f}
+.dot.s{background:var(--bless);box-shadow:0 0 6px #6fa6c9}
+
+/* log */
+.log{max-height:260px;overflow:auto;font-size:13px;margin-top:6px}
+.log div{padding:5px 0;border-bottom:1px solid #2e2923}
+.log i{color:var(--dim);font-style:normal;margin-right:6px}
+
+/* ref */
+details.ref{background:var(--card);border:1px solid var(--line);border-radius:10px;margin-top:10px}
+details.ref summary{padding:12px 14px;cursor:pointer;font-family:var(--fell);font-size:19px;color:var(--brass2);list-style:none;display:flex;align-items:center}
+details.ref summary::after{content:"+";margin-left:auto;color:var(--muted)}
+details.ref[open] summary::after{content:"−"}
+details.ref .body{padding:0 16px 14px}
+details.ref ul{padding-left:20px;margin:6px 0}
+details.ref li{margin:3px 0}
+table.ot{border-collapse:collapse;font-size:13px;width:100%;margin-top:6px}
+table.ot th,table.ot td{border:1px solid var(--line);padding:6px;text-align:center}
+table.ot th{background:var(--card2);font-weight:600;color:var(--brass2)}
+.kwg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.kwg div{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px}
+.kwg b{color:var(--brass2);font-family:var(--fell);font-size:16px;letter-spacing:.03em}
+
+/* modal */
+#modal .back{position:fixed;inset:0;background:#000b;z-index:50;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:20px 10px}
+#modal .box{background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:16px;width:100%;max-width:760px;margin:auto 0}
+.wrow{display:grid;grid-template-columns:2fr 1.2fr 1fr .8fr .8fr .8fr 2fr auto;gap:6px;align-items:end;padding:8px 0;border-bottom:1px solid var(--line)}
+.wrow input,.wrow select{width:100%;min-width:0}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:8px}
+.fgrid input{width:100%}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--card2);border:1px solid var(--brass);padding:9px 16px;border-radius:999px;z-index:60;opacity:0;transition:.25s;pointer-events:none;font-size:14px}
+#toast.on{opacity:1}
+
+@media (max-width:1050px){
+  .layout.has-side{grid-template-columns:1fr}
+  .side{display:none}
+}
+@media (max-width:700px){
+  body{font-size:15px}
+  header.top{padding:8px 12px;position:static}
+  .brand h1{font-size:19px}.brand small{display:none}
+  .turnbar{width:100%}
+  .phases span{padding:4px 7px;font-size:11px}
+  nav.tabs{position:fixed;bottom:0;left:0;right:0;margin:0;padding:6px 6px max(6px,env(safe-area-inset-bottom));background:#151210f5;border-top:1px solid var(--line);z-index:30;justify-content:space-around;backdrop-filter:blur(6px)}
+  nav.tabs button{flex-direction:column;gap:0;font-size:12px;padding:5px 4px;border-radius:9px;border:0;font-family:system-ui;flex:1}
+  nav.tabs button .ic{font-size:20px}
+  nav.tabs button.on{background:#341815;color:#fff}
+  main{padding:0 10px 100px}
+  .card{padding:13px;border-radius:12px}
+  .card.first{border-radius:12px}
+  .grid2,.sel2{grid-template-columns:1fr}
+  .die{width:48px;height:48px}
+  .wrow{grid-template-columns:1fr 1fr 1fr;}
+  .wrow .wn,.wrow .wk{grid-column:1/-1}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .fgrid .fn{grid-column:1/-1}
+  #toast{bottom:84px}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="hwrap">
+  <div class="brand"><span class="cross">✠</span><div><h1>Trench Crusade</h1><small>Turn Companion · Digital Rules / 2026 Quickstart</small></div></div>
+  <div class="turnbar" id="turnbar"></div>
+</div></header>
+<nav class="tabs" id="tabs">
+  <button data-a="tab" data-v="turn"><span class="ic">⚔</span>Turn</button>
+  <button data-a="tab" data-v="attack"><span class="ic">✠</span>Attack</button>
+  <button data-a="tab" data-v="dice"><span class="ic">⚄</span>Dice</button>
+  <button data-a="tab" data-v="bands"><span class="ic">☰</span>Warbands</button>
+  <button data-a="tab" data-v="ref"><span class="ic">📜</span>Rules</button>
+</nav>
+<main id="app"></main>
+<div id="modal"></div>
+<div id="toast"></div>
+
+<script>
+"use strict";
+/* ============ helpers ============ */
+const $=s=>document.querySelector(s);
+const uid=()=>Math.random().toString(36).slice(2,9);
+const d6=()=>1+Math.floor(Math.random()*6);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sg=n=>(+n>0?'+':'')+(+n||0);
+const sum=a=>a.reduce((s,x)=>s+x[1],0);
+const kwList=s=>String(s||'').toUpperCase().split(',').map(x=>x.trim()).filter(Boolean);
+function hasKw(o,k){return kwList(o&&o.kw).some(x=>x===k||x.startsWith(k+' ')||x.startsWith(k+'('))}
+function kwNum(o,k){const x=kwList(o&&o.kw).find(x=>x===k||x.startsWith(k+' ')||x.startsWith(k+'('));if(!x)return null;const m=x.match(/(\d+)/);return m?+m[1]:1}
+function negates(t,k){return hasKw(t,'NEGATE '+k)||(k==='FIRE'&&hasKw(t,'DEMONIC'))}
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove('on'),1800)}
+
+/* ============ data ============ */
+function M(name,move,ranged,melee,armour,kw,weapons){return{id:uid(),name,move,ranged,melee,armour,kw,weapons,status:'up',blood:0,blessing:0,toughUsed:false,activated:false}}
+function W(name,type,range,dice,injDice,injMod,kw){return{name,type,range,dice,injDice,injMod,kw}}
+function sampleBands(){return[
+ {name:'Warband A',color:'#c9a24a',shaken:false,fled:false,models:[
+  M('Sergeant',6,1,1,-1,'LEADER, ELITE',[W('Pistol','ranged','12"',0,0,0,'PISTOL, ASSAULT'),W('Sword','melee','Melee',0,0,0,'')]),
+  M('Rifleman',6,0,0,-1,'',[W('Rifle','ranged','24"',0,0,0,''),W('Bayonet','melee','Melee',0,0,0,'')]),
+  M('Rifleman',6,0,0,-1,'',[W('Rifle','ranged','24"',0,0,0,''),W('Bayonet','melee','Melee',0,0,0,'')]),
+  M('Gunner',6,0,0,-1,'',[W('Automatic Rifle','ranged','24"',0,0,0,'ASSAULT, AUTOMATIC 2'),W('Knife','melee','Melee',0,0,0,'')]),
+ ]},
+ {name:'Warband B',color:'#d64a3f',shaken:false,fled:false,models:[
+  M('Priest',6,0,1,-1,'LEADER, ELITE',[W('Shotgun','ranged','18"',0,1,0,'SHOTGUN'),W('Mace','melee','Melee',0,0,0,'')]),
+  M('Brute',6,-1,1,-2,'TOUGH, FEAR, STRONG',[W('Great Axe','melee','Melee',0,1,0,'CRITICAL')]),
+  M('Cultist',6,0,0,0,'',[W('Rifle','ranged','24"',0,0,0,''),W('Club','melee','Melee',0,0,0,'')]),
+ ]}]}
+function freshState(bands){return{v:1,turn:1,phase:'initiative',warbands:bands||sampleBands(),init:null,next:0,act:null,mor:null,log:[]}}
+const KEY='tc-companion-v1';
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function load(){try{const s=localStorage.getItem(KEY);return s?JSON.parse(s):null}catch(e){return null}}
+let S=load()||freshState();
+const mdl=(side,id)=>{const w=S.warbands[side];return w?w.models.find(m=>m.id===id):null};
+const other=s=>1-s;
+const alive=m=>m.status!=='ooa';
+const eligible=side=>{const w=S.warbands[side];return w.fled?[]:w.models.filter(m=>alive(m)&&!m.activated)};
+const leaderUp=w=>w.models.some(m=>m.status==='up'&&hasKw(m,'LEADER'));
+function log(txt){S.log.unshift({t:S.turn,txt});if(S.log.length>200)S.log.length=200}
+const wbName=i=>esc(S.warbands[i].name);
+const wbDot=i=>`<i class="dot" style="background:${S.warbands[i].color}"></i>`;
+
+/* ============ UI state ============ */
+const ui={tab:'turn',rolls:{},hooks:{},sp:{},atk:null,modal:null,free:{net:0,risky:false,inet:0,imod:0,bb:false},fall:{},sinj:{}};
+ui.atk=newAtk();
+
+/* ============ dice engine ============ */
+function getRoll(key,spec){
+  let r=ui.rolls[key];
+  const done=r&&evalR(r);
+  if(!r||(!done&&(r.n!==spec.n||r.keep!==spec.keep||r.low!==!!spec.low))){
+    r=ui.rolls[key]={n:spec.n,keep:spec.keep,low:!!spec.low,dice:Array(spec.n).fill(0),manual:false,sel:0,charged:null,charges:[],anim:false};
+  }
+  if(!done)r.charges=spec.charges||[];
+  return r;
+}
+function evalR(r){
+  if(!r||r.dice.length!==r.n||r.dice.some(v=>!v))return null;
+  const idx=r.dice.map((v,i)=>[v,i]).sort((a,b)=>r.low?a[0]-b[0]:b[0]-a[0]);
+  const kept=idx.slice(0,Math.min(r.keep,r.n)).map(x=>x[1]);
+  return{total:kept.reduce((s,i)=>s+r.dice[i],0),kept,dice:r.dice.slice()};
+}
+const rollDone=k=>evalR(ui.rolls[k]);
+function charge(list,sign){for(const[side,id,f,amt]of list){if(!amt)continue;const m=mdl(side,id);if(m)m[f]=Math.max(0,Math.min(6,m[f]-sign*amt))}}
+function completeRoll(k){
+  const r=ui.rolls[k],ev=evalR(r);if(!ev)return;
+  if(!r.charged){r.charged=r.charges.map(x=>x.slice());charge(r.charged,1)}
+  const h=ui.hooks[k];if(h)h(ev);
+}
+function resetRoll(k){const r=ui.rolls[k];if(!r)return;if(r.charged)charge(r.charged,-1);delete ui.rolls[k]}
+function pips(v){
+  const P={1:[[50,50]],2:[[28,28],[72,72]],3:[[26,26],[50,50],[74,74]],4:[[28,28],[72,28],[28,72],[72,72]],5:[[26,26],[74,26],[50,50],[26,74],[74,74]],6:[[28,24],[72,24],[28,50],[72,50],[28,76],[72,76]]}[v];
+  return `<svg viewBox="0 0 100 100">${P.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="9" fill="${v===1?'#9e231d':'#2a1d14'}"/>`).join('')}</svg>`;
+}
+function instrText(n,keep,low){
+  if(n===1)return'Roll <b>1 D6</b>';
+  if(keep>=n)return`Roll <b>${n} D6</b> · add them all`;
+  return`Roll <b>${n} D6</b> · keep the <b>${keep} ${low?'lowest':'highest'}</b>`;
+}
+/* spec: {n,keep,low,charges,add,lock,label} */
+function rollBox(key,spec){
+  const r=getRoll(key,spec),ev=evalR(r);
+  const anim=r.anim;r.anim=false;
+  const dice=r.dice.map((v,i)=>{
+    const c=['die'];if(!v)c.push('empty');if(ev)c.push(ev.kept.includes(i)?'kept':'drop');
+    if(r.manual&&!ev&&r.sel===i)c.push('sel');if(anim&&v)c.push('anim');
+    return`<button class="${c.join(' ')}" data-a="dsel" data-k="${key}" data-i="${i}" aria-label="die ${i+1}">${v?pips(v):'?'}</button>`}).join('');
+  let ctl='';
+  if(!ev){
+    ctl=`<div class="row"><button class="btn pri" data-a="autoroll" data-k="${key}">🎲 Roll for me</button>
+    ${r.manual?'':`<button class="btn" data-a="manual" data-k="${key}">✍ Enter my own dice</button>`}</div>`;
+    if(r.manual)ctl+=`<div class="small muted" style="margin-top:8px">Tap a die slot, then its value:</div><div class="keypad">${[1,2,3,4,5,6].map(v=>`<button data-a="dkey" data-k="${key}" data-v="${v}">${v}</button>`).join('')}</div>`;
+  }else{
+    const add=spec.add||0;
+    ctl=`<div class="row"><div class="total">Kept: ${ev.kept.map(i=>r.dice[i]).join(' + ')}${add?` ${add>0?'+':'−'} ${Math.abs(add)} (modifier)`:''} = <b>${ev.total+add}</b></div><span class="spacer"></span>
+    ${spec.lock?'':`<button class="btn sm ghost" data-a="dclr" data-k="${key}">↺ Re-roll / fix</button>`}</div>`;
+  }
+  return`<div class="rollbox">${spec.label?`<div class="small muted">${spec.label}</div>`:''}<div class="instr">${instrText(r.n,r.keep,r.low)}</div><div class="dice">${dice}</div>${ctl}</div>`;
+}
+const cls=t=>t>=12?'crit':t>=7?'success':'fail';
+function resBanner(c,total,extra=''){
+  const T={fail:['✗ Failure','2–6'],success:['✓ Success','7–11'],crit:['★ Critical Success','12+']}[c];
+  return`<div class="res ${c}">${T[0]} <small>(${total} · ${T[1]})</small>${extra?`<small style="margin-left:auto;text-align:right">${extra}</small>`:''}</div>`;
+}
+function injOut(t){return t<=1?'none':t<=6?'minor':t<=8?'down':'ooa'}
+const OUT={none:'No Effect',minor:'Minor Hit',down:'Down',ooa:'Out of Action'};
+
+/* ============ probabilities ============ */
+const DC={};
+function dist(n,keep,low){
+  const k=n+'|'+keep+'|'+(low?1:0);if(DC[k])return DC[k];
+  const d={};let N=0;
+  const tally=v=>{v.sort((a,b)=>low?a-b:b-a);let s=0;for(let i=0;i<Math.min(keep,n);i++)s+=v[i];d[s]=(d[s]||0)+1;N++};
+  if(n<=6){const L=6**n;for(let c=0;c<L;c++){let x=c;const v=[];for(let i=0;i<n;i++){v.push(x%6+1);x=Math.floor(x/6)}tally(v)}}
+  else for(let c=0;c<40000;c++){const v=[];for(let i=0;i<n;i++)v.push(d6());tally(v)}
+  for(const s in d)d[s]/=N;return DC[k]=d;
+}
+function pRange(d,lo,hi,add=0){let p=0;for(const s in d){const v=+s+add;if(v>=lo&&v<=hi)p+=d[s]}return p}
+const pct=p=>p>0&&p<.005?'<1%':Math.round(p*100)+'%';
+function successOdds(net){const d=dist(2+Math.abs(net),2,net<0);const pc=pRange(d,12,99),ps=pRange(d,7,99);return{ps,pc,pf:1-ps}}
+function successOddsHtml(net){const o=successOdds(net);return`<div class="odds">Odds — success <b>${pct(o.ps)}</b> · critical <b>${pct(o.pc)}</b> · fail <b>${pct(o.pf)}</b>
+ <div class="bar"><i style="width:${o.pf*100}%;background:#8a3a33"></i><i style="width:${(o.ps-o.pc)*100}%;background:#5c7a45"></i><i style="width:${o.pc*100}%;background:var(--crit)"></i></div></div>`}
+function injOdds(net,add,bb){const d=dist((bb?3:2)+Math.abs(net),bb?3:2,net<0);return{none:pRange(d,-99,1,add),minor:pRange(d,2,6,add),down:pRange(d,7,8,add),ooa:pRange(d,9,99,add)}}
+function injOddsHtml(net,add,bb){const o=injOdds(net,add,bb);return`<div class="odds">Odds — no effect <b>${pct(o.none)}</b> · minor <b>${pct(o.minor)}</b> · down <b>${pct(o.down)}</b> · out of action <b>${pct(o.ooa)}</b>
+ <div class="bar"><i style="width:${o.none*100}%;background:#4d4437"></i><i style="width:${o.minor*100}%;background:#8a6a33"></i><i style="width:${o.down*100}%;background:#b0422f"></i><i style="width:${o.ooa*100}%;background:#e04b3c"></i></div></div>`}
+
+function modChips(list,unit='DICE'){
+  if(!list.length)return`<div class="mods"><span class="mod z">No modifiers</span></div>`;
+  return`<div class="mods">${list.map(([l,v])=>`<span class="mod ${v>0?'p':v<0?'n':'z'}">${esc(l)}${v?` <b>${sg(v)}</b>`:''}</span>`).join('')}</div>`;
+}
+function netLine(net,unit='DICE'){
+  if(!net)return`<div class="net">Net: <b>no ${unit}</b> → just 2 dice.</div>`;
+  return`<div class="net">Net: <b>${sg(net)} ${unit}</b> → add ${Math.abs(net)} extra ${Math.abs(net)>1?'dice':'die'}, keep the ${net>0?'highest':'lowest'} two. <span class="dim">(+ and − cancel one-for-one)</span></div>`;
+}
+function stepper(a,k,f,val,min,max,dis){
+  return`<span class="stepper"><button data-a="${a}" data-k="${k}" data-f="${f}" data-d="-1" ${dis||val<=min?'disabled':''}>−</button><span>${val}</span><button data-a="${a}" data-k="${k}" data-f="${f}" data-d="1" ${dis||val>=max?'disabled':''}>+</button></span>`;
+}
+
+/* ============ generic success roll panel ============ */
+/* cfg: {side,model,title,risky,extra:[[l,v]],markers,inAct,onFail,onSuccess,lock} */
+function successPanel(key,cfg){
+  const m=cfg.model,sp=ui.sp[key]||(ui.sp[key]={bl:0,bs:0});
+  const r0=ui.rolls[key],locked=!!evalR(r0);
+  const mods=[...(cfg.extra||[])];
+  if(m&&m.status==='down'&&cfg.downApplies!==false)mods.push(['Model is Down',-1]);
+  if(sp.bs)mods.push(['Blessing spent',sp.bs]);
+  if(sp.bl)mods.push(['Opponent spends Blood',-sp.bl]);
+  const net=sum(mods);
+  const charges=m?[[cfg.side,m.id,'blessing',sp.bs],[cfg.side,m.id,'blood',sp.bl]]:[];
+  ui.hooks[key]=ev=>{const c=cls(ev.total);
+    if(c==='fail'&&cfg.risky&&cfg.inAct&&S.act){S.act.ended=true;S.act.endReason=`Failed a Risky roll (${cfg.title})`}
+    if(c==='fail'&&cfg.onFail)cfg.onFail(ev);if(c!=='fail'&&cfg.onSuccess)cfg.onSuccess(ev);
+    log(`${m?esc(m.name)+': ':''}${esc(cfg.title)} — ${ev.total} (${c==='fail'?'fail':c==='crit'?'critical':'success'})`)};
+  let h=`<div class="row"><b>${esc(cfg.title)}</b> ${cfg.risky?'<span class="tag" style="background:#5a1d18;color:#ffbdb5">RISKY — failure ends the activation</span>':'<span class="tag">Safe</span>'}</div>`;
+  h+=modChips(mods);
+  if(m&&cfg.markers!==false&&(m.blood||m.blessing||sp.bl||sp.bs)){
+    h+=`<div class="spend">${(m.blessing||sp.bs)?`<span><i class="dot s"></i>Spend Blessing (+1 DICE each) ${stepper('sp',key,'bs',sp.bs,0,locked?sp.bs:m.blessing,locked)}</span>`:''}
+    ${(m.blood||sp.bl)?`<span><i class="dot b"></i>Opponent spends Blood (−1 DICE each) ${stepper('sp',key,'bl',sp.bl,0,locked?sp.bl:m.blood,locked)}</span>`:''}</div>`;
+  }
+  h+=netLine(net)+successOddsHtml(net);
+  h+=rollBox(key,{n:2+Math.abs(net),keep:2,low:net<0,charges,lock:cfg.lock});
+  const ev=rollDone(key);
+  if(ev){const c=cls(ev.total);h+=resBanner(c,ev.total,c==='fail'&&cfg.risky?'Risky roll failed → activation ends':'')}
+  return h;
+}
+
+/* ============ injury effect ============ */
+function injEffect(t,out,w){
+  let st=t.status,add=0,tu=t.toughUsed;const txt=[];
+  if(out==='none')txt.push('No Effect');
+  if(out==='minor'){add=1;txt.push('Minor Hit: +1 Blood Marker')}
+  if(out==='down'){add=st==='down'?2:1;txt.push(st==='down'?'Down again: +2 Blood Markers':'Taken Down: +1 Blood Marker');st='down'}
+  if(out==='ooa'){
+    if(hasKw(t,'TOUGH')&&!tu){tu=true;add=st==='down'?2:1;txt.push('TOUGH: first Out of Action becomes Down instead (+'+add+' Blood)');st='down'}
+    else{st='ooa';txt.push('Out of Action — remove the model')}
+  }
+  if(st!=='ooa'&&w)for(const k of['SHRAPNEL','FIRE','GAS']){if(hasKw(w,k)){if(negates(t,k))txt.push(`${k} negated`);else{add++;txt.push(`${k}: +1 Blood Marker`)}}}
+  const room=6-t.blood;if(add>room&&st!=='ooa')txt.push(`(capped at 6 Blood Markers)`);
+  return{status:st,add:Math.min(add,Math.max(0,room)),tu,text:txt.join(' · ')};
+}
+function applyEffect(t,e){t.status=e.status;t.blood=Math.min(6,t.blood+e.add);t.toughUsed=e.tu}
+function itable(out){
+  const rows=[['≤1','none','No Effect — unharmed'],['2–6','minor','Minor Hit — 1 Blood Marker'],['7–8','down','Down — 1 Blood Marker (2 if already Down)'],['9+','ooa','Out of Action — remove the model']];
+  return`<table class="itable">${rows.map(([r,k,d])=>`<tr class="${k===out?'hit':''}"><td>${r}</td><td>${d}</td></tr>`).join('')}</table>`;
+}
+
+/* ============ attack resolver ============ */
+function firstAlive(side){const w=S.warbands[side];return w?(w.models.find(alive)||w.models[0]):null}
+function newAtk(p={}){
+  const aSide=p.aSide??0,tSide=p.tSide??other(aSide);
+  const a=p.aId?mdl(aSide,p.aId):firstAlive(aSide),t=p.tId?mdl(tSide,p.tId):firstAlive(tSide);
+  return{id:uid(),aSide,aId:a&&a.id,wIdx:p.wIdx??-1,tSide,tId:t&&t.id,o:Object.assign({},p.o||{}),bl:0,bs:0,bi:0,si:0,bb:false,
+    applied:false,ctx:p.ctx||null,blast:!!p.blast,hitSnap:null,injSnap:null,result:null,_out:null,_hit:null};
+}
+function modelOpts(selSide,selId,filter){
+  return S.warbands.map((w,s)=>`<optgroup label="${esc(w.name)}">${w.models.filter(m=>!filter||filter(m,s)).map(m=>`<option value="${s}:${m.id}" ${s===selSide&&m.id===selId?'selected':''}>${esc(m.name)}${m.status!=='up'?` (${m.status==='down'?'Down':'OOA'})`:''}${m.blood?` · ${m.blood}🩸`:''}</option>`).join('')}</optgroup>`).join('');
+}
+function wpnLine(w){
+  const bits=[w.type==='ranged'?'Ranged':'Melee',w.range];
+  if(+w.dice)bits.push(sg(w.dice)+' DICE');if(+w.injDice)bits.push(sg(w.injDice)+' INJURY DICE');if(+w.injMod)bits.push(sg(w.injMod)+' INJURY MOD');
+  return bits.filter(Boolean).join(' · ')+(w.kw?` · <span class="tag kw">${esc(w.kw)}</span>`:'');
+}
+function hitMods(A,a,w,t){
+  const L=[],ranged=w.type==='ranged',o=A.o;
+  const ch=ranged?+a.ranged:+a.melee;if(ch)L.push([ranged?'Ranged characteristic':'Melee characteristic',ch]);
+  if(+w.dice)L.push(['Weapon',+w.dice]);
+  if(ranged){
+    if(o.elevated)L.push(['Elevated (3″+ above)',1]);
+    if(o.cover)L.push(['Target in Cover',-1]);
+    if(o.long&&!hasKw(w,'SHOTGUN'))L.push(['Long Range (> half range)',-1]);
+  }else{
+    if(o.offhand)L.push(['Second melee weapon',-1]);
+    if(t&&hasKw(t,'FEAR')&&!hasKw(a,'FEAR'))L.push(['Target causes FEAR',-1]);
+    if(o.defended)L.push(['Defended Obstacle',-1]);
+    if(o.diving)L.push(['Diving Charge bonus',1]);
+  }
+  if(a.status==='down')L.push(['Attacker is Down',-1]);
+  if(A.bs)L.push(['Blessing spent',A.bs]);
+  if(A.bl)L.push(['Opponent spends Blood',-A.bl]);
+  return L;
+}
+function opt(name,label,sub,checked,dis){
+  return`<label class="opt ${dis?'dis':''}"><input type="checkbox" data-c="atkopt" data-f="${name}" ${checked?'checked':''} ${dis?'disabled':''}><span>${label}${sub?`<small>${sub}</small>`:''}</span></label>`;
+}
+function atkView(){
+  const A=ui.atk;
+  if(!S.warbands.every(w=>w.models.length))return`<p class="muted">Add models to both warbands first (Warbands tab).</p>`;
+  let a=mdl(A.aSide,A.aId);if(!a){const f=firstAlive(A.aSide);A.aId=f.id;a=f}
+  let t=mdl(A.tSide,A.tId);if(!t){A.tSide=other(A.aSide);const f=firstAlive(A.tSide);A.tId=f.id;t=f}
+  const ctx=A.ctx;
+  const wl=a.weapons.map((w,i)=>({w,i})).filter(x=>ctx==='shoot'?x.w.type==='ranged':(ctx==='fight'||ctx==='retreat')?x.w.type==='melee':true);
+  if(!wl.find(x=>x.i===A.wIdx))A.wIdx=wl.length?wl[0].i:-1;
+  const w=a.weapons[A.wIdx];
+  const hk=A.id+'-hit',ik=A.id+'-inj',sk=A.id+'-sc';
+  const hitEv=rollDone(hk),injEv=rollDone(ik);
+  const setupLock=!!hitEv||A.applied;
+  let h='';
+  // ---- 1 setup
+  h+=`<div class="sec"><h3><span class="stepno">1</span>Who attacks whom?</h3><div class="sel2">
+   <label class="fld">Attacker<select data-c="atk-a" ${setupLock||ctx==='shoot'||ctx==='fight'||A.blast?'disabled':''}>${modelOpts(A.aSide,a.id,m=>alive(m)||m.id===a.id)}</select></label>
+   <label class="fld">Weapon<select data-c="atk-w" ${setupLock||A.blast?'disabled':''}>${wl.length?wl.map(x=>`<option value="${x.i}" ${x.i===A.wIdx?'selected':''}>${esc(x.w.name)} (${x.w.type})</option>`).join(''):'<option>— no suitable weapon —</option>'}</select></label>
+   <label class="fld" style="grid-column:1/-1">Target<select data-c="atk-t" ${setupLock||ctx==='retreat'?'disabled':''}>${modelOpts(A.tSide,t.id,(m,s)=>(alive(m)||m.id===t.id)&&!(s===A.aSide&&m.id===a.id))}</select></label>
+  </div>`;
+  if(!w)return h+`<div class="warn">${esc(a.name)} has no ${ctx==='shoot'?'ranged':ctx?'melee':''} weapon. Edit it in the Warbands tab.</div></div>`;
+  const ranged=w.type==='ranged';
+  h+=`<div class="small muted" style="margin-top:8px"><b>${esc(w.name)}</b>: ${wpnLine(w)}</div>`;
+  h+=`<div class="small muted">Target <b>${esc(t.name)}</b>: Armour ${t.armour||0}${t.kw?` · <span class="tag kw">${esc(t.kw)}</span>`:''} · status ${t.status} · <i class="dot b"></i>${t.blood} <i class="dot s"></i>${t.blessing}</div>`;
+  const notes=[];
+  if(ranged)notes.push('Needs Line of Sight, target in range and more than 1″ away.');else notes.push('Target must be within 1″.');
+  if(hasKw(w,'HEAVY')&&!hasKw(a,'STRONG')&&ranged)notes.push('<b>HEAVY</b>: cannot Shoot in an activation where the model Moved, Charged, Retreated or Dashed.');
+  if(kwNum(w,'AUTOMATIC'))notes.push(`<b>AUTOMATIC ${kwNum(w,'AUTOMATIC')}</b>: make ${kwNum(w,'AUTOMATIC')} attacks — use “Attack again” after each one (check your weapon's own targeting restrictions).`);
+  if(hasKw(w,'BLAST'))notes.push(`<b>BLAST</b>: pick a target point/model. On a hit, make an Injury Roll for every model in the radius with LoS to the point (crit bonus only on the main target). Use “Next model in blast”.`);
+  if(hasKw(w,'ASSAULT'))notes.push('<b>ASSAULT</b>: shooting doesn’t stop this model from Charging or Fighting this activation.');
+  h+=`<div class="hint">${notes.join('<br>')}</div></div>`;
+  if(A.blast){
+    h+=`<div class="sec"><h3><span class="stepno">2</span>Blast — extra model</h3><div class="good">No hit roll for extra models caught in the blast: go straight to the Injury Roll. The Critical bonus only applied to the original target.</div></div>`;
+  }else{
+    // ---- 2 modifiers
+    const o=A.o;
+    h+=`<div class="sec"><h3><span class="stepno">2</span>Situation (${ranged?'Shoot':'Fight'} modifiers)</h3><div class="opts">`;
+    if(ranged){
+      h+=opt('elevated','Elevated','Attacker ≥3″ higher than target · +1 DICE',o.elevated,setupLock);
+      h+=opt('cover','Target in Cover','Touching terrain ≥½″ high, as wide as its base, between you · −1 DICE',o.cover,setupLock);
+      h+=opt('long','Long Range',hasKw(w,'SHOTGUN')?'More than half max range · SHOTGUN: −1 INJURY DICE instead':'More than half the weapon’s max range · −1 DICE',o.long,setupLock);
+      if(!hasKw(w,'BLAST'))h+=opt('melee','Target is within 1″ of one of your models','Shooting into melee: roll a D6 first',o.melee,setupLock);
+    }else{
+      h+=opt('offhand','Second melee weapon','The second of two weapons used this activation · −1 DICE',o.offhand,setupLock);
+      h+=opt('defended','Defended Obstacle','Target in cover (same test as Cover) · −1 DICE',o.defended,setupLock);
+      h+=opt('diving','Diving Charge bonus','Passed a Diving Charge this activation · +1 DICE',o.diving,setupLock);
+    }
+    h+=`</div>`;
+    if(a.blessing||a.blood||A.bs||A.bl)h+=`<div class="spend">${(a.blessing||A.bs)?`<span><i class="dot s"></i>Attacker spends Blessing (+1 DICE) ${stepper('atksp','bs','bs',A.bs,0,setupLock?A.bs:a.blessing,setupLock)}</span>`:''}${(a.blood||A.bl)?`<span><i class="dot b"></i>Opponent spends attacker’s Blood (−1 DICE) ${stepper('atksp','bl','bl',A.bl,0,setupLock?A.bl:a.blood,setupLock)}</span>`:''}</div>`;
+    // shooting into melee
+    let blocked=false;
+    if(ranged&&o.melee){
+      h+=`<div class="hint"><b>Shooting into melee:</b> roll a D6 — on 1–3 you must target a friendly model within 1″ of the target instead; on 4–6 you may shoot the enemy.</div>`;
+      h+=rollBox(sk,{n:1,keep:1,lock:setupLock});
+      const sc=rollDone(sk);
+      if(!sc)blocked=true;
+      else if(sc.total<=3)h+=`<div class="warn">Rolled ${sc.total}: the shot must target one of <b>your own</b> models within 1″ of the enemy. Change the Target above to that friendly model.</div>`;
+      else h+=`<div class="good">Rolled ${sc.total}: you may target the enemy.</div>`;
+    }
+    // ---- 3 hit roll
+    const live=hitMods(A,a,w,t);
+    const snap=A.hitSnap&&hitEv?A.hitSnap:{mods:live,net:sum(live),risky:S.warbands[A.aSide].shaken||hasKw(w,'RISKY')};
+    const net=snap.net;
+    h+=`<div class="sec"><h3><span class="stepno">3</span>Attack Success Roll</h3>`;
+    if(blocked)h+=`<p class="muted">Roll the shooting-into-melee D6 first.</p></div>`;
+    else{
+      h+=`<div class="small muted">2D6 against 7+. ${snap.risky?'<span class="tag" style="background:#5a1d18;color:#ffbdb5">RISKY</span> '+(S.warbands[A.aSide].shaken?'Warband is Shaken.':'Weapon is RISKY.')+' A failure ends the activation.':''}</div>`;
+      h+=modChips(snap.mods)+netLine(net)+successOddsHtml(net);
+      ui.hooks[hk]=ev=>{A.hitSnap={mods:live,net:sum(live),risky:snap.risky};const c=cls(ev.total);
+        if(c==='fail'&&snap.risky&&S.act&&(A.ctx==='shoot'||A.ctx==='fight')){S.act.ended=true;S.act.endReason='Risky attack roll failed'}};
+      h+=rollBox(hk,{n:2+Math.abs(net),keep:2,low:net<0,charges:[[A.aSide,a.id,'blessing',A.bs],[A.aSide,a.id,'blood',A.bl]],lock:A.applied||!!injEv});
+      if(hitEv){const c=cls(hitEv.total);
+        h+=resBanner(c,hitEv.total,c==='fail'?'Miss — no Injury Roll':c==='crit'?(hasKw(w,'CRITICAL')?'+2 INJURY DICE (CRITICAL)':'+1 INJURY DICE'):'Hit — roll for Injury');
+        if(c==='fail'&&snap.risky&&S.act&&(ctx==='shoot'||ctx==='fight'))h+=`<div class="warn">Risky roll failed — this model’s activation ends.</div>`;
+      }
+      h+=`</div>`;
+    }
+  }
+  // ---- 4 injury
+  const hitC=A.blast?'success':hitEv?cls(hitEv.total):null;
+  A._hit=hitC;
+  if(hitC==='success'||hitC==='crit'){
+    const im=[];
+    if(+w.injDice)im.push(['Weapon',+w.injDice]);
+    if(hitC==='crit')im.push([hasKw(w,'CRITICAL')?'Critical (CRITICAL weapon)':'Critical Success',hasKw(w,'CRITICAL')?2:1]);
+    if(!ranged&&t.status==='down')im.push(['Melee vs Down target',1]);
+    if(ranged&&A.o.long&&hasKw(w,'SHOTGUN'))im.push(['SHOTGUN at Long Range',-1]);
+    if(A.bi)im.push(['Attacker spends target’s Blood',A.bi]);
+    if(A.si)im.push(['Target spends Blessing',-A.si]);
+    const fm=[];
+    if(+w.injMod)fm.push(['Weapon',+w.injMod]);
+    if(+t.armour){if(hasKw(w,'IGNORE ARMOUR'))fm.push(['Armour ignored (IGNORE ARMOUR)',0]);else fm.push(['Armour / shield',+t.armour])}
+    const neg=fm.filter(x=>x[1]<0).reduce((s,x)=>s+x[1],0),pos=fm.filter(x=>x[1]>0).reduce((s,x)=>s+x[1],0);
+    const capped=neg<-3;const add=Math.max(neg,-3)+pos;
+    const cost=t.status==='down'?3:6;
+    let sn=A.injSnap&&injEv?A.injSnap:{im,fm,net:sum(im),add,bb:A.bb,capped};
+    const iLock=!!injEv||A.applied;
+    h+=`<div class="sec"><h3><span class="stepno">${A.blast?3:4}</span>Injury Roll</h3>`;
+    h+=`<div class="small muted">Roll 2D6 (Bloodbath: 3D6) with INJURY DICE, add the INJURY MODIFIER, then read the Injury Table.</div>`;
+    h+=`<div class="small" style="margin-top:6px">INJURY DICE</div>`+modChips(sn.im);
+    h+=`<div class="small">INJURY MODIFIER (flat)</div>`+modChips(sn.fm)+(sn.capped?`<div class="warn small">Negative injury modifiers are capped at −3 total.</div>`:'');
+    const tb=t.blood,maxBi=Math.max(0,tb-(A.bb?cost:0))+A.bi;
+    h+=`<div class="spend">`;
+    if(t.blood||A.bi||A.bb)h+=`<span><i class="dot b"></i>Spend target’s Blood (+1 INJURY DICE) ${stepper('atksp','bi','bi',A.bi,0,iLock?A.bi:Math.max(0,tb-(A.bb?cost:0)),iLock)}</span>`;
+    if(t.blessing||A.si)h+=`<span><i class="dot s"></i>Target spends Blessing (−1 INJURY DICE) ${stepper('atksp','si','si',A.si,0,iLock?A.si:t.blessing,iLock)}</span>`;
+    h+=`</div>`;
+    const bbAvail=iLock?sn.bb:(t.blood>=cost);
+    h+=`<div class="opts"><label class="opt ${(!bbAvail||iLock)?'dis':''}"><input type="checkbox" data-c="atkbb" ${sn.bb?'checked':''} ${(!bbAvail||iLock)?'disabled':''}><span>Bloodbath Roll<small>Spend ${cost} of the target’s Blood Markers${t.status==='down'?' (target is Down)':''} → roll 3D6 and add all three. ${bbAvail?'':`Needs ${cost}; target has ${t.blood}.`}</small></span></label></div>`;
+    h+=netLine(sn.net,'INJURY DICE').replace('just 2 dice',sn.bb?'just 3 dice (Bloodbath)':'just 2 dice').replace('keep the highest two',sn.bb?'keep the highest three':'keep the highest two').replace('keep the lowest two',sn.bb?'keep the lowest three':'keep the lowest two');
+    h+=`<div class="net">Modifier: <b>${sg(sn.add)}</b> to the total.</div>`+injOddsHtml(sn.net,sn.add,sn.bb);
+    ui.hooks[ik]=()=>{A.injSnap={im,fm,net:sum(im),add,bb:A.bb,capped}};
+    h+=rollBox(ik,{n:(sn.bb?3:2)+Math.abs(sn.net),keep:sn.bb?3:2,low:sn.net<0,add:sn.add,lock:A.applied,
+      charges:[[A.tSide,t.id,'blood',A.bi+(A.bb?cost:0)],[A.tSide,t.id,'blessing',A.si]]});
+    if(injEv){
+      const tot=injEv.total+sn.add,out=injOut(tot);A._out=out;
+      h+=`<div class="res ${out==='none'?'success':out==='minor'?'success':'fail'}">${OUT[out]} <small>(${tot})</small></div>`+itable(out);
+      if(A.applied)h+=`<div class="good">Applied: ${esc(A.result)}</div>`;
+      else{const e=injEffect(t,out,w);h+=`<div class="hint"><b>Will apply to ${esc(t.name)}:</b> ${esc(e.text)}</div><div class="row"><button class="btn gold" data-a="atk-apply">Apply result to ${esc(t.name)}</button></div>`}
+    }
+    h+=`</div>`;
+  }else if(hitC==='fail'){
+    h+=`<div class="sec">${A.applied?`<div class="muted">Miss recorded.</div>`:`<button class="btn gold" data-a="atk-miss">Record miss</button>`}</div>`;
+  }
+  // ---- after
+  if(A.applied){
+    h+=`<div class="sec"><h3>What next?</h3><div class="row">`;
+    if(!(S.act&&S.act.ended))h+=`<button class="btn" data-a="atk-again">↻ Attack again (same setup)</button>`;
+    if(hasKw(w,'BLAST')&&A._hit&&A._hit!=='fail')h+=`<button class="btn" data-a="atk-blast">💥 Next model in blast</button>`;
+    if(ctx==='fight'&&!A.o.offhand&&!(S.act&&S.act.ended)){const ow=a.weapons.findIndex((x,i)=>x.type==='melee'&&i!==A.wIdx);if(ow>=0&&a.status!=='ooa')h+=`<button class="btn" data-a="atk-second" data-v="${ow}">⚔ Second weapon: ${esc(a.weapons[ow].name)} (−1 DICE)</button>`}
+    if(ctx)h+=`<button class="btn pri" data-a="act-back">Back to activation →</button>`;
+    else h+=`<button class="btn pri" data-a="atk-new">New attack</button>`;
+    h+=`</div></div>`;
+  }
+  return h;
+}
+
+/* ============ simple injury (falls) ============ */
+function simpleInjury(key,side,m,extraDice,title){
+  const st=ui.sinj[key]||(ui.sinj[key]={applied:false,res:''});
+  const im=[];if(extraDice)im.push([title,extraDice]);
+  const fm=[];if(+m.armour)fm.push(['Armour',+m.armour]);
+  const add=Math.max(fm.reduce((s,x)=>s+x[1],0),-3),net=sum(im);
+  let h=modChips(im)+modChips(fm)+netLine(net,'INJURY DICE')+injOddsHtml(net,add,false);
+  h+=rollBox(key,{n:2+Math.abs(net),keep:2,low:net<0,add,lock:st.applied});
+  const ev=rollDone(key);
+  if(ev){const out=injOut(ev.total+add);st.out=out;
+    h+=`<div class="res ${out==='none'||out==='minor'?'success':'fail'}">${OUT[out]} <small>(${ev.total+add})</small></div>`+itable(out);
+    h+=st.applied?`<div class="good">Applied: ${esc(st.res)}</div>`:`<button class="btn gold" data-a="sinj-apply" data-k="${key}" data-s="${side}" data-id="${m.id}">Apply to ${esc(m.name)}</button>`;
+  }
+  return h;
+}
+
+/* ============ TURN VIEW ============ */
+const STEPS=[['init','Initiative'],['pick','Choose a model'],['actions','Take actions'],['end','End activation'],['morale','Morale phase'],['eot','End of turn']];
+function curStep(){
+  if(S.phase==='initiative')return'init';
+  if(S.phase==='activation')return!S.act?'pick':S.act.ended?'end':'actions';
+  if(S.phase==='morale')return'morale';
+  return'eot';
+}
+function timeline(){
+  const c=curStep(),ci=STEPS.findIndex(s=>s[0]===c);
+  return`<div class="timeline">${STEPS.map(([id,t],i)=>`<div class="tl ${i<ci?'done':i===ci?'now':''}"><b>${i<ci?'✓':i+1}</b>${t}</div>`).join('')}</div>`;
+}
+function turnbar(){
+  const ph=S.phase;
+  return`<span class="turnno">Turn ${S.turn}</span><span class="phases"><span class="${ph==='initiative'?'on':''}">Initiative</span><span class="${ph==='activation'?'on':''}">Activation</span><span class="${ph==='morale'||ph==='over'?'on':''}">Morale</span></span>
+  ${S.warbands.map((w,i)=>`<span class="wbchip ${w.shaken||w.fled?'shaken':''}"><i style="background:${w.color}"></i>${esc(w.name)}${w.fled?' · FLED':w.shaken?' · Shaken':''}</span>`).join('')}`;
+}
+function viewTurn(){
+  let h=`<section class="card first">${timeline()}`;
+  const fled=S.warbands.findIndex(w=>w.fled);
+  if(fled>=0){h+=`<h2>Game over</h2><div class="warn"><b>${wbName(fled)}</b> fled the field — ${wbName(other(fled))} wins.</div><button class="btn pri" data-a="newgame">Start a new game (same warbands)</button></section>`;return h+logCard()}
+  if(S.phase==='initiative')h+=stageInit();
+  else if(S.phase==='activation')h+=S.act?stageAct():stagePick();
+  else if(S.phase==='morale')h+=stageMorale();
+  h+=`</section>`;
+  return h+logCard();
+}
+function logCard(){
+  return`<section class="card"><div class="row"><h3 style="margin:0">Battle log</h3><span class="spacer"></span><button class="btn sm ghost" data-a="clrlog">Clear</button></div>
+  <div class="log">${S.log.length?S.log.map(l=>`<div><i>T${l.t}</i>${l.txt}</div>`).join(''):'<div class="muted">Nothing yet.</div>'}</div></section>`;
+}
+function stageInit(){
+  const c=S.warbands.map(w=>w.models.filter(alive).length);
+  let h=`<h2>Initiative Phase</h2><div class="hint">The player with <b>fewer models</b> in their warband has Initiative and chooses whether to activate <b>first or second</b>. If tied, each player rolls a D6 — highest wins (re-roll ties, no modifiers).</div>`;
+  h+=`<div class="grid2">${S.warbands.map((w,i)=>`<div class="pick" style="border-color:${w.color}55"><div class="nm">${wbDot(i)}${esc(w.name)}</div><div class="sub">${c[i]} model${c[i]===1?'':'s'} on the battlefield</div></div>`).join('')}</div>`;
+  let win=null;
+  if(c[0]!==c[1]){win=c[0]<c[1]?0:1;h+=`<div class="good"><b>${wbName(win)}</b> has fewer models and takes Initiative.</div>`}
+  else{
+    h+=`<div class="sec"><h3>Roll-off</h3><div class="grid2">${[0,1].map(i=>`<div><b>${wbDot(i)}${wbName(i)}</b>${rollBox('ini'+S.turn+'-'+i,{n:1,keep:1})}</div>`).join('')}</div>`;
+    const r0=rollDone('ini'+S.turn+'-0'),r1=rollDone('ini'+S.turn+'-1');
+    if(r0&&r1){if(r0.total===r1.total)h+=`<div class="warn">Tie! Roll again. <button class="btn sm" data-a="initre">Re-roll both</button></div>`;else{win=r0.total>r1.total?0:1;h+=`<div class="good"><b>${wbName(win)}</b> wins the roll-off.</div>`}}
+    h+=`</div>`;
+  }
+  if(win!==null)h+=`<div class="sec"><h3><b style="color:${S.warbands[win].color}">${wbName(win)}</b> chooses:</h3><div class="row"><button class="btn pri" data-a="initgo" data-v="${win}">Activate first</button><button class="btn" data-a="initgo" data-v="${other(win)}">Let ${wbName(other(win))} go first</button></div></div>`;
+  return h;
+}
+function stagePick(){
+  const s=S.next,w=S.warbands[s],el=eligible(s);
+  const rem=[0,1].map(i=>eligible(i).length);
+  let h=`<h2>Activation Phase</h2><div class="banner" style="background:${w.color}22;border:1px solid ${w.color}88">${wbDot(s)}${esc(w.name)} — activate a model</div>`;
+  h+=`<div class="small muted">Remaining to activate: ${wbName(0)} ${rem[0]} · ${wbName(1)} ${rem[1]}</div>`;
+  h+=`<div class="hint">Players alternate, one model at a time. Each model activates <b>once per turn</b>. When one side runs out, the other activates its remaining models one after another.${w.shaken?'<br><b style="color:var(--blood2)">This warband is Shaken: every Success Roll it makes is Risky.</b>':''}</div>`;
+  h+=`<div class="picks">${el.map(m=>`<button class="pick" data-a="pick" data-id="${m.id}"><div class="nm">${esc(m.name)}</div><div class="sub">M ${m.move}″ · R ${sg(m.ranged)} · Mel ${sg(m.melee)} · Arm ${m.armour||0}</div><div class="sub">${m.status==='down'?'<b style="color:#ffbdb5">Down — will stand up</b> · ':''}<i class="dot b"></i>${m.blood} <i class="dot s"></i>${m.blessing}</div></button>`).join('')}</div>`;
+  h+=`<div class="row" style="margin-top:12px"><span class="spacer"></span><button class="btn sm ghost" data-a="tomorale">Skip to Morale Phase</button></div>`;
+  return h;
+}
+function actModel(){return mdl(S.act.side,S.act.id)}
+function moveVal(){const m=actModel();return S.act.stood?Math.floor(m.move/2*10)/10:+m.move}
+function stageAct(){
+  const A=S.act,m=actModel(),w=S.warbands[A.side],u=A.used;
+  if(!m){S.act=null;return stagePick()}
+  let h=`<div class="banner" style="background:${w.color}22;border:1px solid ${w.color}88">${wbDot(A.side)}${esc(m.name)}<span class="small muted" style="font-family:system-ui;margin-left:auto">${esc(w.name)}</span></div>`;
+  h+=`<div class="small muted">M ${m.move}″ · Ranged ${sg(m.ranged)} DICE · Melee ${sg(m.melee)} DICE · Armour ${m.armour||0} ${m.kw?`· <span class="tag kw">${esc(m.kw)}</span>`:''} · <i class="dot b"></i>${m.blood} <i class="dot s"></i>${m.blessing}</div>`;
+  if(A.stood)h+=`<div class="warn"><b>Stood up from Down:</b> Movement is halved for this activation (including any Charge bonus) → ${moveVal()}″.</div>`;
+  if(w.shaken)h+=`<div class="warn">Warband is <b>Shaken</b>: all of this model’s Success Rolls are Risky.</div>`;
+  const heavyShot=m.weapons.some(x=>x.type==='ranged'&&hasKw(x,'HEAVY'))&&!hasKw(m,'STRONG');
+  if(A.ended){
+    h+=`<div class="sec"><div class="${A.endReason&&/Risky|Down|Out/.test(A.endReason)?'warn':'good'}"><b>Activation over.</b> ${esc(A.endReason||'')}</div>
+    <div class="row"><button class="btn pri" data-a="actdone">Next activation →</button>${A.endReason==='Ended by player'?`<button class="btn ghost" data-a="actundo">Oops, not done</button>`:''}</div></div>`;
+    return h;
+  }
+  if(!A.sub){
+    h+=`<div class="hint">Take each action <b>once</b>, in any order. Only <b>one</b> of Move / Charge / Retreat. Dash can be added to a movement. The activation ends when you choose, or immediately if a <b>Risky</b> roll fails.</div>`;
+    const near='';
+    const B=(id,t,s,used,dis)=>`<button class="act ${used?'used':''}" data-a="actdo" data-v="${id}" ${dis?'disabled':''}><span class="t">${t}</span><span class="s">${s}</span></button>`;
+    h+=`<div class="acts">
+      ${B('move','Move',`Up to ${moveVal()}″ · no roll`,u.mv==='move',u.mv)}
+      ${B('charge','Charge','Enemy in LoS ≤12″ · +D6″',u.mv==='charge',u.mv)}
+      ${B('retreat','Retreat','Leave melee · enemy gets a free Fight',u.mv==='retreat',u.mv)}
+      ${B('dash','Dash','Risky roll · +Movement″',u.dash,u.dash)}
+      ${B('shoot','Shoot','Ranged weapon · target >1″',u.shoot,u.shoot||!m.weapons.some(x=>x.type==='ranged'))}
+      ${B('fight','Fight','Melee weapon · target ≤1″',u.fight,u.fight||!m.weapons.some(x=>x.type==='melee'))}
+      ${B('climb','Climb / Jump','Risky roll mid-move',false,false)}
+      ${B('other','Other action','Model-specific ability',u.other,false)}
+    </div>`;
+    const tips=[];
+    if(u.shoot&&!A.assault&&!u.fight&&u.mv!=='charge')tips.push('Shot with a non-ASSAULT weapon: normally no Charge or Fight this activation.');
+    if(heavyShot&&!u.shoot)tips.push('Carries a HEAVY ranged weapon: it can’t Shoot if the model Moves, Charges, Retreats or Dashes this activation.');
+    if(A.divingBonus)tips.push('Diving Charge passed: +1 DICE on the next Melee attack.');
+    if(tips.length)h+=`<div class="hint">${tips.join('<br>')}</div>`;
+    h+=`<div class="row"><span class="spacer"></span><button class="btn pri" data-a="actend">End activation</button></div>`;
+    return h;
+  }
+  h+=`<div class="row" style="margin-top:8px"><button class="btn sm ghost" data-a="act-back">← Actions</button></div>`;
+  const sub=A.sub,k=A.key;
+  if(sub==='move'){
+    h+=`<div class="card" style="margin-top:8px"><h3>Move</h3><ul>
+      <li>Move up to <b>${moveVal()}″</b> in any direction. No roll needed.</li>
+      <li>Obstacles up to 1″ high are crossed freely. Difficult terrain costs double (half speed).</li>
+      <li>A Move <b>cannot finish within 1″ of an enemy</b> — use a Charge for that.</li>
+      <li>Climbing a sheer surface or jumping a gap (≤ half Movement wide) needs a <b>Risky</b> roll — use “Climb / Jump”.</li></ul>
+      ${heavyShot?'<div class="warn">Moving means this model can’t fire its HEAVY ranged weapon this activation.</div>':''}
+      <div class="row"><button class="btn pri" data-a="act-back">Done moving</button><button class="btn ghost" data-a="mvundo">Undo choice</button></div></div>`;
+  }
+  if(sub==='charge'){
+    const heavy=m.weapons.some(x=>hasKw(x,'HEAVY'))&&!hasKw(m,'STRONG');
+    h+=`<div class="card" style="margin-top:8px"><h3>Charge</h3><div class="hint">Pick an enemy you can see within 12″. Roll a D6 and add it to Movement, then move toward the target. If you finish within 1″, you can <b>Fight</b>.</div>`;
+    if(heavy)h+=`<div class="warn">Carries a HEAVY item (and isn’t STRONG): <b>no Charge bonus</b> — charge distance is just ${moveVal()}″.</div>`;
+    else{h+=rollBox(k+'-chg',{n:1,keep:1,label:'Charge bonus'});const r=rollDone(k+'-chg');
+      if(r){const dist=A.stood?Math.floor((+m.move+r.total)/2*10)/10:+m.move+r.total;h+=`<div class="good">Charge distance: <b>${dist}″</b> (${m.move} + ${r.total}${A.stood?', halved for standing up':''}).</div>`}}
+    h+=`<div class="sec"><label class="opt"><input type="checkbox" data-c="dive" ${A.dive?'checked':''}><span>Diving Charge<small>Target is at least 3″ below. Risky roll: success = no fall and +1 DICE to the next Melee attack; failure = taken Down and a Falling Injury Roll.</small></span></label>`;
+    if(A.dive){
+      h+=successPanel(k+'-dive',{side:A.side,model:m,title:'Diving Charge',risky:true,inAct:true,
+        onSuccess:()=>{S.act.divingBonus=true},
+        onFail:()=>{m.status='down';S.act.ended=true;S.act.endReason='Diving Charge failed — taken Down. Resolve the Falling Injury Roll below.';S.act.sub='fall'}});
+    }
+    h+=`</div><div class="row" style="margin-top:10px"><button class="btn pri" data-a="actdo" data-v="fight" ${A.used.fight?'disabled':''}>Within 1″ → Fight</button><button class="btn" data-a="act-back">Didn’t make it</button><button class="btn ghost" data-a="mvundo">Undo choice</button></div></div>`;
+  }
+  if(sub==='dash'){
+    h+=`<div class="card" style="margin-top:8px"><h3>Dash</h3><div class="hint">Roll first. On a success, move up to Movement again in any direction (can’t be used to Charge or Retreat). On a failure the activation ends.</div>`;
+    h+=successPanel(k+'-dash',{side:A.side,model:m,title:'Dash',risky:true,inAct:true,downApplies:false});
+    const r=rollDone(k+'-dash');
+    if(r&&cls(r.total)!=='fail')h+=`<div class="good">Move up to another <b>${moveVal()}″</b>.</div><button class="btn pri" data-a="act-back">Done</button>`;
+    h+=`</div>`;
+  }
+  if(sub==='climb'){
+    h+=`<div class="card" style="margin-top:8px"><h3>Climb / Jump</h3><ul><li><b>Climb:</b> within 1″ of a sheer surface with enough movement left to clear it. Success moves you to the top/bottom.</li><li><b>Jump:</b> gap no wider than half Movement. Failure = the model Falls and the activation ends.</li><li><b>Falling</b> 3″+ → Injury Roll with +1 INJURY DICE per full 3″.</li></ul>`;
+    h+=successPanel(k+'-climb'+(A.climbN||0),{side:A.side,model:m,title:'Climb / Jump',risky:true,inAct:true,downApplies:false});
+    const r=rollDone(k+'-climb'+(A.climbN||0));
+    if(r){if(cls(r.total)==='fail')h+=`<div class="row"><button class="btn" data-a="tofall">Model fell → Falling Injury Roll</button></div>`;else h+=`<div class="row"><button class="btn pri" data-a="act-back">Continue</button><button class="btn" data-a="climbagain">Another climb/jump</button></div>`}
+    h+=`</div>`;
+  }
+  if(sub==='fall'){
+    const inch=ui.fall[k]??3,dice=Math.floor(inch/3);
+    h+=`<div class="card" style="margin-top:8px"><h3>Falling Injury Roll</h3><div class="spend">Distance fallen ${stepper('fall',k,'in',inch,0,30,!!rollDone(k+'-fall'))} ″ → <b>+${dice} INJURY DICE</b></div>`;
+    h+=dice?simpleInjury(k+'-fall',A.side,m,dice,`Fell ${inch}″`):`<div class="good">Less than 3″ — no Injury Roll.</div>`;
+    h+=`<div class="row" style="margin-top:8px"><button class="btn pri" data-a="${A.ended?'actdone':'act-back'}">${A.ended?'Next activation →':'Continue'}</button></div></div>`;
+  }
+  if(sub==='retreat'){
+    h+=`<div class="card" style="margin-top:8px"><h3>Retreat</h3><div class="hint">Only from within 1″ of an enemy. Before moving, your opponent may make <b>one Fight action with one Melee weapon</b> against this model. If it’s taken Down or Out of Action, it doesn’t move. Otherwise move up to ${moveVal()}″ and finish more than 1″ from every enemy.</div>`;
+    const os=other(A.side),opts=S.warbands[os].models.filter(x=>x.status==='up'&&x.weapons.some(y=>y.type==='melee'));
+    if(opts.length){h+=`<label class="fld">Enemy taking the free attack<select id="retsel">${opts.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('')}</select></label>
+      <div class="row" style="margin-top:8px"><button class="btn pri" data-a="ret-go">Resolve free attack</button><button class="btn" data-a="ret-free">Opponent declines</button><button class="btn ghost" data-a="mvundo">Undo choice</button></div>`}
+    else h+=`<div class="row"><button class="btn pri" data-a="ret-free">No enemy can attack — retreat</button><button class="btn ghost" data-a="mvundo">Undo choice</button></div>`;
+    h+=`</div>`;
+  }
+  if(sub==='retfree'){
+    h+=`<div class="card" style="margin-top:8px"><h3>Retreat</h3><div class="good">Move up to <b>${moveVal()}″</b>, finishing more than 1″ from all enemies.</div><button class="btn pri" data-a="act-back">Done</button></div>`;
+  }
+  if(sub==='shoot'||sub==='fight'||sub==='retreat-atk'){
+    h+=`<div class="card" style="margin-top:8px"><h3>${sub==='shoot'?'Shoot':sub==='fight'?'Fight':'Free attack on the retreating model'}</h3>${atkView()}`;
+    if(sub==='retreat-atk'&&ui.atk.applied&&m.status==='up')h+=`<div class="good">Survived standing — now retreat up to <b>${moveVal()}″</b>, finishing more than 1″ from all enemies.</div>`;
+    h+=`</div>`;
+  }
+  if(sub==='other'){
+    h+=`<div class="card" style="margin-top:8px"><h3>Other action</h3><div class="hint">Model-specific actions (prayers, abilities, objectives…) are described on the warband card. Many call for a Success Roll — use this if so.</div>
+    <label class="opt"><input type="checkbox" data-c="otherrisky" ${A.otherRisky?'checked':''}><span>This action is Risky</span></label>`;
+    h+=successPanel(k+'-other',{side:A.side,model:m,title:'Action roll',risky:!!A.otherRisky||w.shaken,inAct:true,downApplies:false});
+    h+=`<div class="row" style="margin-top:8px"><button class="btn pri" data-a="act-back">Done</button></div></div>`;
+  }
+  return h;
+}
+function moraleNeeds(i){
+  const w=S.warbands[i],N=w.models.length,d=w.models.filter(m=>m.status!=='up').length,th=Math.ceil(N/2);
+  return{N,d,th,need:!w.fled&&(w.shaken||d>=th)};
+}
+function stageMorale(){
+  if(!S.mor)S.mor=[{done:false},{done:false}];
+  let h=`<h2>Morale Phase</h2><div class="hint">A warband with <b>half or more</b> of its models (rounded up) Down or Out of Action makes a Success Roll. Fail → <b>Shaken</b> (all its rolls become Risky). A Shaken warband must test again next Morale Phase regardless: pass ends Shaken, fail means it <b>flees and loses</b>. LEADER gives +1 DICE while a LEADER is standing.</div>`;
+  let all=true;
+  S.warbands.forEach((w,i)=>{
+    const n=moraleNeeds(i),st=S.mor[i];
+    h+=`<div class="sec"><h3>${wbDot(i)}${esc(w.name)}${w.shaken?' <span class="tag" style="background:#5a1d18;color:#ffbdb5">Shaken</span>':''}</h3>
+     <div class="small muted">${n.d} of ${n.N} Down/Out of Action · threshold ${n.th}</div>`;
+    if(!n.need&&!st.done){h+=`<div class="good">No Morale check needed.</div>`;h+=`</div>`;return}
+    if(st.done){h+=`<div class="${st.cls}">${esc(st.text)}</div></div>`;return}
+    all=false;
+    const extra=leaderUp(w)?[['LEADER on the field',1]]:[];
+    h+=successPanel(`mor${S.turn}-${i}`,{model:null,title:w.shaken?'Morale check (already Shaken!)':'Morale check',risky:false,extra});
+    const r=rollDone(`mor${S.turn}-${i}`);
+    if(r){const pass=cls(r.total)!=='fail';
+      if(pass)h+=`<button class="btn gold" data-a="morok" data-v="${i}">${w.shaken?'Passed — no longer Shaken':'Passed — warband holds'}</button>`;
+      else if(w.shaken)h+=`<div class="warn">Failed while Shaken: the warband <b>flees</b> and loses the game.</div><button class="btn pri" data-a="morflee" data-v="${i}">Warband flees</button>`;
+      else h+=`<div class="row"><button class="btn pri" data-a="morshake" data-v="${i}">Becomes Shaken</button><button class="btn ghost" data-a="morflee" data-v="${i}">Choose to flee instead</button></div>`;
+    }
+    h+=`</div>`;
+  });
+  if(all&&!S.warbands.some(w=>w.fled))h+=`<div class="sec"><h3>End of Turn</h3><div class="hint">All models become ready to activate again. Check your scenario for turn limits and objectives before continuing.</div><button class="btn pri" data-a="nextturn">Start Turn ${S.turn+1} →</button></div>`;
+  return h;
+}
+
+/* ============ DICE TAB ============ */
+function viewDice(){
+  const f=ui.free;
+  let h=`<section class="card first"><h2>Success Roll</h2><div class="small muted">Any action, attack or Morale check. 7+ succeeds, 12 is a Critical.</div>
+  <div class="spend">Net DICE ${stepper('free','x','net',f.net,-5,5,!!rollDone('free-s'))} <label class="opt" style="padding:4px 10px"><input type="checkbox" data-c="freerisky" ${f.risky?'checked':''}><span>Risky</span></label></div>`;
+  h+=netLine(f.net)+successOddsHtml(f.net)+rollBox('free-s',{n:2+Math.abs(f.net),keep:2,low:f.net<0});
+  const s=rollDone('free-s');if(s)h+=resBanner(cls(s.total),s.total,f.risky&&cls(s.total)==='fail'?'Risky → activation ends':'');
+  h+=`</section><section class="card"><h2>Injury Roll</h2>
+  <div class="spend">Net INJURY DICE ${stepper('free','x','inet',f.inet,-5,6,!!rollDone('free-i'))} Modifier ${stepper('free','x','imod',f.imod,-3,5,!!rollDone('free-i'))}
+  <label class="opt" style="padding:4px 10px"><input type="checkbox" data-c="freebb" ${f.bb?'checked':''}><span>Bloodbath (3D6)</span></label></div>`;
+  h+=netLine(f.inet,'INJURY DICE')+injOddsHtml(f.inet,f.imod,f.bb)+rollBox('free-i',{n:(f.bb?3:2)+Math.abs(f.inet),keep:f.bb?3:2,low:f.inet<0,add:f.imod});
+  const i=rollDone('free-i');if(i){const o=injOut(i.total+f.imod);h+=itable(o)}
+  h+=`</section><section class="card"><div class="grid2"><div><h2>D6</h2><div class="small muted">Roll-offs, Charge bonus, shooting into melee, scatter.</div>${rollBox('free-d6',{n:1,keep:1})}</div>
+  <div><h2>D3</h2><div class="small muted">Roll a D6 and halve, rounding up.</div>${rollBox('free-d3',{n:1,keep:1})}${rollDone('free-d3')?`<div class="total">D3 = <b>${Math.ceil(rollDone('free-d3').total/2)}</b></div>`:''}</div></div></section>`;
+  h+=`<section class="card"><h2>Odds at a glance</h2><div class="small muted">Chance to succeed (7+) on a 2D6 Success Roll by net DICE.</div><table class="ot"><tr><th>Net</th>${[-3,-2,-1,0,1,2,3].map(n=>`<th>${sg(n)}</th>`).join('')}</tr>
+  <tr><td>Success 7+</td>${[-3,-2,-1,0,1,2,3].map(n=>`<td>${pct(successOdds(n).ps)}</td>`).join('')}</tr><tr><td>Critical 12</td>${[-3,-2,-1,0,1,2,3].map(n=>`<td>${pct(successOdds(n).pc)}</td>`).join('')}</tr></table>
+  <div class="small muted" style="margin-top:12px">Chance a hit takes the target <b>Out of Action</b> (9+), by INJURY DICE (rows) and armour (columns).</div>
+  <table class="ot"><tr><th></th>${[0,-1,-2,-3].map(a=>`<th>Armour ${a}</th>`).join('')}</tr>${[-1,0,1,2,3].map(n=>`<tr><th>${sg(n)} INJ</th>${[0,-1,-2,-3].map(a=>`<td>${pct(injOdds(n,a,false).ooa)}</td>`).join('')}</tr>`).join('')}</table></section>`;
+  return h;
+}
+
+/* ============ WARBANDS ============ */
+function modelRow(s,m,compact){
+  const cur=S.act&&S.act.side===s&&S.act.id===m.id;
+  const stl={up:'Standing',down:'Down',ooa:'Out of Action'}[m.status];
+  return`<div class="mrow st-${m.status} ${m.activated?'done':''} ${cur?'cur':''}">
+   <div class="mname">${esc(m.name)}${m.activated?'<span class="tag">activated</span>':''}${m.toughUsed?'<span class="tag">TOUGH used</span>':''}</div>
+   <button class="stp ${m.status}" data-a="cyc" data-s="${s}" data-id="${m.id}" title="Tap to change">${stl}</button>
+   <div class="mstats">M ${m.move}″ · R ${sg(m.ranged)} · Mel ${sg(m.melee)} · Arm ${m.armour||0}${m.kw?` · ${esc(m.kw)}`:''}${compact?'':`<br>${m.weapons.map(w=>`${esc(w.name)} <span class="dim">(${w.type==='ranged'?esc(w.range):'melee'}${+w.dice?' '+sg(w.dice)+'D':''}${+w.injDice?' '+sg(w.injDice)+'ID':''}${+w.injMod?' '+sg(w.injMod)+'IM':''}${w.kw?' '+esc(w.kw):''})</span>`).join(' · ')}`}</div>
+   <div class="mctl">
+    <span class="mk"><button data-a="mk" data-s="${s}" data-id="${m.id}" data-f="blood" data-d="-1">−</button><span><i class="dot b"></i>${m.blood}</span><button data-a="mk" data-s="${s}" data-id="${m.id}" data-f="blood" data-d="1">+</button></span>
+    <span class="mk"><button data-a="mk" data-s="${s}" data-id="${m.id}" data-f="blessing" data-d="-1">−</button><span><i class="dot s"></i>${m.blessing}</span><button data-a="mk" data-s="${s}" data-id="${m.id}" data-f="blessing" data-d="1">+</button></span>
+    <span class="spacer"></span>
+    ${compact?'':`<button class="btn sm ghost" data-a="actflag" data-s="${s}" data-id="${m.id}">${m.activated?'Unmark':'Mark'} activated</button>`}
+    <button class="btn sm" data-a="edit" data-s="${s}" data-id="${m.id}">Edit</button>
+   </div></div>`;
+}
+function viewBands(compact){
+  let h=compact?'':`<section class="card first"><h2>Warbands</h2><div class="small muted">Enter your models from your warband cards. Stats here are <b>placeholder samples</b> — replace them with your list. Changes save automatically on this device.</div>
+   <div class="row" style="margin-top:10px"><button class="btn" data-a="newgame">New game (reset turn & wounds)</button><button class="btn" data-a="export">Export / Import</button><button class="btn ghost" data-a="sample">Load samples</button></div></section>`;
+  h+=compact?'':'<div style="margin-top:14px"></div>';
+  h+=`<div class="${compact?'':'grid2'}">`;
+  S.warbands.forEach((w,s)=>{
+    h+=`<div class="wb"><div class="wbh"><span class="sw" style="background:${w.color}"></span><h3>${esc(w.name)}</h3>
+     ${w.shaken?'<span class="tag" style="background:#5a1d18;color:#ffbdb5">Shaken</span>':''}
+     ${compact?'':`<button class="btn sm ghost" data-a="wbedit" data-s="${s}">Rename</button>`}<button class="btn sm" data-a="add" data-s="${s}">+ Model</button></div>
+     ${w.models.map(m=>modelRow(s,m,compact)).join('')||'<div class="mrow muted">No models.</div>'}</div>`;
+  });
+  return h+`</div>`;
+}
+/* ---- model editor modal ---- */
+function openEdit(s,id){
+  const m=id?mdl(s,id):M('New model',6,0,0,0,'',[W('Rifle','ranged','24"',0,0,0,'')]);
+  ui.modal={s,id,tmp:JSON.parse(JSON.stringify(m))};renderModal();
+}
+function readModal(){
+  const t=ui.modal.tmp,q=s=>$('#modal '+s);
+  t.name=q('[name=nm]').value;t.move=+q('[name=mv]').value||0;t.ranged=+q('[name=rg]').value||0;t.melee=+q('[name=ml]').value||0;t.armour=+q('[name=ar]').value||0;t.kw=q('[name=kw]').value;
+  document.querySelectorAll('#modal .wrow').forEach((r,i)=>{const w=t.weapons[i];const g=n=>r.querySelector(`[name=${n}]`).value;w.name=g('wn');w.type=g('wt');w.range=g('wr');w.dice=+g('wd')||0;w.injDice=+g('wi')||0;w.injMod=+g('wm')||0;w.kw=g('wk')});
+}
+function renderModal(){
+  if(!ui.modal){$('#modal').innerHTML='';return}
+  const t=ui.modal.tmp;
+  $('#modal').innerHTML=`<div class="back"><div class="box"><h2>${ui.modal.id?'Edit':'Add'} model</h2>
+  <div class="fgrid" style="margin-top:10px">
+   <label class="fld fn">Name<input type="text" name="nm" value="${esc(t.name)}"></label>
+   <label class="fld">Move ″<input type="number" name="mv" value="${t.move}" inputmode="numeric"></label>
+   <label class="fld">Ranged DICE<input type="number" name="rg" value="${t.ranged}"></label>
+   <label class="fld">Melee DICE<input type="number" name="ml" value="${t.melee}"></label>
+   <label class="fld">Armour (−)<input type="number" name="ar" value="${t.armour}" max="0" min="-3"></label>
+  </div>
+  <label class="fld" style="margin-top:8px">Model keywords (comma separated)<input type="text" name="kw" value="${esc(t.kw)}" placeholder="e.g. LEADER, ELITE, TOUGH, FEAR, STRONG, NEGATE FIRE"></label>
+  <div class="small muted" style="margin-top:4px">Armour: total −INJURY MODIFIER from armour + shield (e.g. Standard −1, Reinforced −2, Machine −3, Trench Shield another −1).</div>
+  <h3 style="margin-top:14px">Weapons</h3>
+  ${t.weapons.map((w,i)=>`<div class="wrow">
+   <label class="fld wn">Name<input type="text" name="wn" value="${esc(w.name)}"></label>
+   <label class="fld">Type<select name="wt"><option value="ranged" ${w.type==='ranged'?'selected':''}>Ranged</option><option value="melee" ${w.type==='melee'?'selected':''}>Melee</option></select></label>
+   <label class="fld">Range<input type="text" name="wr" value="${esc(w.range)}"></label>
+   <label class="fld">±DICE<input type="number" name="wd" value="${w.dice}"></label>
+   <label class="fld">±INJ DICE<input type="number" name="wi" value="${w.injDice}"></label>
+   <label class="fld">±INJ MOD<input type="number" name="wm" value="${w.injMod}"></label>
+   <label class="fld wk">Keywords<input type="text" name="wk" value="${esc(w.kw)}" placeholder="CRITICAL, SHRAPNEL, HEAVY, ASSAULT…"></label>
+   <button class="btn sm ghost" data-a="mw-del" data-v="${i}" title="Remove">✕</button></div>`).join('')}
+  <div class="row" style="margin-top:10px"><button class="btn sm" data-a="mw-add">+ Weapon</button></div>
+  <div class="small muted" style="margin-top:6px">Keywords the simulator understands: CRITICAL, SHRAPNEL, FIRE, GAS, HEAVY, ASSAULT, RISKY, IGNORE ARMOUR, SHOTGUN, BLAST, AUTOMATIC X (weapons); TOUGH, FEAR, LEADER, STRONG, DEMONIC, NEGATE X (models).</div>
+  <div class="row" style="margin-top:14px">${ui.modal.id?`<button class="btn ghost" data-a="m-del" style="color:var(--blood2)">Delete model</button>`:''}${ui.modal.id?`<button class="btn ghost" data-a="m-dup">Duplicate</button>`:''}<span class="spacer"></span><button class="btn" data-a="m-cancel">Cancel</button><button class="btn pri" data-a="m-save">Save</button></div>
+  </div></div>`;
+}
+
+/* ============ RULES REFERENCE ============ */
+function viewRef(){
+  const D=(t,b,open)=>`<details class="ref" ${open?'open':''}><summary>${t}</summary><div class="body">${b}</div></details>`;
+  return`<section class="card first"><h2>Rules refresher</h2><div class="small muted">Condensed from the official Trench Crusade Digital Rulebook and the 2026 Quickstart Rules. Always defer to the current rulebook and your scenario. Free downloads at <a href="https://www.trenchcrusade.com/rules/" target="_blank" rel="noopener">trenchcrusade.com/rules</a>.</div></section>`+
+  D('A turn at a glance',`<ol><li><b>Initiative:</b> fewer models picks first/second activation; tie → D6 roll-off.</li><li><b>Activation:</b> alternate one model at a time until everyone has activated once.</li><li><b>Morale:</b> any warband with ≥ half its models (rounded up) Down/OOA tests; Shaken warbands test again.</li></ol>`,true)+
+  D('Which dice do I roll?',`<table class="ot"><tr><th>Situation</th><th>Dice</th><th>Read as</th></tr>
+   <tr><td>Success Roll (attack, Dash, Climb, Morale…)</td><td>2D6 ± DICE</td><td>2–6 fail · 7–11 success · 12 critical</td></tr>
+   <tr><td>Injury Roll (after a hit, or a fall)</td><td>2D6 ± INJURY DICE, then + INJURY MODIFIER</td><td>Injury Table</td></tr>
+   <tr><td>Bloodbath Roll</td><td>3D6 (all three) ± INJURY DICE</td><td>Injury Table</td></tr>
+   <tr><td>Charge bonus</td><td>1D6</td><td>+″ to Movement</td></tr>
+   <tr><td>Shooting into melee</td><td>1D6</td><td>1–3 must hit a friendly · 4–6 enemy OK</td></tr>
+   <tr><td>Initiative roll-off</td><td>1D6 each</td><td>highest wins, re-roll ties</td></tr></table>
+   <p><b>+DICE / −DICE:</b> each +1 DICE adds a die and you keep the <b>highest two</b>; each −1 DICE adds a die and you keep the <b>lowest two</b>. A + and a − cancel each other one-for-one first. INJURY DICE work the same way on Injury Rolls.</p>
+   <p><b>Risky:</b> a failed Risky roll ends the activation immediately. Dash, Climb, Jump, Diving Charge, dangerous terrain, RISKY items, and every roll of a Shaken warband are Risky.</p>`)+
+  D('Activation & actions',`<ul><li>Each action once per activation, any order. Only <b>one</b> of Move / Charge / Retreat.</li>
+   <li><b>Move:</b> up to Movement. Can’t end within 1″ of an enemy. Difficult terrain half speed; obstacles ≤1″ free.</li>
+   <li><b>Charge:</b> visible enemy within 12″. Movement + D6 (no bonus with HEAVY unless STRONG). Finish within 1″ → may Fight.</li>
+   <li><b>Retreat:</b> from within 1″ of an enemy; that enemy may first make one free Fight action with one melee weapon. If Down/OOA, no move. Finish >1″ from all enemies.</li>
+   <li><b>Dash:</b> Risky roll, then up to Movement again (not to Charge/Retreat).</li>
+   <li><b>Shoot:</b> ranged weapon, target >1″ away in LoS and range. Normally no Charge/Fight after shooting unless the weapon is ASSAULT.</li>
+   <li><b>Fight:</b> melee weapon, target within 1″. Two melee weapons: attack with both, the second at −1 DICE.</li>
+   <li><b>Down models:</b> stand up when next activated, with Movement halved (including Charge bonus) for that activation. Taking a model Down during its own activation ends that activation.</li></ul>`)+
+  D('Attack modifiers',`<div class="grid2"><div><b>Shooting</b><ul><li>Elevated (≥3″ above): +1 DICE</li><li>Target in Cover: −1 DICE</li><li>Long Range (> half max): −1 DICE <span class="dim">(SHOTGUN: −1 INJURY DICE instead)</span></li><li>Into melee: D6 first, 1–3 hits a friendly</li></ul></div>
+   <div><b>Melee</b><ul><li>Second melee weapon: −1 DICE</li><li>Target has FEAR: −1 DICE (cancels if you have FEAR too)</li><li>Defended Obstacle: −1 DICE</li><li>Diving Charge success: +1 DICE</li><li>Target is Down: +1 INJURY DICE</li></ul></div></div>
+   <p>Also: the model’s Ranged/Melee characteristic and the weapon’s own ±DICE; the attacker being Down: −1 DICE; Blessing (+1 each) and enemy-spent Blood (−1 each).</p>`)+
+  D('Injury Table & modifiers',itable(null)+`<ul><li><b>INJURY DICE:</b> Critical +1 (CRITICAL weapon +2), weapon bonus, melee vs Down +1, each Blood Marker spent by the attacker +1, each Blessing spent by the target −1.</li>
+   <li><b>INJURY MODIFIER:</b> weapon modifier plus armour/shield (Standard −1, Reinforced −2, Machine −3, Trench Shield −1). Total negative modifier can’t exceed −3.</li>
+   <li><b>SHRAPNEL / FIRE / GAS:</b> +1 extra Blood Marker after the Injury Roll, even on No Effect (unless negated).</li>
+   <li><b>TOUGH:</b> the first Out of Action result becomes Down instead.</li></ul>`)+
+  D('Blood & Blessing Markers',`<ul><li>Max <b>6</b> of each per model.</li><li><b>Blood</b> (spent by the opponent): −1 DICE on that model’s Success Rolls, or +1 INJURY DICE on Injury Rolls against it.</li>
+   <li><b>Bloodbath:</b> spend 6 Blood Markers (3 if the target is Down) to turn an Injury Roll into a 3D6 Bloodbath Roll — add all three.</li>
+   <li><b>Blessing</b> (spent by the owner): +1 DICE on its Success Rolls, or −1 INJURY DICE on Injury Rolls against it.</li></ul>`)+
+  D('Morale & Shaken',`<ul><li>In the Morale Phase, if half or more of the warband (rounded up) is Down or Out of Action, make a Success Roll (LEADER standing: +1 DICE).</li><li>Fail → <b>Shaken</b>: all Success Rolls become Risky. You may instead choose to flee (lose).</li><li>A Shaken warband tests next Morale Phase no matter what: pass → no longer Shaken; fail → the warband flees and loses.</li></ul>`)+
+  D('Keyword glossary',`<div class="kwg">${[
+   ['ASSAULT','Shooting doesn’t prevent a Charge or Fight in the same activation.'],['AUTOMATIC X','Make X attacks with the weapon.'],['BLAST (X″)','Area attack; Injury Roll for each model in the radius with LoS to the point.'],
+   ['SCATTER','BLAST that misses scatters 7 minus the roll, direction chosen by the opponent.'],['CRITICAL','A Critical Success gives +2 INJURY DICE instead of +1.'],['SHRAPNEL · FIRE · GAS','+1 Blood Marker after the Injury Roll, even on No Effect.'],
+   ['HEAVY','One HEAVY item per model; no Charge bonus; HEAVY ranged weapons can’t shoot after moving/dashing.'],['STRONG','Ignores HEAVY; can use a 2-handed melee weapon one-handed.'],['CUMBERSOME','Needs two hands even if STRONG.'],
+   ['RISKY','Rolls using this item are Risky.'],['IGNORE ARMOUR','Target’s armour modifier doesn’t apply.'],['TOUGH','First Out of Action becomes Down instead.'],['FEAR','Melee attacks against it take −1 DICE; immune to FEAR.'],
+   ['LEADER','+1 DICE to Morale checks while standing.'],['DEMONIC','Has NEGATE FIRE.'],['NEGATE X','Ignores keyword X.'],['ELITE / ARTIFICIAL','Tags referenced by other rules.']].map(([k,v])=>`<div><b>${k}</b><br>${v}</div>`).join('')}</div>`)+
+  D('Line of sight, measuring, D3',`<ul><li>LoS: look from behind the model; ignore bases, hands, feet, weapons and banners. Models see 360°.</li><li>Pre-measuring is allowed at any time unless a rule says otherwise.</li><li>D3: roll a D6 and halve, rounding up.</li></ul>`);
+}
+
+/* ============ main render ============ */
+function render(){
+  ui.hooks={};
+  $('#turnbar').innerHTML=turnbar();
+  document.querySelectorAll('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===ui.tab));
+  let main='';
+  if(ui.tab==='turn')main=viewTurn();
+  else if(ui.tab==='attack')main=`<section class="card first"><h2>Attack resolver</h2><div class="small muted">Resolve any Shoot or Fight outside the turn walkthrough. Results are applied to the warbands.</div>${atkView()}</section>`;
+  else if(ui.tab==='dice')main=viewDice();
+  else if(ui.tab==='bands')main=viewBands(false);
+  else main=viewRef();
+  const side=['turn','attack','dice'].includes(ui.tab);
+  $('#app').innerHTML=`<div class="layout ${side?'has-side':''}"><div class="mainc">${main}</div>${side?`<aside class="side">${viewBands(true)}</aside>`:''}</div>`;
+  save();
+  const now=document.querySelector('.tl.now');if(now&&now.parentElement){const tl=now.parentElement;tl.scrollLeft=now.offsetLeft-tl.offsetLeft-12}
+}
+
+/* ============ actions ============ */
+function startAct(id){
+  const s=S.next,m=mdl(s,id);
+  S.act={side:s,id,key:uid(),used:{mv:null,dash:false,shoot:false,fight:false,other:false},ended:false,stood:false,sub:null,divingBonus:false,assault:false};
+  if(m.status==='down'){m.status='up';S.act.stood=true;log(`${esc(m.name)} stands up (Movement halved)`)}
+  log(`<b>${wbName(s)}</b> activates ${esc(m.name)}`);
+}
+function finishAct(){
+  const A=S.act,m=actModel();if(m)m.activated=true;S.act=null;
+  const o=other(A.side);
+  if(eligible(o).length)S.next=o;else if(eligible(A.side).length)S.next=A.side;
+  else{S.phase='morale';S.mor=null;log('— Morale Phase —')}
+}
+function doAction(v){
+  const A=S.act,m=actModel();
+  if(['move','charge','retreat'].includes(v)){A.used.mv=v;A.sub=v;if(v!=='retreat')log(`${esc(m.name)}: ${v}`);return}
+  if(v==='dash'){A.used.dash=true;A.sub='dash';return}
+  if(v==='shoot'){A.sub='shoot';ui.atk=newAtk({aSide:A.side,aId:A.id,ctx:'shoot'});return}
+  if(v==='fight'){A.sub='fight';ui.atk=newAtk({aSide:A.side,aId:A.id,ctx:'fight',o:{diving:A.divingBonus}});return}
+  if(v==='other'){A.used.other=true;A.sub='other';return}
+  if(v==='climb'){A.sub='climb';return}
+}
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-a]');if(!el)return;
+  const a=el.dataset.a,k=el.dataset.k,v=el.dataset.v,s=el.dataset.s!=null?+el.dataset.s:null,id=el.dataset.id;
+  const A=ui.atk;
+  switch(a){
+    case'tab':ui.tab=v;window.scrollTo({top:0});break;
+    case'autoroll':{const r=ui.rolls[k];r.dice=r.dice.map(d6);r.anim=true;completeRoll(k);break}
+    case'manual':{const r=ui.rolls[k];r.manual=true;r.sel=r.dice.findIndex(x=>!x);if(r.sel<0)r.sel=0;break}
+    case'dsel':{const r=ui.rolls[k];if(evalR(r))return;r.manual=true;r.sel=+el.dataset.i;break}
+    case'dkey':{const r=ui.rolls[k];r.dice[r.sel]=+v;const nx=r.dice.findIndex(x=>!x);r.sel=nx<0?r.sel:nx;if(nx<0)completeRoll(k);break}
+    case'dclr':{resetRoll(k);if(k.endsWith('-hit')){resetRoll(k.replace('-hit','-inj'));A.hitSnap=null;A.injSnap=null}if(k.endsWith('-inj'))A.injSnap=null;
+      if(S.act&&S.act.ended&&/Risky/.test(S.act.endReason||'')){S.act.ended=false;S.act.endReason=''}break}
+    case'sp':{const sp=ui.sp[k];sp[el.dataset.f]=Math.max(0,sp[el.dataset.f]+ +el.dataset.d);break}
+    case'atksp':{A[el.dataset.f]=Math.max(0,A[el.dataset.f]+ +el.dataset.d);break}
+    case'free':{const f=ui.free;f[el.dataset.f]+=+el.dataset.d;break}
+    case'fall':{ui.fall[k]=Math.max(0,(ui.fall[k]??3)+ +el.dataset.d);break}
+    case'atk-apply':{const t=mdl(A.tSide,A.tId),at=mdl(A.aSide,A.aId),w=at.weapons[A.wIdx];const ef=injEffect(t,A._out,w);applyEffect(t,ef);A.applied=true;A.result=ef.text;
+      log(`${esc(at.name)} → ${esc(t.name)} with ${esc(w.name)}: ${A.blast?'blast':'hit'}${A._hit==='crit'?' (critical)':''}, ${OUT[A._out]}. ${esc(ef.text)}`);afterAtk();break}
+    case'atk-miss':{const at=mdl(A.aSide,A.aId),t=mdl(A.tSide,A.tId);A.applied=true;A.result='Miss';log(`${esc(at.name)} → ${esc(t.name)} with ${esc(at.weapons[A.wIdx].name)}: miss`);afterAtk();break}
+    case'atk-again':ui.atk=newAtk({aSide:A.aSide,aId:A.aId,wIdx:A.wIdx,tSide:A.tSide,tId:mdl(A.tSide,A.tId)&&alive(mdl(A.tSide,A.tId))?A.tId:null,o:A.o,ctx:A.ctx});break;
+    case'atk-blast':ui.atk=newAtk({aSide:A.aSide,aId:A.aId,wIdx:A.wIdx,tSide:A.tSide,o:A.o,ctx:A.ctx,blast:true});break;
+    case'atk-second':ui.atk=newAtk({aSide:A.aSide,aId:A.aId,wIdx:+v,tSide:A.tSide,tId:A.tId,o:{offhand:true},ctx:'fight'});break;
+    case'atk-new':ui.atk=newAtk({aSide:A.aSide,aId:A.aId});break;
+    case'initre':resetRoll('ini'+S.turn+'-0');resetRoll('ini'+S.turn+'-1');break;
+    case'initgo':S.phase='activation';S.next=+v;S.act=null;log(`— Turn ${S.turn}: ${wbName(+v)} activates first —`);break;
+    case'pick':startAct(id);break;
+    case'actdo':doAction(v);break;
+    case'act-back':if(S.act){if(S.act.sub==='retfree'||S.act.sub==='retreat-atk')S.act.used.mv='retreat';S.act.sub=null;if(S.act.used.shoot&&ui.atk&&ui.atk.ctx==='shoot'){const w=actModel().weapons[ui.atk.wIdx];if(w&&hasKw(w,'ASSAULT'))S.act.assault=true}}break;
+    case'mvundo':S.act.used.mv=null;S.act.sub=null;S.act.dive=false;break;
+    case'actend':S.act.ended=true;S.act.endReason='Ended by player';break;
+    case'actundo':S.act.ended=false;S.act.endReason='';break;
+    case'actdone':finishAct();break;
+    case'tofall':S.act.sub='fall';break;
+    case'climbagain':S.act.climbN=(S.act.climbN||0)+1;break;
+    case'ret-go':{const sel=$('#retsel');S.act.sub='retreat-atk';ui.atk=newAtk({aSide:other(S.act.side),aId:sel.value,tSide:S.act.side,tId:S.act.id,ctx:'retreat'});break}
+    case'ret-free':S.act.sub='retfree';S.act.used.mv='retreat';log(`${esc(actModel().name)} retreats`);break;
+    case'sinj-apply':{const st=ui.sinj[k],m=mdl(s,id);const ef=injEffect(m,st.out,null);applyEffect(m,ef);st.applied=true;st.res=ef.text;log(`${esc(m.name)} falls: ${OUT[st.out]}. ${esc(ef.text)}`);break}
+    case'tomorale':if(!arm(el))return;S.act=null;S.phase='morale';S.mor=null;break;
+    case'morok':{const w=S.warbands[+v];S.mor[+v]={done:true,cls:'good',text:w.shaken?'Passed — no longer Shaken.':'Passed — the warband holds.'};w.shaken=false;log(`${esc(w.name)} passes Morale`);break}
+    case'morshake':{const w=S.warbands[+v];w.shaken=true;S.mor[+v]={done:true,cls:'warn',text:'Failed — the warband is Shaken. All its Success Rolls are Risky, and it must test again next Morale Phase.'};log(`${esc(w.name)} is <b>Shaken</b>`);break}
+    case'morflee':{const w=S.warbands[+v];w.fled=true;S.mor[+v]={done:true,cls:'warn',text:'The warband flees!'};log(`<b>${esc(w.name)} flees — game over</b>`);break}
+    case'nextturn':S.turn++;S.phase='initiative';S.act=null;S.mor=null;S.warbands.forEach(w=>w.models.forEach(m=>m.activated=false));log(`— Turn ${S.turn} —`);break;
+    case'clrlog':S.log=[];break;
+    case'cyc':{const m=mdl(s,id);m.status={up:'down',down:'ooa',ooa:'up'}[m.status];break}
+    case'mk':{const m=mdl(s,id);m[el.dataset.f]=Math.max(0,Math.min(6,m[el.dataset.f]+ +el.dataset.d));break}
+    case'actflag':{const m=mdl(s,id);m.activated=!m.activated;break}
+    case'edit':openEdit(s,id);return;
+    case'add':openEdit(s,null);return;
+    case'wbedit':openRename(s);return;
+    case'wbsave':{const w=S.warbands[s];const n=$('#wbn').value.trim();if(n)w.name=n;w.color=$('#wbc').value;$('#modal').innerHTML='';break}
+    case'mw-add':readModal();ui.modal.tmp.weapons.push(W('New weapon','melee','Melee',0,0,0,''));renderModal();return;
+    case'mw-del':readModal();ui.modal.tmp.weapons.splice(+v,1);renderModal();return;
+    case'm-cancel':ui.modal=null;renderModal();return;
+    case'm-save':{readModal();const{ s:ms,id:mid,tmp}=ui.modal;const w=S.warbands[ms];if(mid){const i=w.models.findIndex(m=>m.id===mid);w.models[i]=tmp}else w.models.push(tmp);ui.modal=null;renderModal();ui.atk=newAtk(ui.atk.ctx?ui.atk:{});toast('Saved');break}
+    case'm-del':{if(!arm(el))return;const w=S.warbands[ui.modal.s];w.models=w.models.filter(m=>m.id!==ui.modal.id);if(S.act&&S.act.id===ui.modal.id)S.act=null;ui.modal=null;renderModal();ui.atk=newAtk();break}
+    case'm-dup':{readModal();const c=JSON.parse(JSON.stringify(ui.modal.tmp));c.id=uid();c.name+=' (copy)';S.warbands[ui.modal.s].models.push(c);ui.modal=null;renderModal();toast('Duplicated');break}
+    case'newgame':if(!arm(el))return;
+      S=freshState(S.warbands.map(w=>({...w,shaken:false,fled:false,models:w.models.map(m=>({...m,status:'up',blood:0,blessing:0,toughUsed:false,activated:false}))})));ui.rolls={};ui.atk=newAtk();ui.tab='turn';break;
+    case'sample':if(!arm(el))return;S=freshState();ui.rolls={};ui.atk=newAtk();break;
+    case'export':openExport();return;
+    case'imp':{try{const d=JSON.parse($('#impt').value);if(!Array.isArray(d.warbands))throw 0;S=Object.assign(freshState(),d);ui.rolls={};ui.atk=newAtk();ui.modal=null;$('#modal').innerHTML='';toast('Imported')}catch(err){toast('That doesn’t look like a valid export')}break}
+    case'copyexp':{const t=$('#impt');t.select();try{navigator.clipboard.writeText(t.value);toast('Copied')}catch(err){document.execCommand&&document.execCommand('copy')}return}
+    default:return;
+  }
+  render();
+});
+function arm(el){if(el.dataset.armed==='1')return true;el.dataset.armed='1';el.dataset.orig=el.innerHTML;el.innerHTML='Tap again to confirm';el.classList.add('pri');setTimeout(()=>{if(el.isConnected){el.dataset.armed='';el.innerHTML=el.dataset.orig;el.classList.remove('pri')}},3000);return false}
+function openRename(s){const w=S.warbands[s];$('#modal').innerHTML=`<div class="back"><div class="box" style="max-width:420px"><h2>Warband</h2>
+<label class="fld" style="margin-top:10px">Name<input type="text" id="wbn" value="${esc(w.name)}"></label>
+<label class="fld" style="margin-top:10px">Colour<input type="color" id="wbc" value="${w.color}" style="height:44px;width:80px;padding:2px"></label>
+<div class="row" style="margin-top:14px"><span class="spacer"></span><button class="btn" data-a="m-cancel">Cancel</button><button class="btn pri" data-a="wbsave" data-s="${s}">Save</button></div></div></div>`}
+function afterAtk(){
+  const A=ui.atk;if(!S.act||!A.ctx)return;
+  if(A.ctx==='shoot'){S.act.used.shoot=true;const w=actModel().weapons[A.wIdx];if(w&&hasKw(w,'ASSAULT'))S.act.assault=true}
+  if(A.ctx==='fight')S.act.used.fight=true;
+  if(A.ctx==='retreat'){S.act.used.mv='retreat';const m=actModel();if(m.status!=='up'){S.act.ended=true;S.act.endReason=`${m.name} was taken ${m.status==='ooa'?'Out of Action':'Down'} by the free attack — it doesn’t retreat.`}}
+}
+function openExport(){
+  $('#modal').innerHTML=`<div class="back"><div class="box"><h2>Export / Import</h2><div class="small muted">Copy this text to save your warbands and game, or paste a previous export and press Import.</div>
+  <textarea id="impt" style="width:100%;height:260px;margin-top:10px;font-family:ui-monospace,monospace;font-size:12px">${esc(JSON.stringify(S,null,1))}</textarea>
+  <div class="row" style="margin-top:10px"><button class="btn" data-a="copyexp">Copy</button><span class="spacer"></span><button class="btn" data-a="m-cancel">Close</button><button class="btn pri" data-a="imp">Import</button></div></div></div>`;
+}
+document.addEventListener('change',e=>{
+  const el=e.target.closest('[data-c]');if(!el)return;const c=el.dataset.c,A=ui.atk;
+  if(c==='atk-a'){const[s,id]=el.value.split(':');A.aSide=+s;A.aId=id;A.wIdx=-1;A.bl=A.bs=0;if(A.tSide===A.aSide&&A.tId===id){A.tSide=other(+s);A.tId=firstAlive(A.tSide).id}}
+  if(c==='atk-w'){A.wIdx=+el.value;A.o={}}
+  if(c==='atk-t'){const[s,id]=el.value.split(':');A.tSide=+s;A.tId=id;A.bi=A.si=0;A.bb=false}
+  if(c==='atkopt')A.o[el.dataset.f]=el.checked;
+  if(c==='atkbb'){A.bb=el.checked;A.bi=0}
+  if(c==='dive')S.act.dive=el.checked;
+  if(c==='otherrisky')S.act.otherRisky=el.checked;
+  if(c==='freerisky')ui.free.risky=el.checked;
+  if(c==='freebb')ui.free.bb=el.checked;
+  render();
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ui.modal){ui.modal=null;renderModal()}});
+render();
+</script>
+</body>
+</html>
