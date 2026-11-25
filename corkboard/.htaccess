@@ -1,0 +1,9 @@
+# Upload limits for Apache + mod_php (PHP-FPM hosts use .user.ini instead).
+<IfModule mod_php.c>
+  php_value upload_max_filesize 64M
+  php_value post_max_size 66M
+</IfModule>
+<IfModule mod_php7.c>
+  php_value upload_max_filesize 64M
+  php_value post_max_size 66M
+</IfModule>

@@ -9,6 +9,7 @@
         <li><a href="/stories/">Read my stories</a></li>
 		<li><a href="/wedding/">Wedding information</a></li>
 		<li><a href="/maus-tools/">Mausritter generators</a></li>
+		<li><a href="/corkboard/">Corkboard organizer</a></li>
     </ul>
 </section>
 

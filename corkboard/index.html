@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Corkboard</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23b9895a'/%3E%3Crect x='7' y='8' width='13' height='13' fill='%23ffe873' transform='rotate(-6 13 14)'/%3E%3Ccircle cx='13' cy='9' r='3' fill='%23d63a2f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Special+Elite&display=swap">
+<link rel="stylesheet" href="corkboard.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <button class="tb-btn" id="btn-boards" title="Boards" aria-label="Boards" data-icon="menu"></button>
+    <button class="board-title" id="board-title" title="Rename board"></button>
+    <span class="save-status" id="save-status"></span>
+    <div class="spacer"></div>
+    <div class="tb-group" id="add-group">
+      <button class="tb-btn" data-add="note" title="Add post-it (N)" data-icon="note"><span>Post-it</span></button>
+      <button class="tb-btn" data-add="label" title="Add label (L)" data-icon="label"><span>Label</span></button>
+      <button class="tb-btn" data-add="image" title="Add image" data-icon="image"><span>Image</span></button>
+      <button class="tb-btn" data-add="doc" title="Add document" data-icon="doc"><span>Document</span></button>
+      <button class="tb-btn" data-add="link" title="Add link" data-icon="link"><span>Link</span></button>
+    </div>
+    <div class="tb-group">
+      <button class="tb-btn" id="btn-undo" title="Undo (Ctrl+Z)" aria-label="Undo" data-icon="undo"></button>
+      <button class="tb-btn" id="btn-redo" title="Redo (Ctrl+Shift+Z)" aria-label="Redo" data-icon="redo"></button>
+    </div>
+    <div class="tb-group zoom-group">
+      <button class="tb-btn" id="btn-zoom-out" title="Zoom out" aria-label="Zoom out" data-icon="minus"></button>
+      <button class="tb-btn zoom-label" id="btn-zoom-fit" title="Fit everything">100%</button>
+      <button class="tb-btn" id="btn-zoom-in" title="Zoom in" aria-label="Zoom in" data-icon="plus"></button>
+    </div>
+  </header>
+
+  <main class="frame">
+    <div id="viewport" tabindex="-1">
+      <div id="world">
+        <svg id="strings" width="1" height="1" overflow="visible" aria-hidden="true">
+          <defs>
+            <filter id="yarn-shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="1.5" dy="3" stdDeviation="1.6" flood-color="#000" flood-opacity=".45"/>
+            </filter>
+          </defs>
+          <g id="strings-g"></g>
+          <path id="string-temp" class="yarn" />
+        </svg>
+      </div>
+      <div class="hint" id="hint"></div>
+      <div class="drop-overlay" id="drop-overlay"><span>Drop to pin it to the board</span></div>
+    </div>
+  </main>
+
+  <div class="inspector" id="inspector" hidden></div>
+</div>
+
+<!-- Boards drawer -->
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <h2>Boards</h2>
+    <button class="tb-btn" id="btn-drawer-close" aria-label="Close" data-icon="x"></button>
+  </div>
+  <button class="btn primary wide" id="btn-new-board" data-icon="plus"><span>New board</span></button>
+  <ul class="board-list" id="board-list"></ul>
+  <div class="drawer-foot">
+    <button class="btn wide" id="btn-import" data-icon="upload"><span>Import board…</span></button>
+    <div class="storage-mode" id="storage-mode"></div>
+    <details class="shortcuts">
+      <summary>Tips &amp; shortcuts</summary>
+      <ul>
+        <li><b>Drag</b> items to move; drag empty cork to pan; scroll or pinch to zoom.</li>
+        <li><b>Drag from a pin</b> to another item to tie a string. Tap a string to recolour or cut it.</li>
+        <li><b>Double-click</b> a post-it or label to edit; a link or doc to open it.</li>
+        <li>Drop or paste images, files, and URLs straight onto the board.</li>
+        <li><kbd>[</kbd> / <kbd>]</kbd> send backward / forward, add <kbd>Shift</kbd> for back / front.</li>
+        <li><kbd>Del</kbd> delete · <kbd>Ctrl</kbd>+<kbd>D</kbd> duplicate · <kbd>Ctrl</kbd>+<kbd>Z</kbd> undo · <kbd>Esc</kbd> deselect</li>
+      </ul>
+    </details>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<!-- Generic dialog -->
+<dialog id="dialog">
+  <form method="dialog" id="dialog-form">
+    <h3 id="dialog-title"></h3>
+    <div id="dialog-body"></div>
+    <div class="dialog-actions">
+      <button type="button" class="btn" value="cancel" id="dialog-cancel">Cancel</button>
+      <button type="submit" class="btn primary" value="ok" id="dialog-ok">OK</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="tb-btn lb-close" id="lb-close" aria-label="Close" data-icon="x"></button>
+  <div class="lb-content" id="lb-content"></div>
+</div>
+
+<input type="file" id="file-image" accept="image/*" multiple hidden>
+<input type="file" id="file-doc" multiple hidden>
+<input type="file" id="file-import" accept=".json,application/json" hidden>
+
+<script src="corkboard.js" defer></script>
+</body>
+</html>
